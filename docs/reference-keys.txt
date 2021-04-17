@@ -1,3 +1,4 @@
+fig:unnamed-chunk-1
 syllabus
 teaching-style
 schedule
@@ -9,7 +10,15 @@ datasets
 topics
 reading
 introduction
+quantitative-methods
+quantitative-and-qualitative-methods
+statistics
+descriptive-and-inferential-statistics
+frequentist-and-bayesian-approach-to-statistics
+statistics-and-data-science-machine-learning-artificial-intelligence
+software
+commonly-used-software
 jamovi
-r-and-rstudio
-introduction-1
+r-language-and-rstudio
+descriptive-statistics
 references

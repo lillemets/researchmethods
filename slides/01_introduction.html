@@ -1,39 +1,341 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
-    <title>Title</title>
-    <meta charset="utf-8">
+    <title>Introduction</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jüri Lillemets" />
+    <meta name="date" content="2021-04-18" />
+    <script src="01_introduction_files/header-attrs-2.7/header-attrs.js"></script>
     <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
+class: center, middle, inverse, title-slide
 
-class: middle, inverse, title-slide
-
-# Introduction to quantitative methods 
-## MS.0825 Research methods
+# Introduction
+## Research methods
 ### Jüri Lillemets
-### May 3rd, 2021
+### 2021-04-18
+
+---
+
+
+class: center middle inverse
+
+# Quantitative methods
+
+---
+
+### Quantitative and qualitative methods
+
+| QuaNT...             | QuaL...               |
+| -------------------- | --------------------- |
+| Numeric data         | Semantic data         |
+| Large-N              | Small-N, case studies |
+| Generalize           | Explore               |
+| Measure and test     | Understand            |
+| Statistical analysis | Interpretation        |
+
+???
+
+Text mining. Statistics!
 
 ---
 
 class: center middle inverse
 
-# Section
+# Statistics
 
 ---
 
-## First content slide
+![](../img/statisticsflowchart.png)
 
-Text
+???
+
+Taxonomy, flow chart. Making comparisons and finding patterns in data.
+
+---
+
+## Descriptive and inferential statistics
+
+| Descriptive statistics      | Inferential statistics        |
+| --------------------------- | ----------------------------- |
+| Data on entire population   | Only a sample of a population |
+| Simple measures (e.g. mean) | Point estimates and intervals |
+| Describing                  | Generalizing                  |
+
+---
+
+## Frequentist and bayesian approach to statistics
+
+| Frequentist                                         | Bayesian                                                   |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| Traditional                                         | Modern                                                     |
+| What's the probability of data given some estimate? | What's the probability of an estimate?                     |
+| Prior is not relevant                               | Estimates are conditional on priors                        |
+| Single parametric inference                         | Multiplication of an inference to get a posterior estimate |
+
+---
+
+## Statistics and data science, machine learning, artificial intelligence, ...
+
+| Statistics                   | DS, ML, AI, ...                |
+| ---------------------------- | ------------------------------ |
+| Less data                    | Big data                       |
+| Clean datasets               | Untidy data in various formats |
+| Traditonal methods           | Novel methods                  |
+| Mathematics and calculations | Programming approach           |
+| Aim is to explain            | Aim is to predict              |
+
+---
+
+class: center
+
+#### General framework
+
+## Data - Model - Prediction
+
+--
+&lt;br&gt;
+#### Statistics
+
+## Data - Model
+
+--
+&lt;br&gt;
+#### DS, ML, AI, ...
+
+## Data - ??? - Prediction
+
+---
+
+class: middle
+
+![machine_learning](../img/machine_learning.png)
 
 ---
 
 class: center middle inverse
 
-# Final slide
+# Software
 
-</textarea>
-    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-    <script>var slideshow = remark.create();</script>
-    </body>
+---
+
+## Commonly used software
+
+Spreadsheet and statistical software
+
+--
+
+- Spreadsheet - table management (e.g. Microsoft Excel, Google Sheets, LibreOffice Calc)
+
+- SPSS - simple GUI-based app with limited functionality
+
+- R - extensible programming language designed for data analysis
+
+- Stata - Mostly CLI-based app, well suited for econometrics
+
+
+---
+
+class: middle
+
+![making_progress](../img/making_progress.png)
+
+---
+
+## What we use?
+
+Free and open statistical software: Jamovi (and R).
+
+---
+
+### Jamovi
+
+To apply the methods we learn, we use [Jamovi](https://www.jamovi.org/). 
+
+&gt; Jamovi is a new “3rd generation” statistical spreadsheet. designed from the ground up to be easy to use, jamovi is a compelling alternative to costly statistical products such as SPSS and SAS.
+
+&gt; Jamovi is built on top of the R statistical language, giving you access to the best the statistics community has to offer.
+
+---
+
+### R and RStudio
+
+Based on S language orginating from 1970's. Developed during 1990's and became public around 2000.
+
+&gt; R is a language and environment for statistical computing and graphics.
+
+&gt; R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. 
+
+RStudio is a convenient GUI for R.
+
+A wide variety of uses via RMarkdown and Knitr.
+
+???
+
+The book and presentations are written in R. Demonstrate usage and then ask. Programming language similar to any other but developed paricularly for data analysis. Includes many statistical procedures for various fields. Constantly extended by the community with novel methods. Abundant possibilities for plotting data. CLI.
+
+---
+
+.pull-left[
+
+#### Why R?
+
+- Free and open source
+- Powerful and extensible
+- Allows for reproducibile analysis
+- Active and helpful community
+- Used and useful in academia and resarch
+
+]
+
+.pull-right[
+
+#### Why not R?
+
+It's unconventional and has a steep learining curve:
+
+- must feel comfortable with CLI, 
+- requires programming skill, 
+- data is not constantly visible, 
+- no undo.
+
+]
+
+???
+
+Draw a plot to illustrate the learning curve of other software vs R.
+
+---
+
+class: center middle
+
+## Are you interested in learning R?
+
+---
+
+class: center middle inverse
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

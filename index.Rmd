@@ -1,9 +1,12 @@
 ---
 title: "Research methods"
-#author: "Jyri Lillemets"
-#date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+    config:
+      sharing:
+        facebook: false
+        twitter: false
 documentclass: book
 bibliography: library.bib
 biblio-style: apalike
@@ -28,6 +31,7 @@ Meetings take place on Mondays, Wedensdays and Thursdays at 9 o'clock in the mor
 
 After completing the course students should be able to ...
 
+- ... understand basic concepts in statistics.
 - ... know how to describe data, both numerically and visually.
 - ... choose an appropriate method to solve a problem.
 - ... use a statistical package for data analysis.

@@ -1,4 +1,12 @@
 h1:introduction Introduction
-h2:jamovi Jamovi
-h2:r-and-rstudio R and RStudio
+h2:quantitative-methods Quantitative methods
+h3:quantitative-and-qualitative-methods Quantitative and qualitative methods
+h2:statistics Statistics
+h3:descriptive-and-inferential-statistics Descriptive and inferential statistics
+h3:frequentist-and-bayesian-approach-to-statistics Frequentist and bayesian approach to statistics
+h3:statistics-and-data-science-machine-learning-artificial-intelligence Statistics and data science, machine learning, artificial intelligence, …
+h2:software Software
+h3:commonly-used-software Commonly used software
+h3:jamovi Jamovi
+h3:r-language-and-rstudio R language and RStudio
 

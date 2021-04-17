@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap');
 
 /* Variables */
@@ -27,10 +27,10 @@
    --item-hover-bg-color: rgba(229, 229, 229, 0.59);
    --item-hover-text-color: #555;
 
-   --font-family: 'Roboto Condensed';
+   --font-family: 'Sen';
    --handwriting-font-family: 'Rouge Script';
-   --code-font-family: 'Roboto Mono';
-   --monospace: 'Roboto Mono', monospace;
+   --code-font-family: 'Inconsolata';
+   --monospace: 'Inconsolata', monospace;
 }
 
 /* General */
@@ -39,13 +39,15 @@
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family), sans-serif;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* TOC */
 
 .book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
-  padding: 10px 0px 0px 10px;}
+  padding: 10px 0px 0px 10px;
+  font-size: 16px;
+}
 
 /* Headings */
 
@@ -62,16 +64,22 @@
 .book .book-body .page-wrapper .page-inner section.normalh6 {
   font-size: 1.0em; margin-left: 0px; font-weight: 300; text-align: right;}
 
+/* Captions */
+
+p.caption {
+  text-align: center;
+}
+
 /* Blockquote */
 
 blockquote {
-    border-left: 4px solid var(--border-color);
-    padding: 0 15px;
-    color: var(--active-file-text-color);
+  border-left: 4px solid var(--border-color);
+  padding: 0 15px;
+  color: var(--active-file-text-color);
 }
 
 blockquote blockquote {
-    padding-right: 0;
+  padding-right: 0;
 }
 
 /* Code */
@@ -98,15 +106,16 @@ blockquote blockquote {
     color: var(--medium-color);
 }
 
-mark { /* Highlighted text */
+.book .book-body .page-wrapper .page-inner section.normal mark { /* Highlighted text */
   background-color: var(--light-color);
   border-radius: 4px;
   padding: 1px 2px;
 }
 
-hr { /* Horizontal line */
+.book .book-body .page-wrapper .page-inner section.normal hr { /* Horizontal line */
   border-top: 1px solid var(--border-color);
   margin: 40px auto;
+  height: 0px;
 }
 
 /* Table */
@@ -127,26 +136,3 @@ table tr:nth-child(2n),
 thead {
   background-color: var(--side-bar-bg-color);
 }
-
-
-
-/*
-
-General
-
-p.caption {
-  color: #777;
-  margin-top: 10px;
-}
-p code {
-  white-space: inherit;
-}
-pre {
-  word-break: normal;
-  word-wrap: normal;
-}
-pre code {
-  white-space: inherit;
-}
-
-*/

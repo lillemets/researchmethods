@@ -1,6 +1,15 @@
-# Introduction
+---
+title: Introduction
+subtitle: Research methods
+author: Jüri Lillemets
+date: "`r Sys.Date()`"
+---
 
-## Quantitative methods
+class: center middle inverse
+
+# Quantitative methods
+
+---
 
 ### Quantitative and qualitative methods
 
@@ -12,15 +21,27 @@
 | Measure and test     | Understand            |
 | Statistical analysis | Interpretation        |
 
-## Statistics
+???
 
-See @navarro_learning_2018 sections 1.1.1 and 1.5 for a brief introduction. Sections 2.3-2.7 also provide useful background on validity and reliability of statistical methods.
+Text mining. Statistics!
 
-``` {r, fig.cap = "Flowchart of statistics", echo = F}
-knitr::include_graphics('/home/jrl/work/resmeth/img/statisticsflowchart.png')
-```
+---
 
-### Descriptive and inferential statistics
+class: center middle inverse
+
+# Statistics
+
+---
+
+![](../img/statisticsflowchart.png)
+
+???
+
+Taxonomy, flow chart. Making comparisons and finding patterns in data.
+
+---
+
+## Descriptive and inferential statistics
 
 | Descriptive statistics      | Inferential statistics        |
 | --------------------------- | ----------------------------- |
@@ -28,7 +49,9 @@ knitr::include_graphics('/home/jrl/work/resmeth/img/statisticsflowchart.png')
 | Simple measures (e.g. mean) | Point estimates and intervals |
 | Describing                  | Generalizing                  |
 
-### Frequentist and bayesian approach to statistics
+---
+
+## Frequentist and bayesian approach to statistics
 
 | Frequentist                                         | Bayesian                                                   |
 | --------------------------------------------------- | ---------------------------------------------------------- |
@@ -37,7 +60,9 @@ knitr::include_graphics('/home/jrl/work/resmeth/img/statisticsflowchart.png')
 | Prior is not relevant                               | Estimates are conditional on priors                        |
 | Single parametric inference                         | Multiplication of an inference to get a posterior estimate |
 
-### Statistics and data science, machine learning, artificial intelligence, ...
+---
+
+## Statistics and data science, machine learning, artificial intelligence, ...
 
 | Statistics                   | DS, ML, AI, ...                |
 | ---------------------------- | ------------------------------ |
@@ -47,11 +72,45 @@ knitr::include_graphics('/home/jrl/work/resmeth/img/statisticsflowchart.png')
 | Mathematics and calculations | Programming approach           |
 | Aim is to explain            | Aim is to predict              |
 
-## Software
+---
 
-### Commonly used software
+class: center
 
-Spreadsheet vs statistical software
+#### General framework
+
+## Data - Model - Prediction
+
+--
+<br>
+#### Statistics
+
+## Data - Model
+
+--
+<br>
+#### DS, ML, AI, ...
+
+## Data - ??? - Prediction
+
+---
+
+class: middle
+
+![machine_learning](../img/machine_learning.png)
+
+---
+
+class: center middle inverse
+
+# Software
+
+---
+
+## Commonly used software
+
+Spreadsheet and statistical software
+
+--
 
 - Spreadsheet - table management (e.g. Microsoft Excel, Google Sheets, LibreOffice Calc)
 
@@ -59,7 +118,22 @@ Spreadsheet vs statistical software
 
 - R - extensible programming language designed for data analysis
 
-- Stata - Mostly CLI-based, well suited for econometrics
+- Stata - Mostly CLI-based app, well suited for econometrics
+
+
+---
+
+class: middle
+
+![making_progress](../img/making_progress.png)
+
+---
+
+## What we use?
+
+Free and open statistical software: Jamovi (and R).
+
+---
 
 ### Jamovi
 
@@ -69,10 +143,61 @@ To apply the methods we learn, we use [Jamovi](https://www.jamovi.org/).
 
 > Jamovi is built on top of the R statistical language, giving you access to the best the statistics community has to offer.
 
-### R language and RStudio
+---
 
-This allows us to get under the hood of Jamovi so to speak. R language is based on S language orginating from 1970's. Developed during 1990's and became public around 2000. 
+### R and RStudio
+
+Based on S language orginating from 1970's. Developed during 1990's and became public around 2000.
 
 > R is a language and environment for statistical computing and graphics.
 
 > R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. 
+
+RStudio is a convenient GUI for R.
+
+A wide variety of uses via RMarkdown and Knitr.
+
+???
+
+The book and presentations are written in R. Demonstrate usage and then ask. Programming language similar to any other but developed paricularly for data analysis. Includes many statistical procedures for various fields. Constantly extended by the community with novel methods. Abundant possibilities for plotting data. CLI.
+
+---
+
+.pull-left[
+
+#### Why R?
+
+- Free and open source
+- Powerful and extensible
+- Allows for reproducibile analysis
+- Active and helpful community
+- Used and useful in academia and resarch
+
+]
+
+.pull-right[
+
+#### Why not R?
+
+It's unconventional and has a steep learining curve:
+
+- must feel comfortable with CLI, 
+- requires programming skill, 
+- data is not constantly visible, 
+- no undo.
+
+]
+
+???
+
+Draw a plot to illustrate the learning curve of other software vs R.
+
+---
+
+class: center middle
+
+## Are you interested in learning R?
+
+---
+
+class: center middle inverse
