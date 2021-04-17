@@ -1,0 +1,15 @@
+syllabus
+teaching-style
+schedule
+goals
+scoring
+feedback-on-reading-material
+research-project
+datasets
+topics
+reading
+introduction
+jamovi
+r-and-rstudio
+introduction-1
+references

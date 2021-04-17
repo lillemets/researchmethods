@@ -1,0 +1,86 @@
+---
+title: "Research methods"
+#author: "Jyri Lillemets"
+#date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: lillemets/researchmethods
+description: "Information and materials on methods"
+---
+
+# Syllabus
+
+This book includes information and materials on the quantitative part of MS.0825 Research methods course of [Agri-Food Business Management](https://www.emu.ee/en/admissions/agri-food-business-management/) Master's programme. 
+
+## Teaching style
+
+Flipped classroom approach is used for teaching. This means that students are expected to learn the methods before meetings. During the meetings we revise the theoretical material, address any questions and apply methods in practice. After meetings students apply the methods on their own datasets.
+
+## Schedule
+
+Meetings take place on Mondays, Wedensdays and Thursdays at 9 o'clock in the morning. Link to meetings is provided under the course page in [Moodle](https://moodle.edu.ee).
+
+## Goals
+
+After completing the course students should be able to ...
+
+- ... know how to describe data, both numerically and visually.
+- ... choose an appropriate method to solve a problem.
+- ... use a statistical package for data analysis.
+- ... communicate results (intrepret, explain, present).
+- ... find the courage to apply statistical methods.
+
+## Scoring
+
+This part of the course gives 50% of total course points. This 50% can be obtained by submitting before each meeting:
+
+- feedback on reading material for upcoming meeting (`10*1=10` points), and
+- application of a method from previous meeting (`4*10=40` points).
+
+To gain the 40 points students are required to combine the applications of a method into a report and present the results during last meeting. Participation in meetings does not affect points but meetings are not recorded.
+
+### Feedback on reading material
+
+Submit your questions or thoughts on given reading material before each meeting in [Moodle](https://moodle.edu.ee).
+
+### Research project
+
+Students are required to create a research report and present the results as follows:
+
+1. Choose a data set
+2. Apply a method on this data set after each meeting  
+   Submit the result before the next meeting via Moodle
+3. Make changes according to feedback
+4. Present the results as a written report and oral presentation
+
+#### Datasets
+
+To apply methods, datasets need to have multiple variables. We mostly learn to explore continuous data but some methods require at least one nominal variable. Students are free to choose a dataset that is different from what other students have chosen. Possible sources for data:
+
+- [Goodle dataset search](https://datasetsearch.research.google.com/)
+- [Kaggle datasets](https://www.kaggle.com/datasets)
+- [Data hub collections](https://datahub.io/collections)
+
+## Topics
+
+We cover some common and traditional statistical methods.
+
+1. Descriptive statistics
+2. Inferential statistics. Hypothesis testing.
+3. Analysis of variance
+4. Contingency tables
+5. Correlation
+6. Regression. Ordinary Least Squares
+7. Regression. Factors and transformations
+8. Regression. Maximum likelihood and binary models
+9. Principal component analysis
+10. Factor analysis. Variamax and oblimin rotations.
+11. Clustering. Hierarchical clustering and K-means clustering 
+
+## Reading
+
+Compulsory reading is from two books: @navarro_learning_2018 and @crawley_r_2013.
