@@ -1,2 +1,75 @@
 # Descriptive statistics
 
+Any data analysis should begin with an exploration of the structure of and values in dataset. Description of values should also be part of the reporting of analysis. This can be done using some simple methods.
+
+When we use the methods of descriptive statistics, we need to be aware of that we merely describe the dataset at hand. If observations in the data set constitute a sample, we cannot draw any wider conclusions on population using these methods. Below we are thus defining the statistics for populations and not samples.
+
+Description of nominal or ordinal variables is simple and limited to just counting unique values and finding the mode and/or median value. But suppose we have variables that contain sequences of numbers. How can we describe these?
+
+## Central tendency
+
+A concise way to represent numeric values is expressing the center of values. This can also be understood the typical value or expected value (expectation of $x$, i.e. $E(x)$). Note that estimating a central tendency is only meaningful if there is a natural center. i.e. the distribution of values is unimodal.
+
+See @navarro_learning_2018 section 4.1.
+
+### Mode
+
+Mode is simply the most frequent value in a sequence. This statistic can be useful for nominal and ordinal variables but it's rarely used for numeric variables, especially on a continuous scale.
+
+### Median
+
+When sequence of values is ordered, the middle value is median. In case there are even number of values ($N$) in a sequence, median is the average of the two values in the middle. Thus, there are equal number of values above and below the median value. When $N$ is an even number, half of the values are above and half below the median value.
+
+### Mean
+
+While there are several forms of mean, arithmetic mean is most useful in statistics and also considered here. Mean is in other words the average value: it's the sum of values ($X$) divided by number of values:
+
+$$\bar{X} = \frac{1}{N} \sum{^N_{i=1}}{X_i}$$
+
+A feature of mean value is that if you only  know the $\bar{X}$ and $N$, you can still calculate $\sum{^N_{i=1}}{X_i}$.
+
+## Variability
+
+Central tendency describes values only partially as it tells nothing about the deviation of values from that mean. Estimating also the variability of values provides a more manifold understanding of values. 
+
+See @navarro_learning_2018 section 4.2.
+
+### Range
+
+Most simple way to express variability is to indicate the range of all values, i.e. the minimum and maximum values.
+
+### Quantiles and interquartile range
+
+Quantiles are in essence calculated just like median, because median is the lowest quantile, the 2-quantile. In addition to dividing sequence of ordered values into two halves separated by median, such sequence can be diveded into any number of equal groups as long as the number of groups ($k$) is smaller than or equal to the number of values, i.e. $k \le N$. Some common quantiles are quartiles ($k = 4$), deciles ($k = 10$) and centiles/percentiles ($k = 100$). 
+
+Arguably quartile is most frequently used among quantiles because the 2nd and 4th quartiles contain half of all values. This interquartile range (IQR) thus contains the middle half of all values.
+
+### Variance
+
+Although difficult to interpret, variance is used in many statistical calculations due to its mathematical properties. Variance is mean squared difference from the mean value:
+
+$$Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$
+
+### Standard deviation
+
+Interpretability issues of variance arise from the fact that the calculation includes squaring and thus the value of the statistic is vastly different to understand regarding initial scale. A solution would be to find a square root of variance. This is what the standard deviation is: the square root of variance.
+
+$$\sigma = \sqrt{\frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}$$
+
+## Plots
+
+Previously explained measures allow us to only summarize values into fewer numbers. Plotting allows to present these values more intuitively or even depict all of the values at once.
+
+### Boxplot
+
+Boxplots illustrate the quartiles of values (including interquartile range) and extreme values (outliers). Outliers are usually values that are below the 2nd quartile or above the 4th quartile by 1.5 times the interquartile range. On boxplots, half of all the values lie within the box and another half on the lines, outliers excluded.
+
+See @navarro_learning_2018 section 5.2.
+
+### Histogram and density plot
+
+Histograms are essentially barplots where all values are divided between ranges of equal with, i.e. bins.
+
+Instead of bins, distribution of values can also be expressed continuously by smoothing the bins. This results in a density plot.
+
+See @navarro_learning_2018 section 5.1.

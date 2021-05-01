@@ -9,4 +9,14 @@ h2:software Software
 h3:commonly-used-software Commonly used software
 h3:jamovi Jamovi
 h3:r-language-and-rstudio R language and RStudio
+h2:data-management Data management
+h3:data-structure Data structure
+h3:scales-of-measurement Scales of measurement
+h4:nominal-scale Nominal scale
+h4:ordinal-scale Ordinal scale
+h4:interval-scale Interval scale
+h4:ratio-scale Ratio scale
+h4:binary-scale Binary scale
+h4:continuous-or-discrete-variables Continuous or discrete variables
+h4:scales-in-statistical-software Scales in statistical software
 

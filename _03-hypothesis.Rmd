@@ -1,0 +1,84 @@
+# Hypothesis testing
+
+## Sample and population
+
+Distinguishing between sample and population is important when we wish to draw inferences about population when we only have data on a sample. 
+
+### Sample, population, sampling
+
+See @navarro_learning_2018 section 8.1.
+
+What is the difference between population, sample and (simple) random sample?
+
+### Estimating population parameters
+
+#### Population mean
+
+See @navarro_learning_2018 section 8.4.1.
+
+How do you get population mean if you only know the sample mean?
+
+#### Population standard deviation
+
+See @navarro_learning_2018 section 8.4.2.
+
+$$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}$$
+
+Why and how is sample standard deviation different from population standard deviation?
+
+### Confidence intervals
+
+See @navarro_learning_2018 section 8.5
+
+A 95% CI of the mean $X \sim N(\mu,\sigma^2)$ is calculated as
+
+$$CI_{95} = \hat{x} \pm(1.96\times\frac{\sigma}{\sqrt{N}})$$
+
+What is the interpretation of confidence interval?
+
+## Hypothesis testing
+
+### Null and alternative hypotheses
+
+See @navarro_learning_2018 section 9.1.2.
+
+Statistical hypothesis testing involves two hypotheses: null ($H_0$) and alternative ($H_1$) hypothesis. These are usually defined as follows:
+
+$H_0$: There **is no** statistically significant difference.  
+$H_1$: There **is** a statistically significant difference.
+
+We always test if we can reject $H_0$. If we reject $H_0$, then we accept $H_1$. If we fail to reject $H_0$, then we accept $H_1$.
+
+### Types of errors
+
+See @navarro_learning_2018 section 9.2.
+
+|                | We accept $H_0$             | We reject $H_0$            |
+| -------------- | --------------------------- | -------------------------- |
+| $H_0$ is true  | We are correct              | We commit **type I error** |
+| $H_0$ is false | We commit **type II error** | We are correct             |
+
+The rate of type I error is considered the significance level of a test (denoted as $\alpha$). 
+
+### Test statistic
+
+See @navarro_learning_2018 sections 9.3 and 10.1.6.
+
+We use a test statistic to make a decision whether we can or can not reject $H_0$. We reject $H_0$ if the value of a test statistic is sufficiently extreme, i.e. different from 0. 
+
+### P-value
+
+See @navarro_learning_2018 sections 9.5 and 9.6.
+
+P-value is the probability of obtaining at least as extreme value of test statistic if $H_0$ is correct. Thus, it's the rate of committing a type I error, i.e. the significance level $\alpha$. 
+
+If the p-value is below $\alpha$, we reject $H_0$ and accept $H_1$. 
+
+$p \ge \alpha \implies H_0$  
+$p \lt \alpha \implies H_1$
+
+P-value is **not** the probability of $H_0$ being false or $H_{1}$ being true. Theoretically, a lower p-value does **not** show a greater difference or vice versa. Only it's location relative to is what $\alpha$ matters.
+
+### Multiple comparisons problem
+
+Every time you find a statistically significant result, there is a possibility that you got this extreme data by chance. In this case, you committed a type 1 error. Therefore, if you do a lot of tests, the possibility that at least one of the statistically significant results is actually not true. Thus, the number of tests you do should be limited.

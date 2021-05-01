@@ -4,7 +4,7 @@
 
 ### Quantitative and qualitative methods
 
-| QuaNT...             | QuaL...               |
+| QuaNTitative         | QuaLitative           |
 | -------------------- | --------------------- |
 | Numeric data         | Semantic data         |
 | Large-N              | Small-N, case studies |
@@ -15,6 +15,8 @@
 ## Statistics
 
 See @navarro_learning_2018 sections 1.1.1 and 1.5 for a brief introduction. Sections 2.3-2.7 also provide useful background on validity and reliability of statistical methods.
+
+@dash_flowchart_2016 has summarized statistics as follows:
 
 ``` {r, fig.cap = "Flowchart of statistics", echo = F}
 knitr::include_graphics('/home/jrl/work/resmeth/img/statisticsflowchart.png')
@@ -69,6 +71,8 @@ To apply the methods we learn, we use [Jamovi](https://www.jamovi.org/).
 
 > Jamovi is built on top of the R statistical language, giving you access to the best the statistics community has to offer.
 
+You can try it online without installing at https://cloud.jamovi.org/.
+
 ### R language and RStudio
 
 This allows us to get under the hood of Jamovi so to speak. R language is based on S language orginating from 1970's. Developed during 1990's and became public around 2000. 
@@ -76,3 +80,63 @@ This allows us to get under the hood of Jamovi so to speak. R language is based 
 > R is a language and environment for statistical computing and graphics.
 
 > R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. 
+
+## Data management
+
+### Data structure
+
+Usually data is stored in 2-dimensonal tables, i.e. data has rows and columns. To apply statistical procedures, most software requires data to be formatted in a conventional way. In this respect it's useful to follow "tidy data" principle [@wickham_tidy_2014]:
+
+1. Every column is a variable.
+2. Every row is an observation.
+3. Every cell is a single value.
+
+This is how data should be formatted before running most statistical procedures. One way to tidy a data table is to use the Pivot table feature in a spreadsheet app.
+
+### Scales of measurement
+
+Scale of measurement determines the procedures that can be applied to the data. 
+
+The following typology was first published by @stevens_theory_1946. See @navarro_learning_2018 section 2.2 for a more detailed explanation. Each scale in the  table includes also the properties, operations and measures a on previous rows.
+
+|  Scale   |    Property    | Operations |       Central tendency        |
+| :------: | :------------: | :--------: | :---------------------------: |
+| Nominal  | Classification |    =, ≠    |             Mode              |
+| Ordinal  |     Level      |    >, <    |            Median             |
+| Interval |   Difference   |    +, −    |        Arithmetic mean        |
+|  Ratio   |   Magnitude    |    ×, /    | Geometric mean, harmonic mean |
+
+#### Nominal scale
+
+Nominal variables contain names (i.e. characters, factors or strings) that do not have a natural order. Such data can be summarized only by counting values or determining the mode. 
+
+#### Ordinal scale
+
+Ordinal variables have the characteristics of nominal variables with the added possibility of naturally ordering these names. As such, ordinal variables can be said to have levels. It's important to note that an increase of one level to the next is not necessarily numerically equivalent to an increase of another level to the next. Thus, it is not always meaningful to convert these levels to numbers and do calculations on them.
+
+#### Interval scale
+
+Interval variables are expressed numerically. While differences between numbers on interval scale are meaningful, there isn't a natural zero value. Thus, calculations on interval variables is limited to finding differences and division or multiplication of such values is not reasonable.  
+
+A classic example of an interval variable is temperature. Difference between 5°C and 15°C is 10°C but 15°C is not 3 times warmer than 5°C.
+
+#### Ratio scale
+
+Ratio variables are also numeric but have a natural zero value. This means that division and multiplication is meaningful.
+
+#### Binary scale
+
+Binary (or dichotomous) variables do not constitute a distinct scale but can be considered as a subgroup of nominal, ordinal or interval variables. Binary variables can only take two values. Many statistical procedures convert or require the conversion of nominal variables to binary for technical reasons (e.g. "dummy" variables). Binary variables are often coded as 0 for false and 1 for true. As such, calculating the sum or mean of binary variables conveys useful information (think why that is!).
+
+#### Continuous or discrete variables
+
+In addition to the previous typology, we can also distinguish between continuous and discrete variables. These are well defined by @navarro_learning_2018[, 20]:
+
+- "A continuous variable is one in which, for any two values that you can think of, it’s always logically possible to have another value in between.
+- A discrete variable is, in effect, a variable that isn’t continuous. For a discrete variable it’s sometimes the case that there’s nothing in the middle."
+
+#### Scales in statistical software
+
+The difference between ratio and interval variables is only theoretical. Statistical software treats all numbers as numeric variables and does not distinguish between interval and ratio variables. When binary variables are coded so that they only have values 0 and 1, these are also considered numerical.
+
+A lot of statistical software (e.g. Jamovi) distinguish only between three types of variables: nominal, ordinal and numeric.

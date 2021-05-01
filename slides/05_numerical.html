@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Comparing numerical data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jüri Lillemets" />
+    <meta name="date" content="2021-04-30" />
+    <script src="05_numerical_files/header-attrs-2.7/header-attrs.js"></script>
+    <link rel="stylesheet" href="minimal.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Comparing numerical data
+## Research methods
+### Jüri Lillemets
+### 2021-04-30
+
+---
+
+
+
+
+class: center middle clean
+
+# Are the numbers different enough?
+
+---
+
+class: center middle inverse
+
+# The idea behind comparing numbers
+
+---
+
+## One sample T-test
+
+Assumptions:
+
+- normality
+- independence
+- homogeneity of variance
+
+---
+
+Let's use "Diameter, Height and Volume for Black Cherry Trees". The mean height of trees in our sample is 76. Is this different from some hypothetical population mean value?
+
+![](05_numerical_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+---
+
+It would be reasonable to guess that mean tree height in population is be 75 ft.
+
+![](05_numerical_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+However, if we would be much more uncertain to estimate that the mean tree height in population is 74 ft.
+
+![](05_numerical_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+Another way to ask this: does the samples come from a population with a mean tree height of 74 ft?
+
+![](05_numerical_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+So our statistical hypothesis would be
+
+`\(H_0: \bar{x} = \mu\)`  
+`\(H_1: \bar{x} \neq \mu\)`
+
+or
+
+`\(H_0: \mu = 74\)`  
+`\(H_1: \mu \neq 74.\)`
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+---
+
+We can see that there are several parameters that influence our guess:
+
+.pull-left[
+- mean value of sample, `\(\overline{x}\)`;
+- our guess of sample mean, `\(\mu\)`; 
+- standard deviation of the sample mean, `\(s\)`; 
+- number of observations, `\(n\)`; 
+]
+
+.pull-right[
+![](05_numerical_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+--
+
+&gt; How can we take all of these parameters into account?
+
+---
+
+We combine these parameters into a test statistic!
+
+--
+
+For this test the test statistic is called `\(t\)` and it's calculated as
+
+`$$t = \frac{\bar{x} - \mu}{s \div \sqrt{n}},$$`
+
+where `\(\bar{x}\)` is the sample mean and `\(\mu\)` the hypothetical population mean that it is tested against and `\(s\)` sample standard deviation.
+
+&gt;  Does higher value of `\(t\)` indicate higher or smaller difference?
+
+---
+
+Let's calculate the value of test statistic.
+
+
+
+`$$t = \frac{76 - 74}{6.37 \div \sqrt{31}}$$`
+
+`$$t = 1.748$$`
+
+---
+
+### Test statistic `\(t\)` on t-distribution
+
+Test statistic is evaluated on t-distribution with `\(n-1\)` degrees of freedom (df).
+
+![](05_numerical_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+&gt;  Is the value of our test statistic above critical value?
+
+---
+
+Probability of test statistic with value of 1.748 is 0.091.
+
+This 0.091 is our p-value and we chose significance level to be `\(\alpha = 0.05\)`.
+
+`$$\text{p-value} \ge 0.05 \implies H_{0}: \bar{x} = \mu$$`
+
+`$$\text{p-value} &lt; 0.05 \implies H_{1}: \bar{x} \neq \mu$$`
+
+&gt; So could the sample with mean tree height of 76 ft come from a population with a mean tree height of 74 ft?
+
+---
+
+class: middle
+
+## So...
+
+The more extreme the difference...
+
+...the higher the value of test statistic...
+
+...the lower the p-value...
+
+...the lower the probability that the difference is coincidental.
+
+---
+
+class: center middle inverse
+
+# Two samples
+
+What if we wish to compare two samples?
+
+---
+
+## Independent samples t-test assuming equal variances
+
+Assumptions:
+
+- normality
+- independence
+- homogeneity of variance  
+  `\(\frac{1}{2} &lt; \frac{s_1}{s_2}&lt;2\)`  
+
+---
+
+Example data from "Edgar Anderson's Iris Data" dataset.
+
+![](05_numerical_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+In this case `\(\frac{s_1}{s_2} =\)` 1.3793715.
+
+---
+
+### Hypotheses
+
+Are the mean values equal? Do these samples come from the same population?
+
+`\(H_0: \bar{x}_1 = \bar{x}_2\)`  
+`\(H_1: \bar{x}_1 \neq \bar{x}_2\)`
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+---
+
+### Test statistic `\(t\)`
+
+Test statistic `\(t\)` is calculated as
+
+`$$t = \frac{\bar{x}_1 - \bar{x}_2}{se_{\bar{x}_1 - \bar{x}_2}},$$`
+
+where `\(\bar{x}_1\)` and `\(\bar{x}_2\)` are the means of samples and `\(se_{\bar{x}_1 - \bar{x}_2}\)` is the standard error of the difference of means that is calculated as follows:
+
+`$$se_{\bar{x}_1 - \bar{x}_2} = s_p \times \sqrt{\frac{1}{n_1} +{\frac{1}{n_2}}},$$`
+
+where `\(n_1\)` and `\(n_2\)` are sample sizes and `\(s_p\)` is the pooled standard deviation calculated as ...
+
+---
+
+### Test statistic `\(t\)` on t-distribution
+
+
+
+Value of test statistic is -12.604. Test statistic is evaluated on t-distribution with `\(n_1+n_2-2\)` df.
+
+![](05_numerical_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+P-value is 0 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+&gt; Do these petal samples come from the same population?
+
+???
+Different species: versicolor and virginica.
+
+---
+
+## Independent samples t-test not assuming equal variances
+
+Assumptions:
+
+- normality
+- independence
+
+Samples do not need to have homogeneous variance. The test is reliable if `\(s_1 &gt; 2s_2\)` or `\(s_2 &gt; 2s_1\)`.
+
+---
+
+Example data from "Edgar Anderson's Iris Data" dataset.
+
+![](05_numerical_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+In this case `\(\frac{s_1}{s_2} =\)` 7.3216944.
+
+---
+
+### Hypotheses
+
+Are the mean values equal? Do these samples come from the same population?
+
+`\(H_0: \bar{x}_1 = \bar{x}_2\)`  
+`\(H_1: \bar{x}_1 \neq \bar{x}_2\)`
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+---
+
+### Test statistic `\(t\)`
+
+Test statistic `\(t\)` is calculated as
+
+`$$t = \frac{\hat{D}}{s_\Delta\div \sqrt{n_1 + n_2}},$$`
+
+where `\(s_\Delta\)` is difference in standard deviation expressed as `\(s_\Delta = s_1 - s_2\)` and  `\(\hat{D}\)`  is the mean of differences between paired values calculated as
+
+`$$\hat{D} = \frac{1}{n} \sum_{i=1}^i{(X_{i1} - X_{i2})}.$$`
+
+---
+
+### Test statistic `\(t\)` on t-distribution
+
+
+
+Value of test statistic is 39.493. Test statistic is evaluated on t-distribution where df is calculated using a complicated formula.
+
+![](05_numerical_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+
+P-value is 0 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+&gt; Do these petal samples come from the same population?
+
+???
+Different species: versicolor and setosa.
+
+---
+
+class: middle center inverse
+
+# Paired samples
+
+What if our samples are not independent?
+
+---
+
+## Paired-samples t-test
+
+Assumptions: 
+
+- normality
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+---
+
+Let's see the effect of different drugs on increase in hours of sleep. Data is from dataset "Student's Sleep Data". 
+
+![](05_numerical_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+???
+Effect of different drugs
+
+---
+
+### Hypotheses
+
+Are the mean values equal? Do these samples come from the same population?
+
+Would we also observe the increase in hours of sleep in population?
+
+`\(H_0: \bar{x}_1 = \bar{x}_2\)`  
+`\(H_1: \bar{x}_1 \neq \bar{x}_2\)`
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+???
+If different populations, then increase also occurs in population. Draw!
+
+---
+
+### Test statistic `\(t\)`
+
+Test statistic `\(t\)` is calculated as
+
+`$$t = \frac{\hat{D}}{s_\Delta\div \sqrt{n_1 + n_2}},$$`
+
+where `\(s_\Delta\)` is difference in standard deviation expressed as `\(s_\Delta = s_1 - s_2\)` and  `\(\hat{D}\)`  is the mean of differences between paired values calculated as
+
+`$$\hat{D} = \frac{1}{n} \sum_{i=1}^i{(X_{i1} - X_{i2})}.$$`
+
+???
+We're essentially testing if the difference or change is extreme enough.
+
+---
+
+### Test statistic `\(t\)` on t-distribution
+
+
+
+Value of test statistic is -4.062. Test statistic is evaluated on t-distribution with `\(n-1\)` df where `\(n\)` is the number of pairs.
+
+![](05_numerical_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+P-value is 0.003 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+&gt; Did the hours of sleep increase only in our sample or also in population?
+
+---
+
+class: middle center inverse
+
+# One-tailed tests
+
+What if we are not interested in difference but if one parameter is larger or smaller than another?
+
+---
+
+### Hypotheses
+
+If we wish to test if mean of sample ( `\(\bar{x}\)` ) is greater than hypothetical population mean ( `\(\mu\)` ), then our hypotheses are the following:
+
+`\(H_0: \bar{x} \le \mu\)`  
+`\(H_1: \bar{x} \gt \mu\)`
+
+If we wish to test if mean of one sample ( `\(\bar{x}_1\)` ) is greater than mean of another sample ( `\(\bar{x}_2\)` ) , then our hypotheses are the following:
+
+`\(H_0: \bar{x}_1 \le \bar{x}_2\)`  
+`\(H_1: \bar{x}_1 \gt \bar{x}_2\)`
+
+---
+
+### Test statistic `\(t\)` on t-distribution (one-tailed)
+
+
+
+Value of test statistic is -4.062. 
+
+![](05_numerical_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+Now we observe only one side of the distribution. Is t-statistic above the critical value?
+
+???
+For \alpha = 0.05 we need to use critical value of -1.645 for lower-tailed test.
+
+---
+
+P-value is 0.001 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+`\(H_0: \bar{x} \le \mu\)`  
+`\(H_1: \bar{x} \gt \mu\)`
+
+&gt; Hours of sleep increased in our sample. Did the hours of sleep in population actually decrease?
+
+???
+P-value is high. So the probability that the difference is random is high.
+
+---
+
+class: center middle inverse
+
+# Nonparametric tests
+
+What if our data is not normally distributed?
+
+---
+
+## Normal distribution
+
+Commonly used continuous probability distribution due to *central limit theorem*. Many methods assume random variables to be normally distributed.
+
+Symmetric and bell-shaped. Characterized by parameters mean ( `\(\mu\)` ) and variance ( `\(\sigma^2\)` ). ( `\({\mathcal{N}}(\mu,\sigma^{2})\)` ). For standard normal distribution mean is 0 and variance 1 ( `\({\mathcal{N}}(0,1)\)`.
+
+---
+
+![](05_numerical_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+
+### How to test normality?
+
+#### QQ plot
+
+On these scatterplots empirical quantiles of data are plotted against theoretical quantiles that represent normal distribution.
+
+Let's use some data on rocks from "Measurements on Petroleum Rock Samples" to test normality.
+
+---
+
+![](05_numerical_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+--
+
+&gt; Conclusion?
+
+---
+
+![](05_numerical_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+--
+
+&gt; Conclusion?
+
+---
+
+#### Shapiro-Wilk test
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+Hypotheses:
+
+`\(H_0\)`: Data is normally distributed  
+`\(H_1\)`: Data is not normally distributed
+
+---
+
+For test statistic `\(W\)` higher value and thus p-value below `\(\alpha\)` indicates non-normality.
+
+--
+
+
+```r
+shapiro.test(rock$area)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  rock$area
+## W = 0.97944, p-value = 0.5555
+```
+
+&gt; Conclusion?
+
+--
+
+
+```r
+shapiro.test(rock$shape)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  rock$shape
+## W = 0.90407, p-value = 0.0008531
+```
+
+&gt; Conclusion?
+
+---
+
+## Mann-Whitney U test
+
+Compare two independent samples that are not necessarily normally distributed.
+
+Test assumes independence of samples. It also means that observations need to be **unpaired**.
+
+---
+
+Data on number of breaks and type of wool from "The Number of Breaks in Yarn during Weaving".
+
+The median number of breaks for wool A is 26 and for wool B 24. 
+
+--
+
+.pull-left[
+![](05_numerical_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right[
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  warpbreaks$breaks[warpbreaks$wool == "A"]
+## W = 0.89698, p-value = 0.01141
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  warpbreaks$breaks[warpbreaks$wool == "B"]
+## W = 0.91554, p-value = 0.03087
+```
+]
+
+--
+
+&gt; Are these distributions different?
+
+???
+Different tests
+
+---
+
+
+### Hypotheses
+
+Are the mean values equal? Do these samples come from the same population?
+
+Does the number of breaks in yarn depend on the type of wool?
+
+`\(H_{0}\)`: Distributions (medians) of both samples are the same.  
+`\(H_{1}\)`: Distributions (medians) of samples are different.
+
+Formal definition of `\(H_{0}\)`: A randomly selected value from one sample is equally likely to be less than or greater than a randomly selected value from a second sample.
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+???
+Draw popluation A and population B.
+
+---
+
+### Test statistic `\(U\)`
+
+Test statistic `\(U\)` is calculated as
+
+`$$U = \sum^n_{i=1} \sum^m_{j=1} S(X_1, X_2),$$`
+
+where `\(n\)` are rows and `\(m\)` columns of a matrix `\(S(X_1, X_2)\)` described as below.
+
+`$$S(X_1, X_2) = \begin{cases}
+      1 &amp; \text{if } Y &lt; X\\
+      \frac12 &amp; \text{if } Y = X\\\
+      1 &amp; \text{if } Y &gt; X\
+    \end{cases}$$`
+
+???
+
+Basically, we compare all values and count the times when values from one sample are higher than values from another sample. The `\(U\)` is just the count of these differences.
+
+---
+
+### Test statistic `\(U\)` on normal distribution
+
+
+
+Value of test statistic is 431. Test statistic is evaluated on Wilcoxon distribution that approaches normal distribution if `\(n&gt;20\)`.
+
+
+
+--
+
+P-value is 0.253 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+&gt; Does the number of breaks in yarn depend on the type of wool?
+
+---
+
+## Wilcoxon signed-rank test
+
+This is similar to Mann-Whitney U test but used for **paired** samples. 
+
+Test assumes that observations are **paired**, but pairs are independent.
+
+---
+
+Let's explore "Weight versus age of chicks on different diets" and compare weights on day 2 and 4.
+
+
+
+![](05_numerical_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+
+???
+Two different time periods but same chicken.
+
+---
+
+### Hypotheses
+
+Did the weight increase only in our sample or also in a population? Is the increase in weight significant?
+
+`\(H_{0}\)`: Distributions (medians) of both samples are the same.  
+`\(H_{1}\)`: Distributions (medians) of samples are different.
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+---
+
+### Test statistic `\(W\)`
+
+The W statistic is calculated as:
+
+`$$W = \sum^n_{i = 1}(sgn(x_{1i}x_{2i}) \times R_i),$$`
+
+where `\(sgn(x_{1i}x_{2i})\)` is sign function (1 for positive difference, -1 for negative) and `\(R_i\)` is the rank of absolute difference.
+
+???
+
+Basically, we are comparing how different is the ranking of values between two samples. The `\(W\)` is just the sum of ranked differences.
+
+---
+
+### Test statistic `\(U\)` on normal distribution
+
+
+
+Value of test statistic is 0. Test statistic is evaluated on Wilcoxon distribution that approaches normal distribution if `\(n &gt; 20\)`.
+
+
+
+--
+
+P-value is 0 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+&gt; Did the weight increase only in our sample or also in a population?
+
+---
+
+## Kolmogorov-Smirnov test
+
+This test is equivalent to Mann-Whitney U test, although the calculation is very different.
+
+---
+
+Example data on "The Effect of Vitamin C on Tooth Growth in Guinea Pigs". Let's compare two supplement types.
+
+![](05_numerical_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+
+---
+
+### Hypotheses
+
+Is the tooth length different for different types of supplements? Do the supplements have a different effect? 
+
+`\(H_{0}\)`: Distributions of both samples are the same.  
+`\(H_{1}\)`: Distributions of samples are different.
+
+Let's set significance level `\(\alpha = 0.05\)`. 
+
+---
+
+## Cumulative distribution function (CDF)
+
+![](05_numerical_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+
+---
+
+### Test statistic `\(D\)`
+
+
+
+This is simply the maximum absolute difference between two cumulative distribution functions. Value of test statistic is 0.333.
+
+![](05_numerical_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+
+---
+
+P-value is determined by the extremity of the D-statistic on Kolmogorov distribution.
+
+P-value is 0.071 and we chose significance level to be `\(\alpha = 0.05\)`.
+
+&gt; Do the supplements have a different effect? 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

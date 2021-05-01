@@ -36,8 +36,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .remark-slide-content h1 {
   font-family: "Rouge Script", sans-serif;
-  font-size: 4em;
-  color: #317873;
+  font-size: 3em;
+  color: #000;
 }
 .remark-slide-content h2 {
   font-size: 1.6em;
