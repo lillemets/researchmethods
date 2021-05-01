@@ -3,4 +3,4 @@ language:
   ui:
     chapter_name: "Section "
 delete_merged_file: true
-output_dir: "site"
+output_dir: "docs"
