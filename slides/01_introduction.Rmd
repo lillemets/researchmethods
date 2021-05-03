@@ -36,9 +36,13 @@ Submit homework via course page on Moodle.
 
 Flipped classroom
 
+--
+
+We meet on Mondays, Wednesdays and Thursdays at 9 o'clock (GMT +3).
+
 ???
 
-Meetings are not recorded. Partipication is not graded but I wish to motivate it. Also, I may say something stupid and wouldn't want that held against me.
+Meetings are not recorded. Participation is not graded but I wish to motivate it. Also, I may say something stupid and wouldn't want that held against me. Should we start meetings at 9 or 10 o'clock?
 
 ---
 
@@ -70,7 +74,7 @@ Feedback on reading material for upcoming meeting (`10*1=10` points)
 
 --
 
-Practical application of a method from previous meeting (`10*4=40` points)
+Practical application of a methods (`10*4=40` points)
 
 These practical applications must be combined into a research project.
 
@@ -85,14 +89,30 @@ Feedback to motivate learning, to see if you read. Feedback must be on topic. Ma
 Students are required to create a research report and present the results as follows:
 
 1. Choose a data set
-2. Apply a method on this data set after each meeting  
-   Submit the result before the next meeting via Moodle
+2. Apply at least one method from each meeting on this data set
 3. Make changes according to feedback
-4. Present the results as a written report and oral presentation
+4. Present the results as a written report
 
 ???
 
 May have a specific research question, or may not. Can use a different data set for each practical application. As long as it's different from other students. Presenting your results is an important skill. Presentation and report are scored is/is not.
+
+---
+
+## Topics
+
+1. Descriptive statistics
+2. Hypothesis testing. Comparing categorical variables
+3. Comparing numerical variables
+4. Analysis of variance
+5. Correlation analysis
+6. Regression. Ordinary Least Squares
+7. Regression. Factors and transformations
+8. Regression. Maximum likelihood and binary models
+9. Principal component analysis
+10. Factor analysis
+11. Hierarchical clustering
+12. K-means clustering
 
 ---
 
@@ -104,7 +124,7 @@ class: center middle inverse
 
 ### Quantitative and qualitative methods
 
-| QuaNT...             | QuaL...               |
+| QuaNTitative         | QuaLitative           |
 | -------------------- | --------------------- |
 | Numeric data         | Semantic data         |
 | Large-N              | Small-N, case studies |
@@ -114,7 +134,7 @@ class: center middle inverse
 
 ???
 
-Text mining. Statistics!
+Text mining. We're essentially going to learn statistics!
 
 ---
 
@@ -234,7 +254,7 @@ Spreadsheet and statistical software
 
 ???
 
-You could also use Excel as other studends in this institute.
+You could also use Excel as other students in this institute.
 
 
 ---
@@ -344,7 +364,7 @@ Most statistical procedures require 2-dimensional tidy data.
 
 ---
 
-Tidy data: Each row is a  single observaation.
+Tidy data: Each row is a  single observation.
 
 ``` {r}
 Indometh <- Indometh[Indometh$time > 2, ]
@@ -416,7 +436,3 @@ Variable types in R: logical, character, factor, integer, float
 ---
 
 class: inverse
-
-???
-
-Should we start meetings at 9 or 10 o'clock?
