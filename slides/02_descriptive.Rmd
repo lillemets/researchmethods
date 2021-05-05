@@ -194,7 +194,7 @@ Useful only in statistical calculations.
 
 Standard deviation is the square root of variance.
 
-$$s(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$
+$$s(X) = \sqrt{ \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}$$
 
 --
 

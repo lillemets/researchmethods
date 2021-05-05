@@ -79,4 +79,5 @@ nonparametric-tests
 mann-whitney-u-test
 wilcoxon-signed-rank-test
 kolmogorov-smirnov-test
+how-to-decide-which-test-to-use
 references

@@ -60,6 +60,11 @@ Submit your questions or thoughts on given reading material before each meeting 
 
 Compulsory reading is from two books: @navarro_learning_2018 and @crawley_r_2013.
 
+Each part of feedback is graded as follows:
+
+- 0 points - Feedback is missing or lacking
+- 1 point - Feedback demonstrates that student has revised relevant material
+
 ### Research project
 
 Students are required to create a research report as follows:
@@ -70,6 +75,11 @@ Students are required to create a research report as follows:
 4. Present the results as a written report
 
 Submit the report before the end of May. 
+
+Each method is graded as follows:
+
+- 2 points
+- 4 points
 
 #### Datasets
 

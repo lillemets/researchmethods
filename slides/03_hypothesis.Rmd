@@ -113,7 +113,7 @@ Is the color of M&Ms in a bag random? Let's look at 30 bags of M&Ms.
 --
 
 ```{r, fig.height = 3}
-mm <- read.csv('/home/jrl/work/resmeth/site/data/mm.csv')
+mm <- read.csv('/home/jrl/work/resmeth/docs/data/mm.csv')
 plotMm <- function(x){
   barplot(unlist(mm[x, 2:7]), xaxt = 'n', main = x, col = names(mm[, 2:7]))
 }

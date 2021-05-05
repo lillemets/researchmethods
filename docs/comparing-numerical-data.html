@@ -168,6 +168,7 @@
 <li class="chapter" data-level="6.4.1" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#normality"><i class="fa fa-check"></i><b>6.4.1</b> Normality</a></li>
 <li class="chapter" data-level="6.4.2" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#nonparametric-tests"><i class="fa fa-check"></i><b>6.4.2</b> Nonparametric tests</a></li>
 </ul></li>
+<li class="chapter" data-level="6.5" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#how-to-decide-which-test-to-use"><i class="fa fa-check"></i><b>6.5</b> How to decide which test to use?</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
 <li class="divider"></li>
@@ -193,7 +194,7 @@
 <div id="comparing-numerical-data" class="section level1" number="6">
 <h1><span class="header-section-number">Section 6</span> Comparing numerical data</h1>
 <p>Statistical testing for numerical data is different from when we have categorical data as we are no longer limited to using frequencies but parameters, ranks and other measures. However, note that nonparametric tests explained at the end can also be used for ordinal variables.</p>
-<p>This section covers only comparisons with one or two samples. Comparing multiple mean values is done using analysis of variance (anova) and is considered in the next section. Also, this section only outlines some classic tests and there are many more.</p>
+<p>This section covers only comparisons with one or two samples. Comparing multiple mean values is done using analysis of variance (Anova) and is considered in the next section. Also, this section only outlines some classic tests and there are many more.</p>
 <div id="one-or-two-samples" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> One or two samples</h2>
 <div id="one-sample" class="section level3" number="6.1.1">
@@ -209,12 +210,16 @@
 <p>where <span class="math inline">\(\bar{x}\)</span> is the sample mean and <span class="math inline">\(\mu\)</span> the hypothetical population mean that it is tested against and <span class="math inline">\(s\)</span> sample standard deviation.</p>
 <p>Test statistic is evaluated on t-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom (df).</p>
 <p>Test assumes normality and independence of data. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.2.3.</p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; One Sample T-test</code>.<br />
+In R: <code>t.test(x, mu)</code></p>
+</blockquote>
 </div>
 </div>
 <div id="two-samples" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Two samples</h3>
 <div id="independent-samples-t-test-assuming-equal-variances-student-test" class="section level4" number="6.1.2.1">
-<h4><span class="header-section-number">6.1.2.1</span> Independent samples t-test assuming equal variances (Student test)</h4>
+<h4><span class="header-section-number">6.1.2.1</span> Independent samples T-test assuming equal variances (Student test)</h4>
 <p>This test compares the mean values to determine if these are equal. Equality of means implies that samples come from the same population. The test assumes that variances of the samples are equal. This is true if <span class="math inline">\(\frac{1}{2} &lt; \frac{s_1}{s_2}&lt;2\)</span>. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.3.</p>
 <p>Hypotheses:</p>
 <p><span class="math inline">\(H_0: \bar{x}_1 = \bar{x}_2\)</span><br />
@@ -228,9 +233,13 @@
 <p>where <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> are standard deviations of the samples.</p>
 <p>Test statistic is evaluated on t-distribution with <span class="math inline">\(n_1+n_2-2\)</span> df.</p>
 <p>Test assumes normality and independence of data and homogeneity of variance. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.3.7.</p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test</code>.
+In R: <code>t.test(x, y)</code></p>
+</blockquote>
 </div>
 <div id="independent-samples-t-test-not-assuming-equal-variances-welch-test" class="section level4" number="6.1.2.2">
-<h4><span class="header-section-number">6.1.2.2</span> Independent samples t-test not assuming equal variances (Welch test)</h4>
+<h4><span class="header-section-number">6.1.2.2</span> Independent samples T-test not assuming equal variances (Welch test)</h4>
 <p>This test is equivalent to previously described test but now we don’t assume equal variances. Variances are unequal if <span class="math inline">\(s_1 &gt; 2s_2\)</span> or <span class="math inline">\(s_2 &gt; 2s_1\)</span>. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.4.</p>
 <p>Hypotheses are also the same as in case of Student test</p>
 <p><span class="math inline">\(H_0: \bar{x}_1 = \bar{x}_2\)</span><br />
@@ -243,6 +252,10 @@
 <p>Test statistic is evaluated on t-distribution where df is calculated as</p>
 <p><span class="math display">\[df = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{\left(s_1^2/n_1\right)^2}{n_1-1} + \frac{\left(s_2^2/n_2\right)^2}{n_2-1}}.\]</span></p>
 <p>Test assumes normality and independence of data. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.4.2</p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test | Welch's</code>.
+In R: <code>t.test(x, y, var.equal = FALSE)</code></p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -250,7 +263,7 @@
 <h2><span class="header-section-number">6.2</span> Unpaired or paired samples</h2>
 <p>Previous tests assumed independence of samples. This is not true if we have paired values. For instance, if samples contain measurements of same observations in two different points in time, then the values representing same observations are paired.</p>
 <div id="paired-samples-t-test" class="section level4" number="6.2.0.1">
-<h4><span class="header-section-number">6.2.0.1</span> Paired-samples t-test</h4>
+<h4><span class="header-section-number">6.2.0.1</span> Paired samples T-test</h4>
 <p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.5.</p>
 <p>Hypotheses:</p>
 <p><span class="math inline">\(H_0: \bar{x}_1 = \bar{x}_2\)</span><br />
@@ -261,6 +274,10 @@
 <p><span class="math display">\[\hat{D} = \frac{1}{n} \sum_{i=1}^i{(X_{i1} - X_{i2})}.\]</span></p>
 <p>Test statistic is evaluated on t-distribution with <span class="math inline">\(n-1\)</span> df where <span class="math inline">\(n\)</span> is the number of pairs.</p>
 <p>Test assumes normality of data.</p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; Paired Samples T-test</code>.
+In R: <code>t.test(x, y, paired = T)</code></p>
+</blockquote>
 </div>
 </div>
 <div id="one-tailed-or-two-tailed-tests" class="section level2" number="6.3">
@@ -272,6 +289,10 @@
 <p>If we wish to test if mean of one sample (<span class="math inline">\(\bar{x}_1\)</span>) is greater than mean of another sample (<span class="math inline">\(\bar{x}_2\)</span>) , then our hypotheses are the following:</p>
 <p><span class="math inline">\(H_0: \bar{x}_1 \le \bar{x}_2\)</span><br />
 <span class="math inline">\(H_1: \bar{x}_1 \gt \bar{x}_2\)</span></p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; ... T-test | Group 1 &gt; Group 2 or Group 1 &lt; Group 2</code>.
+In R: <code>t.test(x, y, alternative = 'less') or t.test(x, y, alternative = 'greater')</code></p>
+</blockquote>
 </div>
 <div id="parametric-or-nonparametric-tests" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Parametric or nonparametric tests</h2>
@@ -282,6 +303,10 @@
 <div id="qq-plot" class="section level4" number="6.4.1.1">
 <h4><span class="header-section-number">6.4.1.1</span> QQ plot</h4>
 <p>On such plots quantiles of data are plotted against theoretical quantiles representing normal distribution. If quantiles of data are highly correlated to these theoretical quantiles (relationship follows a straight line), then data is normally distributed. Interpretation of QQ plot is thus not precise. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.8.1.</p>
+<blockquote>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Q-Q</code>.
+In R: <code>qqnorm(y)</code></p>
+</blockquote>
 </div>
 <div id="shapiro-wilk-test" class="section level4" number="6.4.1.2">
 <h4><span class="header-section-number">6.4.1.2</span> Shapiro-Wilk test</h4>
@@ -291,13 +316,17 @@
 <p>The exact explanation of <span class="math inline">\(a\)</span> and thus the logic is complicated but higher value of <span class="math inline">\(W\)</span> indicates non-normality. If the test statistic is statistically significant, then data is not normally distributed:</p>
 <p><span class="math inline">\(H_0\)</span>: Data is normally distributed<br />
 <span class="math inline">\(H_1\)</span>: Data is not normally distributed</p>
+<blockquote>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics | Shapiro-Wilk</code>.
+In R: <code>shapiro.test(x)</code></p>
+</blockquote>
 </div>
 </div>
 <div id="nonparametric-tests" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Nonparametric tests</h3>
 <div id="mann-whitney-u-test" class="section level4" number="6.4.2.1">
 <h4><span class="header-section-number">6.4.2.1</span> Mann-Whitney U test</h4>
-<p>This is a test to compare distributions (and medians) of two <strong>unpaired</strong> samples if we can’t assume normality. The test is also known as Wilcoxon rank-sum test. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.9.1.</p>
+<p>This is a test to compare distributions (and medians) of two <strong>unpaired</strong> samples if we can’t assume normality. The test is also known as Wilcoxon rank-sum test. The test is also known as Wilcoxon rank-sum test. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.9.1.</p>
 <p>Hypotheses:</p>
 <p><span class="math inline">\(H_{0}\)</span>: Distributions (medians) of both samples are the same.<br />
 <span class="math inline">\(H_{1}\)</span>: Distributions (medians) of samples are different.</p>
@@ -313,6 +342,10 @@
 <p>Basically, we compare all values and count the times when values from one sample are higher than values from another sample. The <span class="math inline">\(U\)</span> is just the count of these differences.</p>
 <p>For <span class="math inline">\(n \ge 20\)</span>, p-value for <span class="math inline">\(U\)</span> is calculated on a normal distribution.</p>
 <p>Test assumes independence of samples.</p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test | Mann-Whitney U</code>.
+In R: <code>wilcox.test(x, y)</code></p>
+</blockquote>
 </div>
 <div id="wilcoxon-signed-rank-test" class="section level4" number="6.4.2.2">
 <h4><span class="header-section-number">6.4.2.2</span> Wilcoxon signed-rank test</h4>
@@ -326,6 +359,10 @@
 <p>Basically, we are comparing how different is the ranking of values between two samples. The <span class="math inline">\(W\)</span> is just the sum of ranked differences.</p>
 <p>For <span class="math inline">\(n \ge 20\)</span>, p-value for <span class="math inline">\(W\)</span> is calculated on normal distribution.</p>
 <p>Test has no relevant assumptions.</p>
+<blockquote>
+<p>In Jamovi: <code>T-tests &gt; Paired Samples T-test | Wilcoxon rank</code>.
+In R: <code>wilcox.test(x, y)</code></p>
+</blockquote>
 </div>
 <div id="kolmogorov-smirnov-test" class="section level4" number="6.4.2.3">
 <h4><span class="header-section-number">6.4.2.3</span> Kolmogorov-Smirnov test</h4>
@@ -335,9 +372,73 @@
 <span class="math inline">\(H_{1}\)</span>: Distributions of samples are different.</p>
 <p>Test statistic <span class="math inline">\(D\)</span> is simply the maximum absolute difference between two cumulative distribution functions.</p>
 <p>P-value is determined by the extremity of the test statistic <span class="math inline">\(D\)</span> on Kolmogorov distribution.</p>
+<blockquote>
+<p>In R: <code>ks.test(x, y)</code></p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="how-to-decide-which-test-to-use" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> How to decide which test to use?</h2>
+<ul>
+<li>One sample
+<ul>
+<li>Unpaired samples
+<ul>
+<li>Normally distributed
+<ul>
+<li><em>One sample T-test</em></li>
+</ul></li>
+<li>Not normally distributed
+<ul>
+<li>Wilcoxon signed-rank test</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Two samples
+<ul>
+<li>Unpaired samples
+<ul>
+<li>Normally distributed
+<ul>
+<li>Equal variance
+<ul>
+<li><em>Independent samples T-test assuming equal variances (Student test)</em></li>
+</ul></li>
+<li>Unequal variance
+<ul>
+<li><em>Independent samples T-test assuming unequal variances (Welch test)</em></li>
+</ul></li>
+</ul></li>
+<li>Not normally distributed
+<ul>
+<li><em>Mann-Whitney U test</em></li>
+</ul></li>
+</ul></li>
+<li>Paired samples
+<ul>
+<li>Normally distributed
+<ul>
+<li><em>Paired samples T-test / Wilcoxon rank-sum test</em></li>
+</ul></li>
+<li>Not normally distributed
+<ul>
+<li><em>Wilcoxon signed-rank test</em></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Three samples
+<ul>
+<li>Unpaired samples
+<ul>
+<li>Normally distributed
+<ul>
+<li><em>Analysis of Variance</em></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 
-</div>
-</div>
 </div>
 </div>
             </section>

@@ -26,6 +26,14 @@ body {
   background: #fff;
 }
 
+.remark-slide-container { 
+  background: #fff; /* Full screen background */
+} 
+
+.remark-slide-scaler { 
+  -webkit-box-shadow: none; /* Remove slide shadows */
+}
+
 /* Headings */
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,15 +82,7 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
 
 .small { font-size: 0.8em; }
 
-.center { text-align: center; }
-
-.blue { color: #0086B3; }
-
-.cyan { color: #099; }
-
-.red { color: #d14; }
-
-.gray { color: #998; }
+.smaller { font-size: 0.6em; }
 
 .footnote {
   font-size: 0.6em;
@@ -90,6 +90,18 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   position: absolute;
   padding-right: 56px; /* 2em*28px */
 }
+
+.toc h1 {
+  font-size: 1.4em;
+  margin: 0.4em; 
+}
+
+.toc p {
+  font-family: "Eurostile", sans-serif;
+  font-size: 1.4em;
+  margin: 0em; 
+}
+
 
 /* Inverse */
 
