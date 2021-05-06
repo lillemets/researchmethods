@@ -80,4 +80,8 @@ mann-whitney-u-test
 wilcoxon-signed-rank-test
 kolmogorov-smirnov-test
 how-to-decide-which-test-to-use
+analysis-of-variance
+one-way-anova
+post-hoc-tests
+how-to-decide-which-test-to-use-1
 references

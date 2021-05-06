@@ -59,7 +59,7 @@ Test statistic is evaluated on t-distribution with $n_1+n_2-2$ df.
 
 Test assumes normality and independence of data and homogeneity of variance. See @navarro_learning_2018 section 11.3.7.
 
-> In Jamovi: `T-tests > Independent Samples T-test`.
+> In Jamovi: `T-tests > Independent Samples T-test`.  
 > In R: `t.test(x, y)`
 
 #### Independent samples T-test not assuming equal variances (Welch test)
@@ -87,7 +87,7 @@ $$df = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{\left(s
 
 Test assumes normality and independence of data. See @navarro_learning_2018 section 11.4.2
 
-> In Jamovi: `T-tests > Independent Samples T-test | Welch's`.
+> In Jamovi: `T-tests > Independent Samples T-test | Welch's`.  
 > In R: `t.test(x, y, var.equal = FALSE)`
 
 ## Unpaired or paired samples
@@ -115,7 +115,7 @@ Test statistic is evaluated on t-distribution with $n-1$ df where $n$ is the num
 
 Test assumes normality of data.
 
-> In Jamovi: `T-tests > Paired Samples T-test`.
+> In Jamovi: `T-tests > Paired Samples T-test`.  
 > In R: `t.test(x, y, paired = T)`
 
 ## One-tailed or two-tailed tests
@@ -132,7 +132,7 @@ If we wish to test if mean of one sample ($\bar{x}_1$) is greater than mean of a
 $H_0: \bar{x}_1 \le \bar{x}_2$  
 $H_1: \bar{x}_1 \gt \bar{x}_2$
 
-> In Jamovi: `T-tests > ... T-test | Group 1 > Group 2 or Group 1 < Group 2`.
+> In Jamovi: `T-tests > ... T-test | Group 1 > Group 2 or Group 1 < Group 2`.  
 > In R: `t.test(x, y, alternative = 'less') or t.test(x, y, alternative = 'greater')`
 
 ## Parametric or nonparametric tests
@@ -147,7 +147,7 @@ There are various ways to determine whether or not values are normally distribut
 
 On such plots quantiles of data are plotted against theoretical quantiles representing normal distribution. If quantiles of data are highly correlated to these theoretical quantiles (relationship follows a straight line), then data is normally distributed. Interpretation of QQ plot is thus not precise. See @navarro_learning_2018 section 11.8.1.
 
-> In Jamovi: `Exploration > Descriptives > Plots | Q-Q`.
+> In Jamovi: `Exploration > Descriptives > Plots | Q-Q`.  
 > In R: `qqnorm(y)`
 
 #### Shapiro-Wilk test
@@ -163,7 +163,7 @@ The exact explanation of $a$ and thus the logic is complicated but higher value 
 $H_0$: Data is normally distributed  
 $H_1$: Data is not normally distributed
 
-> In Jamovi: `Exploration > Descriptives > Statistics | Shapiro-Wilk`.
+> In Jamovi: `Exploration > Descriptives > Statistics | Shapiro-Wilk`.  
 > In R: `shapiro.test(x)`
 
 ### Nonparametric tests
@@ -197,7 +197,7 @@ For $n \ge 20$, p-value for $U$ is calculated on a normal distribution.
 
 Test assumes independence of samples.
 
-> In Jamovi: `T-tests > Independent Samples T-test | Mann-Whitney U`.
+> In Jamovi: `T-tests > Independent Samples T-test | Mann-Whitney U`.  
 > In R: `wilcox.test(x, y)`
 
 #### Wilcoxon signed-rank test
@@ -221,7 +221,7 @@ For $n \ge 20$, p-value for $W$ is calculated on normal distribution.
 
 Test has no relevant assumptions.
 
-> In Jamovi: `T-tests > Paired Samples T-test | Wilcoxon rank`.
+> In Jamovi: `T-tests > Paired Samples T-test | Wilcoxon rank`.  
 > In R: `wilcox.test(x, y)`
 
 #### Kolmogorov-Smirnov test
@@ -246,7 +246,7 @@ P-value is determined by the extremity of the test statistic $D$ on Kolmogorov d
     - Normally distributed
       - *One sample T-test*
     - Not normally distributed
-      - Wilcoxon signed-rank test
+      - *Wilcoxon signed-rank test*
 
 - Two samples
   - Unpaired samples

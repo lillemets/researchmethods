@@ -327,13 +327,7 @@ Let's set significance level $\alpha = 0.05$.
 
 ### Test statistic $t$
 
-Test statistic $t$ is calculated as
-
-$$t = \frac{\hat{D}}{s_\Delta\div \sqrt{n_1 + n_2}},$$
-
-where $s_\Delta$ is difference in standard deviation expressed as $s_\Delta = s_1 - s_2$ and  $\hat{D}$  is the mean of differences between paired values calculated as
-
-$$\hat{D} = \frac{1}{n} \sum_{i=1}^i{(X_{i1} - X_{i2})}.$$
+==Add an explanation==
 
 ---
 

@@ -1,0 +1,71 @@
+# Analysis of variance
+
+Whereas tests in previous chapters could be used to compare only two parameters we often wish to compare parameters of several samples. We can use Analysis of variance (Anova) to do just that.
+
+## One-way Anova
+
+This test is used to compare mean values of three or more samples. Samples are distinguished by a factor variable, so each sample is a group of the factor.
+
+See @navarro_learning_2018 section 13.2.
+
+$H_0: \bar{x}_1 = \bar{x}_2 = \bar{x}_3$  
+$H_1: \bar{x}_1 = \bar{x}_2 \neq \bar{x}_3$ or $\bar{x}_1 \neq \bar{x}_2 \neq \bar{x}_3$
+
+In other words, our $H_1$ is that at least one  group mean is different from others.
+
+Test statistic $F$ is calculated as 
+
+$F = MSA / MSE,$
+
+where $MSA$ expresses variation between group and $MSE$ represents random variaton. In order to understand what this means let's start from the initial measures, the sum of squares of variable $y$ for observations $i$ in groups $j$:
+
+- within-group sum of squares, i.e. sum of squares of errors (SSE)  
+  $SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}$, $df = n-k$
+- between group sum of squares, i.e. sum of squares between groups (SSA)  
+  $SSA=\sum_{j=1}^{k}\sum_{i=1}^{n_{j}} (\overline{y_{j}}-\overline{y})^{2}$, $df = k - 1$
+- total sum of squares (SST=SSE+SSA)  
+  $SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}$, $df = n-1$
+
+We can use these variations to find $MSA$ and $MSE$ as follows:
+
+- mean squares for SSE (MSE)
+  $MSE = SSE / (n - k)$
+- mean squares for SSA (MSA)
+  $MSA = SSA / (k - 1)$
+
+Test statistic $F$ is evaluated on F-distribution.
+
+Test assumes normality and independence of data and homogeneity of variance (only for Welch's test).
+
+In Jamovi: `Anova > One-way Anova`.  
+In R: `summary(aov(x, y))`
+
+## Post-hoc tests
+
+The result of Anova does not tell us about which groups are different but only that there is a difference. We can use post hoc tests to compare the means of all groups pariwise. See @navarro_learning_2018 section 14.8.
+
+In Jamovi: `Anova > One-way Anova > Post-Hoc test | Games-Howell or Tukey `.  
+In R: `TukeyHSD(aov(x, y))`
+
+## How to decide which test to use?
+
+Depending on the number of factors and whether or not the assumptions are satisfied, there are several types of Anova. These are explained in @navarro_learning_2018 sections 13 and 14.
+
+- Two factors
+  - Unpaired groups
+    - Normally distributed
+      - Equal variances
+        - *Fisher's one-way Anova*
+      - Unequal variances
+        - *Welch's one-way Anova*
+    - Not normally distributed
+      - *Kruskal-Wallis rank-sum test*
+  - Paired groups (repeated measures)
+    - Normally distributed
+      - *Repeated measures Anova*
+    - Not normally distributed
+      - *Friedman test*
+- Several factors
+  - Unpaired groups
+    - Normally distributed
+      - *Factorial Anova*

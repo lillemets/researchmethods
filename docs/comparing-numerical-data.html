@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="comparing-categorical-data.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="analysis-of-variance.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -170,7 +170,13 @@
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#how-to-decide-which-test-to-use"><i class="fa fa-check"></i><b>6.5</b> How to decide which test to use?</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="chapter" data-level="7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>7</b> Analysis of variance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova"><i class="fa fa-check"></i><b>7.1</b> One-way Anova</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.2</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#how-to-decide-which-test-to-use-1"><i class="fa fa-check"></i><b>7.3</b> How to decide which test to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -234,7 +240,7 @@ In R: <code>t.test(x, mu)</code></p>
 <p>Test statistic is evaluated on t-distribution with <span class="math inline">\(n_1+n_2-2\)</span> df.</p>
 <p>Test assumes normality and independence of data and homogeneity of variance. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.3.7.</p>
 <blockquote>
-<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test</code>.
+<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test</code>.<br />
 In R: <code>t.test(x, y)</code></p>
 </blockquote>
 </div>
@@ -253,7 +259,7 @@ In R: <code>t.test(x, y)</code></p>
 <p><span class="math display">\[df = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{\left(s_1^2/n_1\right)^2}{n_1-1} + \frac{\left(s_2^2/n_2\right)^2}{n_2-1}}.\]</span></p>
 <p>Test assumes normality and independence of data. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.4.2</p>
 <blockquote>
-<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test | Welch's</code>.
+<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test | Welch's</code>.<br />
 In R: <code>t.test(x, y, var.equal = FALSE)</code></p>
 </blockquote>
 </div>
@@ -275,7 +281,7 @@ In R: <code>t.test(x, y, var.equal = FALSE)</code></p>
 <p>Test statistic is evaluated on t-distribution with <span class="math inline">\(n-1\)</span> df where <span class="math inline">\(n\)</span> is the number of pairs.</p>
 <p>Test assumes normality of data.</p>
 <blockquote>
-<p>In Jamovi: <code>T-tests &gt; Paired Samples T-test</code>.
+<p>In Jamovi: <code>T-tests &gt; Paired Samples T-test</code>.<br />
 In R: <code>t.test(x, y, paired = T)</code></p>
 </blockquote>
 </div>
@@ -290,7 +296,7 @@ In R: <code>t.test(x, y, paired = T)</code></p>
 <p><span class="math inline">\(H_0: \bar{x}_1 \le \bar{x}_2\)</span><br />
 <span class="math inline">\(H_1: \bar{x}_1 \gt \bar{x}_2\)</span></p>
 <blockquote>
-<p>In Jamovi: <code>T-tests &gt; ... T-test | Group 1 &gt; Group 2 or Group 1 &lt; Group 2</code>.
+<p>In Jamovi: <code>T-tests &gt; ... T-test | Group 1 &gt; Group 2 or Group 1 &lt; Group 2</code>.<br />
 In R: <code>t.test(x, y, alternative = 'less') or t.test(x, y, alternative = 'greater')</code></p>
 </blockquote>
 </div>
@@ -304,7 +310,7 @@ In R: <code>t.test(x, y, alternative = 'less') or t.test(x, y, alternative = 'gr
 <h4><span class="header-section-number">6.4.1.1</span> QQ plot</h4>
 <p>On such plots quantiles of data are plotted against theoretical quantiles representing normal distribution. If quantiles of data are highly correlated to these theoretical quantiles (relationship follows a straight line), then data is normally distributed. Interpretation of QQ plot is thus not precise. See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 11.8.1.</p>
 <blockquote>
-<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Q-Q</code>.
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Q-Q</code>.<br />
 In R: <code>qqnorm(y)</code></p>
 </blockquote>
 </div>
@@ -317,7 +323,7 @@ In R: <code>qqnorm(y)</code></p>
 <p><span class="math inline">\(H_0\)</span>: Data is normally distributed<br />
 <span class="math inline">\(H_1\)</span>: Data is not normally distributed</p>
 <blockquote>
-<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics | Shapiro-Wilk</code>.
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics | Shapiro-Wilk</code>.<br />
 In R: <code>shapiro.test(x)</code></p>
 </blockquote>
 </div>
@@ -343,7 +349,7 @@ In R: <code>shapiro.test(x)</code></p>
 <p>For <span class="math inline">\(n \ge 20\)</span>, p-value for <span class="math inline">\(U\)</span> is calculated on a normal distribution.</p>
 <p>Test assumes independence of samples.</p>
 <blockquote>
-<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test | Mann-Whitney U</code>.
+<p>In Jamovi: <code>T-tests &gt; Independent Samples T-test | Mann-Whitney U</code>.<br />
 In R: <code>wilcox.test(x, y)</code></p>
 </blockquote>
 </div>
@@ -360,7 +366,7 @@ In R: <code>wilcox.test(x, y)</code></p>
 <p>For <span class="math inline">\(n \ge 20\)</span>, p-value for <span class="math inline">\(W\)</span> is calculated on normal distribution.</p>
 <p>Test has no relevant assumptions.</p>
 <blockquote>
-<p>In Jamovi: <code>T-tests &gt; Paired Samples T-test | Wilcoxon rank</code>.
+<p>In Jamovi: <code>T-tests &gt; Paired Samples T-test | Wilcoxon rank</code>.<br />
 In R: <code>wilcox.test(x, y)</code></p>
 </blockquote>
 </div>
@@ -391,7 +397,7 @@ In R: <code>wilcox.test(x, y)</code></p>
 </ul></li>
 <li>Not normally distributed
 <ul>
-<li>Wilcoxon signed-rank test</li>
+<li><em>Wilcoxon signed-rank test</em></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -447,7 +453,7 @@ In R: <code>wilcox.test(x, y)</code></p>
         </div>
       </div>
 <a href="comparing-categorical-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analysis-of-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

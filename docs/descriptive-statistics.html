@@ -170,7 +170,13 @@
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#how-to-decide-which-test-to-use"><i class="fa fa-check"></i><b>6.5</b> How to decide which test to use?</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="chapter" data-level="7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>7</b> Analysis of variance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova"><i class="fa fa-check"></i><b>7.1</b> One-way Anova</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.2</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#how-to-decide-which-test-to-use-1"><i class="fa fa-check"></i><b>7.3</b> How to decide which test to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -203,16 +209,21 @@
 <div id="mode" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Mode</h3>
 <p>Mode is simply the most frequent value in a sequence. This statistic can be useful for nominal and ordinal variables but it’s rarely used for numeric variables, especially on a continuous scale.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Central Tendency | Mode</code></p>
 </div>
 <div id="median" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Median</h3>
 <p>When sequence of values is ordered, the middle value is median. In case there are even number of values (<span class="math inline">\(N\)</span>) in a sequence, median is the average of the two values in the middle. Thus, there are equal number of values above and below the median value. When <span class="math inline">\(N\)</span> is an even number, half of the values are above and half below the median value.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Central Tendency | Median</code><br />
+In R: <code>median(x)</code></p>
 </div>
 <div id="mean" class="section level3" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> Mean</h3>
 <p>While there are several forms of mean, arithmetic mean is most useful in statistics and also considered here. Mean is in other words the average value: it’s the sum of values (<span class="math inline">\(X\)</span>) divided by number of values:</p>
 <p><span class="math display">\[\bar{X} = \frac{1}{N} \sum{^N_{i=1}}{X_i}\]</span></p>
 <p>A feature of mean value is that if you only know the <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(N\)</span>, you can still calculate <span class="math inline">\(\sum{^N_{i=1}}{X_i}\)</span>.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Central Tendency | Mean</code><br />
+In R: <code>mean(x)</code></p>
 </div>
 </div>
 <div id="variability" class="section level2" number="3.2">
@@ -221,22 +232,32 @@
 <p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 4.2.</p>
 <div id="range" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Range</h3>
-<p>Most simple way to express variability is to indicate the range of all values, i.e. the minimum and maximum values.</p>
+<p>Most simple way to express variability is to indicate the range of all values, i.e. the difference between minimum and maximum values.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | Range, Minimum, Maximum</code><br />
+In R: <code>range(x)</code></p>
 </div>
 <div id="quantiles-and-interquartile-range" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Quantiles and interquartile range</h3>
 <p>Quantiles are in essence calculated just like median, because median is the lowest quantile, the 2-quantile. In addition to dividing sequence of ordered values into two halves separated by median, such sequence can be diveded into any number of equal groups as long as the number of groups (<span class="math inline">\(k\)</span>) is smaller than or equal to the number of values, i.e. <span class="math inline">\(k \le N\)</span>. Some common quantiles are quartiles (<span class="math inline">\(k = 4\)</span>), deciles (<span class="math inline">\(k = 10\)</span>) and centiles/percentiles (<span class="math inline">\(k = 100\)</span>).</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Percentile Values</code><br />
+In R: <code>quantile(x)</code></p>
 <p>Arguably quartile is most frequently used among quantiles because the 2nd and 4th quartiles contain half of all values. This interquartile range (IQR) thus contains the middle half of all values.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | IQR</code><br />
+In R: <code>IQR(x)</code></p>
 </div>
 <div id="variance" class="section level3" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Variance</h3>
 <p>Although difficult to interpret, variance is used in many statistical calculations due to its mathematical properties. Variance is mean squared difference from the mean value:</p>
 <p><span class="math display">\[Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}\]</span></p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | Variance</code><br />
+In R: <code>var(x)</code></p>
 </div>
 <div id="standard-deviation" class="section level3" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Standard deviation</h3>
 <p>Interpretability issues of variance arise from the fact that the calculation includes squaring and thus the value of the statistic is vastly different to understand regarding initial scale. A solution would be to find a square root of variance. This is what the standard deviation is: the square root of variance.</p>
 <p><span class="math display">\[\sigma = \sqrt{\frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}\]</span></p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | Std. deviation</code><br />
+In R: <code>sd(x)</code></p>
 </div>
 </div>
 <div id="plots" class="section level2" number="3.3">
@@ -246,12 +267,16 @@
 <h3><span class="header-section-number">3.3.1</span> Boxplot</h3>
 <p>Boxplots illustrate the quartiles of values (including interquartile range) and extreme values (outliers). Outliers are usually values that are below the 2nd quartile or above the 4th quartile by 1.5 times the interquartile range. On boxplots, half of all the values lie within the box and another half on the lines, outliers excluded.</p>
 <p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 5.2.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Box Plots</code><br />
+In R: <code>boxplot(x)</code></p>
 </div>
 <div id="histogram-and-density-plot" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Histogram and density plot</h3>
 <p>Histograms are essentially barplots where all values are divided between ranges of equal with, i.e. bins.</p>
 <p>Instead of bins, distribution of values can also be expressed continuously by smoothing the bins. This results in a density plot.</p>
 <p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 5.1.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Histograms</code><br />
+In R: <code>histogram(x) and plot(density(x))</code></p>
 
 </div>
 </div>
