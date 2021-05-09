@@ -871,3 +871,7 @@ P-value is determined by the extremity of the D-statistic on Kolmogorov distribu
 P-value is `r Test$p.value %>% round(3)` and we chose significance level to be $\alpha = 0.05$.
 
 > Do the supplements have a different effect? 
+
+---
+
+class: inverse

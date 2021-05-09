@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="comparing-numerical-data.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="correlation-analysis.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -176,7 +176,36 @@
 <li class="chapter" data-level="7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.2</b> Post-hoc tests</a></li>
 <li class="chapter" data-level="7.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#how-to-decide-which-test-to-use-1"><i class="fa fa-check"></i><b>7.3</b> How to decide which test to use?</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="chapter" data-level="8" data-path="correlation-analysis.html"><a href="correlation-analysis.html"><i class="fa fa-check"></i><b>8</b> Correlation analysis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="correlation-analysis.html"><a href="correlation-analysis.html#scatterplot"><i class="fa fa-check"></i><b>8.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="8.2" data-path="correlation-analysis.html"><a href="correlation-analysis.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>8.2</b> Pearson’s correlation coefficient</a></li>
+<li class="chapter" data-level="8.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#spearman-rank-order-correlation-coefficient"><i class="fa fa-check"></i><b>8.3</b> Spearman rank-order correlation coefficient</a></li>
+<li class="chapter" data-level="8.4" data-path="correlation-analysis.html"><a href="correlation-analysis.html#correlation-matrix-and-heatmap"><i class="fa fa-check"></i><b>8.4</b> Correlation matrix and heatmap</a></li>
+<li class="chapter" data-level="8.5" data-path="correlation-analysis.html"><a href="correlation-analysis.html#causality"><i class="fa fa-check"></i><b>8.5</b> Causality</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#ordinary-least-squares"><i class="fa fa-check"></i><b>9.1</b> Ordinary least squares</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#model-specification"><i class="fa fa-check"></i><b>9.1.1</b> Model specification</a></li>
+<li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#calculation"><i class="fa fa-check"></i><b>9.1.2</b> Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#elements-of-ols-regression-models"><i class="fa fa-check"></i><b>9.2</b> Elements of (OLS) regression models</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#intercept"><i class="fa fa-check"></i><b>9.2.1</b> Intercept</a></li>
+<li class="chapter" data-level="9.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#coefficients"><i class="fa fa-check"></i><b>9.2.2</b> Coefficient(s)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#fitted-values"><i class="fa fa-check"></i><b>9.2.3</b> Fitted values</a></li>
+<li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residuals"><i class="fa fa-check"></i><b>9.2.4</b> Residuals</a></li>
+<li class="chapter" data-level="9.2.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#the-r2"><i class="fa fa-check"></i><b>9.2.5</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="9.2.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#the-adjusted--r2"><i class="fa fa-check"></i><b>9.2.6</b> The adjusted- <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>9.3</b> Assumptions and diagnostics</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#gauss-markov-assumptions"><i class="fa fa-check"></i><b>9.3.1</b> Gauss-Markov assumptions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -212,11 +241,11 @@
 <p>where <span class="math inline">\(MSA\)</span> expresses variation between group and <span class="math inline">\(MSE\)</span> represents random variaton. In order to understand what this means let’s start from the initial measures, the sum of squares of variable <span class="math inline">\(y\)</span> for observations <span class="math inline">\(i\)</span> in groups <span class="math inline">\(j\)</span>:</p>
 <ul>
 <li>within-group sum of squares, i.e. sum of squares of errors (SSE)<br />
-<span class="math inline">\(SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}\)</span>, <span class="math inline">\(df = n-k\)</span></li>
+<span class="math inline">\(SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}\)</span>, <span class="math inline">\(df = n - k\)</span></li>
 <li>between group sum of squares, i.e. sum of squares between groups (SSA)<br />
-<span class="math inline">\(SSA=\sum_{j=1}^{k}\sum_{i=1}^{n_{j}} (\overline{y_{j}}-\overline{y})^{2}\)</span>, <span class="math inline">\(df = k - 1\)</span></li>
+<span class="math inline">\(SSA=\sum_{j=1}^{k} (\overline{y_{j}}-\overline{y})^{2}\)</span>, <span class="math inline">\(df = k - 1\)</span></li>
 <li>total sum of squares (SST=SSE+SSA)<br />
-<span class="math inline">\(SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}\)</span>, <span class="math inline">\(df = n-1\)</span></li>
+<span class="math inline">\(SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}\)</span>, <span class="math inline">\(df = n - 1\)</span></li>
 </ul>
 <p>We can use these variations to find <span class="math inline">\(MSA\)</span> and <span class="math inline">\(MSE\)</span> as follows:</p>
 <ul>
@@ -292,7 +321,7 @@ In R: <code>TukeyHSD(aov(x, y))</code></p>
         </div>
       </div>
 <a href="comparing-numerical-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="correlation-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

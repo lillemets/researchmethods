@@ -20,11 +20,11 @@ $F = MSA / MSE,$
 where $MSA$ expresses variation between group and $MSE$ represents random variaton. In order to understand what this means let's start from the initial measures, the sum of squares of variable $y$ for observations $i$ in groups $j$:
 
 - within-group sum of squares, i.e. sum of squares of errors (SSE)  
-  $SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}$, $df = n-k$
+  $SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}$, $df = n - k$
 - between group sum of squares, i.e. sum of squares between groups (SSA)  
-  $SSA=\sum_{j=1}^{k}\sum_{i=1}^{n_{j}} (\overline{y_{j}}-\overline{y})^{2}$, $df = k - 1$
+  $SSA=\sum_{j=1}^{k} (\overline{y_{j}}-\overline{y})^{2}$, $df = k - 1$
 - total sum of squares (SST=SSE+SSA)  
-  $SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}$, $df = n-1$
+  $SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}$, $df = n - 1$
 
 We can use these variations to find $MSA$ and $MSE$ as follows:
 

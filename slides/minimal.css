@@ -26,11 +26,11 @@ body {
   background: #fff;
 }
 
-.remark-slide-container { 
+.remark-slide-container {
   background: #fff; /* Full screen background */
-} 
+}
 
-.remark-slide-scaler { 
+.remark-slide-scaler {
   -webkit-box-shadow: none; /* Remove slide shadows */
 }
 
@@ -86,20 +86,20 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
 
 .footnote {
   font-size: 0.6em;
-  bottom: 2em;
+  bottom: 3em;
   position: absolute;
   padding-right: 56px; /* 2em*28px */
 }
 
 .toc h1 {
   font-size: 1.4em;
-  margin: 0.4em; 
+  margin: 0.4em;
 }
 
 .toc p {
   font-family: "Eurostile", sans-serif;
   font-size: 1.4em;
-  margin: 0em; 
+  margin: 0em;
 }
 
 

@@ -92,6 +92,9 @@ To apply methods, datasets need to have multiple variables. We mostly learn to e
 - [Goodle dataset search](https://datasetsearch.research.google.com/)
 - [Kaggle datasets](https://www.kaggle.com/datasets)
 - [Data hub collections](https://datahub.io/collections)
+- [Our World in Data](https://ourworldindata.org/)
+- [World Values Survey](https://www.worldvaluessurvey.org/)
+- [European Social Survey](https://www.europeansocialsurvey.org/data/)
 
 ## Topics
 
@@ -102,8 +105,8 @@ We cover some common and traditional statistical methods.
 3. Comparing numerical variables
 4. Analysis of variance
 5. Correlation analysis
-6. Regression. Ordinary Least Squares
-7. Regression. Factors and transformations
+6. Regression. Simple linear regression
+7. Regression. Multiple linear regression, factor variables and transformations
 8. Regression. Maximum likelihood and binary models
 9. Principal component analysis
 10. Factor analysis
