@@ -69,12 +69,10 @@ Each part of feedback is graded as follows:
 
 Students are required to create a research report as follows:
 
-1. Choose a data set
+1. Choose at least one data set
 2. Apply at least one method from 10 topics on this data set (i.e. you can skip 2 topics)
 3. Make changes according to feedback
 4. Present the results as a written report
-
-Submit the report before the end of May. 
 
 Each of the 10 topics is graded as follows:
 
@@ -86,7 +84,7 @@ Each of the 10 topics is graded as follows:
 
 #### Datasets
 
-To apply methods, datasets need to have multiple variables. We mostly learn to explore continuous data but some methods require at least one discrete variable. Students are free to choose a dataset with the requriment that chosen data  is different from what other students have chosen. Possible sources for data:
+To apply methods, datasets need to have multiple variables. We mostly learn to explore continuous data but some methods require at least one discrete variable. Students are free to choose a dataset. Possible sources for data:
 
 - Jamovi: `Open > Data Library`
 - [Goodle dataset search](https://datasetsearch.research.google.com/)

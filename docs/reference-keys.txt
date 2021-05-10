@@ -104,4 +104,5 @@ the-adjusted--r2
 assumptions-and-diagnostics
 multicollinarity
 gauss-markov-assumptions
+slides
 references

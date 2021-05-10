@@ -19,7 +19,7 @@ See @navarro_learning_2018 sections 1.1.1 and 1.5 for a brief introduction. Sect
 @dash_flowchart_2016 has summarized statistics as follows:
 
 ``` {r, fig.cap = "Flowchart of statistics", echo = F}
-knitr::include_graphics('/home/jrl/work/resmeth/img/statisticsflowchart.png')
+knitr::include_graphics('/home/jrl/work/resmeth/docs/img/statisticsflowchart.png')
 ```
 
 ### Descriptive and inferential statistics
