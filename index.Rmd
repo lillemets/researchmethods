@@ -58,7 +58,7 @@ Submit your questions or thoughts on given reading material before each meeting 
 - a question on something you don't understand, or
 - an answer to another student's question.
 
-Compulsory reading is from two books: @navarro_learning_2018 and @crawley_r_2013.
+Compulsory reading is from the following books: @navarro_learning_2018, @crawley_r_2013 and @hastie_elements_2017.
 
 Each part of feedback is graded as follows:
 
@@ -103,10 +103,10 @@ We cover some common and traditional statistical methods.
 3. Comparing numerical variables
 4. Analysis of variance
 5. Correlation analysis
-6. Regression. Simple linear regression
-7. Regression. Multiple linear regression, factor variables and transformations
-8. Regression. Maximum likelihood and binary models
-9. Principal component analysis
-10. Factor analysis
-11. Hierarchical clustering
-12. K-means clustering
+6. Simple linear regression
+7. Data transformations
+8. Multiple linear regression
+9. Maximum likelihood and binary models
+10. Principal component analysis
+11. Factor analysis
+12. Clustering

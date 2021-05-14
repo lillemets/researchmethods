@@ -18,7 +18,7 @@ Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
 
 class: center middle clean
 
-# Are two continuous variables related?
+# How much are two variables related?
 
 ---
 
@@ -61,11 +61,9 @@ $$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x}
 
 Essentially, we compare differences from mean value for values of each group.
 
----
+--
 
 The value of correlation coefficient is between -1 and 1.
-
-
 
 ---
 
@@ -77,6 +75,12 @@ plot(cars, xlab = "Speed, mph", ylab = "Stopping distance, ft",
 
 ---
 
+Statistical significance can also be estimated by finding the probability of t-statistic on t-distribution.
+
+$$t=r\sqrt{n-2}/\sqrt{1-r^{2}}$$
+
+---
+
 ## Spearman rank-order correlation coefficient
 
 Evaluation is based on the ranking of values. Evaluates a **monotonic** relationship. Thus perfect positive correlation implies that when $x$ increases, then $y$ also always increases.
@@ -84,6 +88,19 @@ Evaluation is based on the ranking of values. Evaluates a **monotonic** relation
 $$r = 1 - \frac{6\sum (x_{i}-y_{i})^{2}}{n(n^{2}-1)}$$
 
 Essentially, we compare rankings of values from each group.
+
+--
+
+The value of correlation coefficient is between -1 and 1.
+
+---
+
+
+``` {r}
+head(cars, 10)
+```
+
+??? Show ranks!
 
 ---
 
@@ -113,6 +130,8 @@ plot(x, y, axes = F, xlab = NA, ylab = NA, cex.main = 2,
        "Spearman's rho = ", cor(x, y, method = 'spearman') %>% round(3)))
 ```
 ]
+
+--
 
 .pull-right[
 
@@ -273,7 +292,7 @@ Tell the research about storks and babies.
 
 class: middle
 
-.centerg[![](../img/correlation.png)]
+.center[![](../img/correlation.png)]
 
 .footnote[Source: XKCD, correlation]
 

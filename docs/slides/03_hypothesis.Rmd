@@ -285,3 +285,6 @@ $H_1$: Variables are associated.
 ---
 
 class: inverse
+
+???
+Use dataset occupationalStatus

@@ -1,6 +1,6 @@
 # Slides
 
-Here is an index of slides used to explain the methods during meetings. The essential information on the slides is covered in the course notes. In addition, slides add some explanations and visuals using example data sets.
+Here is an index of slides used to explain the methods during meetings. The essential information on the slides is covered in the course notes but slides might add some explanations and visuals using example data sets.
 
 On slides, click `h` to see keyboard shortcuts for navigation.
 
@@ -10,10 +10,5 @@ On slides, click `h` to see keyboard shortcuts for navigation.
 3. [Comparing numerical variables](./slides/05_numerical.html)
 4. [Analysis of variance](./slides/06_anova.html)
 5. [Correlation analysis](./slides/07_correlation.html)
-6. [Regression. Simple linear regression](./slides/08_regression.html)
-7. Regression. Multiple linear regression, factor variables and transformations
-8. Regression. Maximum likelihood and binary models
-9. Principal component analysis
-10. Factor analysis
-11. Hierarchical clustering
-12. K-means clustering
+7. [Regression. Simple linear regression](./slides/08_regression.html)
+

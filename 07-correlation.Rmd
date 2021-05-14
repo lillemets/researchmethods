@@ -15,7 +15,7 @@ In R: `plot(x, y)`
 
 ## Pearson’s correlation coefficient
 
-Evaluates **linear** relationship. Thus, perfect positive correlation implies that when $x$ increases by 1 unit, $y$ also increases by 1 unit.
+Evaluates **linear** relationship. Thus, perfect positive correlation implies that when $x$ increases by 1 unit, $y$ always increases by fixed unit(s).
 
 $$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2}$$
 

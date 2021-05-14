@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="correlation-analysis.html"/>
-<link rel="next" href="slides.html"/>
+<link rel="next" href="data-transformations.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -205,8 +205,31 @@
 <li class="chapter" data-level="9.3.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#gauss-markov-assumptions"><i class="fa fa-check"></i><b>9.3.1</b> Gauss-Markov assumptions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>10</b> Slides</a></li>
-<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="chapter" data-level="10" data-path="data-transformations.html"><a href="data-transformations.html"><i class="fa fa-check"></i><b>10</b> Data transformations</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-transformations.html"><a href="data-transformations.html#log-transformations"><i class="fa fa-check"></i><b>10.1</b> Log-transformations</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-transformations.html"><a href="data-transformations.html#log-linear"><i class="fa fa-check"></i><b>10.1.1</b> Log-linear</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data-transformations.html"><a href="data-transformations.html#linear-log"><i class="fa fa-check"></i><b>10.1.2</b> Linear-log</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data-transformations.html"><a href="data-transformations.html#log-log"><i class="fa fa-check"></i><b>10.1.3</b> Log-log</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-transformations.html"><a href="data-transformations.html#polynomials"><i class="fa fa-check"></i><b>10.2</b> Polynomials</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-transformations.html"><a href="data-transformations.html#ramsey-reset-test"><i class="fa fa-check"></i><b>10.2.1</b> Ramsey RESET test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#multiple-predictors"><i class="fa fa-check"></i><b>11.1</b> Multiple predictors</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#predictor-selection"><i class="fa fa-check"></i><b>11.2</b> Predictor selection</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#akaike-information-criterion"><i class="fa fa-check"></i><b>11.2.1</b> Akaike information criterion</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-comparison-with-f-test"><i class="fa fa-check"></i><b>11.2.2</b> Model comparison with F-test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#multicollinearity"><i class="fa fa-check"></i><b>11.3</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>12</b> Slides</a></li>
+<li class="chapter" data-level="13" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>13</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -254,9 +277,9 @@
 <p>For a simple model <span class="math inline">\(y = \beta x + \varepsilon\)</span> we can simply use matrix algebra on values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> to find <span class="math inline">\(\hat{\beta}\)</span>:</p>
 <p><span class="math display">\[\hat{\beta} = (X^{T} X)^{-1} X^{T} Y,\]</span></p>
 <p>where <span class="math inline">\(X\)</span> is the matrix of predictor and <span class="math inline">\(Y\)</span> the matrix of response.</p>
-<p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.4 or illustrations of the idea.</p>
+<p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.4 for illustrations of the idea.</p>
 <p>In Jamovi: <code>Regression &gt; Linear regression</code>.<br />
-In R: <code>lm(formula, data)</code> or <code>summary(lm(formula, data))</code></p>
+In R: <code>lm(y ~ x, data)</code> or <code>summary(lm(y ~ x, data))</code></p>
 </div>
 </div>
 <div id="elements-of-ols-regression-models" class="section level2" number="9.2">
@@ -264,11 +287,29 @@ In R: <code>lm(formula, data)</code> or <code>summary(lm(formula, data))</code><
 <div id="intercept" class="section level3" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Intercept</h3>
 <p>In the equation this is the <span class="math inline">\(\alpha\)</span> and often referred to as the constant. Intercept is the value of <span class="math inline">\(y\)</span> where regression line crosses the Y-axis, so intercept is the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is zero ( <span class="math inline">\(y|x=0\)</span> ). Intercept does not need to be theoretically valid but it sometimes is. The statistical significance of the intercept is usually not relevant.</p>
+<p>Interpretation of the intercept:</p>
+<p><span class="math display">\[weight2_{i} = 195.135 + 1.176 * weight1_{i} + \varepsilon_{i}\]</span></p>
+<p>When <code>weight1</code> is 0 units, then the value of <code>weight2</code> is 195.135 units.</p>
 </div>
 <div id="coefficients" class="section level3" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Coefficient(s)</h3>
 <p>In the equation the <span class="math inline">\(\beta\)</span> represents coefficient of <span class="math inline">\(x\)</span>. It indicates y how many units <span class="math inline">\(y\)</span> increases when <span class="math inline">\(x\)</span> increases by one unit.</p>
 <p>We can not be sure if the coefficients are actually significant (when estimation is done on a sample). It is thus necessary to test whether or not coefficients are different from 0. This is done by calculating t-statistic from coefficient and standard error. Coefficients are only relevant if their difference from 0 is statistically significant.</p>
+<div id="numeric-predictors" class="section level4" number="9.2.2.1">
+<h4><span class="header-section-number">9.2.2.1</span> Numeric predictors</h4>
+<p>Interpretation of coefficient(s):</p>
+<p><span class="math display">\[weight2_{i} = 195.135 + 1.176 * weight1_{i} + \varepsilon_{i}\]</span></p>
+<p>When <code>weight1</code> increases by 1 unit, then <code>weight2</code> increases by <strong>1.176</strong> units.</p>
+</div>
+<div id="categorical-predictors" class="section level4" number="9.2.2.2">
+<h4><span class="header-section-number">9.2.2.2</span> Categorical predictors</h4>
+<p>Interpretation of coefficient(s):</p>
+<p>Suppose that a categorical variable called <code>diet</code> has the following levels: <em>Low, Medium, High</em>. Then in regression analysis the first level (<em>Low</em>) is considered as the base level. All other factor values are compared against this base value.</p>
+<p><span class="math display">\[weight2_{i} = 1019.406 + 1.898dietMedium_{i} + 12.01dietHigh_{i} + \varepsilon_{i}\]</span></p>
+<p>When <code>diet</code> is <em>Low</em>, then <code>weight2</code> is <strong>1019.406</strong>.</p>
+<p>When <code>diet</code> is <em>Medium</em>, then <code>weight2</code> is higher by <strong>1.898</strong> units compared to when <code>diet</code> is <em>Low</em>, i.e. 1021.304.</p>
+<p>Suppose now that the coefficient for <code>dietHigh</code> is not statistically significant. When <code>diet</code> is <em>High</em>, <code>weight2</code> is no different compared to when <code>diet</code> is <em>Low</em>. If it was statistically significant, we could say that when <code>diet</code> is <em>High</em>, then <code>weight2</code> is higher by <strong>12.01</strong> units compared to when <code>diet</code> is <em>Low</em>.</p>
+</div>
 </div>
 <div id="fitted-values" class="section level3" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> Fitted values</h3>
@@ -284,37 +325,37 @@ In R: <code>lm(formula, data)</code> or <code>summary(lm(formula, data))</code><
 <p><span class="math display">\[R^{2} = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS},\]</span></p>
 <p>where the elements are defined a follows:</p>
 <ul>
-<li><strong>e</strong>xplained sum of squares, <span class="math inline">\(ESS\)</span>
-<span class="math inline">\(\sum_{i = 1}^{n} (\hat{y}_{i} - \overline{y})^2\)</span></li>
-<li><strong>r</strong>esidual sum of squares, <span class="math inline">\(RSS\)</span>
+<li><strong>e</strong>xplained sum of squares, <span class="math inline">\(ESS\)</span>;
+<span class="math inline">\(\sum_{i = 1}^{n} (\hat{y}_{i} - \bar{y})^2\)</span></li>
+<li><strong>r</strong>esidual sum of squares, <span class="math inline">\(RSS\)</span>;
 <span class="math inline">\(\sum_{i = 1}^{n} (y_{i} - \hat{y}_{i})^2\)</span></li>
-<li><strong>t</strong>otal sum of squares, <span class="math inline">\(TSS\)</span>
-<span class="math inline">\(\sum_{i = 1}^{n} (y_{i} - \overline{y}_{i})^2\)</span></li>
+<li><strong>t</strong>otal sum of squares, <span class="math inline">\(TSS\)</span>;
+<span class="math inline">\(\sum_{i = 1}^{n} (y_{i} - \bar{y})^2.\)</span></li>
+</ul>
+<p>Above</p>
+<ul>
+<li><span class="math inline">\(\hat{y}_{i}\)</span> are fitted values,</li>
+<li><span class="math inline">\(\overline{y}\)</span> is the mean value, and</li>
+<li><span class="math inline">\(y_{i}\)</span> are the actual values of <span class="math inline">\(y\)</span>.</li>
 </ul>
 <p>Mathematically, the <span class="math inline">\(R^2\)</span> measures how much better is model at explaining the variance of <span class="math inline">\(y\)</span> compared to just the mean.</p>
 </div>
 <div id="the-adjusted--r2" class="section level3" number="9.2.6">
 <h3><span class="header-section-number">9.2.6</span> The adjusted- <span class="math inline">\(R^2\)</span></h3>
 <p>The more variables we add, the more the model explains. So <span class="math inline">\(R^2\)</span> can be inflated just by adding variables. To penalize a model for the number of predictors ( <span class="math inline">\(k\)</span> ) while considering the number of observations ( <span class="math inline">\(n\)</span> ), the adjusted <span class="math inline">\(R^{2}\)</span> can also be used, particularly for model comparison:</p>
-<p><span class="math display">\[\overline{R^{2}} = 1 - \frac{RSS/(n-k)}{TSS/(n-k)}\]</span></p>
+<p><span class="math display">\[\overline{R^{2}} = 1 - \frac{RSS/(n-k)}{TSS/(n-1)}\]</span></p>
 </div>
 </div>
 <div id="assumptions-and-diagnostics" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Assumptions and diagnostics</h2>
-<p>After the estimation of a regression model it should be diagnosed to make sure that it meets the following assumptions:</p>
+<p>After the estimation of a regression model it should be diagnosed to make sure that it meets at least the following assumptions:</p>
 <ul>
 <li>Residuals are normally distributed</li>
 <li>Residuals have equal variance, i.e. variance of residuals does not depend on the value of <span class="math inline">\(x\)</span></li>
-<li>There is no multicollinearity</li>
 </ul>
 <p>In Jamovi: <code>Regression &gt; Linear regression &gt; Assumption Checks</code>.<br />
 In R: <code>plot(lm(formula, data))</code></p>
-<div id="multicollinarity" class="section level4" number="9.3.0.1">
-<h4><span class="header-section-number">9.3.0.1</span> Multicollinarity</h4>
-<p>Multicollinearity may be problem when model has multiple predictors. It should not be possible to linearly predict any of the predictors from others predictors, i.e. predictors should not be (highly) correlated. Otherwise the coefficients are not reliable. Multicollinearity can be detected with variance inflation factor (VIF) by using <span class="math inline">\(R^2\)</span> to estimate for each predictor how much of the variation in one predictor can be predicted from others.</p>
-<p><span class="math display">\[VIF_{k} = \frac{1}{1 - R^{2}_{k}},\]</span></p>
-<p>where <span class="math inline">\(R^{2}_{k}\)</span> is <span class="math inline">\(R^{2}\)</span> for a model that has initial predictor <span class="math inline">\(k\)</span> as a response and all other predictors as predictors.</p>
-</div>
+<p>See <span class="citation"><a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="references.html#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.9 for an explanation of assumptions and section 12.10 on model checking.</p>
 <div id="gauss-markov-assumptions" class="section level3" number="9.3.1">
 <h3><span class="header-section-number">9.3.1</span> Gauss-Markov assumptions</h3>
 <p>In addition to the practical considerations outlined above, a theoretical way of expressing the assumptions of OLS is via the Gauss–Markov theorem. It posits the following assumptions:</p>
@@ -341,7 +382,7 @@ In R: <code>plot(lm(formula, data))</code></p>
         </div>
       </div>
 <a href="correlation-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-transformations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

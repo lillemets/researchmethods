@@ -26,14 +26,12 @@
                 "date-parts": [
                     [
                         2014,
-                        9,
-                        12
+                        9
                     ]
                 ]
             },
-            "language": "en-US",
             "page": "1-23",
-            "title": "Tidy data",
+            "title": "Tidy Data",
             "type": "article-journal",
             "volume": "59"
         },
@@ -67,11 +65,62 @@
                     ]
                 ]
             },
-            "language": "en-US",
             "publisher": "Danielle J. Navarro; David R. Foxcroft",
             "title": "Learning statistics with jamovi: A tutorial for psychology students and other beginners",
             "title-short": "Learning statistics with jamovi",
             "type": "book"
+        },
+        {
+            "abstract": "During the past decade there has been an explosion in computation and information technology. With it have come vast amounts of data in a variety of fields such as medicine, biology, finance, and marketing. The challenge of understanding these data has led to the development of new tools in the field of statistics, and spawned new areas such as data mining, machine learning, and bioinformatics. Many of these tools have common underpinnings but are often expressed with different terminology. This book describes the important ideas in these areas in a common conceptual framework. While the approach is statistical, the emphasis is on concepts rather than mathematics. Many examples are given, with a liberal use of color graphics. It is a valuable resource for statisticians and anyone interested in data mining in science or industry. The book’s coverage is broad, from supervised learning (prediction) to unsupervised learning. The many topics include neural networks, support vector machines, classification trees and boosting—the first comprehensive treatment of this topic in any book. This major new edition features many topics not covered in the original, including graphical models, random forests, ensemble methods, least angle regression and path algorithms for the lasso, non-negative matrix factorization, and spectral clustering. There is also a chapter on methods for “wide” data (p bigger than n), including multiple testing and false discovery rates. Trevor Hastie, Robert Tibshirani, and Jerome Friedman are professors of statistics at Stanford University. They are prominent researchers in this area: Hastie and Tibshirani developed generalized additive models and wrote a popular book of that title. Hastie co-developed much of the statistical modeling software and environment in R/S-PLUS and invented principal curves and surfaces. Tibshirani proposed the lasso and is co-author of the very successful An Introduction to the Bootstrap. Friedman is the co-inventor of many data-mining tools including CART, MARS, projection pursuit and gradient boosting.",
+            "author": [
+                {
+                    "family": "Hastie",
+                    "given": "Trevor"
+                },
+                {
+                    "family": "Tibshirani",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Friedman",
+                    "given": "Jerome"
+                }
+            ],
+            "collection-title": "Springer Series in Statistics",
+            "edition": "2",
+            "id": "hastie_elements_2017",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "publisher": "Springer-Verlag",
+            "publisher-place": "New York",
+            "title": "The Elements of Statistical Learning: Data Mining, Inference, and Prediction, Second Edition",
+            "title-short": "The Elements of Statistical Learning",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Wooldridge",
+                    "given": "Jeffrey M"
+                }
+            ],
+            "id": "wooldridge_introductory_2012",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "page": "910",
+            "title": "Introductory Econometrics: A Modern Approach",
+            "title-short": "Introductory Econometrics",
+            "type": "article-journal"
         },
         {
             "ISBN": "978-1-118-44896-0 978-1-118-44894-6 978-1-118-44892-2",
@@ -92,66 +141,40 @@
                 ]
             },
             "keyword": "Data processing, Mathematical statistics, MATHEMATICS / Probability & Statistics / General, R (Computer program language)",
-            "language": "en-US",
-            "number-of-pages": "1",
             "publisher": "Wiley",
             "publisher-place": "Chichester, West Sussex, UK",
-            "title": "The r book",
+            "title": "The R book",
             "type": "book"
         },
         {
-            "author": [
-                {
-                    "family": "Wooldridge",
-                    "given": "Jeffrey M"
-                }
-            ],
-            "id": "wooldridge_introductory_2012",
-            "issued": {
+            "DOI": "10.13140/RG.2.2.12014.41283/1",
+            "URL": "http://rgdoi.net/10.13140/RG.2.2.12014.41283/1",
+            "accessed": {
                 "date-parts": [
                     [
-                        2012
+                        2021,
+                        4,
+                        22
                     ]
                 ]
             },
-            "language": "en-US",
-            "page": "910",
-            "title": "Introductory econometrics: A modern approach",
-            "title-short": "Introductory econometrics",
+            "author": [
+                {
+                    "family": "Dash",
+                    "given": "Ian"
+                }
+            ],
+            "id": "dash_flowchart_2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "note": "Publisher: Unpublished",
+            "title": "Flowchart of statistics for research",
             "type": "article-journal"
-        },
-        {
-            "abstract": "During the past decade there has been an explosion in computation and information technology. With it have come vast amounts of data in a variety of fields such as medicine, biology, finance, and marketing. The challenge of understanding these data has led to the development of new tools in the field of statistics, and spawned new areas such as data mining, machine learning, and bioinformatics. Many of these tools have common underpinnings but are often expressed with different terminology. This book describes the important ideas in these areas in a common conceptual framework. While the approach is statistical, the emphasis is on concepts rather than mathematics. Many examples are given, with a liberal use of color graphics. It is a valuable resource for statisticians and anyone interested in data mining in science or industry. The book’s coverage is broad, from supervised learning (prediction) to unsupervised learning. The many topics include neural networks, support vector machines, classification trees and boosting—the first comprehensive treatment of this topic in any book. This major new edition features many topics not covered in the original, including graphical models, random forests, ensemble methods, least angle regression and path algorithms for the lasso, non-negative matrix factorization, and spectral clustering. There is also a chapter on methods for “wide” data (p bigger than n), including multiple testing and false discovery rates. Trevor Hastie, Robert Tibshirani, and Jerome Friedman are professors of statistics at Stanford University. They are prominent researchers in this area: Hastie and Tibshirani developed generalized additive models and wrote a popular book of that title. Hastie co-developed much of the statistical modeling software and environment in R/S-PLUS and invented principal curves and surfaces. Tibshirani proposed the lasso and is co-author of the very successful An Introduction to the Bootstrap. Friedman is the co-inventor of many data-mining tools including CART, MARS, projection pursuit and gradient boosting.",
-            "author": [
-                {
-                    "family": "Hastie",
-                    "given": "Trevor"
-                },
-                {
-                    "family": "Tibshirani",
-                    "given": "Robert"
-                },
-                {
-                    "family": "Friedman",
-                    "given": "Jerome"
-                }
-            ],
-            "collection-title": "Springer series in statistics",
-            "edition": "2",
-            "id": "hastie_elements_2017",
-            "issued": {
-                "date-parts": [
-                    [
-                        2017
-                    ]
-                ]
-            },
-            "language": "en-US",
-            "publisher": "Springer-Verlag",
-            "publisher-place": "New York",
-            "title": "The elements of statistical learning: Data mining, inference, and prediction, second edition",
-            "title-short": "The elements of statistical learning",
-            "type": "book"
         },
         {
             "DOI": "10.1126/science.103.2684.677",
@@ -180,48 +203,15 @@
                 "date-parts": [
                     [
                         1946,
-                        6,
-                        7
+                        6
                     ]
                 ]
             },
-            "language": "en-US",
             "note": "Publisher: American Association for the Advancement of Science Section: Articles",
             "page": "677-680",
-            "title": "On the theory of scales of measurement",
+            "title": "On the Theory of Scales of Measurement",
             "type": "article-journal",
             "volume": "103"
-        },
-        {
-            "DOI": "10.13140/RG.2.2.12014.41283/1",
-            "URL": "http://rgdoi.net/10.13140/RG.2.2.12014.41283/1",
-            "accessed": {
-                "date-parts": [
-                    [
-                        2021,
-                        4,
-                        22
-                    ]
-                ]
-            },
-            "author": [
-                {
-                    "family": "Dash",
-                    "given": "Ian"
-                }
-            ],
-            "id": "dash_flowchart_2016",
-            "issued": {
-                "date-parts": [
-                    [
-                        2016
-                    ]
-                ]
-            },
-            "language": "en-US",
-            "note": "Publisher: Unpublished",
-            "title": "Flowchart of statistics for research",
-            "type": "article-journal"
         }
     ],
     "project_biblios": [

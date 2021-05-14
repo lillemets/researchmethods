@@ -205,8 +205,31 @@
 <li class="chapter" data-level="9.3.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#gauss-markov-assumptions"><i class="fa fa-check"></i><b>9.3.1</b> Gauss-Markov assumptions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>10</b> Slides</a></li>
-<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="chapter" data-level="10" data-path="data-transformations.html"><a href="data-transformations.html"><i class="fa fa-check"></i><b>10</b> Data transformations</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-transformations.html"><a href="data-transformations.html#log-transformations"><i class="fa fa-check"></i><b>10.1</b> Log-transformations</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-transformations.html"><a href="data-transformations.html#log-linear"><i class="fa fa-check"></i><b>10.1.1</b> Log-linear</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data-transformations.html"><a href="data-transformations.html#linear-log"><i class="fa fa-check"></i><b>10.1.2</b> Linear-log</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data-transformations.html"><a href="data-transformations.html#log-log"><i class="fa fa-check"></i><b>10.1.3</b> Log-log</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-transformations.html"><a href="data-transformations.html#polynomials"><i class="fa fa-check"></i><b>10.2</b> Polynomials</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-transformations.html"><a href="data-transformations.html#ramsey-reset-test"><i class="fa fa-check"></i><b>10.2.1</b> Ramsey RESET test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#multiple-predictors"><i class="fa fa-check"></i><b>11.1</b> Multiple predictors</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#predictor-selection"><i class="fa fa-check"></i><b>11.2</b> Predictor selection</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#akaike-information-criterion"><i class="fa fa-check"></i><b>11.2.1</b> Akaike information criterion</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-comparison-with-f-test"><i class="fa fa-check"></i><b>11.2.2</b> Model comparison with F-test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#multicollinearity"><i class="fa fa-check"></i><b>11.3</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>12</b> Slides</a></li>
+<li class="chapter" data-level="13" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>13</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -240,7 +263,7 @@ In R: <code>plot(x, y)</code></p>
 </div>
 <div id="pearsons-correlation-coefficient" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Pearson’s correlation coefficient</h2>
-<p>Evaluates <strong>linear</strong> relationship. Thus, perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> also increases by 1 unit.</p>
+<p>Evaluates <strong>linear</strong> relationship. Thus, perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> always increases by fixed unit(s).</p>
 <p><span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2}\]</span></p>
 <p>Essentially, we compare differences from mean value for values of each group.</p>
 <p>Statistical significance can also be estimated by finding the probability of t-statistic on t-distribution.</p>
