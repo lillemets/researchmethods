@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data transformations</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jüri Lillemets" />
+    <meta name="date" content="2021-05-17" />
+    <script src="09_transformations_files/header-attrs-2.7/header-attrs.js"></script>
+    <link rel="stylesheet" href="minimal.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data transformations
+## Research methods
+### Jüri Lillemets
+### 2021-05-17
+
+---
+
+
+
+
+class: center middle clean
+
+# How to improve the functional form of a linear model?
+
+???
+Curve fitting
+
+---
+
+class: center middle inverse
+
+# Log-transformations
+
+---
+
+For illustration let's use data on "Motor Trend Car Road Tests".
+
+
+```
+##                    mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1
+```
+
+.small[
+-	`mpg`	Miles/(US) gallon
+- `cyl`	Number of cylinders
+- `disp`	Displacement (cu.in.)
+- `hp`	Gross horsepower
+- `drat`	Rear axle ratio
+- `wt`	Weight (1000 lbs)
+- `qsec`	1/4 mile time
+- `vs`	Engine (0 = V-shaped, 1 = straight)
+- `am`	Transmission (0 = automatic, 1 = manual)
+- `gear`	Number of forward gears
+- `carb`	Number of carburetors
+]
+
+---
+
+Let's try to predict miles per gallon (`mpg`) from horsepower (`hp`).
+
+`$$\text{mpg} = \alpha + \beta \text{hp} + \varepsilon$$`
+
+![](09_transformations_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+Here is the model model.
+
+
+```
+## 
+## Call:
+## lm(formula = Formula, data = mtcars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -5.712 -2.112 -0.885  1.582  8.236 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  30.0989     1.6339   18.42  &lt; 2e-16 ***
+## hp           -0.0682     0.0101   -6.74  1.8e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.86 on 30 degrees of freedom
+## Multiple R-squared:  0.602,	Adjusted R-squared:  0.589 
+## F-statistic: 45.5 on 1 and 30 DF,  p-value: 1.79e-07
+```
+
+&gt; Does horsepower have an effect on miles per gallon?
+
+---
+
+Let's now see if the assumptions related to normality and constant variance of residuals are fulfilled.
+
+![](09_transformations_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+--
+
+&gt; Are residuals normally distributed?
+
+--
+
+&gt; Is the variance of residals constant?
+
+---
+
+What is the problem?
+
+![](09_transformations_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+## Log-linear model
+
+When we use log-transformation on response variable, then we have a log-linear model.
+
+`$$ln(y) = \alpha + \beta x + \varepsilon$$`
+
+---
+
+`$$\text{ln(mpg)} = \alpha + \beta \text{hp} + \varepsilon$$`
+
+
+```
+## 
+## Call:
+## lm(formula = Formula, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.4158 -0.0658 -0.0174  0.0983  0.3962 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.460467   0.078584   44.04  &lt; 2e-16 ***
+## hp          -0.003429   0.000487   -7.05  7.9e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.186 on 30 degrees of freedom
+## Multiple R-squared:  0.623,	Adjusted R-squared:  0.611 
+## F-statistic: 49.6 on 1 and 30 DF,  p-value: 7.85e-08
+```
+
+---
+
+![](09_transformations_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+--
+
+`\(ln(mpg_{i}) = 3.46 + -0.003 * hp_{i} + \varepsilon_{i}\)`
+
+When `hp` increases by 1 unit, `mpg` increases by `\(-0.003 \times 100 = **-0.343\)` percent**.
+
+---
+
+What about assumptions?
+
+![](09_transformations_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+
+## Linear-log
+
+When one or more predictors are used in logged form, then the model is referred to as a linear-log model:
+
+`$$y = \alpha + \beta ln(x) + \varepsilon$$`
+
+---
+
+`$$\text{mpg} = \alpha + \beta \text{ln(hp)} + \varepsilon$$`
+
+
+```
+## 
+## Call:
+## lm(formula = Formula, data = mtcars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -4.943 -1.705 -0.493  1.719  8.646 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    72.64       6.00   12.10  4.6e-13 ***
+## log(hp)       -10.76       1.22   -8.79  8.4e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.24 on 30 degrees of freedom
+## Multiple R-squared:  0.72,	Adjusted R-squared:  0.711 
+## F-statistic: 77.3 on 1 and 30 DF,  p-value: 8.39e-10
+```
+
+---
+
+![](09_transformations_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+--
+
+`\(mpg_{i} = 72.64 + -10.764 * ln(hp_{i}) + \varepsilon_{i}\)`
+
+When `hp` increases by 1 per cent, `mpg` increases by `\(-10.764 / 100 = **-0.108\)` units**.
+
+---
+
+How well the model fits data now?
+
+![](09_transformations_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+## Log-log
+
+When either of the previous transformations have not improved the fit of a linear model, we can also transform both response and predictor(s) as follows:
+
+`$$ln(y) = \alpha + \beta ln(x) + \varepsilon$$`
+
+---
+
+`$$\text{ln(mpg)} = \alpha + \beta \text{ln(hp)} + \varepsilon$$`
+
+
+```
+## 
+## Call:
+## lm(formula = Formula, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.3819 -0.0571 -0.0069  0.1082  0.3750 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    5.545      0.299   18.54  &lt; 2e-16 ***
+## log(hp)       -0.530      0.061   -8.69  1.1e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.161 on 30 degrees of freedom
+## Multiple R-squared:  0.716,	Adjusted R-squared:  0.706 
+## F-statistic: 75.5 on 1 and 30 DF,  p-value: 1.08e-09
+```
+
+---
+
+![](09_transformations_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+`\(ln(mpg_{i}) = 5.545 + -0.53 * ln(hp_{i}) + \varepsilon_{i}\)`
+
+When `hp` increases by 1 per cent, `mpg` increases by **-0.53 percent**.
+
+---
+
+Are the assumptions still satisfied?
+
+![](09_transformations_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+
+Why did transforming the predictor (`hp`) improve model fit?
+
+![](09_transformations_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+
+We should apply log-transformatins to variables that are  that are log-normally distributed.
+
+![](09_transformations_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+class: center middle inverse
+
+# Polynomials
+
+---
+
+Introducing polynomials to a linear regression means including additional predictor(s) at power of `\(h\)`:
+
+`\(Y = \alpha + \beta_{1} x  + ... + \beta_{h} x^h + \varepsilon,\)`
+
+where `\(h\)` is called the degree of polynomial. For a quadratic relationship `\(k = 2\)` and for a cubic relationship `\(k = 3\)`.
+
+---
+
+Let's try to solve the problem now with polynomial regression.
+
+![](09_transformations_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+--
+
+There seems to be a quadratic relationship.
+
+---
+
+`$$\text{mpg} = \alpha + \beta_1 \text{hp} + \beta_2 \text{hp}^2+ \varepsilon$$`
+
+
+```
+## 
+## Call:
+## lm(formula = Formula, data = mtcars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -4.551 -1.603 -0.698  1.551  8.721 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.04e+01   2.74e+00   14.74  5.2e-15 ***
+## hp          -2.13e-01   3.49e-02   -6.11  1.2e-06 ***
+## I(hp^2)      4.21e-04   9.84e-05    4.27  0.00019 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.08 on 29 degrees of freedom
+## Multiple R-squared:  0.756,	Adjusted R-squared:  0.739 
+## F-statistic:   45 on 2 and 29 DF,  p-value: 1.3e-09
+```
+
+---
+
+Interpretation:
+
+`$$\text{mpg} = 40.409 + -0.213 \text{hp} + 4.208\times 10^{-4} \text{hp}^2 + \varepsilon$$`
+
+We can't really interpret the coefficients for `\(hp\)` and `\(hp^2\)` anymore.
+
+???
+Trade off between description or prediction.
+
+---
+
+Diagnostics
+
+![](09_transformations_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+
+Why is the fit that good?
+
+![](09_transformations_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+???
+Still linear in parameters!
+
+---
+
+What if the relationship is more complex? What if a regression line with two curves seems to fit best?
+
+![](09_transformations_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+---
+
+Let's try to fit a 3rd degree polynomial, i.e. model the relationship as cubic.
+
+`$$\text{disp} = \alpha + \beta_1 \text{wt} + \beta_2 \text{wt}^2 + \beta_3 \text{wt}^3 + \varepsilon$$`
+
+
+```
+## 
+## Call:
+## lm(formula = Formula, data = mtcars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -92.75 -33.27  -1.57  25.75 134.30 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   470.66     325.38    1.45    0.159  
+## wt           -501.79     322.86   -1.55    0.131  
+## I(wt^2)       190.84      98.97    1.93    0.064 .
+## I(wt^3)       -18.24       9.41   -1.94    0.063 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 56.3 on 28 degrees of freedom
+## Multiple R-squared:  0.814,	Adjusted R-squared:  0.794 
+## F-statistic: 40.7 on 3 and 28 DF,  p-value: 2.42e-10
+```
+
+---
+
+Diagnostics
+
+![](09_transformations_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+---
+
+![](09_transformations_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+
+---
+
+Is the polynomial model statistically significantly better than a model without polynomials?
+
+![](09_transformations_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+---
+
+### Ramsey RESET test
+
+We can test if the difference of residuals in two models is statistically significant or not. If there is no difference, we should prefer the simpler model.
+
+
+```
+## Analysis of Variance Table
+## 
+## Model 1: disp ~ wt
+## Model 2: disp ~ wt + I(wt^2) + I(wt^3)
+##   Res.Df    RSS Df Sum of Sq    F Pr(&gt;F)
+## 1     30 100709                         
+## 2     28  88788  2     11921 1.88   0.17
+```
+
+`\(H_0: RSS_1 = RSS_2\)`  
+`\(H_1: RSS_1 \neq RSS_2.\)`
+
+--
+
+&gt; Should we prefer the model with polynomials?
+
+---
+
+class: middle
+
+.center[&lt;img src="../img/curve_fitting.png" alt="curve_fitting" style="zoom:60%;" /&gt;]
+
+.footnote[Source: XKCD,  
+curve fitting]
+
+---
+
+class: inverse
+
+???
+Power transformations and Box-Cox.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

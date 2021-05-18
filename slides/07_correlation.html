@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Correlation analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jüri Lillemets" />
+    <meta name="date" content="2021-05-12" />
+    <script src="07_correlation_files/header-attrs-2.7/header-attrs.js"></script>
+    <script src="07_correlation_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="07_correlation_files/viz-1.8.2/viz.js"></script>
+    <link href="07_correlation_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="07_correlation_files/grViz-binding-1.0.6.1/grViz.js"></script>
+    <link rel="stylesheet" href="minimal.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Correlation analysis
+## Research methods
+### Jüri Lillemets
+### 2021-05-12
+
+---
+
+
+
+
+class: center middle clean
+
+# Are two continuous variables related?
+
+---
+
+class: center middle inverse
+
+# Scatterplots
+
+---
+
+Let's look at data on "Speed and Stopping Distances of Cars".
+
+
+```
+##    speed dist
+## 1      4    2
+## 2      4   10
+## 3      7    4
+## 4      7   22
+## 5      8   16
+## 6      9   10
+## 7     10   18
+## 8     10   26
+## 9     10   34
+## 10    11   17
+```
+
+---
+
+![](07_correlation_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+???
+
+Draw lines of possible relationships.
+
+---
+
+class: center middle inverse
+
+# Measures of correlation
+
+---
+
+## Pearson’s correlation coefficient
+
+Evaluates **linear** relationship. Thus, perfect positive correlation implies that when `\(x\)` increases by 1 unit, `\(y\)` also increases by 1 unit.
+
+`$$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2}$$`
+
+Essentially, we compare differences from mean value for values of each group.
+
+--
+
+The value of correlation coefficient is between -1 and 1.
+
+---
+
+![](07_correlation_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+Statistical significance can also be estimated by finding the probability of t-statistic on t-distribution.
+
+`$$t=r\sqrt{n-2}/\sqrt{1-r^{2}}$$`
+
+---
+
+## Spearman rank-order correlation coefficient
+
+Evaluation is based on the ranking of values. Evaluates a **monotonic** relationship. Thus perfect positive correlation implies that when `\(x\)` increases, then `\(y\)` also always increases.
+
+`$$r = 1 - \frac{6\sum (x_{i}-y_{i})^{2}}{n(n^{2}-1)}$$`
+
+Essentially, we compare rankings of values from each group.
+
+--
+
+The value of correlation coefficient is between -1 and 1.
+
+---
+
+![](07_correlation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+## Linear and monotonic relationships
+
+.pull-left[
+
+Monotonically increasing linear relationship
+
+![](07_correlation_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+Monotonically increasing non-linear relationship
+
+![](07_correlation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Positive and negative relationships
+
+![](07_correlation_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+
+## Correlation matrix and heatmap
+
+What if we have a lot of variables that we wish to compare to one another?
+
+Correlation matrices and heatmaps can be used to quickly find patterns in data.
+
+---
+
+Let's look at "Swiss Fertility and Socioeconomic Indicators (1888) Data".
+
+
+```
+##              Fertility Agriculture Examination Education Catholic Inf.Mort
+## Courtelary        80.2        17.0          15        12     9.96     22.2
+## Delemont          83.1        45.1           6         9    84.84     22.2
+## Franches-Mnt      92.5        39.7           5         5    93.40     20.2
+## Moutier           85.8        36.5          12         7    33.77     20.3
+## Neuveville        76.9        43.5          17        15     5.16     20.6
+## Porrentruy        76.1        35.3           9         7    90.57     26.6
+```
+
+--
+
+### Correlation matrix
+
+
+```
+##             Fertility Agriculture Examination Education Catholic Inf.Mort
+## Fertility       1.000       0.353      -0.646    -0.664    0.464    0.417
+## Agriculture     0.353       1.000      -0.687    -0.640    0.401   -0.061
+## Examination    -0.646      -0.687       1.000     0.698   -0.573   -0.114
+## Education      -0.664      -0.640       0.698     1.000   -0.154   -0.099
+## Catholic        0.464       0.401      -0.573    -0.154    1.000    0.175
+## Inf.Mort        0.417      -0.061      -0.114    -0.099    0.175    1.000
+```
+
+---
+
+### Heatmap
+
+Heatmap is just the correlation matrix in colors.
+
+.pull-left[
+![](07_correlation_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right[
+
+![](07_correlation_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: center middle inverse
+
+# Limitations of correlation coefficient
+
+---
+
+## Relationship might not be linear
+
+Correlation coefficient tells us nothing about the shape of an underlying relationship.
+
+---
+
+Anscombe's quartet
+
+
+
+![](07_correlation_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+--
+
+This is why you should plot your data!
+
+
+---
+
+## Causality
+
+.pull-left[
+`\(X\)` is correlated to `\(Y\)` , so we might think that `\(X\)` causes `\(Y\)` .
+
+<div id="htmlwidget-19646a5eef4bdc2a17c7" style="width:400px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-19646a5eef4bdc2a17c7">{"x":{"diagram":"digraph {rankdir=LR; node [shape = circle] X -> Y}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+--
+
+.pull-right[
+Actually both might be caused by `\(Z\)` , which leads to the correlation between `\(X\)` and `\(Y\)`. 
+<div id="htmlwidget-40d6a2ed3d499b33960e" style="width:400px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-40d6a2ed3d499b33960e">{"x":{"diagram":"digraph {rankdir=LR; node [shape = circle] X -> Y [dir=none]; Z -> X; Z -> Y}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+???
+Tell the research about storks and babies.
+
+---
+
+class: middle
+
+.centerg[![](../img/correlation.png)]
+
+.footnote[Source: XKCD, correlation]
+
+---
+
+class: inverse
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

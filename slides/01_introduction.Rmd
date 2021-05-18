@@ -1,0 +1,438 @@
+---
+title: Introduction
+subtitle: Research methods
+author: Jüri Lillemets
+date: "`r Sys.Date()`"
+editor_options: 
+  chunk_output_type: console
+---
+
+``` {r setup, include = F}
+# Settings
+knitr::opts_chunk$set(echo = F, dpi = 150, fig.height = 4)
+# Load packages
+library('magrittr');library('knitr')
+```
+
+class: center middle clean
+
+# What are we going to do?
+
+---
+
+## What and how?
+
+A distinct part of MS.0825 Research methods course. 
+
+--
+
+Course materials are available at [www.lillemets.ee/researchmethods](http://www.lillemets.ee/researchmethods).
+
+--
+
+Submit homework via course page on Moodle.
+
+--
+
+Flipped classroom
+
+--
+
+We meet on Mondays, Wednesdays and Thursdays at 9 o'clock (GMT +3).
+
+???
+
+Meetings are not recorded. Participation is not graded but I wish to motivate it. Also, I may say something stupid and wouldn't want that held against me. Should we start meetings at 9 or 10 o'clock?
+
+---
+
+## Aims
+
+After completing the course students should be able to ...
+
+... understand basic concepts in statistics; 
+
+... know how to describe data, both numerically and visually; 
+
+... choose an appropriate method to solve a problem; 
+
+... use a statistical package for data analysis; 
+
+... communicate results (interpret, explain, present); 
+
+... find the courage to apply statistical methods.
+
+---
+
+## Scoring
+
+Quantitative part gives you 50% of the Research methods course points. These are expressed as 50 points.
+
+--
+
+Feedback on reading material for upcoming meeting (`10*1=10` points)
+
+--
+
+Practical application of a methods (`10*4=40` points)
+
+These practical applications must be combined into a research project.
+
+???
+
+Feedback to motivate learning, to see if you read. Feedback must be on topic. Maybe you do something similar in other courses and can combine this somehow? Or combine with your thesis.
+
+---
+
+### Research project
+
+Students are required to create a research report and present the results as follows:
+
+1. Choose a data set
+2. Apply at least one method from each meeting on this data set
+3. Make changes according to feedback
+4. Present the results as a written report
+
+???
+
+May have a specific research question, or may not. Can use a different data set for each practical application. As long as it's different from other students. Presenting your results is an important skill. Presentation and report are scored is/is not.
+
+---
+
+## Topics
+
+1. Descriptive statistics
+2. Hypothesis testing. Comparing categorical variables
+3. Comparing numerical variables
+4. Analysis of variance
+5. Correlation analysis
+6. Regression. Ordinary Least Squares
+7. Regression. Factors and transformations
+8. Regression. Maximum likelihood and binary models
+9. Principal component analysis
+10. Factor analysis
+11. Hierarchical clustering
+12. K-means clustering
+
+---
+
+class: center middle inverse
+
+# Quantitative methods
+
+---
+
+### Quantitative and qualitative methods
+
+| QuaNTitative         | QuaLitative           |
+| -------------------- | --------------------- |
+| Numeric data         | Semantic data         |
+| Large-N              | Small-N, case studies |
+| Generalize           | Explore               |
+| Measure and test     | Understand            |
+| Statistical analysis | Interpretation        |
+
+???
+
+Text mining. We're essentially going to learn statistics!
+
+---
+
+class: center middle inverse
+
+# Statistics
+
+---
+
+class: center middle
+
+## How would you define statistics?
+
+???
+
+Can mean data or methods
+
+---
+
+class: middle
+
+![](../img/lie.png)
+
+---
+
+![](../img/statisticsflowchart.png)
+
+???
+
+Taxonomy, flow chart. Making comparisons and finding patterns in data.
+
+---
+
+## Descriptive and inferential statistics
+
+| Descriptive statistics      | Inferential statistics        |
+| --------------------------- | ----------------------------- |
+| Data on entire population   | Only a sample of a population |
+| Simple measures (e.g. mean) | Point estimates and intervals |
+| Describing                  | Generalizing                  |
+
+---
+
+## Frequentist and bayesian approach to statistics
+
+| Frequentist                                         | Bayesian                                                   |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| Traditional                                         | Modern                                                     |
+| What's the probability of data given some estimate? | What's the probability of an estimate?                     |
+| Prior is not relevant                               | Estimates are conditional on priors                        |
+| Single parametric inference                         | Multiplication of an inference to get a posterior estimate |
+
+---
+
+class: middle
+
+``` {r}
+knitr::include_graphics('../img/frequentists_vs_bayesians.png', dpi = 120)
+```
+
+---
+
+## Statistics and data science, machine learning, artificial intelligence, ...
+
+| Statistics                   | DS, ML, AI, ...                |
+| ---------------------------- | ------------------------------ |
+| Less data                    | Big data                       |
+| Clean datasets               | Untidy data in various formats |
+| Traditonal methods           | Novel methods                  |
+| Mathematics and calculations | Programming approach           |
+| Aim is to explain            | Aim is to predict              |
+
+---
+
+class: center
+
+#### General framework
+
+## Data - Model - Prediction
+
+--
+<br>
+#### Statistics
+
+## Data - Model
+
+--
+<br>
+#### DS, ML, AI, ...
+
+## Data - ??? - Prediction
+
+---
+
+class: middle
+
+![machine_learning](../img/machine_learning.png)
+
+---
+
+class: center middle inverse
+
+# Software
+
+---
+
+## Commonly used software
+
+Spreadsheet and statistical software
+
+--
+
+- Spreadsheet - table management (e.g. Microsoft Excel, Google Sheets, LibreOffice Calc)
+- SPSS - simple GUI-based app with limited functionality
+- R - extensible programming language designed for data analysis
+- Stata - Mostly CLI-based app, well suited for econometrics
+
+???
+
+You could also use Excel as other students in this institute.
+
+
+---
+
+class: middle
+
+![making_progress](../img/making_progress.png)
+
+???
+
+Spreadsheets require a lot of repetitive manual work. Plotting is limited.
+
+---
+
+## What we use?
+
+Free and open statistical software: Jamovi (and R).
+
+---
+
+### Jamovi
+
+To apply the methods we learn, we use [Jamovi](https://www.jamovi.org/). 
+
+> Jamovi is a new “3rd generation” statistical spreadsheet. designed from the ground up to be easy to use, jamovi is a compelling alternative to costly statistical products such as SPSS and SAS.
+
+> Jamovi is built on top of the R statistical language, giving you access to the best the statistics community has to offer.
+
+---
+
+### R and RStudio
+
+Based on S language orginating from 1970's. Developed during 1990's and became public around 2000.
+
+> R is a language and environment for statistical computing and graphics.
+
+> R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. 
+
+RStudio is a convenient GUI for R.
+
+A wide variety of uses via RMarkdown and Knitr.
+
+???
+
+Programming language similar to any other but developed paricularly for data analysis. Includes many statistical procedures for various fields. Constantly extended by the community with novel methods. Abundant possibilities for plotting data. CLI. The bookdown and presentations are written in R. Demonstrate usage and then ask. 
+
+---
+
+.pull-left[
+
+#### Why R?
+
+- Free and open source
+- Powerful and extensible
+- Allows for reproducibile analysis
+- Active and helpful community
+- Used and useful in academia and resarch
+
+]
+
+.pull-right[
+
+#### Why not R?
+
+It's unconventional and has a steep learining curve:
+
+- must feel comfortable with CLI, 
+- requires programming skill, 
+- data is not constantly visible, 
+- no undo.
+
+]
+
+???
+
+Draw a plot to illustrate the learning curve of other software vs R.
+
+---
+
+class: center middle
+
+## Are you interested in learning R?
+
+If not, I will only demonstrate the application of methods in Jamovi.
+
+If you are, then I will also repeat each procedure in R.
+
+---
+
+class: center middle inverse
+
+# Data management
+
+---
+
+## Data structure
+
+To apply statistical procedures data should be formatted according to the "tidy data" principle:
+
+1. Every column is a variable.
+2. Every row is an observation.
+3. Every cell is a single value.
+
+???
+
+Most statistical procedures require 2-dimensional tidy data. 
+
+---
+
+Tidy data: Each row is a  single observation.
+
+``` {r}
+Indometh <- Indometh[Indometh$time > 2, ]
+head(Indometh)
+```
+
+Untidy data: variable `time` is spread into different columns, so each row is not truly an observation.
+
+``` {r}
+wide <- reshape(Indometh, v.names = "conc", idvar = "Subject",
+                timevar = "time", direction = "wide")
+head(wide)
+```
+
+---
+
+## Scales of measurement
+
+Scales must be kept in mind so that values are treated correctly.
+
+Scales determine the procedures that can be applied to the data. 
+
+|  Scale   | Measure property | Operations |       Central tendency        |
+| :------: | :--------------: | :--------: | :---------------------------: |
+| Nominal  |  Classification  |    =, ≠    |             Mode              |
+| Ordinal  |      Level       |    >, <    |            Median             |
+| Interval |    Difference    |    +, −    |        Arithmetic mean        |
+|  Ratio   |    Magnitude     |    ×, /    | Geometric mean, harmonic mean |
+
+???
+
+E.g. when nominal variables are coded as numbers they should not be treated as numeric. Temperature example.
+
+---
+
+#### Binary variables
+
+Can take only two values, usually 0 and 1.
+
+``` {r}
+islands <- as.factor(sample(names(islands)[1:4], 10, replace = T))
+islands %>% data.frame %>% cbind(model.matrix(~islands + 0))
+```
+
+--
+
+The sum and mean of binary variables coded as 0 and 1 are meaningful. What do these show?
+
+---
+
+### Continuous or discrete variables
+
+**A continuous variable** is one in which, for any two values that you can think of, it’s always logically possible to have another value in between.
+
+**A discrete variable** is, in effect, a variable that isn’t continuous. For a discrete variable it’s sometimes the case that there’s nothing in the middle.
+
+---
+
+### Scales in statistical software
+
+The difference between binary, ratio, interval variables is only theoretical. Statistical software treats all numbers as numeric variables.
+
+--
+
+Measure types in Jamovi: nominal, ordinal, continuous (and ID)
+
+Variable types in R: logical, character, factor, integer, float
+
+---
+
+class: inverse

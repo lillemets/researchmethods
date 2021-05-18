@@ -19,7 +19,7 @@ The interpretation and diagnostics of the model is now more complicated as now w
 
 The addition of a second term means that our model is no longer a line but rather a pane (see Figure 12.14 in @navarro_learning_2018). This entire pane is now affected by multiple variables which means that $\beta_1$ is influenced by the addition of $\beta_2$. 
 
-Why use multiple predictors? Adding meaningful predictors improves the fit of the model and thus would result in more accurate predictions. 
+Why use multiple predictors? This allows to control the effects of different variables on the response. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions. 
 
 ## Predictor selection
 
@@ -57,7 +57,7 @@ where $RSS_1$ is the residual sum of squares of reduced model and $RSS_2$ the sa
 For example, if our reduced model is $y = \alpha + \varepsilon$ and full model $y = \alpha + \beta_{1} x_1  + \beta_{2} x_2 + \varepsilon$, then we would test whether or not the two terms improve model fit compared to just the intercept ($E(y)$) and our hypotheses would thus be as follows:
 
 $H_0: \beta_1 = \beta_2 = 0$  
-$H_0: \beta_1 \neq 0 \text{ or } \beta_2 \neq 0$  
+$H_1: \beta_1 \neq 0 \text{ or } \beta_2 \neq 0$  
 
 ## Multicollinearity
 

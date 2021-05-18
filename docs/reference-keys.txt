@@ -118,5 +118,16 @@ predictor-selection
 akaike-information-criterion
 model-comparison-with-f-test
 multicollinearity
+logistic-regression
+generalized-linear-models
+logit-link
+maximum-likelihood-estimation
+interpretation-of-coefficients
+model-fit
+deviance
+pseudo-r2
+likelihood-ratio-test
+overdispersion
+classification
 slides
 references

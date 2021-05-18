@@ -106,7 +106,7 @@ We cover some common and traditional statistical methods.
 6. Simple linear regression
 7. Data transformations
 8. Multiple linear regression
-9. Maximum likelihood and binary models
+9. Logistic regression
 10. Principal component analysis
 11. Factor analysis
 12. Clustering
