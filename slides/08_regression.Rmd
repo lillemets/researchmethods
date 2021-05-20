@@ -54,7 +54,6 @@ plotWeights <- function(...) {
   plot(weight2 ~ weight1, calves, xlab = "1st weight", ylab = "2nd weight", 
        las = 1, ...)
 }
-par(bty = 'n', mar = c(4,4,0,0), family = 'RobotoCondensed')
 plotWeights()
 ```
 

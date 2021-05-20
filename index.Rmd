@@ -98,15 +98,34 @@ To apply methods, datasets need to have multiple variables. We mostly learn to e
 
 We cover some common and traditional statistical methods.
 
+#### Descriptive statistics
+
 1. Descriptive statistics
+
+#### Hypothesis testing
+
 2. Hypothesis testing. Comparing categorical variables
+
 3. Comparing numerical variables
+
 4. Analysis of variance
+
+#### Regression analysis
+
 5. Correlation analysis
+
 6. Simple linear regression
+
 7. Data transformations
+
 8. Multiple linear regression
+
 9. Logistic regression
+
+#### Multivariate statistics
+
 10. Principal component analysis
+
 11. Factor analysis
+
 12. Clustering

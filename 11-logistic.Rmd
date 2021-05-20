@@ -4,7 +4,7 @@ An important assumption of linear regression models is the normality and constan
 
 ## Generalized linear models
 
-The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, it is necessary to define an error structure prior to estimation. In case of binary data (proportions) we expect errors to follow binomial distribution. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name general linear models (GLM). 
+The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, it is necessary to define an error structure prior to estimation. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name general linear models (GLM). 
 
 See section 13 in @crawley_r_2013.
 
@@ -14,7 +14,7 @@ In order to apply a particular distribution on model errors in the framework of 
 
 The canonical link function for binomial errors is the logit link (in econometrics it is often common that probit link is used instead). The logit link is mathematically expressed as follows:
 
-$$log(\frac{p}{1 - p}) = \alpha + \beta x,$$
+$$ln(\frac{p}{1 - p}) = \alpha + \beta x,$$
 
 where $p$ is the probability that $y = 1$.
 
@@ -24,7 +24,7 @@ See @crawley_r_2013 section 13.3 on link function and section 13.4 on proportion
 
 ## Maximum likelihood estimation
 
-The parameters of a GLM can not be simply calculated using the least squares method. Instead, we need to use the maximum likelihood (ML) estimation. See @crawley_r_2013 section 7.3.3 for an idea behind the ML. It's a little bit complicated idea but can be summarized as follows: models with various parameters are iteratively fitted until find such parameters are found that are most likely given the data we have.  While the value of this likelihood can not be directly interpreted, it is used to calculated measures of model fit (see below).
+The parameters of a GLM can not be simply calculated using the least squares method. Instead, we need to use the maximum likelihood (ML) estimation. See @crawley_r_2013 section 7.3.3 for an idea behind the ML. It's a little bit complicated idea but can be summarized as follows: models with various parameters are iteratively fitted until such parameters are found for which the data we have is most likely.  While the value of this likelihood can not be directly interpreted, it is used to calculate measures of model fit (see below).
 
 In Jamovi: `Regression > 2 Outcomes `.  
 In R: `glm(y ~ x, data, family = binomial(link = 'logit'))`
@@ -63,12 +63,12 @@ In Jamovi: `Regression > 2 Outcomes > Model Fit | McFadden's R^2 `.
 
 This test can be used to determine if a complex model is different from a simpler one. This can be used to estimate the overall model fit. The test statistic is
 
-$$LR = -2ln(\frac{\theta_1}{\theta_2}),$$
+$$LR = -2ln(\frac{\theta_{reduced}}{\theta_{full}}),$$
 
-where $\theta_1$ is the likelihood of simpler model and $\theta_2$ the likelihood of complex model. The hypotheses are as follows:
+where $\theta_{reduced}$ is the likelihood of simpler model and $\theta_{full}$ the likelihood of complex model. The hypotheses are as follows:
 
-$H_0: L_1 = L_2$  
-$H_1: L_1 \neq L_2.$
+$H_0: L_{reduced} = L_{full}$  
+$H_1: L_{reduced} \neq L_{full}.$
 
 If difference can not be shown, then the simpler model should be preferred. 
 

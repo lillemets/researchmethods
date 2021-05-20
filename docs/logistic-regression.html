@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 12 Logistic regression | Research methods</title>
   <meta name="description" content="Section 12 Logistic regression | Research methods course materials" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 12 Logistic regression | Research methods" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   
   
 <link rel="prev" href="multiple-linear-regression.html"/>
-<link rel="next" href="slides.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<link rel="next" href="principal-component-analysis.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,8 +49,33 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -106,42 +131,42 @@
 <li class="chapter" data-level="2.4.2" data-path="introduction.html"><a href="introduction.html#scales-of-measurement"><i class="fa fa-check"></i><b>2.4.2</b> Scales of measurement</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a>
+<li class="chapter" data-level="3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>3.1</b> Central tendency</a>
+<li class="chapter" data-level="3.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#central-tendency"><i class="fa fa-check"></i><b>3.1</b> Central tendency</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>3.1.1</b> Mode</a></li>
-<li class="chapter" data-level="3.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>3.1.2</b> Median</a></li>
-<li class="chapter" data-level="3.1.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>3.1.3</b> Mean</a></li>
+<li class="chapter" data-level="3.1.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#mode"><i class="fa fa-check"></i><b>3.1.1</b> Mode</a></li>
+<li class="chapter" data-level="3.1.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#median"><i class="fa fa-check"></i><b>3.1.2</b> Median</a></li>
+<li class="chapter" data-level="3.1.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#mean"><i class="fa fa-check"></i><b>3.1.3</b> Mean</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variability"><i class="fa fa-check"></i><b>3.2</b> Variability</a>
+<li class="chapter" data-level="3.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#variability"><i class="fa fa-check"></i><b>3.2</b> Variability</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>3.2.1</b> Range</a></li>
-<li class="chapter" data-level="3.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quantiles-and-interquartile-range"><i class="fa fa-check"></i><b>3.2.2</b> Quantiles and interquartile range</a></li>
-<li class="chapter" data-level="3.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>3.2.3</b> Variance</a></li>
-<li class="chapter" data-level="3.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>3.2.4</b> Standard deviation</a></li>
+<li class="chapter" data-level="3.2.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#range"><i class="fa fa-check"></i><b>3.2.1</b> Range</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#quantiles-and-interquartile-range"><i class="fa fa-check"></i><b>3.2.2</b> Quantiles and interquartile range</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#variance"><i class="fa fa-check"></i><b>3.2.3</b> Variance</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#standard-deviation"><i class="fa fa-check"></i><b>3.2.4</b> Standard deviation</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#plots"><i class="fa fa-check"></i><b>3.3</b> Plots</a>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#plots"><i class="fa fa-check"></i><b>3.3</b> Plots</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplot"><i class="fa fa-check"></i><b>3.3.1</b> Boxplot</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histogram-and-density-plot"><i class="fa fa-check"></i><b>3.3.2</b> Histogram and density plot</a></li>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#boxplot"><i class="fa fa-check"></i><b>3.3.1</b> Boxplot</a></li>
+<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#histogram-and-density-plot"><i class="fa fa-check"></i><b>3.3.2</b> Histogram and density plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>4</b> Hypothesis testing</a>
+<li class="chapter" data-level="4" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html"><i class="fa fa-check"></i><b>4</b> Hypothesis testing</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sample-and-population"><i class="fa fa-check"></i><b>4.1</b> Sample and population</a>
+<li class="chapter" data-level="4.1" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#sample-and-population"><i class="fa fa-check"></i><b>4.1</b> Sample and population</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sample-population-sampling"><i class="fa fa-check"></i><b>4.1.1</b> Sample, population, sampling</a></li>
-<li class="chapter" data-level="4.1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#estimating-population-parameters"><i class="fa fa-check"></i><b>4.1.2</b> Estimating population parameters</a></li>
-<li class="chapter" data-level="4.1.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#confidence-intervals"><i class="fa fa-check"></i><b>4.1.3</b> Confidence intervals</a></li>
+<li class="chapter" data-level="4.1.1" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#sample-population-sampling"><i class="fa fa-check"></i><b>4.1.1</b> Sample, population, sampling</a></li>
+<li class="chapter" data-level="4.1.2" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#estimating-population-parameters"><i class="fa fa-check"></i><b>4.1.2</b> Estimating population parameters</a></li>
+<li class="chapter" data-level="4.1.3" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#confidence-intervals"><i class="fa fa-check"></i><b>4.1.3</b> Confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>4.2</b> Hypothesis testing</a>
+<li class="chapter" data-level="4.2" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>4.2</b> Hypothesis testing</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>4.2.1</b> Null and alternative hypotheses</a></li>
-<li class="chapter" data-level="4.2.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#types-of-errors"><i class="fa fa-check"></i><b>4.2.2</b> Types of errors</a></li>
-<li class="chapter" data-level="4.2.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistic"><i class="fa fa-check"></i><b>4.2.3</b> Test statistic</a></li>
-<li class="chapter" data-level="4.2.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#p-value"><i class="fa fa-check"></i><b>4.2.4</b> P-value</a></li>
-<li class="chapter" data-level="4.2.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#multiple-comparisons-problem"><i class="fa fa-check"></i><b>4.2.5</b> Multiple comparisons problem</a></li>
+<li class="chapter" data-level="4.2.1" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>4.2.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="4.2.2" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#types-of-errors"><i class="fa fa-check"></i><b>4.2.2</b> Types of errors</a></li>
+<li class="chapter" data-level="4.2.3" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#test-statistic"><i class="fa fa-check"></i><b>4.2.3</b> Test statistic</a></li>
+<li class="chapter" data-level="4.2.4" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#p-value"><i class="fa fa-check"></i><b>4.2.4</b> P-value</a></li>
+<li class="chapter" data-level="4.2.5" data-path="hypothesis-testing-1.html"><a href="hypothesis-testing-1.html#multiple-comparisons-problem"><i class="fa fa-check"></i><b>4.2.5</b> Multiple comparisons problem</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html"><i class="fa fa-check"></i><b>5</b> Comparing categorical data</a>
@@ -245,8 +270,25 @@
 <li class="chapter" data-level="12.4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#classification"><i class="fa fa-check"></i><b>12.4.5</b> Classification</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>13</b> Slides</a></li>
-<li class="chapter" data-level="14" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>14</b> References</a></li>
+<li class="chapter" data-level="13" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html"><i class="fa fa-check"></i><b>13</b> Principal component analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#intuition"><i class="fa fa-check"></i><b>13.1</b> Intuition</a></li>
+<li class="chapter" data-level="13.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#finding-the-pcs"><i class="fa fa-check"></i><b>13.2</b> Finding the PCs</a></li>
+<li class="chapter" data-level="13.3" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#calculation-1"><i class="fa fa-check"></i><b>13.3</b> Calculation</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#spectral-decomposition"><i class="fa fa-check"></i><b>13.3.1</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="13.3.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#singular-value-decomposition"><i class="fa fa-check"></i><b>13.3.2</b> Singular Value decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>13.4</b> Number of components</a></li>
+<li class="chapter" data-level="13.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>13.5.1</b> Variation explained</a></li>
+<li class="chapter" data-level="13.5.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>13.5.2</b> Loadings</a></li>
+<li class="chapter" data-level="13.5.3" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#biplots"><i class="fa fa-check"></i><b>13.5.3</b> Biplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>14</b> Slides</a></li>
+<li class="chapter" data-level="15" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>15</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -272,21 +314,21 @@
 <p>An important assumption of linear regression models is the normality and constant variance of residuals. With some particular types of response variable these assumptions about model errors can not be met. An example of such variable would be binary variables, i.e. variables that can take only two values (<span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>). A common way to model relationships with a binary response variable is logistic regression.</p>
 <div id="generalized-linear-models" class="section level2" number="12.1">
 <h2><span class="header-section-number">12.1</span> Generalized linear models</h2>
-<p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, it is necessary to define an error structure prior to estimation. In case of binary data (proportions) we expect errors to follow binomial distribution. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name general linear models (GLM).</p>
-<p>See section 13 in <span class="citation"><a href="references.html#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="references.html#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, it is necessary to define an error structure prior to estimation. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name general linear models (GLM).</p>
+<p>See section 13 in <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span>.</p>
 <div id="logit-link" class="section level3" number="12.1.1">
 <h3><span class="header-section-number">12.1.1</span> Logit link</h3>
 <p>In order to apply a particular distribution on model errors in the framework of GLM, we need to use a link function that relates the mean value of response to predictor variable(s). Link function transforms the mean of response variable. Note that we are not transforming the values themselves but using a function of mean value of response. There is no direct relationship between response and predictor variables, which is why we can not use least squares estimation.</p>
 <p>The canonical link function for binomial errors is the logit link (in econometrics it is often common that probit link is used instead). The logit link is mathematically expressed as follows:</p>
-<p><span class="math display">\[log(\frac{p}{1 - p}) = \alpha + \beta x,\]</span></p>
+<p><span class="math display">\[ln(\frac{p}{1 - p}) = \alpha + \beta x,\]</span></p>
 <p>where <span class="math inline">\(p\)</span> is the probability that <span class="math inline">\(y = 1\)</span>.</p>
 <p>In addition to the assumptions of normality and consistency of errors, the logit link also takes into consideration the fact that proportions are bounded to values between 0 and 1.</p>
-<p>See <span class="citation"><a href="references.html#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="references.html#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.3 on link function and section 13.4 on proportion data and binomial errors.</p>
+<p>See <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.3 on link function and section 13.4 on proportion data and binomial errors.</p>
 </div>
 </div>
 <div id="maximum-likelihood-estimation" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> Maximum likelihood estimation</h2>
-<p>The parameters of a GLM can not be simply calculated using the least squares method. Instead, we need to use the maximum likelihood (ML) estimation. See <span class="citation"><a href="references.html#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="references.html#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 7.3.3 for an idea behind the ML. It’s a little bit complicated idea but can be summarized as follows: models with various parameters are iteratively fitted until find such parameters are found that are most likely given the data we have. While the value of this likelihood can not be directly interpreted, it is used to calculated measures of model fit (see below).</p>
+<p>The parameters of a GLM can not be simply calculated using the least squares method. Instead, we need to use the maximum likelihood (ML) estimation. See <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 7.3.3 for an idea behind the ML. It’s a little bit complicated idea but can be summarized as follows: models with various parameters are iteratively fitted until such parameters are found for which the data we have is most likely. While the value of this likelihood can not be directly interpreted, it is used to calculate measures of model fit (see below).</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes</code>.<br />
 In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 </div>
@@ -300,7 +342,7 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 <h2><span class="header-section-number">12.4</span> Model fit</h2>
 <div id="deviance" class="section level3" number="12.4.1">
 <h3><span class="header-section-number">12.4.1</span> Deviance</h3>
-<p>When fitted values are determined as a result of ML, using residuals is not straightforward (see <span class="citation"><a href="references.html#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="references.html#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.11). A ML equivalent of RSS in case of OLS is deviance that can also be used to assess the goodness of fit of a LGM. Deviance expresses the difference in log-likelihood between current and saturated model. For binomial error structure the deviance is expressed as</p>
+<p>When fitted values are determined as a result of ML, using residuals is not straightforward (see <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.11). A ML equivalent of RSS in case of OLS is deviance that can also be used to assess the goodness of fit of a LGM. Deviance expresses the difference in log-likelihood between current and saturated model. For binomial error structure the deviance is expressed as</p>
 <p><span class="math display">\[D = 2 \sum y ln(y/\mu) + (n - y) ln(n - y) / (n - \mu),\]</span></p>
 <p>where <span class="math inline">\(y\)</span> are the observed values of response, <span class="math inline">\(\mu\)</span> the mean value of response and <span class="math inline">\(n\)</span> the number of observations.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Fit | Deviance</code>.</p>
@@ -315,16 +357,16 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 <div id="likelihood-ratio-test" class="section level3" number="12.4.3">
 <h3><span class="header-section-number">12.4.3</span> Likelihood ratio test</h3>
 <p>This test can be used to determine if a complex model is different from a simpler one. This can be used to estimate the overall model fit. The test statistic is</p>
-<p><span class="math display">\[LR = -2ln(\frac{\theta_1}{\theta_2}),\]</span></p>
-<p>where <span class="math inline">\(\theta_1\)</span> is the likelihood of simpler model and <span class="math inline">\(\theta_2\)</span> the likelihood of complex model. The hypotheses are as follows:</p>
-<p><span class="math inline">\(H_0: L_1 = L_2\)</span><br />
-<span class="math inline">\(H_1: L_1 \neq L_2.\)</span></p>
+<p><span class="math display">\[LR = -2ln(\frac{\theta_{reduced}}{\theta_{full}}),\]</span></p>
+<p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of simpler model and <span class="math inline">\(\theta_{full}\)</span> the likelihood of complex model. The hypotheses are as follows:</p>
+<p><span class="math inline">\(H_0: L_{reduced} = L_{full}\)</span><br />
+<span class="math inline">\(H_1: L_{reduced} \neq L_{full}.\)</span></p>
 <p>If difference can not be shown, then the simpler model should be preferred.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Coefficients | Likelihood ratio tests</code>.</p>
 </div>
 <div id="overdispersion" class="section level3" number="12.4.4">
 <h3><span class="header-section-number">12.4.4</span> Overdispersion</h3>
-<p>Unobserved omitted variables inflate residual deviances resulting in difficulties establishing the significance of predictors. See <span class="citation"><a href="references.html#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="references.html#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.12 for more.</p>
+<p>Unobserved omitted variables inflate residual deviances resulting in difficulties establishing the significance of predictors. See <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.12 for more.</p>
 </div>
 <div id="classification" class="section level3" number="12.4.5">
 <h3><span class="header-section-number">12.4.5</span> Classification</h3>
@@ -335,13 +377,19 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 </div>
 </div>
 </div>
+<h3> References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-crawley_r_2013" class="csl-entry">
+Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="principal-component-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -364,6 +412,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

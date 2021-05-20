@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 8 Correlation analysis | Research methods</title>
-  <meta name="description" content="Section 8 Correlation analysis | Research methods course materials" />
+  <title>Section 13 Principal component analysis | Research methods</title>
+  <meta name="description" content="Section 13 Principal component analysis | Research methods course materials" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 8 Correlation analysis | Research methods" />
+  <meta property="og:title" content="Section 13 Principal component analysis | Research methods" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Section 8 Correlation analysis | Research methods course materials" />
+  <meta property="og:description" content="Section 13 Principal component analysis | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 8 Correlation analysis | Research methods" />
+  <meta name="twitter:title" content="Section 13 Principal component analysis | Research methods" />
   
-  <meta name="twitter:description" content="Section 8 Correlation analysis | Research methods course materials" />
+  <meta name="twitter:description" content="Section 13 Principal component analysis | Research methods course materials" />
   
 
 
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analysis-of-variance.html"/>
-<link rel="next" href="simple-linear-regression.html"/>
+<link rel="prev" href="logistic-regression.html"/>
+<link rel="next" href="slides.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -309,52 +309,76 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correlation-analysis" class="section level1" number="8">
-<h1><span class="header-section-number">Section 8</span> Correlation analysis</h1>
-<p>Correlation analysis involves measuring relationships between two <strong>continuous</strong> variables. A correlation coefficient indicates the direction of relationship on a scale -1 … 1 where 0 means lack of relationship.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.</p>
-<div id="scatterplot" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Scatterplot</h2>
-<p>Scatterplots illustrate where observations are positioned relative to two continuous variables. This allows us to see if and how two variables are related. Conventionally dependent variables are presented on vertical (y) axis and independent variable on horizontal (x) axis.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.2.</p>
-<p>In Jamovi: <code>Exploration &gt; Scatterplot</code>.<br />
-In R: <code>plot(x, y)</code></p>
+<div id="principal-component-analysis" class="section level1" number="13">
+<h1><span class="header-section-number">Section 13</span> Principal component analysis</h1>
+<p>Principal component analysis (PCA) is a method in the field of multivariate statistics. In such methods we do not define any causality between variables by distinguishing between response and predictor variables. Instead, methods in multivariate statistics look at the overall structure of data and attempt to identify patterns. PCA allows to find such patterns that could be used to reduce the number of variables without losing too much information. This can be useful e.g. when there are a lot of correlated predictors in a regression model.</p>
+<p>See <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 25.1 and <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 15.2.</p>
+<div id="intuition" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> Intuition</h2>
+<p>The underlying goal of PCA in simple terms is to summarize many variables into one, few or several new variables. More precisely, the aim is to determine a set of standardized linear combinations that would explain a maximum amount of variation in data. Sometimes only one linear combination is found such that it best separates observations. As such, PCA is a dimensionality reduction technique.</p>
+<p>Each linear combination that summarizes part of variance in data is called a principal component (PC). These linear combinations <span class="math inline">\(\xi_j\)</span> can be expressed as <span class="math inline">\(\xi_j = b_{j1}x_1 + b_{j2}x_2+ ... a_{jp}x_p\)</span>, where <span class="math inline">\(b_{jp}\)</span> is a weight of variable <span class="math inline">\(x_p\)</span> of a particular <span class="math inline">\(\xi_j\)</span>, i.e. <span class="math inline">\(j\)</span>th PC. PCs are thus essentially weighted sum of variables. The ordering of PCs is fixed: PCs are ordered decreasingly, starting from the PC that explains the most variation in data. The maximum number of PCs we can determine is <span class="math inline">\(min(p, n - 1)\)</span>.</p>
 </div>
-<div id="pearsons-correlation-coefficient" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Pearson’s correlation coefficient</h2>
-<p>Evaluates <strong>linear</strong> relationship. Thus, perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> always increases by fixed unit(s).</p>
-<p><span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2}\]</span></p>
-<p>Essentially, we compare differences from mean value for values of each group.</p>
-<p>Statistical significance can also be estimated by finding the probability of t-statistic on t-distribution.</p>
-<p><span class="math display">\[t=r\sqrt{n-2}/\sqrt{1-r^{2}}\]</span></p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.3.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Pearson</code>.<br />
-In R: <code>cor(x)</code></p>
+<div id="finding-the-pcs" class="section level2" number="13.2">
+<h2><span class="header-section-number">13.2</span> Finding the PCs</h2>
+<p>There are several ways to understand the estimation PCs. An intuitive approach would be to visualize a data cloud from which we incrementally derive the PCs. The first PC should explain the maximum amount of variation in the data cloud. Thus, we choose the first PC1 so that (1) it follows the direction of largest variance in data cloud and (2) is then also a line with smallest orthogonal distance to all data points. As such the idea is similar to least squares estimation, except that in PCA we consider variation in all variables (not just the response) and do not use squared residuals. See the <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">relevant question on Stack Exchange</a> for some visual explanations.</p>
+<p>Establishing the direction of largest variation requires transforming data points to a new coordinate system. This involves the following steps: (1) centering data points, (2) scaling the axes so that they would be equal, (3) rotating axes into the direction of a PC. In the last step the first PC is rotated so as to maximize variation, whereas each following PC is rotated to be orthogonal to preceding PC.</p>
 </div>
-<div id="spearman-rank-order-correlation-coefficient" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Spearman rank-order correlation coefficient</h2>
-<p>Evaluation is based on the ranking of values. Evaluates a <strong>monotonic</strong> relationship. Thus perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases, then <span class="math inline">\(y\)</span> also always increases.</p>
-<p><span class="math display">\[r = 1 - \frac{6\sum (x_{i}-y_{i})^{2}}{n(n^{2}-1)}\]</span></p>
-<p>Simply put, we compare rankings of values from each group.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.6.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Spearman</code>.<br />
-In R: <code>cor(x, method = 'spearman')</code></p>
+<div id="calculation-1" class="section level2" number="13.3">
+<h2><span class="header-section-number">13.3</span> Calculation</h2>
+<p>Estimation of PCs requires data to be centered, i.e. for each variable <span class="math inline">\(\mu = 0\)</span>. This is usually done by software. Another aspect to consider is scale of data. If software does calculations on correlation matrix then scale is irrelevant because correlation matrix is scale agnostic. However, if covariance matrix is used then variables with higher variance are given more importance (recall that PCA involves maximizing variation). Whether or not this is preferred depends on data and research problem.</p>
+<p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Rotation: none</code>.<br />
+In R: <code>prcomp(data, scale = TRUE)</code></p>
+<p>The transformation of data points into a new coordinate system is done according to the eigenvalues and eigenvectors derived from data. There are two methods for obtaining these: (1) using covariance or correlation matrix of data or (2) using raw values. These methods are described below.</p>
+<div id="spectral-decomposition" class="section level3" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> Spectral decomposition</h3>
+<p>A data matrix <span class="math inline">\(X : n \times p\)</span> can be represented by its correlation or covariance matrix <span class="math inline">\(\Sigma\)</span>. This can be decomposed as <span class="math inline">\(\Sigma = V D V^T\)</span>, where <span class="math inline">\(D = diag(\lambda_1, \lambda_2, \dots, \lambda_{n-1})\)</span> is a diagonal matrix of eigenvalues of <span class="math inline">\(\Sigma\)</span> and matrix <span class="math inline">\(V = (v_1, v_2, ..., v_{n-1})\)</span> the corresponding eigenvectors of <span class="math inline">\(\Sigma\)</span>. This can also be expressed as <span class="math display">\[\Sigma w_i = \lambda_i w_i\]</span> where <span class="math inline">\(\lambda_i\)</span> is the eigenvalue that corresponds to eigenvector <span class="math inline">\(w_i\)</span> of <span class="math inline">\(i\)</span>th PC.</p>
 </div>
-<div id="correlation-matrix-and-heatmap" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Correlation matrix and heatmap</h2>
-<p>To find relationships among large number of variables, correlation coefficients can be summarized as a correlation matrix.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Plot | Correlation matrix</code><br />
-​ or <code>Factor &gt; Reliability Analysis &gt; Additional Options | Correlation heatmap</code>.<br />
-In R: <code>heatmap(cor(x))</code></p>
+<div id="singular-value-decomposition" class="section level3" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> Singular Value decomposition</h3>
+<p>A data matrix <span class="math inline">\(X : n \times p\)</span> with <span class="math inline">\(rank(X) = k\)</span> can also be decomposed as <span class="math inline">\(X = UDV^T\)</span>, where <span class="math inline">\(U = (u_1, u_2, \dots, u_k)\)</span> is an <span class="math inline">\(n \times n\)</span> vector of eigenvectors of <span class="math inline">\(XX^T\)</span>, <span class="math inline">\(V = (v_1, v_2, ..., v_k)\)</span> is an <span class="math inline">\(p \times p\)</span> vector of eigenvectors of <span class="math inline">\(X^TX\)</span>, and <span class="math inline">\(D = diag(\lambda_1, \lambda_2, \dots, \lambda_k)\)</span> is a diagonal matrix containing nonzero eigenvalues of <span class="math inline">\(X^TX\)</span> and <span class="math inline">\(XX^T\)</span>. Such decomposition of our data matix <span class="math inline">\(X\)</span> then gives us the eigenvalues <span class="math inline">\(\lambda_1, \lambda_2, \dots, \lambda_k\)</span> and corresponding eigenvectors <span class="math inline">\(u_1, u_2, \dots, u_k\)</span> for <span class="math inline">\(X\)</span>.</p>
 </div>
-<div id="causality" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Causality</h2>
-<p>It’s important to understand that correlation itself does not imply how the causality between variables functions.</p>
+</div>
+<div id="number-of-components" class="section level2" number="13.4">
+<h2><span class="header-section-number">13.4</span> Number of components</h2>
+<p>Recall that the aim of PCA is to summarize variables into a smaller number of PCs. The number of PCs that are used is decided by user. Depending on our research problem, we might wish to obtain just one PC or few or more PCs. There also several possible criteria that may help us make the choice:</p>
+<ol style="list-style-type: decimal">
+<li>choose a threshold of variation in data that PCs should cumulatively explain, e.g. 80%;</li>
+<li>use PCs that have eigenvalue above average or above one;</li>
+<li>use PCs that are above an “elbow” in scree plot.</li>
+</ol>
+<p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Scree plot</code>.</p>
+</div>
+<div id="interpretation" class="section level2" number="13.5">
+<h2><span class="header-section-number">13.5</span> Interpretation</h2>
+<div id="variation-explained" class="section level3" number="13.5.1">
+<h3><span class="header-section-number">13.5.1</span> Variation explained</h3>
+<p>The proportion of total variation explained by a <span class="math inline">\(j\)</span>th PC can be found from its eigenvalues: it is the proportion of sums of eigenvalues, i.e. <span class="math inline">\(\lambda_j / \Sigma^p_{j=1} \lambda\)</span>. The proportion of variation explained by first PCs can be found by cumulative sum of the respective values.</p>
+<p>This measure illustrates how much information is preserved when summarizing data into a particular number of PCs.</p>
+<p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Component summary</code>.<br />
+In R: <code>prcomp(data, scale = TRUE)</code></p>
+</div>
+<div id="loadings" class="section level3" number="13.5.2">
+<h3><span class="header-section-number">13.5.2</span> Loadings</h3>
+<p>Each PC is defined by the influence that each variable has on it. As such, each variable has a particular loading on each PC which is why the values of this influence are called loadings. Loadings can also be understood as variable weights.</p>
+<p>When the linear combinations are calculated for each observation using loadings (weights) and initial variables, we obtain principal component scores. These are in essence the new summarized variables.</p>
+<p>Loadings can be used to interpret PCs to give them a theoretical meaning. This is a rather creative process.</p>
+<p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Rotation: none &gt; Save | Component scores</code>.<br />
+In R: <code>prcomp(data, scale = TRUE)$x</code></p>
+</div>
+<div id="biplots" class="section level3" number="13.5.3">
+<h3><span class="header-section-number">13.5.3</span> Biplots</h3>
+<p>These plots concisely summarize the first two PCs by depicting observations on these two dimensions together with loadings of each variable as arrows. Directions of these arrows indicate the direction of loading and length of arrows indicate the magnitude of loading. Then, the angle between arrows represents correlations between variables.</p>
+<p>In Jamovi: <code>snowCluster &gt; PCA plot | Biplot</code>.<br />
+In R: <code>biplot(prcomp(data, scale = TRUE))</code></p>
 
+</div>
 </div>
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-crawley_r_2013" class="csl-entry">
+Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
+</div>
 <div id="ref-navarro_learning_2018" class="csl-entry">
 Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.
 </div>
@@ -364,8 +388,8 @@ Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Ja
           </div>
         </div>
       </div>
-<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

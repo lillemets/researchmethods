@@ -15,7 +15,7 @@ In other words, our $H_1$ is that at least one  group mean is different from oth
 
 Test statistic $F$ is calculated as 
 
-$F = MSA / MSE,$
+$$F = MSA / MSE,$$
 
 where $MSA$ expresses variation between group and $MSE$ represents random variaton. In order to understand what this means let's start from the initial measures, the sum of squares of variable $y$ for observations $i$ in groups $j$:
 

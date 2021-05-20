@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 8 Correlation analysis | Research methods</title>
-  <meta name="description" content="Section 8 Correlation analysis | Research methods course materials" />
+  <title>Section 4 Hypothesis testing | Research methods</title>
+  <meta name="description" content="Section 4 Hypothesis testing | Research methods course materials" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 8 Correlation analysis | Research methods" />
+  <meta property="og:title" content="Section 4 Hypothesis testing | Research methods" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Section 8 Correlation analysis | Research methods course materials" />
+  <meta property="og:description" content="Section 4 Hypothesis testing | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 8 Correlation analysis | Research methods" />
+  <meta name="twitter:title" content="Section 4 Hypothesis testing | Research methods" />
   
-  <meta name="twitter:description" content="Section 8 Correlation analysis | Research methods course materials" />
+  <meta name="twitter:description" content="Section 4 Hypothesis testing | Research methods course materials" />
   
 
 
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analysis-of-variance.html"/>
-<link rel="next" href="simple-linear-regression.html"/>
+<link rel="prev" href="descriptive-statistics-1.html"/>
+<link rel="next" href="comparing-categorical-data.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -309,48 +309,93 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correlation-analysis" class="section level1" number="8">
-<h1><span class="header-section-number">Section 8</span> Correlation analysis</h1>
-<p>Correlation analysis involves measuring relationships between two <strong>continuous</strong> variables. A correlation coefficient indicates the direction of relationship on a scale -1 … 1 where 0 means lack of relationship.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.</p>
-<div id="scatterplot" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Scatterplot</h2>
-<p>Scatterplots illustrate where observations are positioned relative to two continuous variables. This allows us to see if and how two variables are related. Conventionally dependent variables are presented on vertical (y) axis and independent variable on horizontal (x) axis.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.2.</p>
-<p>In Jamovi: <code>Exploration &gt; Scatterplot</code>.<br />
-In R: <code>plot(x, y)</code></p>
+<div id="hypothesis-testing-1" class="section level1" number="4">
+<h1><span class="header-section-number">Section 4</span> Hypothesis testing</h1>
+<div id="sample-and-population" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Sample and population</h2>
+<p>Distinguishing between sample and population is important when we wish to draw inferences about population when we only have data on a sample.</p>
+<div id="sample-population-sampling" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Sample, population, sampling</h3>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.1.</p>
+<p>What is the difference between population, sample and (simple) random sample?</p>
 </div>
-<div id="pearsons-correlation-coefficient" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Pearson’s correlation coefficient</h2>
-<p>Evaluates <strong>linear</strong> relationship. Thus, perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> always increases by fixed unit(s).</p>
-<p><span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2}\]</span></p>
-<p>Essentially, we compare differences from mean value for values of each group.</p>
-<p>Statistical significance can also be estimated by finding the probability of t-statistic on t-distribution.</p>
-<p><span class="math display">\[t=r\sqrt{n-2}/\sqrt{1-r^{2}}\]</span></p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.3.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Pearson</code>.<br />
-In R: <code>cor(x)</code></p>
+<div id="estimating-population-parameters" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Estimating population parameters</h3>
+<div id="population-mean" class="section level4" number="4.1.2.1">
+<h4><span class="header-section-number">4.1.2.1</span> Population mean</h4>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.4.1.</p>
+<p>How do you get population mean if you only know the sample mean?</p>
 </div>
-<div id="spearman-rank-order-correlation-coefficient" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Spearman rank-order correlation coefficient</h2>
-<p>Evaluation is based on the ranking of values. Evaluates a <strong>monotonic</strong> relationship. Thus perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases, then <span class="math inline">\(y\)</span> also always increases.</p>
-<p><span class="math display">\[r = 1 - \frac{6\sum (x_{i}-y_{i})^{2}}{n(n^{2}-1)}\]</span></p>
-<p>Simply put, we compare rankings of values from each group.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.6.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Spearman</code>.<br />
-In R: <code>cor(x, method = 'spearman')</code></p>
+<div id="population-standard-deviation" class="section level4" number="4.1.2.2">
+<h4><span class="header-section-number">4.1.2.2</span> Population standard deviation</h4>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.4.2.</p>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}\]</span></p>
+<p>Why and how is sample standard deviation different from population standard deviation?</p>
 </div>
-<div id="correlation-matrix-and-heatmap" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Correlation matrix and heatmap</h2>
-<p>To find relationships among large number of variables, correlation coefficients can be summarized as a correlation matrix.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Plot | Correlation matrix</code><br />
-​ or <code>Factor &gt; Reliability Analysis &gt; Additional Options | Correlation heatmap</code>.<br />
-In R: <code>heatmap(cor(x))</code></p>
 </div>
-<div id="causality" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Causality</h2>
-<p>It’s important to understand that correlation itself does not imply how the causality between variables functions.</p>
+<div id="confidence-intervals" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Confidence intervals</h3>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.5</p>
+<p>A 95% CI of the mean <span class="math inline">\(X \sim N(\mu,\sigma^2)\)</span> is calculated as</p>
+<p><span class="math display">\[CI_{95} = \hat{x} \pm(1.96\times\frac{\sigma}{\sqrt{N}})\]</span></p>
+<p>What is the interpretation of confidence interval?</p>
+</div>
+</div>
+<div id="hypothesis-testing-2" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Hypothesis testing</h2>
+<div id="null-and-alternative-hypotheses" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Null and alternative hypotheses</h3>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 9.1.2.</p>
+<p>Statistical hypothesis testing involves two hypotheses: null (<span class="math inline">\(H_0\)</span>) and alternative (<span class="math inline">\(H_1\)</span>) hypothesis. These are usually defined as follows:</p>
+<p><span class="math inline">\(H_0\)</span>: There <strong>is no</strong> statistically significant difference.<br />
+<span class="math inline">\(H_1\)</span>: There <strong>is</strong> a statistically significant difference.</p>
+<p>We always test if we can reject <span class="math inline">\(H_0\)</span>. If we reject <span class="math inline">\(H_0\)</span>, then we accept <span class="math inline">\(H_1\)</span>. If we fail to reject <span class="math inline">\(H_0\)</span>, then we accept <span class="math inline">\(H_1\)</span>.</p>
+</div>
+<div id="types-of-errors" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Types of errors</h3>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 9.2.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>We accept <span class="math inline">\(H_0\)</span></th>
+<th>We reject <span class="math inline">\(H_0\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0\)</span> is true</td>
+<td>We are correct</td>
+<td>We commit <strong>type I error</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0\)</span> is false</td>
+<td>We commit <strong>type II error</strong></td>
+<td>We are correct</td>
+</tr>
+</tbody>
+</table>
+<p>The rate of type I error is considered the significance level of a test (denoted as <span class="math inline">\(\alpha\)</span>).</p>
+</div>
+<div id="test-statistic" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Test statistic</h3>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 9.3 and 10.1.6.</p>
+<p>We use a test statistic to make a decision whether we can or can not reject <span class="math inline">\(H_0\)</span>. We reject <span class="math inline">\(H_0\)</span> if the value of a test statistic is sufficiently extreme, i.e. different from 0.</p>
+</div>
+<div id="p-value" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> P-value</h3>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 9.5 and 9.6.</p>
+<p>P-value is the probability of obtaining at least as extreme value of test statistic if <span class="math inline">\(H_0\)</span> is correct. Thus, it’s the rate of committing a type I error, i.e. the significance level <span class="math inline">\(\alpha\)</span>.</p>
+<p>If the p-value is below <span class="math inline">\(\alpha\)</span>, we reject <span class="math inline">\(H_0\)</span> and accept <span class="math inline">\(H_1\)</span>.</p>
+<p><span class="math inline">\(p \ge \alpha \implies H_0\)</span><br />
+<span class="math inline">\(p \lt \alpha \implies H_1\)</span></p>
+<p>P-value is <strong>not</strong> the probability of <span class="math inline">\(H_0\)</span> being false or <span class="math inline">\(H_{1}\)</span> being true. Theoretically, a lower p-value does <strong>not</strong> show a greater difference or vice versa. Only it’s location relative to is what <span class="math inline">\(\alpha\)</span> matters.</p>
+</div>
+<div id="multiple-comparisons-problem" class="section level3" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Multiple comparisons problem</h3>
+<p>Every time you find a statistically significant result, there is a possibility that you got this extreme data by chance. In this case, you committed a type 1 error. Therefore, if you do a lot of tests, the possibility that at least one of the statistically significant results is actually not true. Thus, the number of tests you do should be limited.</p>
 
+</div>
 </div>
 </div>
 <h3> References</h3>
@@ -364,8 +409,8 @@ Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Ja
           </div>
         </div>
       </div>
-<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="descriptive-statistics-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comparing-categorical-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
