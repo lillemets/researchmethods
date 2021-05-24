@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 11 Multiple linear regression | Research methods</title>
-  <meta name="description" content="Section 11 Multiple linear regression | Research methods course materials" />
+  <title>Section 3 Descriptive statistics | Research methods</title>
+  <meta name="description" content="Section 3 Descriptive statistics | Research methods course materials" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 11 Multiple linear regression | Research methods" />
+  <meta property="og:title" content="Section 3 Descriptive statistics | Research methods" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Section 11 Multiple linear regression | Research methods course materials" />
+  <meta property="og:description" content="Section 3 Descriptive statistics | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 11 Multiple linear regression | Research methods" />
+  <meta name="twitter:title" content="Section 3 Descriptive statistics | Research methods" />
   
-  <meta name="twitter:description" content="Section 11 Multiple linear regression | Research methods course materials" />
+  <meta name="twitter:description" content="Section 3 Descriptive statistics | Research methods course materials" />
   
 
 
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-transformations.html"/>
-<link rel="next" href="logistic-regression.html"/>
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="hypothesis-testing.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -334,65 +334,92 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multiple-linear-regression" class="section level1" number="11">
-<h1><span class="header-section-number">Section 11</span> Multiple linear regression</h1>
-<p>In addition to modeling the relationship between two variables, we can use regression to estimate models with multiple predictors. An OLS model with more than one predictor is thus called multiple linear regression.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.5 for an introduction and <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 10.13 for a more detailed explanations.</p>
-<div id="multiple-predictors" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Multiple predictors</h2>
-<p>The estimation of a least squares model with multiple predictors is very similar to single linear regression. The only difference in estimation is that an additional term (<span class="math inline">\(\beta_i x_i\)</span>) for each predictor is added to the model. A model with two predictors can be expressed as follows:</p>
-<p><span class="math inline">\(y = \alpha + \beta_{1} x_1 + \beta_{2} x_2 + \varepsilon,\)</span></p>
-<p>where now</p>
-<ul>
-<li><span class="math inline">\(\beta_1\)</span> is a coefficient of <span class="math inline">\(x_1\)</span> and</li>
-<li><span class="math inline">\(\beta_2\)</span> is a coefficient of <span class="math inline">\(x_2\)</span>.</li>
-</ul>
-<p>The interpretation and diagnostics of the model is now more complicated as now we need to consider both predictors.</p>
-<p>The addition of a second term means that our model is no longer a line but rather a pane (see Figure 12.14 in <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span>). This entire pane is now affected by multiple variables which means that <span class="math inline">\(\beta_1\)</span> is influenced by the addition of <span class="math inline">\(\beta_2\)</span>.</p>
-<p>Why use multiple predictors? This allows to control the effects of different variables on the response. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions.</p>
+<div id="descriptive-statistics" class="section level1" number="3">
+<h1><span class="header-section-number">Section 3</span> Descriptive statistics</h1>
+<p>Any data analysis should begin with an exploration of the structure of and values in dataset. Description of values should also be part of the reporting of analysis. This can be done using some simple methods.</p>
+<p>When we use the methods of descriptive statistics, we need to be aware of that we merely describe the dataset at hand. If observations in the data set constitute a sample, we cannot draw any wider conclusions on population using these methods. Below we are thus defining the statistics for populations and not samples.</p>
+<p>Description of nominal or ordinal variables is simple and limited to just counting unique values and finding the mode and/or median value. But suppose we have variables that contain sequences of numbers. How can we describe these?</p>
+<div id="central-tendency" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Central tendency</h2>
+<p>A concise way to represent numeric values is expressing the center of values. This can also be understood the typical value or expected value (expectation of <span class="math inline">\(x\)</span>, i.e. <span class="math inline">\(E(x)\)</span>). Note that estimating a central tendency is only meaningful if there is a natural center. i.e. the distribution of values is unimodal.</p>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 4.1.</p>
+<div id="mode" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Mode</h3>
+<p>Mode is simply the most frequent value in a sequence. This statistic can be useful for nominal and ordinal variables but it’s rarely used for numeric variables, especially on a continuous scale.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Central Tendency | Mode</code></p>
 </div>
-<div id="predictor-selection" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Predictor selection</h2>
-<p>Constructing a model involves choosing which predictors to include. To get a quick understanding of how variables are related, first take a look at pairwise scatterplots.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix | Correlation Matrix</code>.<br />
-In R: <code>pairs(data)</code></p>
-<p>How do we know which predictors to include and which to omit? We should start with estimating a model with all the predictors that we theoretically expect to have an effect on the response and then move on to empirical considerations.</p>
-<p>While there is no general consensus about what to do with coefficients that are not statistically significant, from an empirical point of view these should be omitted from a model.</p>
-<p>A traditional approach to testing combinations of predictors would be to examine statistical significance of coefficients but this would lead to the multiple comparisons problem and is not suggested anymore. Instead, we can use a parameter such as the Akaike information criterion (AIC) and apply backward elimination or forward selection to determine which combination of predictors results in the best model. See <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 3.3 on subset selection methods.</p>
-<div id="akaike-information-criterion" class="section level3" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> Akaike information criterion</h3>
-<p>For linear regression the information criterion is calculated as follows:</p>
-<p><span class="math inline">\(AIC = n \times log(\frac{RSS}{n}) + 2 K,\)</span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of observations, <span class="math inline">\(RSS\)</span> the residual sums of squares and <span class="math inline">\(K\)</span> the number of predictors in a model.</p>
-<p>The model is higher if model performs worse and has more predictors. Thus, lower value of AIC indicates a better model. Note that values of AIC can only be compared for models that have the same response variable.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.11.</p>
+<div id="median" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Median</h3>
+<p>When sequence of values is ordered, the middle value is median. In case there are even number of values (<span class="math inline">\(N\)</span>) in a sequence, median is the average of the two values in the middle. Thus, there are equal number of values above and below the median value. When <span class="math inline">\(N\)</span> is an even number, half of the values are above and half below the median value.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Central Tendency | Median</code><br />
+In R: <code>median(x)</code></p>
 </div>
-<div id="model-comparison-with-f-test" class="section level3" number="11.2.2">
-<h3><span class="header-section-number">11.2.2</span> Model comparison with F-test</h3>
-<p>Model fit can be estimated in the hypothesis testing framework using F-test. This is often used to estimate a general model fit as it allows us to compare the statistical significance of difference between two models. The F-statistic is calculated as follows:</p>
-<p><span class="math display">\[F = \frac{RSS_1 - RSS_1 / k}{RSS_2/(n-p-1)},\]</span></p>
-<p>where <span class="math inline">\(RSS_1\)</span> is the residual sum of squares of reduced model and <span class="math inline">\(RSS_2\)</span> the same for full model, <span class="math inline">\(k\)</span> the difference in the number of parameters between two models, <span class="math inline">\(p\)</span> the number of parameters and <span class="math inline">\(n\)</span> the number of observations. The test statistic is estimated on F-distribution with <span class="math inline">\(df_1 = k\)</span> and <span class="math inline">\(df_2 = n-p-1\)</span>.</p>
-<p>For example, if our reduced model is <span class="math inline">\(y = \alpha + \varepsilon\)</span> and full model <span class="math inline">\(y = \alpha + \beta_{1} x_1 + \beta_{2} x_2 + \varepsilon\)</span>, then we would test whether or not the two terms improve model fit compared to just the intercept (<span class="math inline">\(E(y)\)</span>) and our hypotheses would thus be as follows:</p>
-<p><span class="math inline">\(H_0: \beta_1 = \beta_2 = 0\)</span><br />
-<span class="math inline">\(H_1: \beta_1 \neq 0 \text{ or } \beta_2 \neq 0\)</span></p>
+<div id="mean" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Mean</h3>
+<p>While there are several forms of mean, arithmetic mean is most useful in statistics and also considered here. Mean is in other words the average value: it’s the sum of values (<span class="math inline">\(X\)</span>) divided by number of values:</p>
+<p><span class="math display">\[\bar{X} = \frac{1}{N} \sum{^N_{i=1}}{X_i}\]</span></p>
+<p>A feature of mean value is that if you only know the <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(N\)</span>, you can still calculate <span class="math inline">\(\sum{^N_{i=1}}{X_i}\)</span>.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Central Tendency | Mean</code><br />
+In R: <code>mean(x)</code></p>
 </div>
 </div>
-<div id="multicollinearity" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Multicollinearity</h2>
-<p>In addition the assumptions described in the previous section, multiple predictors introduce the possibility of multicollinearity. The idea is that it should not be possible to linearly predict any of the predictors from others predictors, i.e. predictors should not be (highly) correlated. Otherwise the coefficients are not reliable. Multicollinearity can be detected with variance inflation factor (VIF) by using <span class="math inline">\(R^2\)</span> to estimate for each predictor how much of the variation in one predictor can be predicted from others.</p>
-<p><span class="math display">\[VIF_{k} = \frac{1}{1 - R^{2}_{k-1}},\]</span></p>
-<p>where <span class="math inline">\(R^{2}_{k-1}\)</span> is <span class="math inline">\(R^{2}\)</span> for a model that has predictor <span class="math inline">\(k\)</span> as a response variable and all other predictors as predictor variables. Often VIF value of 5 is considered to be too high and indicate that some predictors should omitted from the model.</p>
+<div id="variability" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Variability</h2>
+<p>Central tendency describes values only partially as it tells nothing about the deviation of values from that mean. Estimating also the variability of values provides a more manifold understanding of values.</p>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 4.2.</p>
+<div id="range" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Range</h3>
+<p>Most simple way to express variability is to indicate the range of all values, i.e. the difference between minimum and maximum values.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | Range, Minimum, Maximum</code><br />
+In R: <code>range(x)</code></p>
+</div>
+<div id="quantiles-and-interquartile-range" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Quantiles and interquartile range</h3>
+<p>Quantiles are in essence calculated just like median, because median is the lowest quantile, the 2-quantile. In addition to dividing sequence of ordered values into two halves separated by median, such sequence can be diveded into any number of equal groups as long as the number of groups (<span class="math inline">\(k\)</span>) is smaller than or equal to the number of values, i.e. <span class="math inline">\(k \le N\)</span>. Some common quantiles are quartiles (<span class="math inline">\(k = 4\)</span>), deciles (<span class="math inline">\(k = 10\)</span>) and centiles/percentiles (<span class="math inline">\(k = 100\)</span>).</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Percentile Values</code><br />
+In R: <code>quantile(x)</code></p>
+<p>Arguably quartile is most frequently used among quantiles because the 2nd and 4th quartiles contain half of all values. This interquartile range (IQR) thus contains the middle half of all values.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | IQR</code><br />
+In R: <code>IQR(x)</code></p>
+</div>
+<div id="variance" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Variance</h3>
+<p>Although difficult to interpret, variance is used in many statistical calculations due to its mathematical properties. Variance is mean squared difference from the mean value:</p>
+<p><span class="math display">\[Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}\]</span></p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | Variance</code><br />
+In R: <code>var(x)</code></p>
+</div>
+<div id="standard-deviation" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Standard deviation</h3>
+<p>Interpretability issues of variance arise from the fact that the calculation includes squaring and thus the value of the statistic is vastly different to understand regarding initial scale. A solution would be to find a square root of variance. This is what the standard deviation is: the square root of variance.</p>
+<p><span class="math display">\[\sigma = \sqrt{\frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}\]</span></p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Statistics &gt; Dispersion | Std. deviation</code><br />
+In R: <code>sd(x)</code></p>
+</div>
+</div>
+<div id="plots" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Plots</h2>
+<p>Previously explained measures allow us to only summarize values into fewer numbers. Plotting allows to present these values more intuitively or even depict all of the values at once.</p>
+<div id="boxplot" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Boxplot</h3>
+<p>Boxplots illustrate the quartiles of values (including interquartile range) and extreme values (outliers). Outliers are usually values that are below the 2nd quartile or above the 4th quartile by 1.5 times the interquartile range. On boxplots, half of all the values lie within the box and another half on the lines, outliers excluded.</p>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 5.2.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Box Plots</code><br />
+In R: <code>boxplot(x)</code></p>
+</div>
+<div id="histogram-and-density-plot" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Histogram and density plot</h3>
+<p>Histograms are essentially barplots where all values are divided between ranges of equal with, i.e. bins.</p>
+<p>Instead of bins, distribution of values can also be expressed continuously by smoothing the bins. This results in a density plot.</p>
+<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 5.1.</p>
+<p>In Jamovi: <code>Exploration &gt; Descriptives &gt; Plots | Histograms</code><br />
+In R: <code>histogram(x) and plot(density(x))</code></p>
 
+</div>
 </div>
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-crawley_r_2013" class="csl-entry">
-Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
-</div>
-<div id="ref-hastie_elements_2017" class="csl-entry">
-Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2017. <em>The <span>Elements</span> of <span>Statistical</span> <span>Learning</span>: <span>Data</span> <span>Mining</span>, <span>Inference</span>, and <span>Prediction</span>, <span>Second</span> <span>Edition</span></em>. 2nd ed. Springer <span>Series</span> in <span>Statistics</span>. New York: Springer-Verlag.
-</div>
 <div id="ref-navarro_learning_2018" class="csl-entry">
 Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.
 </div>
@@ -402,8 +429,8 @@ Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Ja
           </div>
         </div>
       </div>
-<a href="data-transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

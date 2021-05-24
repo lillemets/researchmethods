@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 11 Multiple linear regression | Research methods</title>
-  <meta name="description" content="Section 11 Multiple linear regression | Research methods course materials" />
+  <title>Section 14 Factor analysis | Research methods</title>
+  <meta name="description" content="Section 14 Factor analysis | Research methods course materials" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 11 Multiple linear regression | Research methods" />
+  <meta property="og:title" content="Section 14 Factor analysis | Research methods" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Section 11 Multiple linear regression | Research methods course materials" />
+  <meta property="og:description" content="Section 14 Factor analysis | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 11 Multiple linear regression | Research methods" />
+  <meta name="twitter:title" content="Section 14 Factor analysis | Research methods" />
   
-  <meta name="twitter:description" content="Section 11 Multiple linear regression | Research methods course materials" />
+  <meta name="twitter:description" content="Section 14 Factor analysis | Research methods course materials" />
   
 
 
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-transformations.html"/>
-<link rel="next" href="logistic-regression.html"/>
+<link rel="prev" href="principal-component-analysis.html"/>
+<link rel="next" href="slides.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -334,54 +334,108 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multiple-linear-regression" class="section level1" number="11">
-<h1><span class="header-section-number">Section 11</span> Multiple linear regression</h1>
-<p>In addition to modeling the relationship between two variables, we can use regression to estimate models with multiple predictors. An OLS model with more than one predictor is thus called multiple linear regression.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.5 for an introduction and <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 10.13 for a more detailed explanations.</p>
-<div id="multiple-predictors" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Multiple predictors</h2>
-<p>The estimation of a least squares model with multiple predictors is very similar to single linear regression. The only difference in estimation is that an additional term (<span class="math inline">\(\beta_i x_i\)</span>) for each predictor is added to the model. A model with two predictors can be expressed as follows:</p>
-<p><span class="math inline">\(y = \alpha + \beta_{1} x_1 + \beta_{2} x_2 + \varepsilon,\)</span></p>
-<p>where now</p>
+<div id="factor-analysis" class="section level1" number="14">
+<h1><span class="header-section-number">Section 14</span> Factor analysis</h1>
+<p>If we think that there might be some underlying variables behind the variables that we observed, we can use Pactor Analysis (FA) to discover these. Procedurally FA is essentially PCA with an extra step that allows us to better separate variables. Here we will only be covering exploratory FA.</p>
+<p>See <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 25.2 and <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 15.1 (and <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> sectin 14.7.1).</p>
+<div id="fa-and-pca" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> FA and PCA</h2>
+<p>The extra step that distinguishes FA from PCA is the rotation of principal axes. This is done in order to obtain more meaningful factors (equivalent to PCs in PCA). Thus, the factors are not maximizing variance but instead describing some underlying variance in data. As such, factors in FA are the underlying <strong>latent variables</strong> that are loaded by the observed variables that we have. A common example are psychological traits: we can not measure these directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that are then traits. This leads to some distinct differences between FA and PCA:</p>
 <ul>
-<li><span class="math inline">\(\beta_1\)</span> is a coefficient of <span class="math inline">\(x_1\)</span> and</li>
-<li><span class="math inline">\(\beta_2\)</span> is a coefficient of <span class="math inline">\(x_2\)</span>.</li>
+<li>PCA aims to explain total variance while FA aims to explain covariances.</li>
+<li>PCs are uniquely defined while factors depend on rotation method</li>
 </ul>
-<p>The interpretation and diagnostics of the model is now more complicated as now we need to consider both predictors.</p>
-<p>The addition of a second term means that our model is no longer a line but rather a pane (see Figure 12.14 in <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span>). This entire pane is now affected by multiple variables which means that <span class="math inline">\(\beta_1\)</span> is influenced by the addition of <span class="math inline">\(\beta_2\)</span>.</p>
-<p>Why use multiple predictors? This allows to control the effects of different variables on the response. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions.</p>
+<p>How do we decide which method to use? If our goal would be to summarize variables into a smaller set of variables, then we should use PCA. If the goal is to determine some underlying variables, then we should use FA.</p>
 </div>
-<div id="predictor-selection" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Predictor selection</h2>
-<p>Constructing a model involves choosing which predictors to include. To get a quick understanding of how variables are related, first take a look at pairwise scatterplots.</p>
-<p>In Jamovi: <code>Regression &gt; Correlation Matrix | Correlation Matrix</code>.<br />
-In R: <code>pairs(data)</code></p>
-<p>How do we know which predictors to include and which to omit? We should start with estimating a model with all the predictors that we theoretically expect to have an effect on the response and then move on to empirical considerations.</p>
-<p>While there is no general consensus about what to do with coefficients that are not statistically significant, from an empirical point of view these should be omitted from a model.</p>
-<p>A traditional approach to testing combinations of predictors would be to examine statistical significance of coefficients but this would lead to the multiple comparisons problem and is not suggested anymore. Instead, we can use a parameter such as the Akaike information criterion (AIC) and apply backward elimination or forward selection to determine which combination of predictors results in the best model. See <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 3.3 on subset selection methods.</p>
-<div id="akaike-information-criterion" class="section level3" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> Akaike information criterion</h3>
-<p>For linear regression the information criterion is calculated as follows:</p>
-<p><span class="math inline">\(AIC = n \times log(\frac{RSS}{n}) + 2 K,\)</span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of observations, <span class="math inline">\(RSS\)</span> the residual sums of squares and <span class="math inline">\(K\)</span> the number of predictors in a model.</p>
-<p>The model is higher if model performs worse and has more predictors. Thus, lower value of AIC indicates a better model. Note that values of AIC can only be compared for models that have the same response variable.</p>
-<p>See <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.11.</p>
+<div id="orthogonal-factor-model" class="section level2" number="14.2">
+<h2><span class="header-section-number">14.2</span> Orthogonal factor model</h2>
+<p>In PCA each PC was a linear function of variables but in FA the variables are expressed as linear combinations of factors. Because of this, the model is also be defined differently:</p>
+<p><span class="math display">\[x_j = q_{jl} F_l + U_j +\mu_j,\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(x_j\)</span> is a variable <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(q_{jl}\)</span> the loading of the <span class="math inline">\(j\)</span>th variable on the <span class="math inline">\(l\)</span>th common factor,</li>
+<li><span class="math inline">\(F_l\)</span> the <span class="math inline">\(l\)</span>th common factor,</li>
+<li><span class="math inline">\(U_j\)</span> the <span class="math inline">\(j\)</span>th specific factor and</li>
+<li><span class="math inline">\(\mu_j\)</span> the mean of <span class="math inline">\(x_j\)</span>.</li>
+</ul>
 </div>
-<div id="model-comparison-with-f-test" class="section level3" number="11.2.2">
-<h3><span class="header-section-number">11.2.2</span> Model comparison with F-test</h3>
-<p>Model fit can be estimated in the hypothesis testing framework using F-test. This is often used to estimate a general model fit as it allows us to compare the statistical significance of difference between two models. The F-statistic is calculated as follows:</p>
-<p><span class="math display">\[F = \frac{RSS_1 - RSS_1 / k}{RSS_2/(n-p-1)},\]</span></p>
-<p>where <span class="math inline">\(RSS_1\)</span> is the residual sum of squares of reduced model and <span class="math inline">\(RSS_2\)</span> the same for full model, <span class="math inline">\(k\)</span> the difference in the number of parameters between two models, <span class="math inline">\(p\)</span> the number of parameters and <span class="math inline">\(n\)</span> the number of observations. The test statistic is estimated on F-distribution with <span class="math inline">\(df_1 = k\)</span> and <span class="math inline">\(df_2 = n-p-1\)</span>.</p>
-<p>For example, if our reduced model is <span class="math inline">\(y = \alpha + \varepsilon\)</span> and full model <span class="math inline">\(y = \alpha + \beta_{1} x_1 + \beta_{2} x_2 + \varepsilon\)</span>, then we would test whether or not the two terms improve model fit compared to just the intercept (<span class="math inline">\(E(y)\)</span>) and our hypotheses would thus be as follows:</p>
-<p><span class="math inline">\(H_0: \beta_1 = \beta_2 = 0\)</span><br />
-<span class="math inline">\(H_1: \beta_1 \neq 0 \text{ or } \beta_2 \neq 0\)</span></p>
+<div id="estimating-the-model" class="section level2" number="14.3">
+<h2><span class="header-section-number">14.3</span> Estimating the model</h2>
+<p>There are three methods for extracting factors. We are not going to cover the differences but these are:</p>
+<ul>
+<li>minimum residuals,</li>
+<li>maximum likelihood, and</li>
+<li>principal axis method.</li>
+</ul>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis</code>.</p>
+</div>
+<div id="rotations" class="section level2" number="14.4">
+<h2><span class="header-section-number">14.4</span> Rotations</h2>
+<p>To discover factors that best separate our variables, we need apply a rotation on PCs. There are three commonly used methods for doing this.</p>
+<div id="varimax" class="section level3" number="14.4.1">
+<h3><span class="header-section-number">14.4.1</span> Varimax</h3>
+<p>This rotation involves maximizing variances of squared loadings within factors. Factors remain orthogonal, thus uncorrelated.</p>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Varimax</code>.</p>
+</div>
+<div id="oblimin" class="section level3" number="14.4.2">
+<h3><span class="header-section-number">14.4.2</span> Oblimin</h3>
+<p>This rotation also involves maximization of squared loading variances within factors. The difference from Varimax rotation is that factors are not necessarily orthogonal but oblique, thus can be correlated. The resulting factors may be more similar to each other than in case of Varimax but the variances of loadings within factors are likely to be higher.</p>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Oblimin</code>.</p>
+</div>
+<div id="quartimax" class="section level3" number="14.4.3">
+<h3><span class="header-section-number">14.4.3</span> Quartimax</h3>
+<p>This rotation aims to maximize variances of factor loadings within variables (not factors). The result is a factor structure in which each variable loads as few factors as possible.</p>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Quartimax</code>.</p>
 </div>
 </div>
-<div id="multicollinearity" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Multicollinearity</h2>
-<p>In addition the assumptions described in the previous section, multiple predictors introduce the possibility of multicollinearity. The idea is that it should not be possible to linearly predict any of the predictors from others predictors, i.e. predictors should not be (highly) correlated. Otherwise the coefficients are not reliable. Multicollinearity can be detected with variance inflation factor (VIF) by using <span class="math inline">\(R^2\)</span> to estimate for each predictor how much of the variation in one predictor can be predicted from others.</p>
-<p><span class="math display">\[VIF_{k} = \frac{1}{1 - R^{2}_{k-1}},\]</span></p>
-<p>where <span class="math inline">\(R^{2}_{k-1}\)</span> is <span class="math inline">\(R^{2}\)</span> for a model that has predictor <span class="math inline">\(k\)</span> as a response variable and all other predictors as predictor variables. Often VIF value of 5 is considered to be too high and indicate that some predictors should omitted from the model.</p>
+<div id="assumptions" class="section level2" number="14.5">
+<h2><span class="header-section-number">14.5</span> Assumptions</h2>
+<p>While PCA has essentially no assumptions, FA has a few. These can be described and tested for as explained below.</p>
+<div id="sphericity" class="section level3" number="14.5.1">
+<h3><span class="header-section-number">14.5.1</span> Sphericity</h3>
+<p>Variables need to be correleated to a certain extent for us to able to summarize them into a smaller set of factors. Whether or not correlation matrix is statistically significantly different from zero can be tested with Bartlett’s test.</p>
+<p><span class="math inline">\(H_0:\)</span> Correlation matrix is zero
+<span class="math inline">\(H_1:\)</span> Correlation matrix is different from zero</p>
+<p>If the test returns <span class="math inline">\(p \ge 0.05\)</span>, then we should not trust the results of factor analysis.</p>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Assumption Checks | Bartlett's test of sphericity</code>.</p>
+</div>
+<div id="sampling-adequacy" class="section level3" number="14.5.2">
+<h3><span class="header-section-number">14.5.2</span> Sampling adequacy</h3>
+<p>In addition to correlations it is necessary that each factor is not related to only few variables. We can use Kaiser-Meyer-Olkin (KMO) measure to determine if sum of partial correlations is higher than sum of correlations or not. The value of the measure is interpreted as follows regarding the suitability of FA.</p>
+<ul>
+<li>0 … 0.6 - Not suitable</li>
+<li>6… 0.7 - Suitable</li>
+<li>0.7 … 0.9 - Adequate</li>
+<li>0.9… 1 - Excellent</li>
+</ul>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Assumption Checks | KMO measure of sampling adequacy</code>.</p>
+</div>
+</div>
+<div id="number-of-components-1" class="section level2" number="14.6">
+<h2><span class="header-section-number">14.6</span> Number of components</h2>
+<p>The methods that can be used to determine an optimal number of components are the same as those for PCA. For FA a further consideration can be the factor loadings or uniqueness. If some variable has a very high uniqueness, adding factors might increase the respective communality.</p>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Number of Components</code>.</p>
+</div>
+<div id="interpretation-1" class="section level2" number="14.7">
+<h2><span class="header-section-number">14.7</span> Interpretation</h2>
+<div id="loadings-1" class="section level3" number="14.7.1">
+<h3><span class="header-section-number">14.7.1</span> Loadings</h3>
+<p>The interpretation of loadings in FA is similar to PCA. For FA only loadings that are higher than 0.5 should be considered and used for interpretation of factors.</p>
+<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Factor Loadings | Hide loadings below: 0.5</code>.</p>
+</div>
+<div id="uniqueness-and-communality" class="section level3" number="14.7.2">
+<h3><span class="header-section-number">14.7.2</span> Uniqueness and communality</h3>
+<p>Uniqueness is a measure of proportion of variation explained by a particular variable and not by factors. Communality is the inverse of this (<span class="math inline">\(1-Uniquenss\)</span>), i.e. variation of a variable that is shared with other variables.</p>
+</div>
+<div id="complexity" class="section level3" number="14.7.3">
+<h3><span class="header-section-number">14.7.3</span> Complexity</h3>
+<p>This can be calculated for each variable. It expresses the number of factors on which a variable has a substantial loading.</p>
+</div>
+</div>
+<div id="controversies" class="section level2" number="14.8">
+<h2><span class="header-section-number">14.8</span> Controversies</h2>
+<p>FA is a controversial method in statistics. This is due to the different options for choosing the number of factors, methods of estimating the model, rotation techniques and subjectivity of interpreting factors.</p>
 
 </div>
 </div>
@@ -402,8 +456,8 @@ Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Ja
           </div>
         </div>
       </div>
-<a href="data-transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="principal-component-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
