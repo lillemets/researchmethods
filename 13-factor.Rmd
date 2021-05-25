@@ -1,21 +1,22 @@
 # Factor analysis
 
-If we think that there might be some underlying variables behind the variables that we observed, we can use Pactor Analysis (FA) to discover these. Procedurally FA is essentially PCA with an extra step that allows us to better separate variables. Here we will only be covering exploratory FA. 
+If we think that there might be some underlying variables behind the variables that we observed, we can use Pactor Analysis (FA) to discover these. Here we will only be covering exploratory FA. 
 
-See @crawley_r_2013 section 25.2 and @navarro_learning_2018 section 15.1 (and @hastie_elements_2017 sectin 14.7.1). 
+See @crawley_r_2013 section 25.2 and @navarro_learning_2018 section 15.1 (and @hastie_elements_2017 section 14.7.1). 
 
 ## FA and PCA
 
-The extra step that distinguishes FA from PCA is the rotation of principal axes. This is done in order to obtain more meaningful factors (equivalent to PCs in PCA). Thus, the factors are not maximizing variance but instead describing some underlying variance in data. As such, factors in FA are the underlying **latent variables** that are loaded by the observed variables that we have. A common example are psychological traits: we can not measure these directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that are then traits. This leads to some distinct differences between FA and PCA:
+Both FA and PCA are variation maximization techniques. In PCA we are attempting to maximize the total variation in data. In factor analysis we instead try to maximize some underlying shared variation between variables. As such, factors in FA are the underlying **latent variables** that load the observed variables that we have. Factors are equivalent to principal components (PCs) in PCA. A common example are personality traits: we can not measure these directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that represent these traits. The distinction leads to some differences between FA and PCA:
 
 - PCA aims to explain total variance while FA aims to explain covariances.
-- PCs are uniquely defined while factors depend on rotation method
+- PCs are uniquely defined while factors depend on estimation and rotation method
+- In PCA each PC is a linear combination of variables but in FA the variables are expressed as linear combinations of factors.
 
 How do we decide which method to use? If our goal would be to summarize variables into a smaller set of variables, then we should use PCA. If the goal is to determine some underlying variables, then we should use FA.
 
 ## Orthogonal factor model
 
-In PCA each PC was a linear function of variables but in FA the variables are expressed as linear combinations of factors. Because of this, the model is also be defined differently:
+The factor model is defined as
 
 $$x_j = q_{jl} F_l + U_j +\mu_j,$$
 
@@ -27,8 +28,6 @@ where
 - $U_j$ the $j$th specific factor and 
 - $\mu_j$ the mean of $x_j$. 
 
-## Estimating the model
-
 There are three methods for extracting factors. We are not going to cover the differences but these are:
 
 - minimum residuals, 
@@ -39,7 +38,7 @@ In Jamovi: `Factor > Exploratory Factor Analysis`.
 
 ## Rotations
 
-To discover factors that best separate our variables, we need apply a rotation on PCs. There are three commonly used methods for doing this.
+To better define factors that best separate our variables, we can apply a rotation on factors. This results in an adjusted loadings matrix. There are several techniques for rotation. Of these the three most common are described below.
 
 ### Varimax
 
@@ -95,18 +94,18 @@ In Jamovi: `Factor > Exploratory Factor Analysis | Number of Components`.
 
 ### Loadings
 
-The interpretation of loadings in FA is similar to PCA. For FA only loadings that are higher than 0.5 should be considered and used for interpretation of factors.
+The interpretation of loadings in FA is similar to PCA. For FA only loadings that are higher than 0.3 or 0.5 should be considered and used for interpretation of factors.
 
 In Jamovi: `Factor > Exploratory Factor Analysis | Factor Loadings | Hide loadings below: 0.5`.
 
 ### Uniqueness and communality
 
-Uniqueness is a measure of proportion of variation explained by a particular variable and not by factors. Communality is the inverse of this ($1-Uniquenss$), i.e. variation of a variable that is shared with other variables.
+Uniqueness is a measure of proportion of variation explained by a particular variable and not by factors. Communality is the inverse of this ($1-Uniquenss$), i.e. the variation of a variable that is shared with other variables.
 
 ### Complexity
 
-This can be calculated for each variable. It expresses the number of factors on which a variable has a substantial loading.
+This can be calculated for each variable. It expresses the number of factors which load the variable.
 
-## Controversies
+---
 
-FA is a controversial method in statistics. This is due to the different options for choosing the number of factors, methods of estimating the model, rotation techniques and subjectivity of interpreting factors.
+FA is a controversial method in statistics because we can never be sure if the factors actually exist and were correctly estimated. This is due to the different options for choosing the number of factors, methods of estimating the model, rotation techniques and subjectivity of interpreting factors.

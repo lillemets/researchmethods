@@ -2,7 +2,7 @@
 
 Here is an index of slides used to explain the methods during meetings. The essential information on the slides is covered in the course notes but slides might add some explanations and visuals using example data sets.
 
-On slides, click `h` to see keyboard shortcuts for navigation.
+On slides press `h` button to see keyboard shortcuts for navigation.
 
 1. [Introduction](./slides/01_introduction.html)
 2. [Descriptive statistics](./slides/02_descriptive.html)

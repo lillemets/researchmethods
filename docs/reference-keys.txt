@@ -143,7 +143,6 @@ biplots
 factor-analysis
 fa-and-pca
 orthogonal-factor-model
-estimating-the-model
 rotations
 varimax
 oblimin
@@ -156,6 +155,15 @@ interpretation-1
 loadings-1
 uniqueness-and-communality
 complexity
-controversies
+cluster-analysis
+cluster-analysis-1
+distance-measures
+hierarchical-clustering
+linkage-methods
+number-of-clusters
+visualization
+k-means-clustering
+number-of-clusters-gap-statistic
+visualization-1
 slides
 references

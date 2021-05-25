@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 14 Factor analysis | Research methods</title>
-  <meta name="description" content="Section 14 Factor analysis | Research methods course materials" />
+  <title>Section 15 Cluster analysis | Research methods</title>
+  <meta name="description" content="Section 15 Cluster analysis | Research methods course materials" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 14 Factor analysis | Research methods" />
+  <meta property="og:title" content="Section 15 Cluster analysis | Research methods" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Section 14 Factor analysis | Research methods course materials" />
+  <meta property="og:description" content="Section 15 Cluster analysis | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 14 Factor analysis | Research methods" />
+  <meta name="twitter:title" content="Section 15 Cluster analysis | Research methods" />
   
-  <meta name="twitter:description" content="Section 14 Factor analysis | Research methods course materials" />
+  <meta name="twitter:description" content="Section 15 Cluster analysis | Research methods course materials" />
   
 
 
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="principal-component-analysis.html"/>
-<link rel="next" href="cluster-analysis.html"/>
+<link rel="prev" href="factor-analysis.html"/>
+<link rel="next" href="slides.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -350,117 +350,96 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="factor-analysis" class="section level1" number="14">
-<h1><span class="header-section-number">Section 14</span> Factor analysis</h1>
-<p>If we think that there might be some underlying variables behind the variables that we observed, we can use Pactor Analysis (FA) to discover these. Here we will only be covering exploratory FA.</p>
-<p>See <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 25.2 and <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 15.1 (and <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.7.1).</p>
-<div id="fa-and-pca" class="section level2" number="14.1">
-<h2><span class="header-section-number">14.1</span> FA and PCA</h2>
-<p>Both FA and PCA are variation maximization techniques. In PCA we are attempting to maximize the total variation in data. In factor analysis we instead try to maximize some underlying shared variation between variables. As such, factors in FA are the underlying <strong>latent variables</strong> that load the observed variables that we have. Factors are equivalent to principal components (PCs) in PCA. A common example are personality traits: we can not measure these directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that represent these traits. The distinction leads to some differences between FA and PCA:</p>
+<div id="cluster-analysis" class="section level1" number="15">
+<h1><span class="header-section-number">Section 15</span> Cluster analysis</h1>
+<p>The purpose of cluster analysis is to categorize objects into some homogeneous groups. It is different from classification in the sense that we do not have prior information on classes. The assignment of objects in cluster analysis is based on the differences between observations by some variables.</p>
+<p>See the beginning of section 14.3 in <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span>.</p>
+<div id="cluster-analysis-1" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> Cluster analysis</h2>
+<p>Clustering methods can be divided into model-based and distance-based methods. Here we considered the latter. The distance-based methods can be further divided into hierarchical clustering and partitioning (K-means) methods. These are explained below.</p>
+<p>Although a common application of cluster analysis is to categorize observations, it can also be applied to group variables. In the latter case distances by observations are considered.</p>
+<p>As with the previous multivariate statistics methods, it is important to be mindful of variances of variables. Variables with higher variances will be given more leverage in deciding clusters. If this is deemed undesirable, data should be standardized prior to clustering.</p>
+<div id="distance-measures" class="section level3" number="15.1.1">
+<h3><span class="header-section-number">15.1.1</span> Distance measures</h3>
+<p>The assignment of objects into groups should be such that observations are more similar within groups than between groups. This means that clustering is done according to measures of similarities or dissimilarities, i.e. distances. For matrix <span class="math inline">\(X : n \times p\)</span> with <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> variables the distances <span class="math inline">\(d\)</span> between objects <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> can be described as a matrix <span class="math inline">\(D : n \times n\)</span> where <span class="math inline">\(d_{ij} = d(x_i,x_j)\)</span>.</p>
+<p>There are various measures for dissimilarity but most common are Euclidean and Manhattan distances. These can be calculated for numeric variables. Euclidean distance expresses a “direct” distance between two points. It is calculated according to the Pythagorean theorem. Manhattan distance can be thought of as a “city block” distance. The distances between objects <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> can be calculated respectively as follows:</p>
+<p>$d_{Euclidean}(x_i,x_j) = [^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}, $<br />
+<span class="math inline">\(d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|.\)</span></p>
+<p>Distance measures for ordinal and nominal variables also exist but are not explained here.</p>
+</div>
+</div>
+<div id="hierarchical-clustering" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Hierarchical clustering</h2>
+<p>Hierarchical clustering is a process where clusters are incrementally constructed. Grouping of objects can start from the most similar objects in which case the process is agglomerative (“bottom-up”). In contrast, a divisive process (“top-down”) begins with most different objects and moves on to more similar objects. The agglomerative method is more common and also explained here.</p>
+<p>See <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.12.</p>
+<p>Agglomerative hierarchical clustering has the following steps.</p>
+<ol style="list-style-type: decimal">
+<li>Initial number of clusters is <span class="math inline">\(n\)</span>, so each cluster contains one object.</li>
+<li>Calculate distance matrix <span class="math inline">\(D\)</span> that expresses pairwise distances between clusters (objects).</li>
+<li>Find the smallest distance and merge the objects with smallest distance into a single cluster.</li>
+<li>Calculate a new distance matrix <span class="math inline">\(D\)</span> that now includes distance between the new cluster and all other clusters using a linkage method (see below).</li>
+<li>Repeat the previous two steps until all objects are in a single cluster.</li>
+</ol>
+<p>In Jamovi: <code>snowCluster &gt; Hierarchical clustering method</code>.</p>
+<div id="linkage-methods" class="section level3" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Linkage methods</h3>
+<p>Computing distance between two objects is simple because each object represents a single point in an Euclidean space. Calculating distances becomes more complicated once we have clusters containing more than one point. There are various approaches to finding the distance between cluster <span class="math inline">\(IJ\)</span> and all other clusters <span class="math inline">\(K\)</span>:</p>
 <ul>
-<li>PCA aims to explain total variance while FA aims to explain covariances.</li>
-<li>PCs are uniquely defined while factors depend on estimation and rotation method</li>
-<li>In PCA each PC is a linear combination of variables but in FA the variables are expressed as linear combinations of factors.</li>
+<li>single linkage: <span class="math inline">\(d_{IJ,k} = min(d_{i,K}, d_{j,K})\)</span>;</li>
+<li>complete linkage: <span class="math inline">\(d_{IJ,k} = max(d_{I,K}, d_{J,K})\)</span>;</li>
+<li>average linkage: <span class="math inline">\(d_{IJ,k} = \sum_{i \in IJ} \sum_{k \in K} d_{ik} / (n_{ij}n_k)\)</span>;</li>
+<li>Ward’s method: compares the within-cluster and between-cluster squared distances.</li>
 </ul>
-<p>How do we decide which method to use? If our goal would be to summarize variables into a smaller set of variables, then we should use PCA. If the goal is to determine some underlying variables, then we should use FA.</p>
 </div>
-<div id="orthogonal-factor-model" class="section level2" number="14.2">
-<h2><span class="header-section-number">14.2</span> Orthogonal factor model</h2>
-<p>The factor model is defined as</p>
-<p><span class="math display">\[x_j = q_{jl} F_l + U_j +\mu_j,\]</span></p>
-<p>where</p>
+<div id="number-of-clusters" class="section level3" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> Number of clusters</h3>
+<p>The number of clusters to be acquired can be decided on using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are the longest.</p>
+</div>
+<div id="visualization" class="section level3" number="15.2.3">
+<h3><span class="header-section-number">15.2.3</span> Visualization</h3>
+<p>The clusters in case of hierarchical clustering are estimated incrementally, resulting in a nested structure. This tree-shaped structure can be visualized by a <strong>dendrogram</strong>.</p>
+<p>In Jamovi: <code>snowCluster &gt; Hierarchical clustering method &gt; Plot | Plot dendrogram</code>.</p>
+</div>
+</div>
+<div id="k-means-clustering" class="section level2" number="15.3">
+<h2><span class="header-section-number">15.3</span> K-means clustering</h2>
+<p>This method groups objects by partitioning. The goal is to partition objects <span class="math inline">\(x\)</span> into <span class="math inline">\(K\)</span> clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to the closest centroid. This mean point of clusters <span class="math inline">\(\bar x_1, ... \bar x_K\)</span> needs to be calculated for each of the <span class="math inline">\(K\)</span> clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:</p>
+<p><span class="math display">\[ESS = \sum^K_{k = 1} \sum_{c(i)=k} (x_i - \bar  x_k)^T(x_i - \bar x_k),\]</span></p>
+<p>where <span class="math inline">\(c(i)\)</span> is the cluster containing <span class="math inline">\(x_i\)</span>. Simply put, we attempt to minimize the sum of distances within all clusters. The function <span class="math inline">\(ESS\)</span> is minimized iteratively as described below.</p>
+<p>See <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.6.</p>
+<p>K-means clustering involves the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>We start with a distance matrix <span class="math inline">\(D\)</span> based on
 <ul>
-<li><span class="math inline">\(x_j\)</span> is a variable <span class="math inline">\(j\)</span>,</li>
-<li><span class="math inline">\(q_{jl}\)</span> the loading of the <span class="math inline">\(j\)</span>th variable on the <span class="math inline">\(l\)</span>th common factor,</li>
-<li><span class="math inline">\(F_l\)</span> the <span class="math inline">\(l\)</span>th common factor,</li>
-<li><span class="math inline">\(U_j\)</span> the <span class="math inline">\(j\)</span>th specific factor and</li>
-<li><span class="math inline">\(\mu_j\)</span> the mean of <span class="math inline">\(x_j\)</span>.</li>
-</ul>
-<p>There are three methods for extracting factors. We are not going to cover the differences but these are:</p>
-<ul>
-<li>minimum residuals,</li>
-<li>maximum likelihood, and</li>
-<li>principal axis method.</li>
-</ul>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis</code>.</p>
+<li>random assignment of objects to <span class="math inline">\(K\)</span> clusters with cluster means, or</li>
+<li>some (random) cluster means.</li>
+</ul></li>
+<li>Calculate squared Euclidean distance between each object and each cluster mean. Reassign each item to its nearest cluster mean, resulting in decreased <span class="math inline">\(ESS\)</span>.</li>
+<li>Update cluster means.</li>
+<li>Repeat the previous two steps until objects can not be reassigned, so each object is closest to its own cluster mean.</li>
+</ol>
+<p>In Jamovi: <code>snowCluster &gt; K-means clustering method</code>.</p>
+<p>An alternative is <strong>K-medoids clustering</strong> in which case the centroids are not some mean values but represented by actual objects.</p>
+<div id="number-of-clusters-gap-statistic" class="section level3" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> Number of clusters (Gap statistic)</h3>
+<p>The Gap statistic is a technique used to determine the optimal number of clusters. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. The optimal number of clusters is at the value of the Gap statistic <span class="math inline">\(k\)</span> where <span class="math inline">\(k + se(k)\)</span> is higher or equal to the estimate <span class="math inline">\(k\)</span> of next number of clusters.</p>
+<p>In Jamovi: <code>snowCluster &gt; K-means clustering method &gt; Plots | Optimal number of clusters</code>.</p>
 </div>
-<div id="rotations" class="section level2" number="14.3">
-<h2><span class="header-section-number">14.3</span> Rotations</h2>
-<p>To better define factors that best separate our variables, we can apply a rotation on factors. This results in an adjusted loadings matrix. There are several techniques for rotation. Of these the three most common are described below.</p>
-<div id="varimax" class="section level3" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> Varimax</h3>
-<p>This rotation involves maximizing variances of squared loadings within factors. Factors remain orthogonal, thus uncorrelated.</p>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Varimax</code>.</p>
-</div>
-<div id="oblimin" class="section level3" number="14.3.2">
-<h3><span class="header-section-number">14.3.2</span> Oblimin</h3>
-<p>This rotation also involves maximization of squared loading variances within factors. The difference from Varimax rotation is that factors are not necessarily orthogonal but oblique, thus can be correlated. The resulting factors may be more similar to each other than in case of Varimax but the variances of loadings within factors are likely to be higher.</p>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Oblimin</code>.</p>
-</div>
-<div id="quartimax" class="section level3" number="14.3.3">
-<h3><span class="header-section-number">14.3.3</span> Quartimax</h3>
-<p>This rotation aims to maximize variances of factor loadings within variables (not factors). The result is a factor structure in which each variable loads as few factors as possible.</p>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Quartimax</code>.</p>
-</div>
-</div>
-<div id="assumptions" class="section level2" number="14.4">
-<h2><span class="header-section-number">14.4</span> Assumptions</h2>
-<p>While PCA has essentially no assumptions, FA has a few. These can be described and tested for as explained below.</p>
-<div id="sphericity" class="section level3" number="14.4.1">
-<h3><span class="header-section-number">14.4.1</span> Sphericity</h3>
-<p>Variables need to be correleated to a certain extent for us to able to summarize them into a smaller set of factors. Whether or not correlation matrix is statistically significantly different from zero can be tested with Bartlett’s test.</p>
-<p><span class="math inline">\(H_0:\)</span> Correlation matrix is zero
-<span class="math inline">\(H_1:\)</span> Correlation matrix is different from zero</p>
-<p>If the test returns <span class="math inline">\(p \ge 0.05\)</span>, then we should not trust the results of factor analysis.</p>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Assumption Checks | Bartlett's test of sphericity</code>.</p>
-</div>
-<div id="sampling-adequacy" class="section level3" number="14.4.2">
-<h3><span class="header-section-number">14.4.2</span> Sampling adequacy</h3>
-<p>In addition to correlations it is necessary that each factor is not related to only few variables. We can use Kaiser-Meyer-Olkin (KMO) measure to determine if sum of partial correlations is higher than sum of correlations or not. The value of the measure is interpreted as follows regarding the suitability of FA.</p>
-<ul>
-<li>0 … 0.6 - Not suitable</li>
-<li>6… 0.7 - Suitable</li>
-<li>0.7 … 0.9 - Adequate</li>
-<li>0.9… 1 - Excellent</li>
-</ul>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Assumption Checks | KMO measure of sampling adequacy</code>.</p>
-</div>
-</div>
-<div id="number-of-components-1" class="section level2" number="14.5">
-<h2><span class="header-section-number">14.5</span> Number of components</h2>
-<p>The methods that can be used to determine an optimal number of components are the same as those for PCA. For FA a further consideration can be the factor loadings or uniqueness. If some variable has a very high uniqueness, adding factors might increase the respective communality.</p>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Number of Components</code>.</p>
-</div>
-<div id="interpretation-1" class="section level2" number="14.6">
-<h2><span class="header-section-number">14.6</span> Interpretation</h2>
-<div id="loadings-1" class="section level3" number="14.6.1">
-<h3><span class="header-section-number">14.6.1</span> Loadings</h3>
-<p>The interpretation of loadings in FA is similar to PCA. For FA only loadings that are higher than 0.3 or 0.5 should be considered and used for interpretation of factors.</p>
-<p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Factor Loadings | Hide loadings below: 0.5</code>.</p>
-</div>
-<div id="uniqueness-and-communality" class="section level3" number="14.6.2">
-<h3><span class="header-section-number">14.6.2</span> Uniqueness and communality</h3>
-<p>Uniqueness is a measure of proportion of variation explained by a particular variable and not by factors. Communality is the inverse of this (<span class="math inline">\(1-Uniquenss\)</span>), i.e. the variation of a variable that is shared with other variables.</p>
-</div>
-<div id="complexity" class="section level3" number="14.6.3">
-<h3><span class="header-section-number">14.6.3</span> Complexity</h3>
-<p>This can be calculated for each variable. It expresses the number of factors which load the variable.</p>
-<hr />
-<p>FA is a controversial method in statistics because we can never be sure if the factors actually exist and were correctly estimated. This is due to the different options for choosing the number of factors, methods of estimating the model, rotation techniques and subjectivity of interpreting factors.</p>
+<div id="visualization-1" class="section level3" number="15.3.2">
+<h3><span class="header-section-number">15.3.2</span> Visualization</h3>
+<p>When we apply K-means clustering we do not obtain a nested structure and therefore can not express the clustering as a dendrogram.</p>
+<p>We can create a plot that shows the locations of objects and cluster centroids on a two-dimensional plot (Cluster plot in Jamovi). The dimensions can be found via PCA or multidimensional scaling.</p>
+<p>In Jamovi: <code>snowCluster &gt; K-means clustering method &gt; Plots | Cluster plot</code>.</p>
+<p>For the interpretation of clusters we can see the mean values of variables by clusters.</p>
+<p>In Jamovi: <code>snowCluster &gt; K-means clustering method &gt; Plots | Plot means across clusters</code>.</p>
 
 </div>
 </div>
 </div>
 <h3> References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-crawley_r_2013" class="csl-entry">
-Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
-</div>
 <div id="ref-hastie_elements_2017" class="csl-entry">
 Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2017. <em>The <span>Elements</span> of <span>Statistical</span> <span>Learning</span>: <span>Data</span> <span>Mining</span>, <span>Inference</span>, and <span>Prediction</span>, <span>Second</span> <span>Edition</span></em>. 2nd ed. Springer <span>Series</span> in <span>Statistics</span>. New York: Springer-Verlag.
-</div>
-<div id="ref-navarro_learning_2018" class="csl-entry">
-Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.
 </div>
 </div>
             </section>
@@ -468,8 +447,8 @@ Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Ja
           </div>
         </div>
       </div>
-<a href="principal-component-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="cluster-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="factor-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

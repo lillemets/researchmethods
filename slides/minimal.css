@@ -86,8 +86,13 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
 
 .compact td {
   font-size: 0.6em;
-  line-height: 0.5em;
-  padding: 2px;
+  line-height: 1em;
+  padding: 0px;
+}
+
+.compact th {
+  font-size: 0.6em;
+  padding: 0px;
 }
 
 .scroll {
