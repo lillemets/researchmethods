@@ -11,4 +11,10 @@ On slides press `h` button to see keyboard shortcuts for navigation.
 4. [Analysis of variance](./slides/06_anova.html)
 5. [Correlation analysis](./slides/07_correlation.html)
 7. [Regression. Simple linear regression](./slides/08_regression.html)
+8. [Data transformations](./slides/09_transformations.html)
+9. [Multiple linear regression](./slides/10_multiple.html)
+10. [Logistic regression](./slides/11_logistic.html)
+11. [Principal component analysis](./slides/12_pca.html)
+12. [Factor analysis](./slides/13_factor.html)
+13. [Clustering](./slides/14_cluster.html)
 

@@ -160,8 +160,8 @@ cluster-analysis-1
 distance-measures
 hierarchical-clustering
 linkage-methods
-number-of-clusters
 visualization
+number-of-clusters
 k-means-clustering
 number-of-clusters-gap-statistic
 visualization-1

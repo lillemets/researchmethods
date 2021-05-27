@@ -300,3 +300,6 @@ class: middle
 
 class: inverse
 
+???
+
+More correlation measures. Example data with a lot of variables.

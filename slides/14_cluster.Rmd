@@ -1,0 +1,519 @@
+---
+title: Cluster analysis
+subtitle: Research methods
+author: Jüri Lillemets
+date: "`r Sys.Date()`"
+output_yaml: _output.yml
+editor_options: 
+  chunk_output_type: console
+---
+
+``` {r setup, include = F}
+# Settings
+knitr::opts_chunk$set(echo = F, warning = F, message = F, dpi = 200, fig.height = 4)
+# Load packages
+library('magrittr');library('knitr')
+library('cluster')
+# Options
+options(scipen = F, digits = 3)
+# Set colors
+Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+```
+
+class: center middle clean
+
+# How to group objects?
+
+---
+
+class: center middle inverse
+
+# What is clustering?
+
+---
+
+## Clustering and classification
+
+In classification we already know the classes and use that information to determine classification rules.
+
+In clustering we do not have any information on possible existing classes and we can not compare clusters to classes.
+
+---
+
+## Why objects?
+
+We can cluster both observations and variables. 
+
+That's why we refer to **objects** as the phenomena to be assigned to clusters.
+
+---
+
+## Standardization
+
+Variables with higher variances have a higher influence on how the objects are clustered. 
+
+If this is not desired, variables should be standardized.
+
+---
+
+Why should we standardize?
+
+``` {r}
+data(cloth, package = 'boot')
+par(bty = 'n', family = 'RobotoCondensed', mfrow = 1:2)
+plot(cloth, main = "Raw data", 
+     xlab = "The length of the roll of cloth", 
+     ylab = "The number of flaws found in the roll", 
+     pch = 20, asp = 1)
+plot(scale(cloth), main = "Scaled data", 
+     xlab = "The length of the roll of cloth", 
+     ylab = "The number of flaws found in the roll", 
+     pch = 20, asp = 1)
+```
+
+---
+
+Clustering can be applied in practice for various purposes.
+
+Marketing and sales - find homogeneous groups of customers so that promotional campaigns could be addresses more accurately and thus more efficiently.
+
+Medicine - cluster patients with similar symptoms or predispositions for treatment or discovery of risk.
+
+Finance - categorize enterprises into different types based on some financial or other characteristics.
+
+Biology - assign plants to species depending on characteristics they share.
+
+--
+
+We can cluster anything we want.
+
+---
+
+## Methods
+
+**Model-based** methods where we assume that objects follow mixture of distributions
+
+**Distance-based** methods where we use distances between objects  
+  - **hierarchical** clustering methods
+  - **partitioning** methods
+  
+---
+
+## Distance measures
+
+For distance-based measures we use distances between objects to determine how to assign them into clusters. We look at the most common measures for continuous variables, the Euclidean and Manhattan distances: 
+
+$$d_{Euclidean}(x_i,x_j) = [\sum^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2},$$
+
+$$d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|.$$
+
+--
+
+Distance measures for ordinal and nominal variables also exist but are not explained here.
+
+---
+
+Example data on the number of flaws in cloth for 32 pieces of cloth.
+
+``` {r}
+# Visualizatin of Euclidean and Manhattan distances
+x <- cloth[c(6,27), 1]; y <- cloth[c(6,27), 2]
+par(bty = 'n', family = 'RobotoCondensed', mfrow = 1:2)
+# Euclidean
+plot(cloth, main = "Euclidean distance", 
+     xlab = "The length of the roll of cloth", 
+     ylab = "The number of flaws found in the roll", pch = 20)
+lines(x[1:2], y[1:2], col = Col['red'], lwd = 2)
+# Manhattan
+plot(cloth, main = "Manhattan distance", 
+     xlab = "The length of the roll of cloth", 
+     ylab = "The number of flaws found in the roll", pch = 20)
+lines(c(x[1], x[2]), c(y[1], y[1]), col = Col['red'], lwd = 2)
+lines(c(x[2], x[2]), c(y[1], y[2]), col = Col['red'], lwd = 2)
+```
+
+---
+
+class: center middle inverse
+
+# Hierarchical clustering
+
+---
+
+Clusters are constructed **incrementally**. This can be done
+
+- **divisive**ly ("top-down") where we start from most different objects or
+- **agglomerative**ly ("bottom-up") where we start from most similar objects.
+
+We will explore the agglomerative hierarchical clustering (Agnes - agglomerative nesting).
+
+---
+
+The example data we use contains on 908 measurements on three hawk species.
+
+.compact[
+``` {r}
+data('Hawks', package = 'Stat2Data')
+tail(Hawks[10:19], 10) %>% kable
+```
+]
+
+---
+
+We will use the following variables to cluster the birds.
+
+- `Wing`	Length (in mm) of primary wing feather from tip to wrist it attaches to
+- `Weight`	Body weight (in gm)
+- `Culmen`	Length (in mm) of the upper bill from the tip to where it bumps into the fleshy part of the bird
+- `Hallux`	Length (in mm) of the killing talon
+- `Tail`	Measurement (in mm) related to the length of the tail (invented at the MacBride Raptor Center)
+- `StandardTail`	Standard measurement of tail length (in mm)
+- `Tarsus`	Length of the basic foot bone (in mm)
+- `WingPitFat`	Amount of fat in the wing pit
+- `KeelFat`	Amount of fat on the breastbone (measured by feel
+- `Crop`	Amount of material in the crop, coded from 1=full to 0=empty
+
+---
+
+
+## Process
+
+Agglomerative hierarchical clustering has the following steps.
+
+1. Initial number of clusters is $n$, so each cluster contains one object. 
+2. Calculate distance matrix $D$ that expresses pairwise distances between clusters (objects).
+3. Find the smallest distance and merge the objects with smallest distance into a single cluster.
+4. Calculate a new distance matrix $D$ that now includes distance between the new cluster and all other clusters using a linkage method (see below).
+5. Repeat the previous two steps until all objects are in a single cluster.
+
+---
+
+Let's illustrate the process with two variables and 5 hawks.
+
+``` {r}
+Sample <- Hawks[6:11, c(10,14)]
+par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0))
+plot(Sample, 
+     xlab = "Wing length, mm", ylab = "Tail length, mm", 
+     pch = 20, cex = 2,  asp = 1)
+text(Sample, rownames(Sample), 0, 2)
+```
+
+---
+
+Here's the respective initial Euclidean distance matrix $D$.
+
+``` {r}
+dist(Sample) %>% as.matrix %>% kable
+```
+
+---
+
+exclude: true
+
+What if we have more than two variables? For example three?
+
+``` {r, eval = F}
+par(bty = 'n', family = 'RobotoCondensed', mfrow = 1:2)
+rgl::plot3d(Hawks[6:11, c(10,11,14)], 
+            col = Col['red'], size = 2, type = 's', pch = 20, asp = 1)
+rgl::rglwidget(width = 400)
+```
+
+---
+
+## Linkage methods
+
+How to calculate distance between cluster and a point?
+
+- single linkage: $d_{IJ,k} = min(d_{i,K}, d_{j,K})$;
+- complete linkage: $d_{IJ,k} = max(d_{I,K}, d_{J,K})$; 
+- average linkage: $d_{IJ,k} = \sum_{i \in IJ} \sum_{k \in K} d_{ik} / (n_{ij}n_k)$; 
+- Ward's method: compares the within-cluster and between-cluster squared distances.
+
+---
+
+How to think about single, complete and average linkage?
+
+``` {r}
+par(bty = 'n', family = 'RobotoCondensed')
+plot(Sample, 
+     xlab = "Wing length, mm", ylab = "Tail length, mm", 
+     pch = 20, cex = 2,  asp = 1)
+text(Sample, rownames(Sample), 0, 2)
+```
+
+???
+Draw linkage results.
+
+---
+
+## Dendrogram
+
+The clusters in case of hierarchical clustering are estimated incrementally, resulting in a nested structure. This tree-shaped structure can be visualized by a **dendrogram**.
+
+---
+
+``` {r} 
+par(bty = 'n', family = 'RobotoCondensed', mfrow = 1:2)
+i <- 'ward.D2'
+dist(Sample) %>% hclust(method = i) %>% plot(main = paste("Linkage:", toupper(i)))
+par(bty = 'n', family = 'RobotoCondensed')
+plot(Sample, 
+     xlab = "Wing length, mm", ylab = "Tail length, mm", 
+     pch = 20, cex = 2,  asp = 1)
+text(Sample, rownames(Sample), 0, 2)
+```
+
+---
+
+Dendrogram allows us to also illustrate differences between linkage methods.
+
+``` {r} 
+par(bty = 'n', family = 'RobotoCondensed', mfrow = c(1,4))
+for (i in c('single', 'complete', 'average', 'ward.D2')) {
+  dist(Sample) %>% hclust(method = i) %>% plot(main = paste("Linkage:", toupper(i)))
+}
+```
+
+---
+
+To determine the clusters we can choose either the height of cut or number of clusters. 
+
+``` {r} 
+par(bty = 'n', family = 'RobotoCondensed', mar = c(0,4,4,0))
+Clust <- dist(Hawks[1:100, 10:19]) %>% hclust(method = 'ward.D2')
+plot(Clust, cex = .5)
+```
+
+---
+
+If we would cut at 1000 then we would obtain `r max(cutree(Clust, h = 1000))` clusters.
+
+``` {r} 
+par(bty = 'n', family = 'RobotoCondensed', mar = c(0,4,4,0))
+Clust <- dist(Hawks[1:100, 10:19]) %>% hclust(method = 'ward.D2')
+plot(Clust, cex = .5)
+abline(h = 1000, col = Col['red'])
+```
+
+--
+
+> At what height would we have to cut if we wished to obtain 3 clusters?
+
+---
+
+Actually, the species for each Hawk is already determined. How does it coincide with our clusters?
+
+``` {r}
+table(dist(Hawks[10:19]) %>% hclust(method = 'ward.D2') %>% cutree(3), 
+      Hawks$Species) %>% 
+  kable
+```
+
+---
+
+class: center middle inverse
+
+# K-means clustering
+
+---
+
+Clusters are constructed by **partitioning** objects **iteratively**.
+
+The goal is to partition objects $x$ into $K$ clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. 
+
+We can achieve this by assigning each object to the closest **centroid**, i.e. cluster mean.
+
+---
+
+We thus need optimal cluster means. The optimal mean vector $\bar x_1,  ... \bar x_K$ can be found by minimizing the following function:
+
+$$ESS = \sum^K_{k = 1} \sum_{c(i)=k} (x_i - \bar  x_k)^T(x_i - \bar x_k),$$
+
+where $c(i)$ is the cluster containing $x_i$. 
+
+--
+
+An alternative is **K-medoids clustering** in which case the centroids are not some mean values but represented by actual objects.
+
+???
+Number of clusters has to be defined before clustering.
+We attempt to minimize the sum of distances within all clusters
+
+---
+
+Let's attempt to cluster 392 vehicles.
+
+``` {r}
+data('Auto', package = 'ISLR')
+head(Auto[, 1:7], 4) %>% kable
+```
+
+--
+
+We should scale the variables.
+
+``` {r}
+Oie <- scale(Auto[, 1:7])
+head(Oie, 4) %>% kable
+```
+
+---
+
+We have 7 variables, so 7 dimensions. Let's use PCs to represent the data.
+
+``` {r, fig.height = 4.5}
+par(family = 'RobotoCondensed')
+Auto[, 1:7] %>% pairs(pch = 20, cex = .5)
+```
+
+---
+
+What do we mean by "partitioning"?
+
+``` {r}
+PCA <- prcomp(Oie)
+PCs <- PCA$x[, 1:2]
+par(bty = 'n', family = 'RobotoCondensed', pty = 's', mar = c(4,4,0,0))
+plot(PCs, pch = 20)
+```
+
+---
+
+## Gap statistic
+
+The Gap statistic is a technique used to determine the optimal number of clusters.
+
+The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. 
+
+The optimal number of clusters is at the value of the Gap statistic $k$ where $k + se(k)$ is higher or equal to the estimate $k$ of next number of clusters.
+
+---
+
+``` {r}
+kmFun <- function(x, k) kmeans(x, k, iter.max = 50, nstart = 10)
+kmG <- clusGap(Oie, kmFun, K.max = 8, B = 10)
+par(bty = 'n', family = 'RobotoCondensed')
+plot(kmG)
+```
+
+> How many clusters should we estimate?
+
+---
+
+## Process
+
+K-means clustering involves the following steps:
+
+1. We start with a distance matrix $D$ based on 
+   - random assignment of objects to $K$ clusters with cluster means, or
+   - some (random) cluster means.
+2. Calculate squared Euclidean distance between each object and each cluster mean. Reassign each item to its nearest cluster mean, resulting in decreased $ESS$.
+3. Update cluster means.
+4. Repeat the previous two steps until objects can not be reassigned, so each object is closest to its own cluster mean.
+
+---
+
+Can we see any clusters if we summarize the data into two principal components?
+
+``` {r}
+par(bty = 'n', family = 'RobotoCondensed', pty = 's', mar = c(4,4,0,0))
+plot(PCs, pch = 20)
+```
+
+> How many clusters would you distinguish?
+
+---
+
+exclude: true
+
+``` {r, eval = F}
+par(bty = 'n', family = 'RobotoCondensed')
+rgl::plot3d(prcomp(Oie)$x[, 1:3], 
+            col = Col['red'], size = 1, type = 's', pch = 20, asp = 1)
+```
+
+---
+
+Let's esimate 4 clusters as suggested by the Gap statistic. Depending on the centers we choose, we obtain different clusters.
+
+``` {r}
+par(bty = 'n', family = 'RobotoCondensed', pty = 's', mfrow = c(2,3), 
+    mar = c(4,4,0,0))
+replicate(6, {
+  Kmeans <- kmeans(PCs, 4, iter.max = 1, nstart = 1)
+  plot(PCs, pch = 20, col = rainbow(4)[Kmeans$cluster])
+  Kmeans$centers %>% points(col = 'black', pch = 4, lwd = 2)
+  }) %>% invisible # To hide printing from replicate
+```
+
+???
+Cluster number is arbitrary.
+
+---
+
+## Cluster plot
+
+When we apply K-means clustering we do not obtain a nested structure and therefore can not express the clustering as a dendrogram. 
+
+We can create a plot that shows the locations of objects and cluster centroids on a two-dimensional plot.
+
+The dimensions can be found via PCA or multidimensional scaling.
+
+---
+
+Here is the final estimate if we run 10 iterations and 10 different starting values.
+
+``` {r}
+par(bty = 'n', family = 'RobotoCondensed', pty = 's', mar = c(4,4,0,0))
+Kmeans <- kmeans(PCs, 4, iter.max = 10, nstart = 10)
+plot(PCs, pch = 20, col = rainbow(4)[Kmeans$cluster])
+Kmeans$centers %>% points(col = 'black', pch = 4, lwd = 2)
+```
+
+---
+
+class: center middle inverse
+
+# How to use clusters?
+
+---
+
+Save clusters as a new variable.
+
+.compact[
+``` {r}
+cbind(Auto, Cluster = Kmeans$cluster) %>% head %>% kable
+```
+]
+
+---
+
+You can describe clusters using descriptive statistics, e.g. mean values as below
+
+.compact[
+``` {r}
+aggregate(Auto[, 1:7], by = list(Cluster = Kmeans$cluster), FUN = mean) %>% kable
+```
+]
+
+---
+
+Or create some visualizations.
+
+``` {r, fig.height = 4.5}
+par(bty = 'n', family = 'RobotoCondensed', mfrow = c(2,3), mar = c(4,4,2,2))
+for (i in c(1,3:7)) {
+  boxplot(Auto[, i] ~ Kmeans$cluster, xlab = "Cluster", ylab = names(Auto)[i], 
+          col = rainbow(4)[unique(Kmeans$cluster)])
+}
+```
+
+---
+
+class: inverse
+
+???
+Explain starting values and iterations.
+Better color scale

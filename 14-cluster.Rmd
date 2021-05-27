@@ -8,7 +8,7 @@ See the beginning of section 14.3 in @hastie_elements_2017.
 
 Clustering methods can be divided into model-based and distance-based methods. Here we considered the latter. The distance-based methods can be further divided into hierarchical clustering and partitioning (K-means) methods. These are explained below.
 
-Although a common application of cluster analysis is to categorize observations, it can also be applied to group variables. In the latter case distances by observations are considered.
+Although a common application of cluster analysis is to categorize observations, it can also be applied to group variables. In the latter case distances by observations are considered, so we treat observations as variables and vice versa.
 
 As with the previous multivariate statistics methods, it is important to be mindful of variances of variables. Variables with higher variances will be given more leverage in deciding clusters. If this is deemed undesirable, data should be standardized prior to clustering.
 
@@ -18,8 +18,8 @@ The assignment of objects into groups should be such that observations are more 
 
 There are various measures for dissimilarity but most common are Euclidean and Manhattan distances. These can be calculated for numeric variables. Euclidean distance expresses a "direct" distance between two points. It is calculated according to the Pythagorean theorem. Manhattan distance can be thought of as a "city block" distance. The distances between objects $x_i$ and $x_j$ can be calculated respectively as follows:
 
-$d_{Euclidean}(x_i,x_j) = [\sum^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}, $  
-$d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|.$
+$d_{Euclidean}(x_i,x_j) = [\sum^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}$,   
+$d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|$.
 
 Distance measures for ordinal and nominal variables also exist but are not explained here.
 
@@ -48,23 +48,23 @@ Computing distance between two objects is simple because each object represents 
 - average linkage: $d_{IJ,k} = \sum_{i \in IJ} \sum_{k \in K} d_{ik} / (n_{ij}n_k)$; 
 - Ward's method: compares the within-cluster and between-cluster squared distances.
 
-### Number of clusters
-
-The number of clusters to be acquired can be decided on using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are the longest.
-
 ### Visualization
 
 The clusters in case of hierarchical clustering are estimated incrementally, resulting in a nested structure. This tree-shaped structure can be visualized by a **dendrogram**.
 
 In Jamovi: `snowCluster > Hierarchical clustering method > Plot | Plot dendrogram`.
 
+### Number of clusters
+
+The number of clusters to be acquired can be decided on using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are the longest.
+
 ## K-means clustering
 
-This method groups objects by partitioning. The goal is to partition objects $x$ into $K$ clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to  the closest centroid. This mean point of clusters $\bar x_1,  ... \bar x_K$ needs to be calculated for each of the $K$ clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:
+This method groups objects by partitioning them iteratively. The number of clusters $K$ has to be defined before estimation. The goal is to partition objects $x$ into $K$ clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to  the closest centroid. This mean point of clusters $\bar x_1,  ... \bar x_K$ needs to be calculated for each of the $K$ clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:
 
 $$ESS = \sum^K_{k = 1} \sum_{c(i)=k} (x_i - \bar  x_k)^T(x_i - \bar x_k),$$
 
-where $c(i)$ is the cluster containing $x_i$. Simply put, we attempt to minimize the sum of distances within all clusters. The function $ESS$ is minimized iteratively as described below.
+where $c(i)$ is the cluster containing $x_i$. Simply put, we attempt to minimize the sum of distances of objects from centroid within all clusters. The function $ESS$ is minimized iteratively as described below.
 
 See @hastie_elements_2017 section 14.3.6.
 
@@ -83,7 +83,7 @@ An alternative is **K-medoids clustering** in which case the centroids are not s
 
 ### Number of clusters (Gap statistic)
 
-The Gap statistic is a technique used to determine the optimal number of clusters. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. The optimal number of clusters is at the value of the Gap statistic $k$ where $k + se(k)$ is higher or equal to the estimate $k$ of next number of clusters.
+The Gap statistic is a technique used to determine the optimal number of clusters. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. Higher value indicates better fit of data to the $K$ but only clusters that substantially contribute to the value should be considered. The optimal number of clusters is at the value of the Gap statistic $k$ where $k + se(k)$ is higher or equal to the estimate $k$ of next number of clusters. If this optimal value indicates that $K = 1$, then the data does not contain any natural clusters and clustering methods are not suitable.
 
 In Jamovi: `snowCluster > K-means clustering method > Plots | Optimal number of clusters`.
 

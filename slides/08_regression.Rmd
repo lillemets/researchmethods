@@ -564,3 +564,7 @@ If these are true, then the model is the *best linear unbiased estimator* (BLUE)
 ---
 
 class: inverse
+
+???
+
+Use some data to predict house prices (`AER::HousePrices`).

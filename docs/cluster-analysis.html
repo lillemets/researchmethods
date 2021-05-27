@@ -319,8 +319,8 @@ div.csl-indent {
 <li class="chapter" data-level="15.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>15.2</b> Hierarchical clustering</a>
 <ul>
 <li class="chapter" data-level="15.2.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#linkage-methods"><i class="fa fa-check"></i><b>15.2.1</b> Linkage methods</a></li>
-<li class="chapter" data-level="15.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#number-of-clusters"><i class="fa fa-check"></i><b>15.2.2</b> Number of clusters</a></li>
-<li class="chapter" data-level="15.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#visualization"><i class="fa fa-check"></i><b>15.2.3</b> Visualization</a></li>
+<li class="chapter" data-level="15.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#visualization"><i class="fa fa-check"></i><b>15.2.2</b> Visualization</a></li>
+<li class="chapter" data-level="15.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#number-of-clusters"><i class="fa fa-check"></i><b>15.2.3</b> Number of clusters</a></li>
 </ul></li>
 <li class="chapter" data-level="15.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>15.3</b> K-means clustering</a>
 <ul>
@@ -357,14 +357,14 @@ div.csl-indent {
 <div id="cluster-analysis-1" class="section level2" number="15.1">
 <h2><span class="header-section-number">15.1</span> Cluster analysis</h2>
 <p>Clustering methods can be divided into model-based and distance-based methods. Here we considered the latter. The distance-based methods can be further divided into hierarchical clustering and partitioning (K-means) methods. These are explained below.</p>
-<p>Although a common application of cluster analysis is to categorize observations, it can also be applied to group variables. In the latter case distances by observations are considered.</p>
+<p>Although a common application of cluster analysis is to categorize observations, it can also be applied to group variables. In the latter case distances by observations are considered, so we treat observations as variables and vice versa.</p>
 <p>As with the previous multivariate statistics methods, it is important to be mindful of variances of variables. Variables with higher variances will be given more leverage in deciding clusters. If this is deemed undesirable, data should be standardized prior to clustering.</p>
 <div id="distance-measures" class="section level3" number="15.1.1">
 <h3><span class="header-section-number">15.1.1</span> Distance measures</h3>
 <p>The assignment of objects into groups should be such that observations are more similar within groups than between groups. This means that clustering is done according to measures of similarities or dissimilarities, i.e. distances. For matrix <span class="math inline">\(X : n \times p\)</span> with <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> variables the distances <span class="math inline">\(d\)</span> between objects <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> can be described as a matrix <span class="math inline">\(D : n \times n\)</span> where <span class="math inline">\(d_{ij} = d(x_i,x_j)\)</span>.</p>
 <p>There are various measures for dissimilarity but most common are Euclidean and Manhattan distances. These can be calculated for numeric variables. Euclidean distance expresses a “direct” distance between two points. It is calculated according to the Pythagorean theorem. Manhattan distance can be thought of as a “city block” distance. The distances between objects <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> can be calculated respectively as follows:</p>
-<p>$d_{Euclidean}(x_i,x_j) = [^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}, $<br />
-<span class="math inline">\(d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|.\)</span></p>
+<p><span class="math inline">\(d_{Euclidean}(x_i,x_j) = [\sum^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}\)</span>,<br />
+<span class="math inline">\(d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|\)</span>.</p>
 <p>Distance measures for ordinal and nominal variables also exist but are not explained here.</p>
 </div>
 </div>
@@ -391,21 +391,21 @@ div.csl-indent {
 <li>Ward’s method: compares the within-cluster and between-cluster squared distances.</li>
 </ul>
 </div>
-<div id="number-of-clusters" class="section level3" number="15.2.2">
-<h3><span class="header-section-number">15.2.2</span> Number of clusters</h3>
-<p>The number of clusters to be acquired can be decided on using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are the longest.</p>
-</div>
-<div id="visualization" class="section level3" number="15.2.3">
-<h3><span class="header-section-number">15.2.3</span> Visualization</h3>
+<div id="visualization" class="section level3" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> Visualization</h3>
 <p>The clusters in case of hierarchical clustering are estimated incrementally, resulting in a nested structure. This tree-shaped structure can be visualized by a <strong>dendrogram</strong>.</p>
 <p>In Jamovi: <code>snowCluster &gt; Hierarchical clustering method &gt; Plot | Plot dendrogram</code>.</p>
+</div>
+<div id="number-of-clusters" class="section level3" number="15.2.3">
+<h3><span class="header-section-number">15.2.3</span> Number of clusters</h3>
+<p>The number of clusters to be acquired can be decided on using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are the longest.</p>
 </div>
 </div>
 <div id="k-means-clustering" class="section level2" number="15.3">
 <h2><span class="header-section-number">15.3</span> K-means clustering</h2>
-<p>This method groups objects by partitioning. The goal is to partition objects <span class="math inline">\(x\)</span> into <span class="math inline">\(K\)</span> clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to the closest centroid. This mean point of clusters <span class="math inline">\(\bar x_1, ... \bar x_K\)</span> needs to be calculated for each of the <span class="math inline">\(K\)</span> clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:</p>
+<p>This method groups objects by partitioning them iteratively. The number of clusters <span class="math inline">\(K\)</span> has to be defined before estimation. The goal is to partition objects <span class="math inline">\(x\)</span> into <span class="math inline">\(K\)</span> clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to the closest centroid. This mean point of clusters <span class="math inline">\(\bar x_1, ... \bar x_K\)</span> needs to be calculated for each of the <span class="math inline">\(K\)</span> clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:</p>
 <p><span class="math display">\[ESS = \sum^K_{k = 1} \sum_{c(i)=k} (x_i - \bar  x_k)^T(x_i - \bar x_k),\]</span></p>
-<p>where <span class="math inline">\(c(i)\)</span> is the cluster containing <span class="math inline">\(x_i\)</span>. Simply put, we attempt to minimize the sum of distances within all clusters. The function <span class="math inline">\(ESS\)</span> is minimized iteratively as described below.</p>
+<p>where <span class="math inline">\(c(i)\)</span> is the cluster containing <span class="math inline">\(x_i\)</span>. Simply put, we attempt to minimize the sum of distances of objects from centroid within all clusters. The function <span class="math inline">\(ESS\)</span> is minimized iteratively as described below.</p>
 <p>See <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.6.</p>
 <p>K-means clustering involves the following steps:</p>
 <ol style="list-style-type: decimal">
@@ -422,7 +422,7 @@ div.csl-indent {
 <p>An alternative is <strong>K-medoids clustering</strong> in which case the centroids are not some mean values but represented by actual objects.</p>
 <div id="number-of-clusters-gap-statistic" class="section level3" number="15.3.1">
 <h3><span class="header-section-number">15.3.1</span> Number of clusters (Gap statistic)</h3>
-<p>The Gap statistic is a technique used to determine the optimal number of clusters. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. The optimal number of clusters is at the value of the Gap statistic <span class="math inline">\(k\)</span> where <span class="math inline">\(k + se(k)\)</span> is higher or equal to the estimate <span class="math inline">\(k\)</span> of next number of clusters.</p>
+<p>The Gap statistic is a technique used to determine the optimal number of clusters. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. Higher value indicates better fit of data to the <span class="math inline">\(K\)</span> but only clusters that substantially contribute to the value should be considered. The optimal number of clusters is at the value of the Gap statistic <span class="math inline">\(k\)</span> where <span class="math inline">\(k + se(k)\)</span> is higher or equal to the estimate <span class="math inline">\(k\)</span> of next number of clusters. If this optimal value indicates that <span class="math inline">\(K = 1\)</span>, then the data does not contain any natural clusters and clustering methods are not suitable.</p>
 <p>In Jamovi: <code>snowCluster &gt; K-means clustering method &gt; Plots | Optimal number of clusters</code>.</p>
 </div>
 <div id="visualization-1" class="section level3" number="15.3.2">
