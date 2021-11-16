@@ -2,7 +2,7 @@
 
 ## Quantitative methods
 
-### Quantitative and qualitative methods
+The methods introduced in this part of the course differ from the qualitative methods that are explained separately. As the name itself indicates, here the focus is on quantity of observations rather than some quality of a particular observation. The dichotomy of the two distinct kind of methods is summarized as a table below. 
 
 | QuaNTitative         | QuaLitative           |
 | -------------------- | --------------------- |
@@ -12,9 +12,13 @@
 | Measure and test     | Understand            |
 | Statistical analysis | Interpretation        |
 
+Whether we should apply a quantitative or qualitative method usually depends on the data we are seeking to analyze. If our data includes a large number of observations, it is feasible to express each of them numerically. If we only have data on one or several observations, we can and need to treat them semantically, i.e. find meanings rather than attempt to summarize them. 
+
+As a result, qualitative methods can only be used to explore the observations that are available to us. If our aim is to generalize findings to an unobserved population, we need to use quantitative methods. Thus, in the latter case we measure our observations and test the differences between them, rather than attempt to understand or interpret each of them separately. 
+
 ## Statistics
 
-See @navarro_learning_2018 sections 1.1.1 and 1.5 for a brief introduction. Sections 2.3-2.7 also provide useful background on validity and reliability of statistical methods.
+Quantitative research methods can be summarized with the term "statistics". This can refer to the numeric nature of data or to the techniques applied to analyze such data. See @navarro_learning_2018 sections 1.1 and 1.5 for a brief explanation of why we use and need statistics. Sections 2.3-2.7 are more lengthy but also provide useful background on validity and reliability of statistical methods.
 
 @dash_flowchart_2016 has summarized statistics as follows:
 
@@ -22,50 +26,35 @@ See @navarro_learning_2018 sections 1.1.1 and 1.5 for a brief introduction. Sect
 knitr::include_graphics('img/statisticsflowchart.png')
 ```
 
+Some ways to think about different approaches to statistics are explained as follows.
+
 ### Descriptive and inferential statistics
 
-| Descriptive statistics      | Inferential statistics        |
-| --------------------------- | ----------------------------- |
-| Data on entire population   | Only a sample of a population |
-| Simple measures (e.g. mean) | Point estimates and intervals |
-| Describing                  | Generalizing                  |
+Statistics can not only be used to describe the data we have but also to infer wider conclusions from that data with a certain degree of certainty. While descriptive statistics methods use simple measures, inferential methods involve mathematically and conceptually more complex procedures. These allow us to derive point estimates and intervals that we may also apply to observations outside our data set. Most of the methods introduced during this course will be inferential.
 
-### Frequentist and bayesian approach to statistics
+### Frequentist and Bayesian approach
 
-| Frequentist                                         | Bayesian                                                   |
-| --------------------------------------------------- | ---------------------------------------------------------- |
-| Traditional                                         | Modern                                                     |
-| What's the probability of data given some estimate? | What's the probability of an estimate?                     |
-| Prior is not relevant                               | Estimates are conditional on priors                        |
-| Single parametric inference                         | Multiplication of an inference to get a posterior estimate |
+In this course we only examine the more common Frequentist methods that are based on the work of Ronald Fisher (1890-1962) and dominate the research to this day. In contrast to Bayesian approach, the methods we will learn do not condition estimates on some prior knowledge and only apply a single inference rather than multiply them for a posterior estimate. Not very intuitively, the Frequentist analysis tells us about the probability of data given an estimate, and not directly about probability of an estimate as in case of Bayesian approach.
+
+For a more thorough explanation of Bayesian statistics you can read @navarro_learning_2018 section 16.
 
 ### Statistics and data science, machine learning, artificial intelligence, ...
 
-| Statistics                   | DS, ML, AI, ...                |
-| ---------------------------- | ------------------------------ |
-| Less data                    | Big data                       |
-| Clean datasets               | Untidy data in various formats |
-| Traditonal methods           | Novel methods                  |
-| Mathematics and calculations | Programming approach           |
-| Aim is to explain            | Aim is to predict              |
+This course will focus on the research methods applied in social sciences. Because in academic research the aim is commonly to explain phenomena, we will not discuss solely predictive methods applied in fields such as data science, machine learning and artificial intelligence. Thus, we will only learn methods that assume small and clean data sets and the use of mathematics and simple calculations rather than programming and complex algorithms.
 
 ## Software
 
-### Commonly used software
-
-Spreadsheet vs statistical software
+In case of software for statistics, the most basic distinction can be made between spreadsheet software and statistical packages. The former are mostly used to manage two-dimensional tables of data and run simple calculations on them. For more sophisticated statistical analysis, it is necessary to use a dedicated application or a programming language. Some commonly used software for statistics includes the following:
 
 - Spreadsheet - table management (e.g. Microsoft Excel, Google Sheets, LibreOffice Calc)
-
 - SPSS - simple GUI-based app with limited functionality
-
 - R - extensible programming language designed for data analysis
-
 - Stata - Mostly CLI-based, well suited for econometrics
+- SAS, Matlab, Statistica, ...
 
 ### Jamovi
 
-To apply the methods we learn, we use [Jamovi](https://www.jamovi.org/). 
+During this course we use [Jamovi](https://www.jamovi.org/) app to implement the methods in practice.
 
 > Jamovi is a new “3rd generation” statistical spreadsheet. designed from the ground up to be easy to use, jamovi is a compelling alternative to costly statistical products such as SPSS and SAS.
 
@@ -75,7 +64,7 @@ You can try it online without installing at https://cloud.jamovi.org/.
 
 ### R language and RStudio
 
-This allows us to get under the hood of Jamovi so to speak. R language is based on S language orginating from 1970's. Developed during 1990's and became public around 2000. 
+As an alternative to Jamovi, students are free to use R programming language. Due to its steep learning curve, it will not be taught during meetings.
 
 > R is a language and environment for statistical computing and graphics.
 
@@ -128,7 +117,7 @@ Ratio variables are also numeric but have a natural zero value. This means that 
 
 Binary (or dichotomous) variables do not constitute a distinct scale but can be considered as a subgroup of nominal, ordinal or interval variables. Binary variables can only take two values. Many statistical procedures convert or require the conversion of nominal variables to binary for technical reasons (e.g. "dummy" variables). Binary variables are often coded as 0 for false and 1 for true. As such, calculating the sum or mean of binary variables conveys useful information (think why that is!).
 
-#### Continuous or discrete variables
+#### Continuous and discrete variables
 
 In addition to the previous typology, we can also distinguish between continuous and discrete variables. These are well defined by @navarro_learning_2018[, 20]:
 
@@ -137,6 +126,5 @@ In addition to the previous typology, we can also distinguish between continuous
 
 #### Scales in statistical software
 
-The difference between ratio and interval variables is only theoretical. Statistical software treats all numbers as numeric variables and does not distinguish between interval and ratio variables. When binary variables are coded so that they only have values 0 and 1, these are also considered numerical.
+A lot of statistical software (e.g. Jamovi) distinguishes between numbers, text and ordered text. The difference between ratio and interval variables is only theoretical. Statistical software treats all numbers as integers or floating-point numbers and does not distinguish between interval and ratio variables. When binary variables are coded so that they only have values 0 and 1, these are also considered numerical.
 
-A lot of statistical software (e.g. Jamovi) distinguish only between three types of variables: nominal, ordinal and numeric.

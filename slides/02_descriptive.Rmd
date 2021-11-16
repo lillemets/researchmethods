@@ -3,8 +3,7 @@ title: Descriptive statistics
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
@@ -141,8 +140,6 @@ sort(values)
 range(values)
 ```
 
-???
-
 ---
 
 ## Quantiles
@@ -229,6 +226,24 @@ Plotting allows to present values more intuitively or even depict all of the val
 
 ---
 
+class: middle
+
+Why do we need plots?
+
+![](../img/datasaurusdozen.gif)
+
+---
+
+## Scatterplot
+
+We can simply plot values of one variable against another.
+
+``` {r, echo = F}
+plot(circumference ~ age, Orange, col = Tree)
+```
+
+---
+
 ## Boxplot
 
 Boxplots illustrate the quartiles of values and extreme values. 
@@ -287,6 +302,12 @@ plot(density(v), main = NULL)
 hist(Orange$circumference, freq = F, main = NULL, xlab = NULL)
 lines(density(v))
 ```
+
+---
+
+Sometimes you just shouldn't create a graph.
+
+![](../img/self_description.png)
 
 ---
 

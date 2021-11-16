@@ -112,8 +112,11 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   margin: 0.4em;
 }
 
+.toc h2 { font-size: 1.4em;
+  margin: 0.4em; 
+}
+
 .toc p {
-  font-family: "Eurostile", sans-serif;
   font-size: 1.4em;
   margin: 0em;
 }
@@ -165,11 +168,13 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   float: left;
   width: 47%;
 }
+
 .pull-right {
   float: right;
   width: 47%;
 }
 .pull-right ~ * {
+
   clear: both;
 }
 

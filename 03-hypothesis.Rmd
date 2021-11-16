@@ -1,5 +1,7 @@
 # Hypothesis testing
 
+Statistical hypothesis testing is a traditional procedure of determining the statistical significance of a given difference. More precisely, it allows to demonstrate whether some difference observed in data can be generalized. As such, it is the main method in inferential statistics. 
+
 ## Sample and population
 
 Distinguishing between sample and population is important when we wish to draw inferences about population when we only have data on a sample. 
@@ -8,7 +10,7 @@ Distinguishing between sample and population is important when we wish to draw i
 
 See @navarro_learning_2018 section 8.1.
 
-What is the difference between population, sample and (simple) random sample?
+When we have data on the entire population we can simply describe it using descriptive statistics. But often we only have a part of the population, i.e. a sample. Since we only have data on sample, we can't be sure if same properties hold for population. Hence, we need to make inferences about the population by estimating population parameters from random sample data. This sample must be taken from the population randomly. For this, every value in the population must have an equal chance of being in sample. We can make inferences with a particular certainty, i.e. confidence interval or error ratio. 
 
 ### Estimating population parameters
 
@@ -16,25 +18,29 @@ What is the difference between population, sample and (simple) random sample?
 
 See @navarro_learning_2018 section 8.4.1.
 
-How do you get population mean if you only know the sample mean?
+Our best estimate of population mean is sample mean, i.e. 
+
+$$\hat{\mu} = \bar{x}.$$
 
 #### Population standard deviation
 
 See @navarro_learning_2018 section 8.4.2.
 
-$$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}$$
+Unlike mean, population standard error estimate needs to be corrected for bias as follows:
 
-Why and how is sample standard deviation different from population standard deviation?
+$$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}.$$
 
 ### Confidence intervals
 
 See @navarro_learning_2018 section 8.5
 
-A 95% CI of the mean $X \sim N(\mu,\sigma^2)$ is calculated as
+A 95% confidence interval (CI) of the mean $X \sim N(\mu,\sigma^2)$ is calculated as
 
 $$CI_{95} = \hat{x} \pm(1.96\times\frac{\sigma}{\sqrt{N}})$$
 
-What is the interpretation of confidence interval?
+CI indicates that if we take many samples from the population, then in case of 95% of these samples the means will lie between the intervals. There is no intuitive interpretation. 
+
+CI is **not** the 95% probility that the true value lies between the intervals.
 
 ## Hypothesis testing
 
@@ -82,3 +88,19 @@ P-value is **not** the probability of $H_0$ being false or $H_{1}$ being true. T
 ### Multiple comparisons problem
 
 Every time you find a statistically significant result, there is a possibility that you got this extreme data by chance. In this case, you committed a type 1 error. Therefore, if you do a lot of tests, the possibility that at least one of the statistically significant results is actually not true. Thus, the number of tests you do should be limited.
+
+### Courtroom analogy
+
+The procedure of hypothesis testing might be confusing and not very intuitive at first. In such case it might help to think about hypothesis testing as a trial with the aim of establishing if there is enough evidence to convict a person. The hypotheses would be the following:
+
+$H_0$: Person is innocent,  
+$H_1$: Person is guilty.
+
+Person is innocent until proven guilty. Thus, we begin with assuming that $H_0$ is true (there is no difference) and make a conclusion after analyzing the evidence (data):
+
+- if there is enough evidence (data) that demonstrates the crime (difference), we can reject $H_0$ and must accept $H_1$ that the person is guilty (there is a difference); 
+- if there is not enough evidence (data) to demonstrate the crime (difference), we can not reject $H_0$ and must assume that the person is innocent (there is no difference). 
+
+Note that in the latter case we are still not certain if the person is actually innocent (there is no difference), we might just not have enough evidence (data) to prove it. Similarly, accepting $H_0$ in hypothesis testing does not show that there is no difference but only that our data did not indicate a difference.
+
+The analogy also applies to errors as well. A type I error would be convicting an innocent person while a type II error would be letting a guilty person free.

@@ -83,6 +83,13 @@ In R: `sd(x)`
 
 Previously explained measures allow us to only summarize values into fewer numbers. Plotting allows to present these values more intuitively or even depict all of the values at once.
 
+## Scatterplot
+
+A simple way to examine a relationship between two continuous variables is a scatterplot. It simply depicts all data points on a two-dimensional space. Additional variables can be shown by alternating the size, shape or color of data points.
+
+In Jamovi: `Exploration > Scatterplot `   
+In R: `plot(x)`
+
 ### Boxplot
 
 Boxplots illustrate the quartiles of values (including interquartile range) and extreme values (outliers). Outliers are usually values that are below the 2nd quartile or above the 4th quartile by 1.5 times the interquartile range. On boxplots, half of all the values lie within the box and another half on the lines, outliers excluded.

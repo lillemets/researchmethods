@@ -19,51 +19,42 @@ description: "Research methods course materials"
 
 # Syllabus
 
-These course notes include information and study materials on the quantitative part of MS.0825 Research methods course of [Agri-Food Business Management](https://www.emu.ee/en/admissions/agri-food-business-management/) Master's program. 
+These course notes include information and study materials on the quantitative part of MS.0825 Research methods course of [Agri-Food Business Management](https://www.emu.ee/en/admissions/agri-food-business-management/) Master's program.
 
 ## Teaching
 
-Flipped classroom approach is used for teaching. This means that students are expected to learn the methods before meetings. During the meetings we revise the theoretical material, address any questions and apply methods in practice. After meetings students apply the methods on their own datasets.
+Flipped classroom approach is used for teaching. This means that students are expected to learn the methods before meetings. During the meetings we revise the theoretical material, address any questions and apply methods in practice. In order to discuss the topics during meetings it is necessary that students are already acquainted to the reading material. After meetings students apply the methods on their own datasets.
 
 ### Schedule
 
-Meetings take place on Mondays, Wednesdays and Thursdays at 9 o'clock in the morning. Link to meetings is provided under the course page in [Moodle](https://moodle.edu.ee).
+See meeting times on [Moode](https://moodle.edu.ee/) under course MS.0825 Research methods.
 
 ### Aims
 
-After completing the course students should be able to ...
+After completing the course students should be able to:
 
-... understand basic concepts in statistics;  
-... know how to describe data, both numerically and visually;   
-... choose an appropriate method to solve a problem;  
-... use a statistical package for data analysis;  
-... communicate results (interpret, explain, present);  
-... learn about statistical methods individually;   
-... find the courage to apply statistical methods.
+- understand basic concepts in statistics;  
+- know how to describe data, both numerically and visually;   
+- choose an appropriate method to solve a problem;  
+- use a statistical package for data analysis;  
+- communicate the results of an analysis (interpret, explain, present);  
+- learn about statistical methods individually;   
+- find the courage to apply statistical methods.
 
 ## Scoring
 
 This part of the course gives 50% of total course points. This 50% consists of 50 points that can be obtained by submitting:
 
-- feedback on reading material for upcoming meeting (`10*1=10` points), and
-- report containing the application of methods learned  (`10*4=40` points).
+- answers to tests on the methods based on reading material ($10 \times 2 = 20$ points), and
+- a report containing the application of methods learned  ($10 \times 3 = 30$ points).
 
-To gain the 40 points students are required to combine the applications of a method into a report. Participation in meetings does not affect points but meetings are not recorded.
+Thus, students are required to acquaint themselves with the reading material to understand the theory behind the methods and also to demonstrate the ability to apply the methods in practice.
 
-### Feedback on reading material
+### Tests on reading material
 
-Submit your questions or thoughts on given reading material before each meeting in [Moodle](https://moodle.edu.ee). Feedback can be either 
+From the third meeting onwards, students will complete a test during the beginning of each meeting to demonstrate their understanding of the reading material. Compulsory reading is from the following books: @navarro_learning_2018, @crawley_r_2013 and @hastie_elements_2017.
 
-- an explanation of something you learned, 
-- a question on something you don't understand, or
-- an answer to another student's question.
-
-Compulsory reading is from the following books: @navarro_learning_2018, @crawley_r_2013 and @hastie_elements_2017.
-
-Each part of feedback is graded as follows:
-
-- 0 points - Feedback is missing or lacking
-- 1 point - Feedback demonstrates that student has revised relevant material
+Tests consist of four questions, each contributing half of a point towards the final score.
 
 ### Research project
 
@@ -74,13 +65,7 @@ Students are required to create a research report as follows:
 3. Make changes according to feedback
 4. Present the results as a written report
 
-Each of the 10 topics is graded as follows:
-
-- 0 points - Method from a particular topic is not applied
-- 1 point - Method is applied but does not suit data
-- 2 points - Chosen method suits data but is incorrectly applied
-- 3 points - Method is correctly applied but conclusions are incorrect or missing
-- 4 points - Method is correctly applied and conclusions are correct
+In case of each topic, one point is assigned for each of the following: method is suitable for the data, method is correctly applied, interpretation of the results is correct.
 
 #### Datasets
 
@@ -98,7 +83,7 @@ To apply methods, datasets need to have multiple variables. We mostly learn to e
 
 We cover some common and traditional statistical methods.
 
-1. Descriptive statistics
+1. Introduction. Descriptive statistics
 2. Hypothesis testing. Comparing categorical variables
 3. Comparing numerical variables
 4. Analysis of variance
@@ -110,3 +95,5 @@ We cover some common and traditional statistical methods.
 10. Principal component analysis
 11. Factor analysis
 12. Clustering
+
+Note that two topics are covered during the first meetings.

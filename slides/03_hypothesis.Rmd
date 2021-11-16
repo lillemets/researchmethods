@@ -14,6 +14,10 @@ knitr::opts_chunk$set(echo = F, dpi = 150, fig.height = 4)
 library('magrittr');library('knitr')
 ```
 
+Story: Chocolate with High Cocoa Content as a Weight-Loss Accelerator
+
+---
+
 class: center middle clean
 
 # Is there a difference in frequencies?
@@ -288,3 +292,5 @@ class: inverse
 
 ???
 Use dataset occupationalStatus
+
+Deciding on guilty in courtroom to illustrate the hypoteses.

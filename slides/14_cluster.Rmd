@@ -96,7 +96,7 @@ We can cluster anything we want.
 **Distance-based** methods where we use distances between objects  
   - **hierarchical** clustering methods
   - **partitioning** methods
-  
+
 ---
 
 ## Distance measures

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Research methods</title>
   <meta name="description" content="Research methods course materials" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Research methods" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,9 @@
   
 
 <link rel="next" href="introduction.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -102,28 +102,24 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#scoring"><i class="fa fa-check"></i><b>1.2</b> Scoring</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#feedback-on-reading-material"><i class="fa fa-check"></i><b>1.2.1</b> Feedback on reading material</a></li>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#tests-on-reading-material"><i class="fa fa-check"></i><b>1.2.1</b> Tests on reading material</a></li>
 <li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#research-project"><i class="fa fa-check"></i><b>1.2.2</b> Research project</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#topics"><i class="fa fa-check"></i><b>1.3</b> Topics</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#quantitative-methods"><i class="fa fa-check"></i><b>2.1</b> Quantitative methods</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#quantitative-and-qualitative-methods"><i class="fa fa-check"></i><b>2.1.1</b> Quantitative and qualitative methods</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#quantitative-methods"><i class="fa fa-check"></i><b>2.1</b> Quantitative methods</a></li>
 <li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#statistics"><i class="fa fa-check"></i><b>2.2</b> Statistics</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#descriptive-and-inferential-statistics"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive and inferential statistics</a></li>
-<li class="chapter" data-level="2.2.2" data-path="introduction.html"><a href="introduction.html#frequentist-and-bayesian-approach-to-statistics"><i class="fa fa-check"></i><b>2.2.2</b> Frequentist and bayesian approach to statistics</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction.html"><a href="introduction.html#frequentist-and-bayesian-approach"><i class="fa fa-check"></i><b>2.2.2</b> Frequentist and Bayesian approach</a></li>
 <li class="chapter" data-level="2.2.3" data-path="introduction.html"><a href="introduction.html#statistics-and-data-science-machine-learning-artificial-intelligence"><i class="fa fa-check"></i><b>2.2.3</b> Statistics and data science, machine learning, artificial intelligence, …</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#commonly-used-software"><i class="fa fa-check"></i><b>2.3.1</b> Commonly used software</a></li>
-<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#jamovi"><i class="fa fa-check"></i><b>2.3.2</b> Jamovi</a></li>
-<li class="chapter" data-level="2.3.3" data-path="introduction.html"><a href="introduction.html#r-language-and-rstudio"><i class="fa fa-check"></i><b>2.3.3</b> R language and RStudio</a></li>
+<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#jamovi"><i class="fa fa-check"></i><b>2.3.1</b> Jamovi</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#r-language-and-rstudio"><i class="fa fa-check"></i><b>2.3.2</b> R language and RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#data-management"><i class="fa fa-check"></i><b>2.4</b> Data management</a>
 <ul>
@@ -146,10 +142,11 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>3.2.3</b> Variance</a></li>
 <li class="chapter" data-level="3.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>3.2.4</b> Standard deviation</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#plots"><i class="fa fa-check"></i><b>3.3</b> Plots</a>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#plots"><i class="fa fa-check"></i><b>3.3</b> Plots</a></li>
+<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#scatterplot"><i class="fa fa-check"></i><b>3.4</b> Scatterplot</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplot"><i class="fa fa-check"></i><b>3.3.1</b> Boxplot</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histogram-and-density-plot"><i class="fa fa-check"></i><b>3.3.2</b> Histogram and density plot</a></li>
+<li class="chapter" data-level="3.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplot"><i class="fa fa-check"></i><b>3.4.1</b> Boxplot</a></li>
+<li class="chapter" data-level="3.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histogram-and-density-plot"><i class="fa fa-check"></i><b>3.4.2</b> Histogram and density plot</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>4</b> Hypothesis testing</a>
@@ -167,6 +164,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistic"><i class="fa fa-check"></i><b>4.2.3</b> Test statistic</a></li>
 <li class="chapter" data-level="4.2.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#p-value"><i class="fa fa-check"></i><b>4.2.4</b> P-value</a></li>
 <li class="chapter" data-level="4.2.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#multiple-comparisons-problem"><i class="fa fa-check"></i><b>4.2.5</b> Multiple comparisons problem</a></li>
+<li class="chapter" data-level="4.2.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#courtroom-analogy"><i class="fa fa-check"></i><b>4.2.6</b> Courtroom analogy</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html"><i class="fa fa-check"></i><b>5</b> Comparing categorical data</a>
@@ -203,7 +201,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="correlation-analysis.html"><a href="correlation-analysis.html"><i class="fa fa-check"></i><b>8</b> Correlation analysis</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="correlation-analysis.html"><a href="correlation-analysis.html#scatterplot"><i class="fa fa-check"></i><b>8.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="8.1" data-path="correlation-analysis.html"><a href="correlation-analysis.html#scatterplot-1"><i class="fa fa-check"></i><b>8.1</b> Scatterplot</a></li>
 <li class="chapter" data-level="8.2" data-path="correlation-analysis.html"><a href="correlation-analysis.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>8.2</b> Pearson’s correlation coefficient</a></li>
 <li class="chapter" data-level="8.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#spearman-rank-order-correlation-coefficient"><i class="fa fa-check"></i><b>8.3</b> Spearman rank-order correlation coefficient</a></li>
 <li class="chapter" data-level="8.4" data-path="correlation-analysis.html"><a href="correlation-analysis.html#correlation-matrix-and-heatmap"><i class="fa fa-check"></i><b>8.4</b> Correlation matrix and heatmap</a></li>
@@ -328,8 +326,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#visualization-1"><i class="fa fa-check"></i><b>15.3.2</b> Visualization</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>16</b> Slides</a></li>
-<li class="chapter" data-level="17" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>17</b> References</a></li>
+<li class="chapter" data-level="16" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>16</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -358,45 +355,43 @@ div.csl-indent {
 <p>These course notes include information and study materials on the quantitative part of MS.0825 Research methods course of <a href="https://www.emu.ee/en/admissions/agri-food-business-management/">Agri-Food Business Management</a> Master’s program.</p>
 <div id="teaching" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Teaching</h2>
-<p>Flipped classroom approach is used for teaching. This means that students are expected to learn the methods before meetings. During the meetings we revise the theoretical material, address any questions and apply methods in practice. After meetings students apply the methods on their own datasets.</p>
+<p>Flipped classroom approach is used for teaching. This means that students are expected to learn the methods before meetings. During the meetings we revise the theoretical material, address any questions and apply methods in practice. In order to discuss the topics during meetings it is necessary that students are already acquainted to the reading material. After meetings students apply the methods on their own datasets.</p>
 <div id="schedule" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Schedule</h3>
-<p>Meetings take place on Mondays, Wednesdays and Thursdays at 9 o’clock in the morning. Link to meetings is provided under the course page in <a href="https://moodle.edu.ee">Moodle</a>.</p>
+<p>See meeting times on <a href="https://moodle.edu.ee/">Moode</a> under course MS.0825 Research methods.</p>
 </div>
 <div id="aims" class="section level3" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> Aims</h3>
-<p>After completing the course students should be able to …</p>
-<p>… understand basic concepts in statistics;<br />
-… know how to describe data, both numerically and visually;<br />
-… choose an appropriate method to solve a problem;<br />
-… use a statistical package for data analysis;<br />
-… communicate results (interpret, explain, present);<br />
-… learn about statistical methods individually;<br />
-… find the courage to apply statistical methods.</p>
+<p>After completing the course students should be able to:</p>
+<ul>
+<li>understand basic concepts in statistics;<br />
+</li>
+<li>know how to describe data, both numerically and visually;<br />
+</li>
+<li>choose an appropriate method to solve a problem;<br />
+</li>
+<li>use a statistical package for data analysis;<br />
+</li>
+<li>communicate the results of an analysis (interpret, explain, present);<br />
+</li>
+<li>learn about statistical methods individually;<br />
+</li>
+<li>find the courage to apply statistical methods.</li>
+</ul>
 </div>
 </div>
 <div id="scoring" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Scoring</h2>
 <p>This part of the course gives 50% of total course points. This 50% consists of 50 points that can be obtained by submitting:</p>
 <ul>
-<li>feedback on reading material for upcoming meeting (<code>10*1=10</code> points), and</li>
-<li>report containing the application of methods learned (<code>10*4=40</code> points).</li>
+<li>answers to tests on the methods based on reading material (<span class="math inline">\(10 \times 2 = 20\)</span> points), and</li>
+<li>a report containing the application of methods learned (<span class="math inline">\(10 \times 3 = 30\)</span> points).</li>
 </ul>
-<p>To gain the 40 points students are required to combine the applications of a method into a report. Participation in meetings does not affect points but meetings are not recorded.</p>
-<div id="feedback-on-reading-material" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Feedback on reading material</h3>
-<p>Submit your questions or thoughts on given reading material before each meeting in <a href="https://moodle.edu.ee">Moodle</a>. Feedback can be either</p>
-<ul>
-<li>an explanation of something you learned,</li>
-<li>a question on something you don’t understand, or</li>
-<li>an answer to another student’s question.</li>
-</ul>
-<p>Compulsory reading is from the following books: <span class="citation"><a href="#ref-navarro_learning_2018" role="doc-biblioref">Navarro and Foxcroft</a> (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span>, <span class="citation"><a href="#ref-crawley_r_2013" role="doc-biblioref">Crawley</a> (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> and <span class="citation"><a href="#ref-hastie_elements_2017" role="doc-biblioref">Hastie, Tibshirani, and Friedman</a> (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span>.</p>
-<p>Each part of feedback is graded as follows:</p>
-<ul>
-<li>0 points - Feedback is missing or lacking</li>
-<li>1 point - Feedback demonstrates that student has revised relevant material</li>
-</ul>
+<p>Thus, students are required to acquaint themselves with the reading material to understand the theory behind the methods and also to demonstrate the ability to apply the methods in practice.</p>
+<div id="tests-on-reading-material" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Tests on reading material</h3>
+<p>From the third meeting onwards, students will complete a test during the beginning of each meeting to demonstrate their understanding of the reading material. Compulsory reading is from the following books: <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span>, <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> and <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>Tests consist of four questions, each contributing half of a point towards the final score.</p>
 </div>
 <div id="research-project" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Research project</h3>
@@ -407,14 +402,7 @@ div.csl-indent {
 <li>Make changes according to feedback</li>
 <li>Present the results as a written report</li>
 </ol>
-<p>Each of the 10 topics is graded as follows:</p>
-<ul>
-<li>0 points - Method from a particular topic is not applied</li>
-<li>1 point - Method is applied but does not suit data</li>
-<li>2 points - Chosen method suits data but is incorrectly applied</li>
-<li>3 points - Method is correctly applied but conclusions are incorrect or missing</li>
-<li>4 points - Method is correctly applied and conclusions are correct</li>
-</ul>
+<p>In case of each topic, one point is assigned for each of the following: method is suitable for the data, method is correctly applied, interpretation of the results is correct.</p>
 <div id="datasets" class="section level4" number="1.2.2.1">
 <h4><span class="header-section-number">1.2.2.1</span> Datasets</h4>
 <p>To apply methods, datasets need to have multiple variables. We mostly learn to explore continuous data but some methods require at least one discrete variable. Students are free to choose a dataset. Possible sources for data:</p>
@@ -434,7 +422,7 @@ div.csl-indent {
 <h2><span class="header-section-number">1.3</span> Topics</h2>
 <p>We cover some common and traditional statistical methods.</p>
 <ol style="list-style-type: decimal">
-<li>Descriptive statistics</li>
+<li>Introduction. Descriptive statistics</li>
 <li>Hypothesis testing. Comparing categorical variables</li>
 <li>Comparing numerical variables</li>
 <li>Analysis of variance</li>
@@ -447,6 +435,7 @@ div.csl-indent {
 <li>Factor analysis</li>
 <li>Clustering</li>
 </ol>
+<p>Note that two topics are covered during the first meetings.</p>
 
 </div>
 </div>
@@ -472,7 +461,6 @@ Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Ja
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -512,6 +500,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "edit": "https://github.com/rstudio/bookdown-demo/edit/master/%s"

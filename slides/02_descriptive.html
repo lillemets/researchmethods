@@ -4,8 +4,8 @@
     <title>Descriptive statistics</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-05-03" />
-    <script src="02_descriptive_files/header-attrs-2.7/header-attrs.js"></script>
+    <meta name="date" content="2021-11-16" />
+    <script src="02_descriptive_files/header-attrs-2.11/header-attrs.js"></script>
     <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
   <body>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Descriptive statistics
 ## Research methods
 ### Jüri Lillemets
-### 2021-05-03
+### 2021-11-16
 
 ---
 
@@ -189,8 +189,6 @@ range(values)
 ## [1]  30 172
 ```
 
-???
-
 ---
 
 ## Quantiles
@@ -280,7 +278,7 @@ Useful only in statistical calculations.
 
 Standard deviation is the square root of variance.
 
-`$$s(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$`
+`$$s(X) = \sqrt{ \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}$$`
 
 --
 
@@ -327,6 +325,22 @@ Plotting allows to present values more intuitively or even depict all of the val
 
 ---
 
+class: middle
+
+Why do we need plots?
+
+![](../img/datasaurusdozen.gif)
+
+---
+
+## Scatterplot
+
+We can simply plot values of one variable against another.
+
+![](02_descriptive_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+---
+
 ## Boxplot
 
 Boxplots illustrate the quartiles of values and extreme values. 
@@ -341,13 +355,13 @@ Half of all the values lie within the box and another half on the lines, outlier
 ##  30.0  65.5 115.0 161.5 214.0
 ```
 
-![](02_descriptive_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 
 Boxplots are useful for comparing values in groups.
 
-![](02_descriptive_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -366,7 +380,7 @@ Histograms are essentially barplots where all values are divided between ranges 
 ## [20] 125 139 140 142 142 145 156 167 172 174 177 179 203 203 209 214
 ```
 
-![](02_descriptive_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -378,7 +392,7 @@ Smoothing is done using some bandwidth and kernel smoothing algorithm.
 
 --
 
-![](02_descriptive_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ---
 
