@@ -79,9 +79,9 @@ To apply methods, datasets need to have multiple variables. We mostly learn to e
 - [World Values Survey](https://www.worldvaluessurvey.org/)
 - [European Social Survey](https://www.europeansocialsurvey.org/data/)
 
-## Topics
+## Meetings and topics
 
-We cover some common and traditional statistical methods.
+We have a total of 12 meetings that involve the topics as outlined below. We will cover some common statistical methods.
 
 1. Introduction. Descriptive statistics
 2. Hypothesis testing. Comparing categorical variables

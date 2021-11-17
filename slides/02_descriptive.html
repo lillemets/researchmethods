@@ -4,7 +4,7 @@
     <title>Descriptive statistics</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-11-16" />
+    <meta name="date" content="2021-11-17" />
     <script src="02_descriptive_files/header-attrs-2.11/header-attrs.js"></script>
     <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Descriptive statistics
 ## Research methods
 ### Jüri Lillemets
-### 2021-11-16
+### 2021-11-17
 
 ---
 
@@ -76,6 +76,10 @@ sort(values)
 ##  [1]  30  33  58  69  87 111 115 120 142 145 156 172
 ```
 
+--
+
+Numeric variables often don't have a mode and it is usually not meaningful anyway.
+
 ???
 
 Useful for nominal and ordinal variables but rarely used for numeric variables, especially on a continuous scale.
@@ -129,7 +133,7 @@ It's the sum of values divided by number of values:
 
 In statistics, mean is often referred to as expected value, i.e. `\(E(x)\)`.
 
---
+---
 
 
 ```r
@@ -138,6 +142,22 @@ values
 
 ```
 ##  [1]  30  58  87 115 120 142 145  33  69 111 156 172
+```
+
+```r
+sum(values)
+```
+
+```
+## [1] 1238
+```
+
+```r
+length(values)
+```
+
+```
+## [1] 12
 ```
 
 ```r
@@ -151,6 +171,8 @@ sum(values) / length(values)
 ---
 
 ## Mean or median?
+
+Which do you think is which here?
 
 ![](02_descriptive_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
@@ -232,6 +254,15 @@ quantile(values) # Quartiles
 ```
 
 ```r
+quantile(values)[4] - quantile(values)[2]
+```
+
+```
+##  75% 
+## 76.5
+```
+
+```r
 IQR(values)
 ```
 
@@ -259,6 +290,14 @@ values
 
 ```
 ##  [1]  30  58  87 115 120 142 145  33  69 111 156 172
+```
+
+```r
+mean(values)
+```
+
+```
+## [1] 103.1667
 ```
 
 ```r
@@ -315,6 +354,11 @@ Standard deviation together with mean are useful for description of normally dis
 
 ---
 
+![](02_descriptive_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+
+---
+
 class: center middle inverse
 
 # Plots
@@ -337,7 +381,7 @@ Why do we need plots?
 
 We can simply plot values of one variable against another.
 
-![](02_descriptive_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -355,13 +399,13 @@ Half of all the values lie within the box and another half on the lines, outlier
 ##  30.0  65.5 115.0 161.5 214.0
 ```
 
-![](02_descriptive_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 
 Boxplots are useful for comparing values in groups.
 
-![](02_descriptive_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -380,7 +424,7 @@ Histograms are essentially barplots where all values are divided between ranges 
 ## [20] 125 139 140 142 142 145 156 167 172 174 177 179 203 203 209 214
 ```
 
-![](02_descriptive_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -392,7 +436,13 @@ Smoothing is done using some bandwidth and kernel smoothing algorithm.
 
 --
 
-![](02_descriptive_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](02_descriptive_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+---
+
+Sometimes you just shouldn't create a graph.
+
+![](../img/self_description.png)
 
 ---
 
