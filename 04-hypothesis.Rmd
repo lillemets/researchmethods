@@ -1,0 +1,153 @@
+# Hypothesis testing
+
+Statistical hypothesis testing is a procedure of determining the statistical significance of a given difference. More precisely, it allows to demonstrate whether some difference observed in data can be generalized. As such, it is perhaps the most basic procedure in inferential statistics. 
+
+## Sample and population
+
+Distinguishing between sample and population is important when we wish to draw inferences about population when we only have data on a sample. 
+
+### Sample, population, sampling
+
+See @navarro_learning_2018 section 8.1.
+
+When we have data on entire population we can simply describe it using descriptive statistics. But often we only have information about part of a population, i.e. we only have a **sample** of the **population**. Since we only have data on sample, we can't be sure if the observed differences in our sample also hold in the population. Hence, in order to estimate population parameters from our sample data, we need to make inferences. 
+
+In order to draw accurate inferences about population, sample should not be biased toward particular type of observations. Bias in sample can be mitigated by including observations into sample from the population randomly. In such case we have a **simple random sample**. A non-mathematical definition of a random sample can be that every value in the population has an equal chance of being in sample. 
+
+However, samples are very often not random. In addition to a simple random sample, some examples of **sampling process** are stratified sampling, snowball sampling and convenience sampling. In case of a small population, it is also relevant to consider if observations are drawn from the sample with or without replacement.
+
+### The law of large numbers
+
+See @navarro_learning_2018 section 8.2 and figure 8.8.
+
+One might guess that the more observations we have in our sample, the better the sample describes the population. This is true and can also be expressed in more statistically sounding terms: **as sample size increases, sample parameters tend to approach population parameters in their values.** So the more observations there are in a sample, the more accurate are the inferences drawn about population using that sample.
+
+### The central limit theorem
+
+See @navarro_learning_2018 section 8.3.3. 
+
+Due to the law of large numbers we can make certain assumptions about how sample  characterizes population. The theorem has been shown to prove the following @navarro_learning_2018[, 165]:
+
+- "The mean of the sampling distribution is the same as the mean of the population
+- The standard deviation of the sampling distribution (i.e., the standard error) gets smaller as the sample size increases
+- The shape of the sampling distribution becomes normal as the sample size increases"
+
+### Estimating population parameters
+
+We can estimate population mean and standard deviation of a variable from the values in sample. These two parameters are relevant in the context of parametric tests. 
+
+#### Population mean
+
+See @navarro_learning_2018 section 8.4.1.
+
+Our **best estimate of population mean is sample mean**, i.e. 
+
+$$\hat{\mu} = \bar{x}.$$
+
+#### Population standard deviation
+
+See @navarro_learning_2018 section 8.4.2.
+
+The standard error in our sample tends to be lower than population standard error. Thus, unlike the estimate of population mean, **population standard error estimate needs to be corrected for bias** as follows:
+
+$$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}.$$
+
+### Confidence intervals
+
+See @navarro_learning_2018 section 8.5
+
+Whenever we draw an inference about population from our sample, there is always a degree of uncertainty. Confidence intervals (CI) is a measure of this uncertaintly.
+
+A 95% CI of the mean $X \sim N(\mu,\sigma^2)$ is calculated as
+
+$$CI_{95} = \hat{x} \pm(1.96\times\frac{\sigma}{\sqrt{N}})$$
+
+CI is **not** the 95% probility that the true value lies between the intervals. CI indicates that if we take many samples from the population, then in case of 95% of these samples the means will lie between the intervals. There is no intuitive interpretation other than the following rather inaccurate explanation: we are just pretty sure that the true value is somewhere in the interval.
+
+## Hypothesis testing
+
+The essence of hypothesis testing is to check if some difference in our sample is large enough to reject the idea that there is no difference in population. We are interested in the difference but hypothesis testing actually involves verifying the opposite: lack of a difference. It is not intuitive but it's just the way it is in Frequentist approach. The actual process of hypothesis testing involves several steps.
+
+### Null and alternative hypotheses
+
+See @navarro_learning_2018 section 9.1.2.
+
+Statistical hypothesis testing involves two hypotheses: null ($H_0$) and alternative ($H_1$) hypothesis. These are usually defined as follows:
+
+$H_0$: There **is no** statistically significant difference.  
+$H_1$: There **is** a statistically significant difference.
+
+**We always test if we can reject $H_0$**:
+
+- If we reject $H_0$, then we accept $H_1$. 
+- If we fail to reject $H_0$, then we accept $H_1$.
+
+### Types of errors
+
+See @navarro_learning_2018 section 9.2.
+
+We can make two types of errors when making a conclusion about $H_0$:
+
+|                | We accept $H_0$             | We reject $H_0$            |
+| -------------- | --------------------------- | -------------------------- |
+| $H_0$ is true  | We are correct              | We commit **type I error** |
+| $H_0$ is false | We commit **type II error** | We are correct             |
+
+The rate of type I error is considered the significance level of a test (denoted as $\alpha$). **Conventionally, $ \alpha = 0.05$**, so we are willing to accept that type I error occurs 5% of times.
+
+### Test statistic and the critical region
+
+See @navarro_learning_2018 sections 9.3 and 9.4.1.
+
+To make a decision whether or not we can reject $H_0$ we use a test statistic. **We reject $H_0$ if the value of a test statistic is at or above its critical value.** Or more simply, if it is sufficiently extreme, i.e. different from 0. The critical value depends on $\alpha$ and is obtained from the critical region of the sampling distribution of the test statistic. If $\alpha = 0.05$, then the critical region covers 5% of the sampling distribution of test statistic.
+
+**Test statistic summarizes how extreme is the difference that we are testing.** If the difference is high, the value of the test statistic is also high and it is thus likely that we can reject $H_0$. 
+
+The particular parameters that we use to calculate test statistic depend on test we use. For instance, in case of  $\chi^2$-tests ([Comparing categorical data]), test statistic sums up the difference in observed and expected values. If this difference is large in our sample, then the difference is also likely to exist in population, hence we are more likely to reject $H_0$. 
+
+### P-value
+
+See @navarro_learning_2018 sections 9.5 and table 9.1 in section 9.6.
+
+P-value is the probability of obtaining at least as extreme value of test statistic if $H_0$ is correct. Thus, it's the rate of committing a type I error. Another useful definition has been provided by @navarro_learning_2018[, 193]: "$p$ is defined to be the smallest Type I error rate ($\alpha$) that you have to be willing to tolerate if you want to reject the null hypothesis."
+
+If the p-value is below $\alpha$, we reject $H_0$ and accept $H_1$. 
+
+$p \ge \alpha \implies H_0$  
+$p \lt \alpha \implies H_1$
+
+P-value is **not** the probability of $H_0$ being false or $H_{1}$ being true. From theoretical perspective, a lower p-value does **not** show a greater difference or vice versa. 
+
+### Multiple comparisons problem
+
+Every time you find a statistically significant result, there is a possibility that you got this extreme data by chance. In this case, you committed a type 1 error. Therefore, if you do a lot of tests, the possibility that at least one of the statistically significant results is actually not true. Thus, the number of tests you do should be limited.
+
+### Steps in testing a statistical hypothesis
+
+Statistical hypothesis testing can be summarized as follows:
+
+1. Decide the appropriate type I error rate, i.e.  $\alpha$.
+2. Find an appropriate test and test statistic.
+3. Calculate the critical region of the sampling distribution of the relevant test statistic according to $\alpha$.
+4. Calculate the value of the test statistic.
+5. Reject $H_0$ if the value of the test statistic is in the critical region.
+
+All of the steps to calculate the p-value are actually done by software. Thus, in practice it is only necessary to set $\alpha$ (conventionally $\alpha = 0.05$) and see if the p-value printed by software is higher or lower than this $\alpha$ (0.05).
+
+### The trial of the null hypothesis
+
+This analogy is also described at the end of @navarro_learning_2018 section 9.1.2.
+
+The procedure of hypothesis testing might be confusing and not very intuitive at first. In such case it might help to think about hypothesis testing as a trial with the aim of establishing if there is enough evidence to convict a person. The hypotheses would be the following:
+
+$H_0$: Person is innocent,  
+$H_1$: Person is guilty.
+
+Person is innocent until proven guilty. Thus, we begin with assuming that $H_0$ is true (there is no difference) and make a conclusion after analyzing the evidence (data):
+
+- if there is enough evidence (data) that demonstrates the crime (difference), we can reject $H_0$ and must accept $H_1$ that the person is guilty (there is a difference); 
+- if there is not enough evidence (data) to demonstrate the crime (difference), we can not reject $H_0$ and must assume that the person is innocent (there is no difference). 
+
+Note that in the latter case we are still not certain if the person is actually innocent (there is no difference), we might just not have enough evidence (data) to prove it. Similarly, accepting $H_0$ in hypothesis testing does not show that there is no difference but only that our data did not indicate a difference.
+
+The analogy also applies to errors as well. A type I error would be convicting an innocent person while a type II error would be letting a guilty person free.

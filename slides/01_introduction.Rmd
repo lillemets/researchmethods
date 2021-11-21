@@ -3,8 +3,7 @@ title: Introduction
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-bibliography: ../library.bib
-knit: rmarkdown::render
+knit: (function(...) { rmarkdown::render(..., output_dir = '../docs/slides') })
 ---
 
 ``` {r setup, include = F}
@@ -33,6 +32,7 @@ On the phone, though, the father was somewhat abashed. “I had a talk with my d
 class: middle
 
 ![](../img/datamining.jpg)
+
 ---
 
 class: center middle clean
@@ -426,119 +426,6 @@ It's unconventional and has a steep learining curve:
 ???
 
 Draw a plot to illustrate the learning curve of other software vs R.
-
----
-
-class: center middle inverse
-
-# Data management
-
----
-
-## Data structure
-
-To apply statistical procedures data should be formatted according to the "tidy data" principle:
-
-1. Every column is a variable.
-2. Every row is an observation.
-3. Every cell is a single value.
-
---
-
-Data table can be in a long or wide format.
-
-???
-
-Most statistical procedures require 2-dimensional tidy data. 
-
----
-
-Tidy data (long format): Each row is a  single observation.
-
-``` {r}
-Indometh <- Indometh[Indometh$time > 2, ]
-head(Indometh)
-```
-
-Untidy data (wide format): variable `time` is spread into different columns, so each row is not truly an observation.
-
-``` {r}
-wide <- reshape(Indometh, v.names = "conc", idvar = "Subject",
-                timevar = "time", direction = "wide")
-head(wide)
-```
-
-???
-
-Wide and long format. Explain why some procedures don't work when time variable is not in a single column.
-
----
-
-## Scales of measurement
-
-|  Scale   | Measure property | Operations |       Central tendency        |
-| :------: | :--------------: | :--------: | :---------------------------: |
-| Nominal  |  Classification  |    =, ≠    |             Mode              |
-| Ordinal  |      Level       |    >, <    |            Median             |
-| Interval |    Difference    |    +, −    |        Arithmetic mean        |
-|  Ratio   |    Magnitude     |    ×, /    | Geometric mean, harmonic mean |
-
-Scales must be kept in mind so that values are treated correctly.
-
-Scales determine the procedures that can be applied to the data. 
-
-???
-
-E.g. when nominal variables are coded as numbers they should not be treated as numeric. Temperature example. Software might print meaningless results if it e.g. treats nominal variables as numeric.
-
----
-
-#### Binary variables
-
-Can take only two values, usually 0 and 1.
-
-``` {r}
-islands <- as.factor(sample(names(islands)[1:4], 10, replace = T))
-islands %>% data.frame %>% cbind(model.matrix(~islands + 0))
-```
-
---
-
-The sum and mean of binary variables coded as 0 and 1 are meaningful. What do these show?
-
----
-
-### Continuous or discrete variables
-
-**A continuous variable** is one in which, for any two values that you can think of, it’s always logically possible to have another value in between.
-
-**A discrete variable** is, in effect, a variable that isn’t continuous. For a discrete variable it’s sometimes the case that there’s nothing in the middle.
-
----
-
-Discrete variable: the number of a car's gears must be an integer.
-
-``` {r, echo = T}
-mtcars$gear
-```
-
-Continuous variable: weight of a car may have any positive value (up to a certain point).
-
-``` {r, echo = T}
-mtcars$wt
-```
-
----
-
-### Scales in statistical software
-
-The difference between binary, ratio, interval variables is only theoretical. Statistical software treats all numbers as numeric variables.
-
---
-
-Measure types in Jamovi: nominal, ordinal, continuous (and ID)
-
-Variable types in R: logical, character, factor, integer, float
 
 ---
 

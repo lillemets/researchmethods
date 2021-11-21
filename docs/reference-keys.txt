@@ -7,7 +7,7 @@ scoring
 tests-on-reading-material
 research-project
 datasets
-topics
+meetings-and-topics
 introduction
 quantitative-methods
 statistics
@@ -20,6 +20,7 @@ r-language-and-rstudio
 data-management
 data-structure
 scales-of-measurement
+stevens-operational-theory-of-measurement
 nominal-scale
 ordinal-scale
 interval-scale
@@ -44,6 +45,8 @@ histogram-and-density-plot
 hypothesis-testing
 sample-and-population
 sample-population-sampling
+the-law-of-large-numbers
+the-central-limit-theorem
 estimating-population-parameters
 population-mean
 population-standard-deviation
@@ -51,10 +54,11 @@ confidence-intervals
 hypothesis-testing-1
 null-and-alternative-hypotheses
 types-of-errors
-test-statistic
+test-statistic-and-the-critical-region
 p-value
 multiple-comparisons-problem
-courtroom-analogy
+steps-in-testing-a-statistical-hypothesis
+the-trial-of-the-null-hypothesis
 comparing-categorical-data
 contingency-tables
 chi2-test
