@@ -2,7 +2,7 @@
 
 ## Contingency tables
 
-To test whether or not categorical values of a variable are random, we can compare the counts of categories. This gives us contingency tables where cells indicate how many times each value appears in a categorical variable. When we compare more than one variable, contingency tables have more than one dimension. Usually we tabulate two variables against each other. If these variables have $m$ and $n$ unique values (categories), then we obtain a 2-dimensional $m*n$ contingency or frequency table.
+To test whether or not categorical values of a variable are random, we can compare the counts of categories. This gives us contingency tables where cells indicate how many times each value appears in a categorical variable. When we compare more than one variable, contingency tables have more than one dimension. Usually we tabulate two variables against each other. If one variable has $m$ and another variable has $n$ unique values (categories), then we obtain a 2-dimensional $m*n$ contingency table.
 
 ## $\chi^2$-test
 

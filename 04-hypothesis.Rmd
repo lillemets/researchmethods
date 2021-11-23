@@ -12,7 +12,7 @@ See @navarro_learning_2018 section 8.1.
 
 When we have data on entire population we can simply describe it using descriptive statistics. But often we only have information about part of a population, i.e. we only have a **sample** of the **population**. Since we only have data on sample, we can't be sure if the observed differences in our sample also hold in the population. Hence, in order to estimate population parameters from our sample data, we need to make inferences. 
 
-In order to draw accurate inferences about population, sample should not be biased toward particular type of observations. Bias in sample can be mitigated by including observations into sample from the population randomly. In such case we have a **simple random sample**. A non-mathematical definition of a random sample can be that every value in the population has an equal chance of being in sample. 
+In order to draw accurate inferences about population, sample should not be biased toward particular type of observations. Bias in sample can be mitigated by including observations into sample from the population randomly. In such case we have a **simple random sample**. A non-mathematical definition of a random sample can be that every value in the population has an equal chance of being included in sample. 
 
 However, samples are very often not random. In addition to a simple random sample, some examples of **sampling process** are stratified sampling, snowball sampling and convenience sampling. In case of a small population, it is also relevant to consider if observations are drawn from the sample with or without replacement.
 
@@ -48,7 +48,7 @@ $$\hat{\mu} = \bar{x}.$$
 
 See @navarro_learning_2018 section 8.4.2.
 
-The standard error in our sample tends to be lower than population standard error. Thus, unlike the estimate of population mean, **population standard error estimate needs to be corrected for bias** as follows:
+Standard deviation in a sample tends to be lower than population standard deviation. Thus, unlike the estimate of population mean, **estimate of population standard error needs to be corrected for bias** as follows:
 
 $$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}.$$
 
@@ -64,7 +64,7 @@ $$CI_{95} = \hat{x} \pm(1.96\times\frac{\sigma}{\sqrt{N}})$$
 
 CI is **not** the 95% probility that the true value lies between the intervals. CI indicates that if we take many samples from the population, then in case of 95% of these samples the means will lie between the intervals. There is no intuitive interpretation other than the following rather inaccurate explanation: we are just pretty sure that the true value is somewhere in the interval.
 
-## Hypothesis testing
+## Statistical hypothesis testing
 
 The essence of hypothesis testing is to check if some difference in our sample is large enough to reject the idea that there is no difference in population. We are interested in the difference but hypothesis testing actually involves verifying the opposite: lack of a difference. It is not intuitive but it's just the way it is in Frequentist approach. The actual process of hypothesis testing involves several steps.
 
@@ -88,7 +88,7 @@ See @navarro_learning_2018 section 9.2.
 
 We can make two types of errors when making a conclusion about $H_0$:
 
-|                | We accept $H_0$             | We reject $H_0$            |
+|                | We retain $H_0$             | We reject $H_0$            |
 | -------------- | --------------------------- | -------------------------- |
 | $H_0$ is true  | We are correct              | We commit **type I error** |
 | $H_0$ is false | We commit **type II error** | We are correct             |
@@ -148,6 +148,6 @@ Person is innocent until proven guilty. Thus, we begin with assuming that $H_0$ 
 - if there is enough evidence (data) that demonstrates the crime (difference), we can reject $H_0$ and must accept $H_1$ that the person is guilty (there is a difference); 
 - if there is not enough evidence (data) to demonstrate the crime (difference), we can not reject $H_0$ and must assume that the person is innocent (there is no difference). 
 
-Note that in the latter case we are still not certain if the person is actually innocent (there is no difference), we might just not have enough evidence (data) to prove it. Similarly, accepting $H_0$ in hypothesis testing does not show that there is no difference but only that our data did not indicate a difference.
+Note that in the latter case we are still not certain if the person is actually innocent (there is no difference), we might just not have enough evidence (data) to prove it. Similarly, retaining $H_0$ in hypothesis testing does not show that there is no difference but only that our data did not indicate a difference.
 
-The analogy also applies to errors as well. A type I error would be convicting an innocent person while a type II error would be letting a guilty person free.
+The analogy applies to errors as well. A type I error would be convicting an innocent person while a type II error would be letting a guilty person free.

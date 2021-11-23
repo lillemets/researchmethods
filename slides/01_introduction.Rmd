@@ -11,6 +11,7 @@ knit: (function(...) { rmarkdown::render(..., output_dir = '../docs/slides') })
 knitr::opts_chunk$set(echo = F, dpi = 150, fig.height = 4)
 # Load packages
 library('magrittr');library('knitr')
+# TODO: Fix headings
 ```
 
 ## A story of drawing inferences
@@ -426,6 +427,463 @@ It's unconventional and has a steep learining curve:
 ???
 
 Draw a plot to illustrate the learning curve of other software vs R.
+
+---
+
+class: center middle 
+
+# How can we format data?
+
+---
+
+## Data structure
+
+To apply statistical procedures data should be formatted according to the "tidy data" principle:
+
+1. Every column is a variable.
+2. Every row is an observation.
+3. Every cell is a single value.
+
+--
+
+Data table can be in a long or wide format.
+
+???
+
+Most statistical procedures require 2-dimensional tidy data. 
+
+---
+
+Tidy data (long format): Each row is a  single observation.
+
+``` {r}
+Indometh <- Indometh[Indometh$time > 2, ]
+head(Indometh)
+```
+
+Untidy data (wide format): variable `time` is spread into different columns, so each row is not truly an observation.
+
+``` {r}
+wide <- reshape(Indometh, v.names = "conc", idvar = "Subject",
+                timevar = "time", direction = "wide")
+head(wide)
+```
+
+???
+
+Wide and long format. Explain why some procedures don't work when time variable is not in a single column.
+
+---
+
+## Scales of measurement
+
+|  Scale   | Measure property | Operations |       Central tendency        |
+| :------: | :--------------: | :--------: | :---------------------------: |
+| Nominal  |  Classification  |    =, ≠    |             Mode              |
+| Ordinal  |      Level       |    >, <    |            Median             |
+| Interval |    Difference    |    +, −    |        Arithmetic mean        |
+|  Ratio   |    Magnitude     |    ×, /    | Geometric mean, harmonic mean |
+
+Scales must be kept in mind so that values are treated correctly.
+
+Scales determine the procedures that can be applied to the data. 
+
+???
+
+E.g. when nominal variables are coded as numbers they should not be treated as numeric. Temperature example. Software might print meaningless results if it e.g. treats nominal variables as numeric.
+
+---
+
+#### Binary variables
+
+Can take only two values, usually 0 and 1.
+
+``` {r}
+islands <- as.factor(sample(names(islands)[1:4], 10, replace = T))
+islands %>% data.frame %>% cbind(model.matrix(~islands + 0))
+```
+
+--
+
+The sum and mean of binary variables coded as 0 and 1 are meaningful. What do these show?
+
+---
+
+### Continuous or discrete variables
+
+**A continuous variable** is one in which, for any two values that you can think of, it’s always logically possible to have another value in between.
+
+**A discrete variable** is, in effect, a variable that isn’t continuous. For a discrete variable it’s sometimes the case that there’s nothing in the middle.
+
+---
+
+Discrete variable: the number of a car's gears must be an integer.
+
+``` {r, echo = T}
+mtcars$gear
+```
+
+Continuous variable: weight of a car may have any positive value (up to a certain point).
+
+``` {r, echo = T}
+mtcars$wt
+```
+
+---
+
+### Scales in statistical software
+
+The difference between binary, ratio, interval variables is only theoretical. Statistical software treats all numbers as numeric variables.
+
+--
+
+Measure types in Jamovi: nominal, ordinal, continuous (and ID)
+
+Variable types in R: logical, character, factor, integer, float
+
+---
+
+class: center middle clean
+
+# How do describe data?
+
+---
+
+Any data analysis should begin with and include the description of values.
+
+Descriptive statistics only allows us to describe the data we have. We can not make inferences on population if we only have a sample.
+
+For nominal and ordinal variables we can count them and find mode and/or mean. For sequence of numbers there is a variety of measures for describing values.
+
+---
+
+class: center middle
+
+How would you describe this sequence of values?
+
+``` {r}
+values <- Orange$circumference[1:12]
+values
+```
+
+???
+
+Simplistic but necessary part on analysis. E.g. using survey results to make inferences. Circumference of orange trees at breast height (mm).
+
+---
+
+class: center middle inverse
+
+## Central tendency
+
+???
+
+A concise way to represent numeric values is expressing the center of values. Central value, typical value, expected value. Note that estimating a central tendency is only meaningful if the distribution of values is unimodal.
+
+---
+
+### Mode
+
+Mode is simply the most frequent value in a sequence. 
+
+--
+
+``` {r, echo = T}
+sort(values)
+```
+
+--
+
+Numeric variables often don't have a mode and it is usually not meaningful anyway.
+
+???
+
+Useful for nominal and ordinal variables but rarely used for numeric variables, especially on a continuous scale.
+
+---
+
+### Median
+
+When sequence of values is ordered, the value in the middle is median. 
+
+--
+
+``` {r, echo = T}
+sort(values)
+length(values)
+median(values)
+```
+
+???
+
+Case when odd or even number of values in sequence.
+
+---
+
+### Mean
+
+We consider the arithmetic mean.
+
+It's the sum of values divided by number of values:
+
+$$\bar{X} = \frac{1}{N} \sum{^N_{i=1}}{X_i}$$
+
+In statistics, mean is often referred to as expected value, i.e. $E(x)$.
+
+---
+
+``` {r, echo = T}
+values
+sum(values)
+length(values)
+sum(values) / length(values)
+```
+
+---
+
+### Mean or median?
+
+Which do you think is which here?
+
+``` {r}
+set.seed(123)
+par(mar = c(2,4,2,4))
+v <- c(rnorm(100, mean(values), sd(values)), 
+       rnorm(50, mean(values)+200, sd(values)+100))
+hist(v, 10, freq = F, main = NULL, xlab = NULL)
+lines(density(v))
+abline(v = c(mean(v), median(v)), col = '#018c81', lwd = 2)
+```
+
+---
+
+class: center middle inverse
+
+## Variability
+
+???
+
+Central tendency tells nothing about the deviation of values from that mean. Variability provides another perspective.
+
+---
+
+### Range
+
+Most simple way to express variability is to indicate the range of all values, i.e. the minimum and maximum values.
+
+--
+
+``` {r, echo = T}
+sort(values)
+range(values)
+```
+
+---
+
+### Quantiles
+
+Quantiles can be found by dividing ordered sequence of values into $k$ equally sized groups. Quantiles then represent the lower bounds of these groups.
+
+Median is the 2nd quantile when $k = 2$. When $k = 4$ quantiles are called quartiles and deciles (percentiles) when $k = 100$.
+
+--
+
+``` {r, echo = T}
+sort(values)
+quantile(values, probs = seq(0, 1, .1)) # Deciles
+```
+
+---
+
+Interquartile range (IQR) is the difference between 2nd and 4th quartiles.
+
+``` {r, echo = T}
+quantile(values) # Quartiles
+quantile(values)[4] - quantile(values)[2]
+IQR(values)
+```
+
+???
+Percentiles are not used very often but they are great for describing values.
+
+---
+
+### Variance
+
+Variance is mean squared difference from the mean value:
+
+$$Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$
+
+--
+
+``` {r, echo = T}
+values
+mean(values)
+var(values)
+```
+
+???
+Useful only in statistical calculations.
+
+---
+
+### Standard deviation
+
+Standard deviation is the square root of variance.
+
+$$s(X) = \sqrt{ \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}$$
+
+--
+
+``` {r, echo = T}
+sort(values)
+mean(values)
+sd(values)
+```
+
+---
+
+Standard deviation together with mean are useful for description of normally distributed values.
+
+``` {r}
+set.seed(123)
+v <- rnorm(100, mean(values), sd(values))
+hist(v, 10, freq = F, main = NULL, xlab = NULL)
+lines(density(v))
+m <- mean(v)
+abline(v = c(m, m - sd(v), m + sd(v)), col = '#018c81', lwd = 2)
+```
+
+---
+
+``` {r} 
+#TODO: Make this more elegant
+par(mfrow = 1:2)
+# Larger
+set.seed(123)
+v <- rnorm(100, mean(values), sd(values)*2)
+hist(v, freq = F, main = NULL, xlab = NULL, 
+     xlim = c(mean(values) - 300,mean(values) + 300))
+lines(density(v))
+m <- mean(v)
+abline(v = c(m, m - sd(v), m + sd(v)), col = '#018c81', lwd = 2)
+# Smaller
+set.seed(123)
+v <- rnorm(100, mean(values)/2, sd(values)/2)
+hist(v, freq = F, main = NULL, xlab = NULL, 
+     xlim = c(mean(values) - 300,mean(values) + 300))
+lines(density(v))
+m <- mean(v)
+abline(v = c(m, m - sd(v), m + sd(v)), col = '#018c81', lwd = 2)
+```
+
+
+---
+
+class: center middle inverse
+
+## Plots
+
+???
+
+Plotting allows to present values more intuitively or even depict all of the values at once.
+
+---
+
+class: middle
+
+Why do we need plots?
+
+![](/home/jrl/work/resmeth/slides/img/datasaurusdozen.gif)
+
+---
+
+### Scatterplot
+
+We can simply plot values of one variable against another.
+
+``` {r, echo = F}
+plot(circumference ~ age, Orange, col = Tree)
+```
+
+---
+
+### Boxplot
+
+Boxplots illustrate the quartiles of values and extreme values. 
+
+Half of all the values lie within the box and another half on the lines, outliers excluded.
+
+---
+
+``` {r, echo = F}
+quantile(Orange$circumference)
+par(mar = c(2,4,1,4))
+boxplot(Orange$circumference)
+```
+
+---
+
+Boxplots are useful for comparing values in groups.
+
+``` {r}
+par(mar = c(4,4,0,0))
+boxplot(circumference ~ age, Orange)
+```
+
+???
+
+Age is in days.
+
+---
+
+### Histogram
+
+Histograms are essentially barplots where all values are divided between ranges of equal with, i.e. bins.
+
+--
+
+``` {r, fig.height = 3}
+sort(Orange$circumference)
+b <- seq(min(Orange$circumference), max(Orange$circumference)+20, 20)
+par(mar = c(4,4,0,0))
+hist(Orange$circumference, b, main = NULL, xlab = NULL, xaxt = 'n')
+axis(1, b, b)
+```
+
+---
+
+### Density plot
+
+Instead of bins, distribution of values can also be expressed continuously by smoothing the bins.
+
+Smoothing is done using some bandwidth and kernel smoothing algorithm.
+
+--
+
+``` {r, fig.height = 3}
+par(mfrow = 1:2, mar = c(4,4,0,0))
+plot(density(Orange$circumference), main = NULL)
+hist(Orange$circumference, freq = F, main = NULL, xlab = NULL)
+lines(density(Orange$circumference))
+```
+
+---
+
+Sometimes you just shouldn't create a graph.
+
+![](/home/jrl/work/resmeth/slides/img/self_description.png)
+.footnote[Xkcd. Self-description]
+
+---
+
+class: middle
+
+Graphs should be self-explanatory
+
+![](../img/convincing.png)
+
+.footnote[Xkcd. Convincing]
 
 ---
 

@@ -2,244 +2,18 @@
 
 Statistical testing for numerical data is different from when we have categorical data as we are no longer limited to using frequencies but parameters, ranks and other measures. However, note that nonparametric tests explained at the end can also be used for ordinal variables.
 
-This section covers only comparisons with one or two samples. Comparing multiple mean values is done using analysis of variance (Anova) and is considered in the next section. Also, this section only outlines some classic tests and there are many more.
-
-## One or two samples
-
-### One sample
-
-#### One sample T-test
-
-This test is used to determine if our sample is taken from a population with a given mean. So we test if the sample mean $\bar{x}$ is equal to a hypothetical population mean $\mu$. See @navarro_learning_2018 section 11.2. 
-
-Hypotheses:
-
-$H_0: \bar{x} = \mu$  
-$H_1: \bar{x} \neq \mu$
-
-Test statistic $t$ is calculated as
-
-$$t = \frac{\bar{x} - \mu}{s \div \sqrt{n}},$$
-
-where $\bar{x}$ is the sample mean and $\mu$ the hypothetical population mean that it is tested against and $s$ sample standard deviation.
-
-Test statistic is evaluated on t-distribution with $n-1$ degrees of freedom (df).
-
-Test assumes normality and independence of data. See @navarro_learning_2018 section 11.2.3.
-
-> In Jamovi: `T-tests > One Sample T-test`.  
-> In R: `t.test(x, mu)`
-
-### Two samples
-
-#### Independent samples T-test assuming equal variances (Student test)
-
-This test compares the mean values to determine if these are equal. Equality of means implies that samples come from the same population. The test assumes that variances of the samples are equal. This is true if $\frac{1}{2} < \frac{s_1}{s_2}<2$. See @navarro_learning_2018 section 11.3.
-
-Hypotheses:
-
-$H_0: \bar{x}_1 = \bar{x}_2$  
-$H_1: \bar{x}_1 \neq \bar{x}_2$
-
-Test statistic $t$ is calculated as
-
-$$t = \frac{\bar{x}_1 - \bar{x}_2}{se_{\bar{x}_1 - \bar{x}_2}},$$
-
-where $\bar{x}_1$ and $\bar{x}_2$ are the means of samples and $se_{\bar{x}_1 - \bar{x}_2}$ is the standard error of the difference of means that is calculated as follows:
-
-$$se_{\bar{x}_1 - \bar{x}_2} = s_p\sqrt{\frac{1}{n_1} +{\frac{1}{n_2}}},$$
-
-where $n_1$ and $n_2$ are sample sizes and $s_p$ is the pooled standard deviation calculated as
-
-$$s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},$$
-
-where $s_1$ and $s_2$ are standard deviations of the samples.
-
-Test statistic is evaluated on t-distribution with $n_1+n_2-2$ df.
-
-Test assumes normality and independence of data and homogeneity of variance. See @navarro_learning_2018 section 11.3.7.
-
-> In Jamovi: `T-tests > Independent Samples T-test`.  
-> In R: `t.test(x, y)`
-
-#### Independent samples T-test not assuming equal variances (Welch test)
-
-This test is equivalent to previously described test but now we don't assume equal variances. Variances are unequal if  $s_1 > 2s_2$ or $s_2 > 2s_1$. See @navarro_learning_2018 section 11.4.
-
-Hypotheses are also the same as in case of Student test
-
-$H_0: \bar{x}_1 = \bar{x}_2$  
-$H_1: \bar{x}_1 \neq \bar{x}_2$
-
-Test statistic is the same as for Student test:
-
-$$t = \frac{\bar{x}_1 - \bar{x}_2}{se_{\bar{x}_1 - \bar{x}_2}},$$
-
-where $\bar{x}_1$ and $\bar{x}_2$ are the means of samples and $se_{\bar{x}_1 - \bar{x}_2}$ is the standard error of the difference of means that is calculated as follows:
-
-$$se_{\bar{x}_1 - \bar{x}_2} = \sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}},$$
-
-where $s_1$ and $s_2$ are unbiased standard deviations of the samples.
-
-Test statistic is evaluated on t-distribution where df is calculated as
-
-$$df = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{\left(s_1^2/n_1\right)^2}{n_1-1} + \frac{\left(s_2^2/n_2\right)^2}{n_2-1}}.$$
-
-Test assumes normality and independence of data. See @navarro_learning_2018 section 11.4.2
-
-> In Jamovi: `T-tests > Independent Samples T-test | Welch's`.  
-> In R: `t.test(x, y, var.equal = FALSE)`
-
-## Unpaired or paired samples
-
-Previous tests assumed independence of samples. This is not true if we have paired values. For instance, if samples contain measurements of same observations in two different points in time, then the values representing same observations are paired.
-
-#### Paired samples T-test
-
-See @navarro_learning_2018 section 11.5.
-
-Hypotheses:
-
-$H_0: \bar{x}_1 = \bar{x}_2$  
-$H_1: \bar{x}_1 \neq \bar{x}_2$
-
-Test statistic $t$ is calculated as
-
-$$t = \frac{\hat{D}}{s_\Delta\div \sqrt{n_1 + n_2}},$$
-
-where $s_\Delta$ is difference in standard deviation expressed as $s_\Delta = s_1 - s_2$ and  $\hat{D}$  is the mean of differences between paired values calculated as
-
-$$\hat{D} = \frac{1}{n} \sum_{i=1}^i{(X_{i1} - X_{i2})}.$$
-
-Test statistic is evaluated on t-distribution with $n-1$ df where $n$ is the number of pairs.
-
-Test assumes normality of data.
-
-> In Jamovi: `T-tests > Paired Samples T-test`.  
-> In R: `t.test(x, y, paired = T)`
-
-## One-tailed or two-tailed tests
-
-All the tests described above were presented as one-tailed tests. This means that we were not interested in whether the differences are positive or negative. Two-tailed versions of these tests also take this into consideration. See @navarro_learning_2018 section 11.6.
-
-If we wish to test if mean of sample ($\bar{x}$) is greater than hypothetical population mean ($\mu$), then our hypotheses are the following:
-
-$H_0: \bar{x} \le \mu$  
-$H_1: \bar{x} \gt \mu$
-
-If we wish to test if mean of one sample ($\bar{x}_1$) is greater than mean of another sample ($\bar{x}_2$) , then our hypotheses are the following:
-
-$H_0: \bar{x}_1 \le \bar{x}_2$  
-$H_1: \bar{x}_1 \gt \bar{x}_2$
-
-> In Jamovi: `T-tests > ... T-test | Group 1 > Group 2 or Group 1 < Group 2`.  
-> In R: `t.test(x, y, alternative = 'less') or t.test(x, y, alternative = 'greater')`
-
-## Parametric or nonparametric tests
-
-Population parameters (e.g. mean, standard deviance) can be estimated from sample parameters only if we can assume that the distribution of values in population (and thus sample) follows normal distribution. If we can not make assumptions about the distribution or parameters of underlying population values we need to use nonparametric tests. 
-
-### Normality
-
-There are various ways to determine whether or not values are normally distributed or not. Here we look at QQ plots and Shapiro-Wilk test.
-
-#### QQ plot
-
-On such plots quantiles of data are plotted against theoretical quantiles representing normal distribution. If quantiles of data are highly correlated to these theoretical quantiles (relationship follows a straight line), then data is normally distributed. Interpretation of QQ plot is thus not precise. See @navarro_learning_2018 section 11.8.1.
-
-> In Jamovi: `Exploration > Descriptives > Plots | Q-Q`.  
-> In R: `qqnorm(y)`
-
-#### Shapiro-Wilk test
-
-This test determines if data is normally distributed or not. In other words, it tests if sample comes from a normally distributed population. See @navarro_learning_2018 section 11.8.2.
-
-Test statistic $W$ is calculated as
-
-$$W = \frac{(\sum^n_{i=1}{a_ix_i})^2}{\sum^n_{i=1}(x_i - \bar{x})^2}$$
-
-The exact explanation of $a$ and thus the logic is complicated but higher value of $W$ indicates non-normality. If the test statistic is statistically significant, then data is not normally distributed:
-
-$H_0$: Data is normally distributed  
-$H_1$: Data is not normally distributed
-
-> In Jamovi: `Exploration > Descriptives > Statistics | Shapiro-Wilk`.  
-> In R: `shapiro.test(x)`
-
-### Nonparametric tests
-
-#### Mann-Whitney U test
-
-This is a test to compare distributions (and medians) of two **unpaired** samples if we can't assume normality. The test is also known as Wilcoxon rank-sum test. The test is also known as Wilcoxon rank-sum test. See @navarro_learning_2018 section 11.9.1.
-
-Hypotheses:
-
-$H_{0}$: Distributions (medians) of both samples are the same.  
-$H_{1}$: Distributions (medians) of samples are different.
-
-Formal definition of $H_{0}$: A randomly selected value from one sample is equally likely to be less than or greater than a randomly selected value from a second sample.
-
-Test statistic $U$ is calculated as
-
-$$U = \sum^n_{i=1} \sum^m_{j=1} S(X_1, X_2),$$
-
-where $n$ are rows and $m$ columns of a matrix $S(X_1, X_2)$ described as below.
-
-$$S(X_1, X_2) = \begin{cases}
-      1 & \text{if } Y < X\\
-      \frac12 & \text{if } Y = X\\\
-      1 & \text{if } Y > X\
-    \end{cases}$$
-
-Basically, we compare all values and count the times when values from one sample are higher than values from another sample. The $U$ is just the count of these differences.
-
-For $n \ge 20$, p-value for $U$ is calculated on a normal distribution.
-
-Test assumes independence of samples.
-
-> In Jamovi: `T-tests > Independent Samples T-test | Mann-Whitney U`.  
-> In R: `wilcox.test(x, y)`
-
-#### Wilcoxon signed-rank test
-
-This is similar to Mann-Whitney U test but used for **paired** samples. The test is also known as one sample Wilcoxon test. See @navarro_learning_2018 section 11.9.2
-
-Hypotheses:
-
-$H_{0}$: Distributions (medians) of both samples are the same.  
-$H_{1}$: Distributions (medians) of samples are different.
-
-The W statistic is calculated as:
-
-$$W = \sum^n_{i = 1}(sgn(x_{1i}x_{2i}) \times R_i),$$
-
-where $sgn(x_{1i}x_{2i})$ is sign function (1 for positive difference, -1 for negative) and $R_i$ is the rank of absolute difference.
-
-Basically, we are comparing how different is the ranking of values between two samples. The $W$ is just the sum of ranked differences.
-
-For $n \ge 20$, p-value for $W$ is calculated on normal distribution.
-
-Test has no relevant assumptions.
-
-> In Jamovi: `T-tests > Paired Samples T-test | Wilcoxon rank`.  
-> In R: `wilcox.test(x, y)`
-
-#### Kolmogorov-Smirnov test
-
-This test is equivalent to Mann-Whitney U test, although the calculation is very different. This test compares the overall shape of two distributions using cumulative distribution function. 
-
-Hypotheses:
-
-$H_{0}$: Distributions of both samples are the same.  
-$H_{1}$: Distributions of samples are different.
-
-Test statistic $D$ is simply the maximum absolute difference between two cumulative distribution functions. 
-
-P-value is determined by the extremity of the test statistic $D$ on Kolmogorov distribution.
-
-> In R: `ks.test(x, y)`
+This section covers only comparisons with one or two samples. Comparing multiple mean values is done using *Analysis of variance* (*Anova*) and is considered in the next section. Also, this section only outlines some classic tests and there are many more out there.
 
 ## How to decide which test to use?
+
+The particular test that we should choose to compare numeric data depends on 
+
+1. how many samples we have, 
+2. if the values are normally distributed, 
+3. if samples have equal variances, and
+4. if the samples are paired.
+
+This section describes the tests that we can apply in each of these cases. The list below can be used as a guide when deciding which test you should use.
 
 - One sample
   - Unpaired samples
@@ -267,3 +41,254 @@ P-value is determined by the extremity of the test statistic $D$ on Kolmogorov d
   - Unpaired samples
     - Normally distributed
       - *Analysis of Variance*
+
+## One or two samples
+
+### One sample
+
+#### One sample T-test
+
+See @navarro_learning_2018 section 11.2. 
+
+This test is used to determine **if our sample is taken from a population with a given mean**. So we test if the sample mean $\bar{x}$ is equal to a hypothetical population mean $\mu$.
+
+Hypotheses:
+
+$H_0: \bar{x} = \mu$  
+$H_1: \bar{x} \neq \mu$
+
+Test statistic $t$ is calculated as
+
+$$t = \frac{\bar{x} - \mu}{s \div \sqrt{n}},$$
+
+where $\bar{x}$ is the sample mean and $\mu$ the hypothetical population mean that it is tested against and $s$ sample standard deviation.
+
+Test statistic is evaluated on t-distribution with $n-1$ degrees of freedom ( $df$ ).
+
+Test assumes **normality** and **independence** of data. See @navarro_learning_2018 section 11.2.3.
+
+> In Jamovi: `T-tests > One Sample T-test`.  
+> In R: `t.test(x, mu)`
+
+### Two samples
+
+#### Independent samples T-test assuming equal variances (Student test)
+
+See @navarro_learning_2018 section 11.3.
+
+This test **compares mean values of two samples to determine if these are equal**. Equality of means implies that **samples come from the same population**. 
+
+Hypotheses:
+
+$H_0: \bar{x}_1 = \bar{x}_2$  
+$H_1: \bar{x}_1 \neq \bar{x}_2$
+
+Test statistic $t$ is calculated as
+
+$$t = \frac{\bar{x}_1 - \bar{x}_2}{se_{\bar{x}_1 - \bar{x}_2}},$$
+
+where $\bar{x}_1$ and $\bar{x}_2$ are the means of samples and $se_{\bar{x}_1 - \bar{x}_2}$ is the standard error of the difference of means that is calculated as follows:
+
+$$se_{\bar{x}_1 - \bar{x}_2} = s_p\sqrt{\frac{1}{n_1} +{\frac{1}{n_2}}},$$
+
+where $n_1$ and $n_2$ are sample sizes and $s_p$ is the *pooled standard deviation* calculated as
+
+$$s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},$$
+
+where $s_1$ and $s_2$ are standard deviations of the samples.
+
+Test statistic is evaluated on t-distribution with $n_1+n_2-2$ $df$.
+
+Test assumes **normality** and **independence** of data and **homogeneity of variance**. The latter means that variances of the samples need to be equal. This is true if $\frac{1}{2} < \frac{s_1}{s_2}<2$. See @navarro_learning_2018 section 11.3.7.
+
+> In Jamovi: `T-tests > Independent Samples T-test`.  
+> In R: `t.test(x, y)`
+
+#### Independent samples T-test not assuming equal variances (Welch test)
+
+See @navarro_learning_2018 section 11.4.
+
+This test is equivalent to previously described test but now we **don't assume equal variances**. Variances are unequal if  $s_1 > 2s_2$ or $s_2 > 2s_1$. 
+
+Hypotheses are also the same as in case of the Student test
+
+$H_0: \bar{x}_1 = \bar{x}_2$  
+$H_1: \bar{x}_1 \neq \bar{x}_2$
+
+Test statistic is the same as for Student test:
+
+$$t = \frac{\bar{x}_1 - \bar{x}_2}{se_{\bar{x}_1 - \bar{x}_2}},$$
+
+where $\bar{x}_1$ and $\bar{x}_2$ are the means of samples and $se_{\bar{x}_1 - \bar{x}_2}$ is the standard error of the difference of means that is calculated as follows:
+
+$$se_{\bar{x}_1 - \bar{x}_2} = \sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}},$$
+
+where $s_1$ and $s_2$ are unbiased standard deviations of the samples.
+
+Test statistic is evaluated on t-distribution where $df$ is calculated as
+
+$$df = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{\left(s_1^2/n_1\right)^2}{n_1-1} + \frac{\left(s_2^2/n_2\right)^2}{n_2-1}}.$$
+
+Test assumes **normality** and **independence** of data. See @navarro_learning_2018 section 11.4.2
+
+> In Jamovi: `T-tests > Independent Samples T-test | Welch's`.  
+> In R: `t.test(x, y, var.equal = FALSE)`
+
+## Unpaired or paired samples
+
+Previous tests assumed independence of samples. This is not true if we have paired values. For instance, if samples contain measurements of same observations in two different points in time, then the values representing same observations are paired. In tests for such paired data we test **if the differences between each pair of values are large** enough to be also present in population.
+
+#### Paired samples T-test
+
+See @navarro_learning_2018 section 11.5.
+
+Hypotheses:
+
+$H_0: \bar{x}_1 = \bar{x}_2$  
+$H_1: \bar{x}_1 \neq \bar{x}_2$
+
+Test statistic $t$ is calculated as
+
+$$t = \frac{\hat{D}}{s_\Delta\div \sqrt{n_1 + n_2}},$$
+
+where $s_\Delta$ is difference in standard deviation expressed as $s_\Delta = s_1 - s_2$ and  $\hat{D}$  is the mean of differences between paired values calculated as
+
+$$\hat{D} = \frac{1}{n} \sum_{i=1}^i{(X_{i1} - X_{i2})}.$$
+
+Test statistic is evaluated on t-distribution with $n-1$ $df$ where $n$ is the number of pairs.
+
+Test assumes normality of data.
+
+> In Jamovi: `T-tests > Paired Samples T-test`.  
+> In R: `t.test(x, y, paired = T)`
+
+## One-tailed or two-tailed tests
+
+See @navarro_learning_2018 section 11.6.
+
+All the tests described above were presented as one-tailed tests. This means that we were not interested in whether the differences are positive or negative. Two-tailed versions of these tests also take this into consideration. 
+
+If we wish to test if **mean of sample ($\bar{x}$) is greater than hypothetical population mean ($\mu$)**, then our hypotheses are the following:
+
+$H_0: \bar{x} \le \mu$  
+$H_1: \bar{x} \gt \mu$
+
+If we wish to test if **mean of one sample ($\bar{x}_1$) is greater than mean of another sample ($\bar{x}_2$)**, then our hypotheses are the following:
+
+$H_0: \bar{x}_1 \le \bar{x}_2$  
+$H_1: \bar{x}_1 \gt \bar{x}_2$
+
+> In Jamovi: `T-tests > ... T-test | Group 1 > Group 2 or Group 1 < Group 2`.  
+> In R: `t.test(x, y, alternative = 'less') or t.test(x, y, alternative = 'greater')`
+
+## Parametric or nonparametric tests
+
+Population parameters (e.g. mean, standard deviance) can be estimated from sample parameters only if we can assume that the **distribution of values in population (and thus sample) follows normal distribution**. If we can not make assumptions about the distribution or parameters of underlying population values we need to use nonparametric tests. 
+
+### Normality
+
+There are various ways to determine whether or not values are normally distributed or not. Here we look at QQ plots and Shapiro-Wilk test.
+
+#### QQ plot
+
+See @navarro_learning_2018 section 11.8.1.
+
+On such plots quantiles of data are plotted against theoretical quantiles representing normal distribution. **If quantiles of data are highly correlated to these theoretical quantiles (relationship follows a straight line), then data is normally distributed**. Interpretation of QQ plot is thus not precise. 
+
+> In Jamovi: `Exploration > Descriptives > Plots | Q-Q`.  
+> In R: `qqnorm(y)`
+
+#### Shapiro-Wilk test
+
+See @navarro_learning_2018 section 11.8.2.
+
+This test determines if data is normally distributed or not. In other words, it tests **if sample comes from a normally distributed population**. 
+
+Test statistic $W$ is calculated as
+
+$$W = \frac{(\sum^n_{i=1}{a_ix_i})^2}{\sum^n_{i=1}(x_i - \bar{x})^2}$$
+
+The exact explanation of $a$ and thus the logic is complicated but as always, more extreme value of the test statistic $W$ indicates non-normality. If the test statistic is statistically significant, then data is not normally distributed:
+
+$H_0$: Data is normally distributed  
+$H_1$: Data is not normally distributed
+
+> In Jamovi: `Exploration > Descriptives > Statistics | Shapiro-Wilk`.  
+> In R: `shapiro.test(x)`
+
+### Nonparametric tests
+
+#### Mann-Whitney U test
+
+See @navarro_learning_2018 section 11.9.1.
+
+This is a test to compare **distributions (and medians)** of two **unpaired** samples if we **can't assume normality**. The test is also known as Wilcoxon rank-sum test. 
+
+Hypotheses:
+
+$H_{0}$: Distributions (medians) of both samples are the same.  
+$H_{1}$: Distributions (medians) of samples are different.
+
+Formal definition of $H_{0}$ is as follows: a randomly selected value from one sample is equally likely to be less than or greater than a randomly selected value from a second sample.
+
+Test statistic $U$ is calculated as
+
+$$U = \sum^n_{i=1} \sum^m_{j=1} S(X_1, X_2),$$
+
+where $n$ are rows and $m$ columns of a matrix $S(X_1, X_2)$ described as below.
+
+$$S(X_1, X_2) = \begin{cases}
+      1 & \text{if } Y < X\\
+      \frac12 & \text{if } Y = X\\\
+      1 & \text{if } Y > X\
+    \end{cases}$$
+
+Basically, we compare all values and **count the times when values from one sample are higher than values from another sample**. The $U$ is just the count of these differences.
+
+For $n \ge 20$, p-value for $U$ is calculated on a normal distribution.
+
+Test assumes independence of samples.
+
+> In Jamovi: `T-tests > Independent Samples T-test | Mann-Whitney U`.  
+> In R: `wilcox.test(x, y)`
+
+#### Wilcoxon signed-rank test
+
+See @navarro_learning_2018 section 11.9.2
+
+This is similar to Mann-Whitney U test but used for **paired** samples. The test is also known as One sample Wilcoxon test. 
+
+Hypotheses:
+
+$H_{0}$: Distributions (medians) of both samples are the same.  
+$H_{1}$: Distributions (medians) of samples are different.
+
+The W statistic is calculated as:
+
+$$W = \sum^n_{i = 1}(sgn(x_{1i}x_{2i}) \times R_i),$$
+
+where $sgn(x_{1i}x_{2i})$ is sign function (1 for positive difference, -1 for negative) and $R_i$ is the rank of absolute difference.
+
+Basically, we are comparing **how different is the ranking of values between two samples**. The $W$ is just the sum of ranked differences.
+
+For $n \ge 20$, p-value for $W$ is calculated on normal distribution.
+
+Test has no relevant assumptions.
+
+> In Jamovi: `T-tests > Paired Samples T-test | Wilcoxon rank`.  
+> In R: `wilcox.test(x, y)`
+
+#### Kolmogorov-Smirnov test
+
+This test is equivalent to Mann-Whitney U test, although the calculation is very different. This test **compares the overall shape of two distributions using cumulative distribution function**. 
+
+Hypotheses:
+
+$H_{0}$: Distributions of both samples are the same.  
+$H_{1}$: Distributions of samples are different.
+
+Test statistic $D$ is simply the maximum absolute difference between two cumulative distribution functions. 
+
+P-value is determined by the extremity of the test statistic $D$ on Kolmogorov distribution.
+
+> In R: `ks.test(x, y)`

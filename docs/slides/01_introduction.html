@@ -4,9 +4,9 @@
     <title>Introduction</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-11-18" />
-    <script src="01_introduction_files/header-attrs-2.10/header-attrs.js"></script>
-    <link rel="stylesheet" href="/home/jrl/work/resmeth/slides/minimal.css" type="text/css" />
+    <meta name="date" content="2021-11-22" />
+    <script src="01_introduction_files/header-attrs-2.11/header-attrs.js"></script>
+    <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Introduction
 ## Research methods
 ### Jüri Lillemets
-### 2021-11-18
+### 2021-11-22
 
 ---
 
@@ -41,6 +41,7 @@ On the phone, though, the father was somewhat abashed. “I had a talk with my d
 class: middle
 
 ![](../img/datamining.jpg)
+
 ---
 
 class: center middle clean
@@ -437,9 +438,9 @@ Draw a plot to illustrate the learning curve of other software vs R.
 
 ---
 
-class: center middle inverse
+class: center middle 
 
-# Data management
+# How can we format data?
 
 ---
 
@@ -518,17 +519,17 @@ Can take only two values, usually 0 and 1.
 
 
 ```
-##             . islandsAfrica islandsAntarctica islandsAsia
-## 1  Antarctica             0                 1           0
-## 2      Africa             1                 0           0
-## 3  Antarctica             0                 1           0
-## 4  Antarctica             0                 1           0
-## 5  Antarctica             0                 1           0
-## 6  Antarctica             0                 1           0
-## 7      Africa             1                 0           0
-## 8  Antarctica             0                 1           0
-## 9        Asia             0                 0           1
-## 10 Antarctica             0                 1           0
+##             . islandsAfrica islandsAntarctica islandsAsia islandsAustralia
+## 1      Africa             1                 0           0                0
+## 2  Antarctica             0                 1           0                0
+## 3  Antarctica             0                 1           0                0
+## 4        Asia             0                 0           1                0
+## 5        Asia             0                 0           1                0
+## 6   Australia             0                 0           0                1
+## 7  Antarctica             0                 1           0                0
+## 8   Australia             0                 0           0                1
+## 9  Antarctica             0                 1           0                0
+## 10  Australia             0                 0           0                1
 ```
 
 --
@@ -580,6 +581,442 @@ The difference between binary, ratio, interval variables is only theoretical. St
 Measure types in Jamovi: nominal, ordinal, continuous (and ID)
 
 Variable types in R: logical, character, factor, integer, float
+
+---
+
+class: center middle clean
+
+# How do describe data?
+
+---
+
+Any data analysis should begin with and include the description of values.
+
+Descriptive statistics only allows us to describe the data we have. We can not make inferences on population if we only have a sample.
+
+For nominal and ordinal variables we can count them and find mode and/or mean. For sequence of numbers there is a variety of measures for describing values.
+
+---
+
+class: center middle
+
+How would you describe this sequence of values?
+
+
+```
+##  [1]  30  58  87 115 120 142 145  33  69 111 156 172
+```
+
+???
+
+Simplistic but necessary part on analysis. E.g. using survey results to make inferences. Circumference of orange trees at breast height (mm).
+
+---
+
+class: center middle inverse
+
+## Central tendency
+
+???
+
+A concise way to represent numeric values is expressing the center of values. Central value, typical value, expected value. Note that estimating a central tendency is only meaningful if the distribution of values is unimodal.
+
+---
+
+### Mode
+
+Mode is simply the most frequent value in a sequence. 
+
+--
+
+
+```r
+sort(values)
+```
+
+```
+##  [1]  30  33  58  69  87 111 115 120 142 145 156 172
+```
+
+--
+
+Numeric variables often don't have a mode and it is usually not meaningful anyway.
+
+???
+
+Useful for nominal and ordinal variables but rarely used for numeric variables, especially on a continuous scale.
+
+---
+
+### Median
+
+When sequence of values is ordered, the value in the middle is median. 
+
+--
+
+
+```r
+sort(values)
+```
+
+```
+##  [1]  30  33  58  69  87 111 115 120 142 145 156 172
+```
+
+```r
+length(values)
+```
+
+```
+## [1] 12
+```
+
+```r
+median(values)
+```
+
+```
+## [1] 113
+```
+
+???
+
+Case when odd or even number of values in sequence.
+
+---
+
+### Mean
+
+We consider the arithmetic mean.
+
+It's the sum of values divided by number of values:
+
+`$$\bar{X} = \frac{1}{N} \sum{^N_{i=1}}{X_i}$$`
+
+In statistics, mean is often referred to as expected value, i.e. `\(E(x)\)`.
+
+---
+
+
+```r
+values
+```
+
+```
+##  [1]  30  58  87 115 120 142 145  33  69 111 156 172
+```
+
+```r
+sum(values)
+```
+
+```
+## [1] 1238
+```
+
+```r
+length(values)
+```
+
+```
+## [1] 12
+```
+
+```r
+sum(values) / length(values)
+```
+
+```
+## [1] 103.1667
+```
+
+---
+
+### Mean or median?
+
+Which do you think is which here?
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+class: center middle inverse
+
+## Variability
+
+???
+
+Central tendency tells nothing about the deviation of values from that mean. Variability provides another perspective.
+
+---
+
+### Range
+
+Most simple way to express variability is to indicate the range of all values, i.e. the minimum and maximum values.
+
+--
+
+
+```r
+sort(values)
+```
+
+```
+##  [1]  30  33  58  69  87 111 115 120 142 145 156 172
+```
+
+```r
+range(values)
+```
+
+```
+## [1]  30 172
+```
+
+---
+
+### Quantiles
+
+Quantiles can be found by dividing ordered sequence of values into `\(k\)` equally sized groups. Quantiles then represent the lower bounds of these groups.
+
+Median is the 2nd quantile when `\(k = 2\)`. When `\(k = 4\)` quantiles are called quartiles and deciles (percentiles) when `\(k = 100\)`.
+
+--
+
+
+```r
+sort(values)
+```
+
+```
+##  [1]  30  33  58  69  87 111 115 120 142 145 156 172
+```
+
+```r
+quantile(values, probs = seq(0, 1, .1)) # Deciles
+```
+
+```
+##    0%   10%   20%   30%   40%   50%   60%   70%   80%   90%  100% 
+##  30.0  35.5  60.2  74.4  96.6 113.0 118.0 135.4 144.4 154.9 172.0
+```
+
+---
+
+Interquartile range (IQR) is the difference between 2nd and 4th quartiles.
+
+
+```r
+quantile(values) # Quartiles
+```
+
+```
+##     0%    25%    50%    75%   100% 
+##  30.00  66.25 113.00 142.75 172.00
+```
+
+```r
+quantile(values)[4] - quantile(values)[2]
+```
+
+```
+##  75% 
+## 76.5
+```
+
+```r
+IQR(values)
+```
+
+```
+## [1] 76.5
+```
+
+???
+Percentiles are not used very often but they are great for describing values.
+
+---
+
+### Variance
+
+Variance is mean squared difference from the mean value:
+
+`$$Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$`
+
+--
+
+
+```r
+values
+```
+
+```
+##  [1]  30  58  87 115 120 142 145  33  69 111 156 172
+```
+
+```r
+mean(values)
+```
+
+```
+## [1] 103.1667
+```
+
+```r
+var(values)
+```
+
+```
+## [1] 2274.333
+```
+
+???
+Useful only in statistical calculations.
+
+---
+
+### Standard deviation
+
+Standard deviation is the square root of variance.
+
+`$$s(X) = \sqrt{ \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}$$`
+
+--
+
+
+```r
+sort(values)
+```
+
+```
+##  [1]  30  33  58  69  87 111 115 120 142 145 156 172
+```
+
+```r
+mean(values)
+```
+
+```
+## [1] 103.1667
+```
+
+```r
+sd(values)
+```
+
+```
+## [1] 47.68997
+```
+
+---
+
+Standard deviation together with mean are useful for description of normally distributed values.
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+
+---
+
+class: center middle inverse
+
+## Plots
+
+???
+
+Plotting allows to present values more intuitively or even depict all of the values at once.
+
+---
+
+class: middle
+
+Why do we need plots?
+
+![](/home/jrl/work/resmeth/slides/img/datasaurusdozen.gif)
+
+---
+
+### Scatterplot
+
+We can simply plot values of one variable against another.
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+---
+
+### Boxplot
+
+Boxplots illustrate the quartiles of values and extreme values. 
+
+Half of all the values lie within the box and another half on the lines, outliers excluded.
+
+---
+
+
+```
+##    0%   25%   50%   75%  100% 
+##  30.0  65.5 115.0 161.5 214.0
+```
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+
+Boxplots are useful for comparing values in groups.
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+???
+
+Age is in days.
+
+---
+
+### Histogram
+
+Histograms are essentially barplots where all values are divided between ranges of equal with, i.e. bins.
+
+--
+
+
+```
+##  [1]  30  30  30  32  33  49  51  58  62  69  75  81  87 108 111 112 115 115 120
+## [20] 125 139 140 142 142 145 156 167 172 174 177 179 203 203 209 214
+```
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+---
+
+### Density plot
+
+Instead of bins, distribution of values can also be expressed continuously by smoothing the bins.
+
+Smoothing is done using some bandwidth and kernel smoothing algorithm.
+
+--
+
+![](/home/jrl/work/resmeth/docs/slides/01_introduction_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+---
+
+Sometimes you just shouldn't create a graph.
+
+![](/home/jrl/work/resmeth/slides/img/self_description.png)
+.footnote[Xkcd. Self-description]
+
+---
+
+class: middle
+
+Graphs should be self-explanatory
+
+![](../img/convincing.png)
+
+.footnote[Xkcd. Convincing]
 
 ---
 
