@@ -3,7 +3,7 @@ title: Introduction
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-knit: (function(...) { rmarkdown::render(..., output_dir = '../docs/slides') })
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
