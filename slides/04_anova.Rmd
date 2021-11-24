@@ -265,3 +265,17 @@ All CIs are outside 0.
 ---
 
 class: inverse
+
+---
+
+## Practice
+
+1. Download the data set `chickwts` from the course notes.
+2. Go to cloud.jamovi.org.
+3. Open the data set in Jamovi.
+
+> Are the weights normally distributed?
+>
+> Are the samples independent?
+>
+> Which test should you use to see if diet has an impact on weight?

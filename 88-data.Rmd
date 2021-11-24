@@ -1,0 +1,11 @@
+# Data sets
+
+These data sets are used for practical application of methods. See the info for details on what the variables in data sets represent.
+
+- [barley](../data/barley.csv) - Yield data from a Minnesota barley trial ([info](https://vincentarelbundock.github.io/Rdatasets/doc/lattice/barley.html))
+- [Computers](../data/Computers.csv) - Prices of Personal Computers ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Computers.html))
+- [Griliches](../data/Griliches.csv) -  Wage Data ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Griliches.html))
+- [M&Ms](../data/mm.csv) - Color counts and net weight for a sample of 30 bags of M&M's ([info](https://www.randomservices.org/random/data/MM.html))
+- [mtcars](../data/mtcars.csv) - Motor Trend Car Road Tests ([info](https://vincentarelbundock.github.io/Rdatasets/doc/datasets/mtcars.html))
+- [PhDPublications](../data/PhDPublications.csv) - Doctoral Publications ([info](https://vincentarelbundock.github.io/Rdatasets/doc/AER/PhDPublications.html))
+- [PSID1976](../data/PSID1976.csv) -  Labor Force Participation Data ([info](https://vincentarelbundock.github.io/Rdatasets/doc/AER/PSID1976.html))

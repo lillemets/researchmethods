@@ -1,8 +1,8 @@
 # Comparing numerical data
 
-Statistical testing for numerical data is different from when we have categorical data as we are no longer limited to using frequencies but parameters, ranks and other measures. However, note that nonparametric tests explained at the end can also be used for ordinal variables.
+Statistical testing for numerical data is different from when we have categorical data as we are no longer limited to using frequencies. Instead, we can test differences in parameters, ranks and other measures. However, nonparametric tests explained at the end can also be used for ordinal variables.
 
-This section covers only comparisons with one or two samples. Comparing multiple mean values is done using *Analysis of variance* (*Anova*) and is considered in the next section. Also, this section only outlines some classic tests and there are many more out there.
+This section covers only comparisons with one or two samples, i.e. when we compare values of one or two groups. Comparing more than two mean values is done using *Analysis of variance* and is considered in the next section. Also, this section only outlines some classical tests and there are actually many more.
 
 ## How to decide which test to use?
 
@@ -61,7 +61,7 @@ Test statistic $t$ is calculated as
 
 $$t = \frac{\bar{x} - \mu}{s \div \sqrt{n}},$$
 
-where $\bar{x}$ is the sample mean and $\mu$ the hypothetical population mean that it is tested against and $s$ sample standard deviation.
+where $\bar{x}$ is the sample mean and $\mu$ the hypothetical population mean that it is tested against and $s$ is sample standard deviation.
 
 Test statistic is evaluated on t-distribution with $n-1$ degrees of freedom ( $df$ ).
 
@@ -110,7 +110,7 @@ See @navarro_learning_2018 section 11.4.
 
 This test is equivalent to previously described test but now we **don't assume equal variances**. Variances are unequal if  $s_1 > 2s_2$ or $s_2 > 2s_1$. 
 
-Hypotheses are also the same as in case of the Student test
+Hypotheses are also the same as in case of the Student test.
 
 $H_0: \bar{x}_1 = \bar{x}_2$  
 $H_1: \bar{x}_1 \neq \bar{x}_2$
@@ -166,7 +166,7 @@ Test assumes normality of data.
 
 See @navarro_learning_2018 section 11.6.
 
-All the tests described above were presented as one-tailed tests. This means that we were not interested in whether the differences are positive or negative. Two-tailed versions of these tests also take this into consideration. 
+All the tests described above were presented as one-tailed tests. This means that we were not interested in whether the differences are positive or negative. Two-tailed versions of these tests allow us to test not only equality of means but also if one mean is greater or smaller than another. 
 
 If we wish to test if **mean of sample ($\bar{x}$) is greater than hypothetical population mean ($\mu$)**, then our hypotheses are the following:
 
@@ -183,7 +183,7 @@ $H_1: \bar{x}_1 \gt \bar{x}_2$
 
 ## Parametric or nonparametric tests
 
-Population parameters (e.g. mean, standard deviance) can be estimated from sample parameters only if we can assume that the **distribution of values in population (and thus sample) follows normal distribution**. If we can not make assumptions about the distribution or parameters of underlying population values we need to use nonparametric tests. 
+Population parameters (e.g. mean, standard deviance) can be estimated from sample parameters only if we can assume that the **distribution of values in population (and thus in sample) follows normal distribution**. If we can not make assumptions about the distribution or parameters of underlying population values we need to use nonparametric tests. 
 
 ### Normality
 
@@ -292,3 +292,12 @@ Test statistic $D$ is simply the maximum absolute difference between two cumulat
 P-value is determined by the extremity of the test statistic $D$ on Kolmogorov distribution.
 
 > In R: `ks.test(x, y)`
+
+### Interpretation of test results
+
+Suppose that one of the tests above indicates that p-value is $\le \alpha$. There are several ways in which we could interpret this result:
+
+- the differences between the means/medians of two samples are different, 
+- there is a statistically significant relationship between the two variables, 
+- one variable has a statistically significant effect on another, or
+- the samples come from differen populations.

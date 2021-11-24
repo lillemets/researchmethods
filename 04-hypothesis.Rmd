@@ -50,7 +50,11 @@ See @navarro_learning_2018 section 8.4.2.
 
 Standard deviation in a sample tends to be lower than population standard deviation. Thus, unlike the estimate of population mean, **estimate of population standard error needs to be corrected for bias** as follows:
 
-$$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}.$$
+$$\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}.$$ , 
+
+where $x_i$ is the value of variable $x$ for observation $i$, $\hat{x}$ is the sample mean and $n$ sample size.
+
+This estimate of population standard error is also called *standard error of the mean*.
 
 ### Confidence intervals
 
@@ -58,9 +62,11 @@ See @navarro_learning_2018 section 8.5
 
 Whenever we draw an inference about population from our sample, there is always a degree of uncertainty. Confidence intervals (CI) is a measure of this uncertaintly.
 
-A 95% CI of the mean $X \sim N(\mu,\sigma^2)$ is calculated as
+A 95% CI of the population mean $X \sim N(\mu,\sigma^2)$ is calculated as
 
-$$CI_{95} = \hat{x} \pm(1.96\times\frac{\sigma}{\sqrt{N}})$$
+$$CI_{95} = \hat{x} \pm(1.96\times\frac{s}{\sqrt{n}})$$,
+
+where $\hat{x}$ is the sample mean, $s$ sample standard deviation and $n$ sample size.
 
 CI is **not** the 95% probility that the true value lies between the intervals. CI indicates that if we take many samples from the population, then in case of 95% of these samples the means will lie between the intervals. There is no intuitive interpretation other than the following rather inaccurate explanation: we are just pretty sure that the true value is somewhere in the interval.
 
@@ -93,7 +99,7 @@ We can make two types of errors when making a conclusion about $H_0$:
 | $H_0$ is true  | We are correct              | We commit **type I error** |
 | $H_0$ is false | We commit **type II error** | We are correct             |
 
-The rate of type I error is considered the significance level of a test (denoted as $\alpha$). **Conventionally, $ \alpha = 0.05$**, so we are willing to accept that type I error occurs 5% of times.
+The rate of type I error is considered the significance level of a test (denoted as $\alpha$). **Conventionally, $\alpha = 0.05$ **, so we are willing to accept that type I error occurs 5% of times.
 
 ### Test statistic and the critical region
 
@@ -109,7 +115,7 @@ The particular parameters that we use to calculate test statistic depend on test
 
 See @navarro_learning_2018 sections 9.5 and table 9.1 in section 9.6.
 
-P-value is the probability of obtaining at least as extreme value of test statistic if $H_0$ is correct. Thus, it's the rate of committing a type I error. Another useful definition has been provided by @navarro_learning_2018[, 193]: "$p$ is defined to be the smallest Type I error rate ($\alpha$) that you have to be willing to tolerate if you want to reject the null hypothesis."
+P-value is the probability of obtaining at least as extreme value of test statistic if $H_0$ is correct. In other words, it is the probability that the difference in our sample does not occur in population . Thus, it's the rate of committing a type I error. Another useful definition has been provided by @navarro_learning_2018[, 193]: "$p$ is defined to be the smallest Type I error rate ($\alpha$) that you have to be willing to tolerate if you want to reject the null hypothesis."
 
 If the p-value is below $\alpha$, we reject $H_0$ and accept $H_1$. 
 
@@ -126,13 +132,13 @@ Every time you find a statistically significant result, there is a possibility t
 
 Statistical hypothesis testing can be summarized as follows:
 
-1. Decide the appropriate type I error rate, i.e.  $\alpha$.
+1. Decide the appropriate type I error rate, i.e. or $\alpha$ (significance level).
 2. Find an appropriate test and test statistic.
 3. Calculate the critical region of the sampling distribution of the relevant test statistic according to $\alpha$.
 4. Calculate the value of the test statistic.
-5. Reject $H_0$ if the value of the test statistic is in the critical region.
+5. Reject $H_0$ if the value of the test statistic is in the critical region and respective p-value is lower than $alpha$.
 
-All of the steps to calculate the p-value are actually done by software. Thus, in practice it is only necessary to set $\alpha$ (conventionally $\alpha = 0.05$) and see if the p-value printed by software is higher or lower than this $\alpha$ (0.05).
+All of the steps to calculate the p-value are actually done by software. Thus, in practice it is only necessary to set $\alpha$ (conventionally $\alpha = 0.05$ ) and see if the p-value printed by software is higher or lower than this $\alpha$ (0.05).
 
 ### The trial of the null hypothesis
 

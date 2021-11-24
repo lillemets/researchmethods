@@ -57,3 +57,11 @@ For $\chi^2$-test of independence DoF is calculated as
 $$df = (r - 1)(c - 1),$$ 
 
 where $r$ is the number of rows and $c$ the number of columns in a contingency table.
+
+### Interpretation of test results
+
+Suppose that a $\chi^2$-test indicates that p-value is $\le \alpha$. There are several ways in which we could interpret this result:
+
+- at least one of the frequencies is different from what is expected, 
+- there is a statistically significant relationship between the two variables ($\chi^2$-test of independence), or
+- one variable has a statistically significant effect on another (based on theory).

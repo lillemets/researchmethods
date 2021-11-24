@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 5 Hypothesis testing | Research methods</title>
-  <meta name="description" content="Section 5 Hypothesis testing | Research methods course materials" />
+  <title>Section 17 Data sets | Research methods</title>
+  <meta name="description" content="Section 17 Data sets | Research methods course materials" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 5 Hypothesis testing | Research methods" />
+  <meta property="og:title" content="Section 17 Data sets | Research methods" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Section 5 Hypothesis testing | Research methods course materials" />
+  <meta property="og:description" content="Section 17 Data sets | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 5 Hypothesis testing | Research methods" />
+  <meta name="twitter:title" content="Section 17 Data sets | Research methods" />
   
-  <meta name="twitter:description" content="Section 5 Hypothesis testing | Research methods course materials" />
+  <meta name="twitter:description" content="Section 17 Data sets | Research methods course materials" />
   
 
 
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="comparing-categorical-data.html"/>
+<link rel="prev" href="cluster-analysis.html"/>
+<link rel="next" href="slides.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -366,166 +366,27 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hypothesis-testing" class="section level1" number="5">
-<h1><span class="header-section-number">Section 5</span> Hypothesis testing</h1>
-<p>Statistical hypothesis testing is a procedure of determining the statistical significance of a given difference. More precisely, it allows to demonstrate whether some difference observed in data can be generalized. As such, it is perhaps the most basic procedure in inferential statistics.</p>
-<div id="sample-and-population-1" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Sample and population</h2>
-<p>Distinguishing between sample and population is important when we wish to draw inferences about population when we only have data on a sample.</p>
-<div id="sample-population-sampling" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Sample, population, sampling</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.1.</p>
-<p>When we have data on entire population we can simply describe it using descriptive statistics. But often we only have information about part of a population, i.e. we only have a <strong>sample</strong> of the <strong>population</strong>. Since we only have data on sample, we can’t be sure if the observed differences in our sample also hold in the population. Hence, in order to estimate population parameters from our sample data, we need to make inferences.</p>
-<p>In order to draw accurate inferences about population, sample should not be biased toward particular type of observations. Bias in sample can be mitigated by including observations into sample from the population randomly. In such case we have a <strong>simple random sample</strong>. A non-mathematical definition of a random sample can be that every value in the population has an equal chance of being included in sample.</p>
-<p>However, samples are very often not random. In addition to a simple random sample, some examples of <strong>sampling process</strong> are stratified sampling, snowball sampling and convenience sampling. In case of a small population, it is also relevant to consider if observations are drawn from the sample with or without replacement.</p>
-</div>
-<div id="the-law-of-large-numbers" class="section level3" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> The law of large numbers</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.2 and figure 8.8.</p>
-<p>One might guess that the more observations we have in our sample, the better the sample describes the population. This is true and can also be expressed in more statistically sounding terms: <strong>as sample size increases, sample parameters tend to approach population parameters in their values.</strong> So the more observations there are in a sample, the more accurate are the inferences drawn about population using that sample.</p>
-</div>
-<div id="the-central-limit-theorem" class="section level3" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> The central limit theorem</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.3.3.</p>
-<p>Due to the law of large numbers we can make certain assumptions about how sample characterizes population. The theorem has been shown to prove the following <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 165</a>)</span>:</p>
+<div id="data-sets" class="section level1" number="17">
+<h1><span class="header-section-number">Section 17</span> Data sets</h1>
+<p>These data sets are used for practical application of methods. See the info for details on what the variables in data sets represent.</p>
 <ul>
-<li>“The mean of the sampling distribution is the same as the mean of the population</li>
-<li>The standard deviation of the sampling distribution (i.e., the standard error) gets smaller as the sample size increases</li>
-<li>The shape of the sampling distribution becomes normal as the sample size increases”</li>
+<li><a href="../data/barley.csv">barley</a> - Yield data from a Minnesota barley trial (<a href="https://vincentarelbundock.github.io/Rdatasets/doc/lattice/barley.html">info</a>)</li>
+<li><a href="../data/Computers.csv">Computers</a> - Prices of Personal Computers (<a href="https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Computers.html">info</a>)</li>
+<li><a href="../data/Griliches.csv">Griliches</a> - Wage Data (<a href="https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Griliches.html">info</a>)</li>
+<li><a href="../data/mm.csv">M&amp;Ms</a> - Color counts and net weight for a sample of 30 bags of M&amp;M’s (<a href="https://www.randomservices.org/random/data/MM.html">info</a>)</li>
+<li><a href="../data/mtcars.csv">mtcars</a> - Motor Trend Car Road Tests (<a href="https://vincentarelbundock.github.io/Rdatasets/doc/datasets/mtcars.html">info</a>)</li>
+<li><a href="../data/PhDPublications.csv">PhDPublications</a> - Doctoral Publications (<a href="https://vincentarelbundock.github.io/Rdatasets/doc/AER/PhDPublications.html">info</a>)</li>
+<li><a href="../data/PSID1976.csv">PSID1976</a> - Labor Force Participation Data (<a href="https://vincentarelbundock.github.io/Rdatasets/doc/AER/PSID1976.html">info</a>)</li>
 </ul>
-</div>
-<div id="estimating-population-parameters" class="section level3" number="5.1.4">
-<h3><span class="header-section-number">5.1.4</span> Estimating population parameters</h3>
-<p>We can estimate population mean and standard deviation of a variable from the values in sample. These two parameters are relevant in the context of parametric tests.</p>
-<div id="population-mean" class="section level4" number="5.1.4.1">
-<h4><span class="header-section-number">5.1.4.1</span> Population mean</h4>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.4.1.</p>
-<p>Our <strong>best estimate of population mean is sample mean</strong>, i.e. </p>
-<p><span class="math display">\[\hat{\mu} = \bar{x}.\]</span></p>
-</div>
-<div id="population-standard-deviation" class="section level4" number="5.1.4.2">
-<h4><span class="header-section-number">5.1.4.2</span> Population standard deviation</h4>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.4.2.</p>
-<p>Standard deviation in a sample tends to be lower than population standard deviation. Thus, unlike the estimate of population mean, <strong>estimate of population standard error needs to be corrected for bias</strong> as follows:</p>
-<p><span class="math display">\[\hat{\sigma} = \sqrt{\frac{1}{n-1} \sum{^n_{i=1}{(x_i-\bar{x})^2}}}.\]</span> ,</p>
-<p>where <span class="math inline">\(x_i\)</span> is the value of variable <span class="math inline">\(x\)</span> for observation <span class="math inline">\(i\)</span>, <span class="math inline">\(\hat{x}\)</span> is the sample mean and <span class="math inline">\(n\)</span> sample size.</p>
-<p>This estimate of population standard error is also called <em>standard error of the mean</em>.</p>
-</div>
-</div>
-<div id="confidence-intervals" class="section level3" number="5.1.5">
-<h3><span class="header-section-number">5.1.5</span> Confidence intervals</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 8.5</p>
-<p>Whenever we draw an inference about population from our sample, there is always a degree of uncertainty. Confidence intervals (CI) is a measure of this uncertaintly.</p>
-<p>A 95% CI of the population mean <span class="math inline">\(X \sim N(\mu,\sigma^2)\)</span> is calculated as</p>
-<p><span class="math display">\[CI_{95} = \hat{x} \pm(1.96\times\frac{s}{\sqrt{n}})\]</span>,</p>
-<p>where <span class="math inline">\(\hat{x}\)</span> is the sample mean, <span class="math inline">\(s\)</span> sample standard deviation and <span class="math inline">\(n\)</span> sample size.</p>
-<p>CI is <strong>not</strong> the 95% probility that the true value lies between the intervals. CI indicates that if we take many samples from the population, then in case of 95% of these samples the means will lie between the intervals. There is no intuitive interpretation other than the following rather inaccurate explanation: we are just pretty sure that the true value is somewhere in the interval.</p>
-</div>
-</div>
-<div id="statistical-hypothesis-testing" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Statistical hypothesis testing</h2>
-<p>The essence of hypothesis testing is to check if some difference in our sample is large enough to reject the idea that there is no difference in population. We are interested in the difference but hypothesis testing actually involves verifying the opposite: lack of a difference. It is not intuitive but it’s just the way it is in Frequentist approach. The actual process of hypothesis testing involves several steps.</p>
-<div id="null-and-alternative-hypotheses" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Null and alternative hypotheses</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 9.1.2.</p>
-<p>Statistical hypothesis testing involves two hypotheses: null (<span class="math inline">\(H_0\)</span>) and alternative (<span class="math inline">\(H_1\)</span>) hypothesis. These are usually defined as follows:</p>
-<p><span class="math inline">\(H_0\)</span>: There <strong>is no</strong> statistically significant difference.<br />
-<span class="math inline">\(H_1\)</span>: There <strong>is</strong> a statistically significant difference.</p>
-<p><strong>We always test if we can reject <span class="math inline">\(H_0\)</span></strong>:</p>
-<ul>
-<li>If we reject <span class="math inline">\(H_0\)</span>, then we accept <span class="math inline">\(H_1\)</span>.</li>
-<li>If we fail to reject <span class="math inline">\(H_0\)</span>, then we accept <span class="math inline">\(H_1\)</span>.</li>
-</ul>
-</div>
-<div id="types-of-errors" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Types of errors</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 9.2.</p>
-<p>We can make two types of errors when making a conclusion about <span class="math inline">\(H_0\)</span>:</p>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th>We retain <span class="math inline">\(H_0\)</span></th>
-<th>We reject <span class="math inline">\(H_0\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0\)</span> is true</td>
-<td>We are correct</td>
-<td>We commit <strong>type I error</strong></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_0\)</span> is false</td>
-<td>We commit <strong>type II error</strong></td>
-<td>We are correct</td>
-</tr>
-</tbody>
-</table>
-<p>The rate of type I error is considered the significance level of a test (denoted as <span class="math inline">\(\alpha\)</span>). <strong>Conventionally, <span class="math inline">\(\alpha = 0.05\)</span> </strong>, so we are willing to accept that type I error occurs 5% of times.</p>
-</div>
-<div id="test-statistic-and-the-critical-region" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Test statistic and the critical region</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 9.3 and 9.4.1.</p>
-<p>To make a decision whether or not we can reject <span class="math inline">\(H_0\)</span> we use a test statistic. <strong>We reject <span class="math inline">\(H_0\)</span> if the value of a test statistic is at or above its critical value.</strong> Or more simply, if it is sufficiently extreme, i.e. different from 0. The critical value depends on <span class="math inline">\(\alpha\)</span> and is obtained from the critical region of the sampling distribution of the test statistic. If <span class="math inline">\(\alpha = 0.05\)</span>, then the critical region covers 5% of the sampling distribution of test statistic.</p>
-<p><strong>Test statistic summarizes how extreme is the difference that we are testing.</strong> If the difference is high, the value of the test statistic is also high and it is thus likely that we can reject <span class="math inline">\(H_0\)</span>.</p>
-<p>The particular parameters that we use to calculate test statistic depend on test we use. For instance, in case of <span class="math inline">\(\chi^2\)</span>-tests (<a href="comparing-categorical-data.html#comparing-categorical-data">Comparing categorical data</a>), test statistic sums up the difference in observed and expected values. If this difference is large in our sample, then the difference is also likely to exist in population, hence we are more likely to reject <span class="math inline">\(H_0\)</span>.</p>
-</div>
-<div id="p-value" class="section level3" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> P-value</h3>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 9.5 and table 9.1 in section 9.6.</p>
-<p>P-value is the probability of obtaining at least as extreme value of test statistic if <span class="math inline">\(H_0\)</span> is correct. In other words, it is the probability that the difference in our sample does not occur in population . Thus, it’s the rate of committing a type I error. Another useful definition has been provided by <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 193</a>)</span>: “<span class="math inline">\(p\)</span> is defined to be the smallest Type I error rate (<span class="math inline">\(\alpha\)</span>) that you have to be willing to tolerate if you want to reject the null hypothesis.”</p>
-<p>If the p-value is below <span class="math inline">\(\alpha\)</span>, we reject <span class="math inline">\(H_0\)</span> and accept <span class="math inline">\(H_1\)</span>.</p>
-<p><span class="math inline">\(p \ge \alpha \implies H_0\)</span><br />
-<span class="math inline">\(p \lt \alpha \implies H_1\)</span></p>
-<p>P-value is <strong>not</strong> the probability of <span class="math inline">\(H_0\)</span> being false or <span class="math inline">\(H_{1}\)</span> being true. From theoretical perspective, a lower p-value does <strong>not</strong> show a greater difference or vice versa.</p>
-</div>
-<div id="multiple-comparisons-problem" class="section level3" number="5.2.5">
-<h3><span class="header-section-number">5.2.5</span> Multiple comparisons problem</h3>
-<p>Every time you find a statistically significant result, there is a possibility that you got this extreme data by chance. In this case, you committed a type 1 error. Therefore, if you do a lot of tests, the possibility that at least one of the statistically significant results is actually not true. Thus, the number of tests you do should be limited.</p>
-</div>
-<div id="steps-in-testing-a-statistical-hypothesis" class="section level3" number="5.2.6">
-<h3><span class="header-section-number">5.2.6</span> Steps in testing a statistical hypothesis</h3>
-<p>Statistical hypothesis testing can be summarized as follows:</p>
-<ol style="list-style-type: decimal">
-<li>Decide the appropriate type I error rate, i.e. or <span class="math inline">\(\alpha\)</span> (significance level).</li>
-<li>Find an appropriate test and test statistic.</li>
-<li>Calculate the critical region of the sampling distribution of the relevant test statistic according to <span class="math inline">\(\alpha\)</span>.</li>
-<li>Calculate the value of the test statistic.</li>
-<li>Reject <span class="math inline">\(H_0\)</span> if the value of the test statistic is in the critical region and respective p-value is lower than <span class="math inline">\(alpha\)</span>.</li>
-</ol>
-<p>All of the steps to calculate the p-value are actually done by software. Thus, in practice it is only necessary to set <span class="math inline">\(\alpha\)</span> (conventionally <span class="math inline">\(\alpha = 0.05\)</span> ) and see if the p-value printed by software is higher or lower than this <span class="math inline">\(\alpha\)</span> (0.05).</p>
-</div>
-<div id="the-trial-of-the-null-hypothesis" class="section level3" number="5.2.7">
-<h3><span class="header-section-number">5.2.7</span> The trial of the null hypothesis</h3>
-<p>This analogy is also described at the end of <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 9.1.2.</p>
-<p>The procedure of hypothesis testing might be confusing and not very intuitive at first. In such case it might help to think about hypothesis testing as a trial with the aim of establishing if there is enough evidence to convict a person. The hypotheses would be the following:</p>
-<p><span class="math inline">\(H_0\)</span>: Person is innocent,<br />
-<span class="math inline">\(H_1\)</span>: Person is guilty.</p>
-<p>Person is innocent until proven guilty. Thus, we begin with assuming that <span class="math inline">\(H_0\)</span> is true (there is no difference) and make a conclusion after analyzing the evidence (data):</p>
-<ul>
-<li>if there is enough evidence (data) that demonstrates the crime (difference), we can reject <span class="math inline">\(H_0\)</span> and must accept <span class="math inline">\(H_1\)</span> that the person is guilty (there is a difference);</li>
-<li>if there is not enough evidence (data) to demonstrate the crime (difference), we can not reject <span class="math inline">\(H_0\)</span> and must assume that the person is innocent (there is no difference).</li>
-</ul>
-<p>Note that in the latter case we are still not certain if the person is actually innocent (there is no difference), we might just not have enough evidence (data) to prove it. Similarly, retaining <span class="math inline">\(H_0\)</span> in hypothesis testing does not show that there is no difference but only that our data did not indicate a difference.</p>
-<p>The analogy applies to errors as well. A type I error would be convicting an innocent person while a type II error would be letting a guilty person free.</p>
 
-</div>
-</div>
-</div>
-<h3> References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-navarro_learning_2018" class="csl-entry">
-Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="comparing-categorical-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cluster-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="slides.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

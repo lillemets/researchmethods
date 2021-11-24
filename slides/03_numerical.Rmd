@@ -597,7 +597,7 @@ qqnorm(rock$shape)
 
 Let's set significance level $\alpha = 0.05$. 
 
-Hypotheses:
+We test if the distribution of values is different from normal distribution. So the hypotheses are the following:
 
 $H_0$: Data is normally distributed  
 $H_1$: Data is not normally distributed
@@ -888,6 +888,71 @@ P-value is determined by the extremity of the D-statistic on Kolmogorov distribu
 P-value is `r Test$p.value %>% round(3)` and we chose significance level to be $\alpha = 0.05$.
 
 > Do the supplements have a different effect? 
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Load data as follows:
+
+1. Download the data set "barley" from the course notes.
+2. Go to cloud.jamovi.org.
+3. Open the data set in Jamovi.
+4. Use only rows for year 1932 (filter `year == 1932`).
+
+Conduct tests about the yield in population.
+
+1. Are the weights normally distributed?
+2. Are the measurements of weights independent?
+3. Which test should we use?
+
+> Could the yield in population be greater than 30?
+
+???
+
+If we had kept both years, then the data would not be independent.
+
+---
+
+Use data set "Griliches" from the course notes.
+
+Conduct tests to see if wages for individuals changed.
+
+1. Are wages normally distributed?
+2. Are the measurements of wages independent?
+3. Which test should we use?
+
+> Is the mean of wage during first observation different from wage in 1980?
+>
+> Could wages actually have decreased?
+
+???
+
+Paired samples test
+
+---
+
+Use data set "computers" from the course notes.
+
+Conduct tests to see what determines the price of computers.
+
+1. Are the prices normally distributed?
+2. Are the prices independent?
+3. Which test should we use?
+
+> Does the price depend on the presence of CD-ROM?
+>
+> Does the incusion multimedia kit influence the price?
+>
+> Are computers manufactured by premium firms more expensive?
+
+???
+
+Non-parametric test
 
 ---
 

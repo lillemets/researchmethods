@@ -69,3 +69,19 @@ As an alternative to Jamovi, students are free to use R programming language. Du
 > R is a language and environment for statistical computing and graphics.
 
 > R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. 
+
+## Notation
+
+The following notation is used in these notes.
+
+### Sample and population
+
+$n$ - sample size (number of observations in sample)
+
+$\bar{x}$ - sample mean
+$\mu$ - population mean
+$\hat{\mu}$ - estimate of the population mean
+
+$s$ - sample standard deviation
+$\sigma$ - popuation standard deviation
+$\hat{\sigma}$ - estimate of the population standard deviation
