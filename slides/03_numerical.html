@@ -4,8 +4,8 @@
     <title>Comparing numerical data</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-11-23" />
-    <script src="03_numerical_files/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2021-11-25" />
+    <script src="03_numerical_files/header-attrs-2.10/header-attrs.js"></script>
     <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
   <body>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Comparing numerical data
 ## Research methods
 ### Jüri Lillemets
-### 2021-11-23
+### 2021-11-25
 
 ---
 
@@ -486,7 +486,7 @@ Let's use some data on rocks from "Measurements on Petroleum Rock Samples" to te
 
 Let's set significance level `\(\alpha = 0.05\)`. 
 
-Hypotheses:
+We test if the distribution of values is different from normal distribution. So the hypotheses are the following:
 
 `\(H_0\)`: Data is normally distributed  
 `\(H_1\)`: Data is not normally distributed
@@ -738,6 +738,71 @@ P-value is determined by the extremity of the D-statistic on Kolmogorov distribu
 P-value is 0.071 and we chose significance level to be `\(\alpha = 0.05\)`.
 
 &gt; Do the supplements have a different effect? 
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Load data as follows:
+
+1. Download the data set "barley" from the course notes.
+2. Go to cloud.jamovi.org.
+3. Open the data set in Jamovi.
+4. Use only rows for year 1932 (filter `year == 1932`).
+
+Conduct tests about the yield in population.
+
+1. Are the weights normally distributed?
+2. Are the measurements of weights independent?
+3. Which test should we use?
+
+&gt; Could the yield in population be greater than 30?
+
+???
+
+If we had kept both years, then the data would not be independent.
+
+---
+
+Use data set "Griliches" from the course notes.
+
+Conduct tests to see if wages for individuals changed.
+
+1. Are wages normally distributed?
+2. Are the measurements of wages independent?
+3. Which test should we use?
+
+&gt; Is the mean of wage during first observation different from wage in 1980?
+&gt;
+&gt; Could wages actually have decreased?
+
+???
+
+Paired samples test
+
+---
+
+Use data set "computers" from the course notes.
+
+Conduct tests to see what determines the price of computers.
+
+1. Are the prices normally distributed?
+2. Are the prices independent?
+3. Which test should we use?
+
+&gt; Does the price depend on the presence of CD-ROM?
+&gt;
+&gt; Does the incusion multimedia kit influence the price?
+&gt;
+&gt; Are computers manufactured by premium firms more expensive?
+
+???
+
+Non-parametric test
 
 ---
 
