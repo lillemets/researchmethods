@@ -58,7 +58,7 @@ We can also separate factor $\alpha$ from other variables:
 
 $$Y_{ij}=\mu+\alpha_{j}+\varepsilon_{ij},$$
 
-- $Y$ is the value for observation $i$ from group $j$, 
+- $Y_{ij}$ is the value for observation $i$ from group $j$, 
 - $\mu$ the overall mean, 
 - $\alpha_{i}$ the difference between mean of group $j$ and overall mean $\mu$, and 
 - $\varepsilon_{ij}$ the difference between group mean and value for observation $i$ from factor $j$.

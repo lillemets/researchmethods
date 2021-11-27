@@ -6,9 +6,9 @@ See @navarro_learning_2018 section 12.1.
 
 ## Scatterplot
 
-Scatterplots illustrate where observations are positioned relative to two continuous variables. This allows us to see if and how two variables are related. Conventionally dependent variables are presented on vertical (y) axis and independent variable on horizontal (x) axis. 
-
 See @navarro_learning_2018 section 12.2.
+
+Scatterplots illustrate where observations are positioned relative to two continuous variables. This allows us to see if and how two variables are related. Conventionally dependent variables are presented on vertical (y) axis and independent variable on horizontal (x) axis. 
 
 In Jamovi: `Exploration > Scatterplot`.  
 In R: `plot(x, y)`

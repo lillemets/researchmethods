@@ -17,6 +17,8 @@ statistics-and-data-science-machine-learning-artificial-intelligence
 software
 jamovi
 r-language-and-rstudio
+notation
+sample-and-population
 data-management
 data-structure
 scales-of-measurement
@@ -43,7 +45,7 @@ scatterplot
 boxplot
 histogram-and-density-plot
 hypothesis-testing
-sample-and-population
+sample-and-population-1
 sample-population-sampling
 the-law-of-large-numbers
 the-central-limit-theorem
@@ -65,6 +67,7 @@ chi2-test
 goodness-of-fit-chi2-test
 chi2-test-of-independence
 degrees-of-freedom
+interpretation-of-test-results
 comparing-numerical-data
 how-to-decide-which-test-to-use
 one-or-two-samples
@@ -84,10 +87,14 @@ nonparametric-tests
 mann-whitney-u-test
 wilcoxon-signed-rank-test
 kolmogorov-smirnov-test
+interpretation-of-test-results-1
 analysis-of-variance
-one-way-anova
-post-hoc-tests
 how-to-decide-which-test-to-use-1
+one-way-anova
+factorial-anova
+post-hoc-tests
+assumptions-of-anova
+levenes-and-brown-forsythe-tests
 correlation-analysis
 scatterplot-1
 pearsons-correlation-coefficient
@@ -169,4 +176,6 @@ number-of-clusters
 k-means-clustering
 number-of-clusters-gap-statistic
 visualization-1
+data-sets
+slides
 references

@@ -213,6 +213,8 @@ The exact explanation of $a$ and thus the logic is complicated but as always, mo
 $H_0$: Data is normally distributed  
 $H_1$: Data is not normally distributed
 
+Note that Shapiro-Wilk test is sensitive to even small deviations from normality if sample size is large (thousands of observations). Also, the test can only be used for sample sizes less than 5000 observations. In such case, consider QQ plot.
+
 > In Jamovi: `Exploration > Descriptives > Statistics | Shapiro-Wilk`.  
 > In R: `shapiro.test(x)`
 

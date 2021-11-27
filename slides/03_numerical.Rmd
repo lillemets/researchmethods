@@ -34,7 +34,6 @@ Assumptions:
 
 - normality
 - independence
-- homogeneity of variance
 
 ---
 

@@ -1,71 +1,127 @@
 # Analysis of variance
 
-Whereas tests in previous chapters could be used to compare only two parameters we often wish to compare parameters of several samples. We can use Analysis of variance (Anova) to do just that.
+Whereas tests in the previous section could be used to compare only two samples we often wish to compare parameters of more than two samples. We can use *Analysis of variance* (ANOVA) to test if several samples are different. In this context samples can  be considered as groups of a factor variable. ANOVA can be used to test the effect of one (one-way ANOVA) or multiple factors (factorial ANOVA).
 
-## One-way Anova
+## How to decide which test to use?
 
-This test is used to compare mean values of three or more samples. Samples are distinguished by a factor variable, so each sample is a group of the factor.
+Depending on the number of factors (grouopings) and whether or not the assumptions are satisfied, there are several types of ANOVA. These are all explained in @navarro_learning_2018 sections 13 and 14.
 
-See @navarro_learning_2018 section 13.2.
+- One factor
+  - Unpaired groups
+    - Normally distributed
+      - Equal variances
+        - *Fisher's one-way ANOVA*
+      - Unequal variances
+        - *Welch's one-way ANOVA*
+    - Not normally distributed
+      - *Kruskal-Wallis rank-sum test*
+  - Paired groups (repeated measures)
+    - Normally distributed
+      - *Repeated measures ANOVA*
+    - Not normally distributed
+      - *Friedman test*
+- More than one factor
+  - Unpaired groups
+    - Normally distributed
+      - *Factorial ANOVA*
+
+## One-way ANOVA
+
+See @navarro_learning_2018 section 13.2 about how ANOVA works.
+
+This test is used to compare mean values of two or more samples of one factor. Samples are distinguished by a grouping or factor variable, so each sample is one group of a factor variable.
 
 $H_0: \bar{x}_1 = \bar{x}_2 = \bar{x}_3$  
 $H_1: \bar{x}_1 = \bar{x}_2 \neq \bar{x}_3$ or $\bar{x}_1 \neq \bar{x}_2 \neq \bar{x}_3$
 
 In other words, our $H_1$ is that at least one  group mean is different from others.
 
-Test statistic $F$ is calculated as 
+The basic principle of ANOVA is to evaluate **if the variation in data can be explained by a factor**, i.e. the variable that defines the samples we are comparing. We can express the variation in variable $Y$ via a linear model:
 
-$$F = MSA / MSE,$$
+$$Y_{ij}=\mu+\alpha_{j}+\varepsilon_{ij},$$
 
-where $MSA$ expresses variation between group and $MSE$ represents random variaton. In order to understand what this means let's start from the initial measures, the sum of squares of variable $y$ for observations $i$ in groups $j$:
+where $Y_{ij}$ is the value of $Y$ for observation $i$ from group $j$, $\mu$ the overall mean, $\alpha_{i}$ the difference between mean of group $j$ and overall mean $\mu$, and $\varepsilon_{ij}$ the difference between group mean and value for observation $i$ from factor $j$.
 
-- within-group sum of squares, i.e. sum of squares of errors (SSE)  
-  $SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}$, $df = n - k$
-- between group sum of squares, i.e. sum of squares between groups (SSA)  
-  $SSA=\sum_{j=1}^{k} (\overline{y_{j}}-\overline{y})^{2}$, $df = k - 1$
-- total sum of squares (SST=SSE+SSA)  
-  $SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}$, $df = n - 1$
+Similarly to how we ordinarily calculate variance, we could also summarize the variance in a variable $Y$ in perhaps a more familiar form as follows:
 
-We can use these variations to find $MSA$ and $MSE$ as follows:
+$$Var(Y) = \frac{1}{n} \sum^{G}_{j=1}{\sum^{N_k}_{i=1}{(Y_{ij} - \bar{Y})^2}}$$ , 
+
+where $n$ is the number of all observations, $Y_{ij}$ is the value of variable $Y$ for observation $i$ in group $j$ and $\bar{Y}$ the overall mean of variable $Y$ of all observations in all samples. We can see that a **part of variation in variable $Y$ comes from factor (between-group variation) while another part from individual observations (within-group variation)**. 
+
+What both of these approaches indicate is that we can divide variation into several parts and express each part separately by using sums of squares: 
+
+- within-group sum of squares, i.e. sum of squares of errors ($SSE$)  
+  $SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (Y_{ij}-\bar{Y}_{j})^{2}$, $df = n - k$
+- between group sum of squares, i.e. sum of squares between groups ($SSA$)  
+  $SSA=\sum_{j=1}^{k} (\bar{Y}_{j}-\bar{Y})^{2}$, $df = k - 1$
+- total sum of squares ($SST=SSE+SSA$)  
+  $SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (Y_{ij}-\bar{Y})^{2}$, $df = n - 1$
+
+In short, **$SSE$ represents deviations of observations from group means and $SSA$ deviations of groups from overall mean.** For hypothesis testing we also need to consider number of groups ($k$) and total number of observations ($n$), so both of these measures need to be divided by respective $df$:
 
 - mean squares for SSE (MSE)
   $MSE = SSE / (n - k)$
 - mean squares for SSA (MSA)
   $MSA = SSA / (k - 1)$
 
+Test statistic $F$ is simply the ratio between the two:
+
+$$F = MSA / MSE,$$
+
+where $MSA$ could be said to represent variation caused by factor and $MSE$ the variation coming from observations individually. See @navarro_learning_2018[, 334] table 13.1 that summarizes all of these relevant equations as a standard ANOVA table.
+
+Thus, the **test statistic $F$ expresses how much of the variation comes from a factor relative to variation originating from individual observation**. If the $F$ statistic is above 1, then more variation comes from a factor than from random variation. Also, the higher the value of the test statistic, the higher the effect of a grouping variable and the lower the p-value.
+
 Test statistic $F$ is evaluated on F-distribution.
 
-Test assumes normality and independence of data and homogeneity of variance (only for Welch's test).
+**Test assumes normality, independence of data and homogeneity of variance** (only for Fisher's test).
 
-In Jamovi: `Anova > One-way Anova`.  
+In Jamovi: `ANOVA > One-way ANOVA`.  
 In R: `summary(aov(x, y))`
+
+## Factorial ANOVA
+
+Explained in @navarro_learning_2018 sections 14.1, 14.2 and 14.10.
+
+To test the effect of several factors we can use factorial ANOVA. It follows the same logic as described in previous section but it is more complicated since we now have to consider variances across multiple groupings simultaneously. There are multiple types of factorial ANOVA, depending on if we 
+
+- have the same number of observations in each combination of factors (balanced or unbalanced design), 
+- consider only main effects or also interactions between factors, and
+- wish to include a continuous variable in addition to a factor.
+
+As a result, there are several different ways to construct the model and hypotheses in factorial ANOVA. Because of this complexity we are not going to cover factorial ANOVA in this course, however it would be good if you know that it exists.
+
+In Jamovi: `ANOVA > ANOVA`.  
+In R: `summary(aov(y ~ x1 + x2, data))`
 
 ## Post-hoc tests
 
-The result of Anova does not tell us about which groups are different but only that there is a difference. We can use post hoc tests to compare the means of all groups pariwise. See @navarro_learning_2018 section 14.8.
+The result of ANOVA tells us if there is a difference between any of the groups but it tells us nothing about which particular groups are different from which other groups. To find it out, we need to test the differences between each group separately. 
 
-In Jamovi: `Anova > One-way Anova > Post-Hoc test | Games-Howell or Tukey `.  
+See @navarro_learning_2018 sections 13.5.
+
+One way to do that is to simply conduct needed tests manually and use either **Bonferroni or preferably Holm correction to correct p-values for multiple testing**. To apply *Bonferroni correction* we simply need to multipy each p-value by the number of tests we ran. The more accurate *Holm correction* follows a similar idea but also considers the ranking of all p-values. In both cases we increase p-values by the number of tests.
+
+See @navarro_learning_2018 sections 14.8
+
+Another option is to use a procedure that tests all pairwise differences between all group means. One such procedure is *Tukey's HSD*. The result of the procedure provides the magnitude and statistical significance of each possible difference. 
+
+In Jamovi: `ANOVA > One-way ANOVA > Post-Hoc test | Games-Howell or Tukey `.  
 In R: `TukeyHSD(aov(x, y))`
 
-## How to decide which test to use?
+## Assumptions of ANOVA
 
-Depending on the number of factors and whether or not the assumptions are satisfied, there are several types of Anova. These are explained in @navarro_learning_2018 sections 13 and 14.
+See @navarro_learning_2018 sections 13.6.
 
-- Two factors
-  - Unpaired groups
-    - Normally distributed
-      - Equal variances
-        - *Fisher's one-way Anova*
-      - Unequal variances
-        - *Welch's one-way Anova*
-    - Not normally distributed
-      - *Kruskal-Wallis rank-sum test*
-  - Paired groups (repeated measures)
-    - Normally distributed
-      - *Repeated measures Anova*
-    - Not normally distributed
-      - *Friedman test*
-- Several factors
-  - Unpaired groups
-    - Normally distributed
-      - *Factorial Anova*
+The simplest (Fisher's one-way) ANOVA assumes normality, independence of observations and homogeneity of variance. While the former two can be evaluated in the same way as in case of a T-test, evaluating homogeneity of variance is more intricate since we now have more than two samples to compare.
+
+### Levene's and Brown-Forsythe tests
+
+Both of these tests involve calculating each observation's difference from average and then running an ANOVA on the resulting values to test if these differences are the same or not. Levene's test uses differences from mean value, while Brown-Forsythe evaluates differeces from median value and is thus better suited for data that is not normally distributed.
+
+$H_0: s_1 = s_2 = s_3$  
+$H_1: s_1 = s_2 \neq s_3$ or $s_1 \neq s_2 \neq s_3$
+
+The assumption is satisfied if we fail to reject $H_0$ (p-value is $\ge \alpha$) and retain that all standard deviations are the same.
+
+In Jamovi: `ANOVA > One-way ANOVA > Homogeneity test `.

@@ -31,7 +31,7 @@
   
 <link rel="prev" href="comparing-numerical-data.html"/>
 <link rel="next" href="correlation-analysis.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -121,6 +121,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#jamovi"><i class="fa fa-check"></i><b>2.3.1</b> Jamovi</a></li>
 <li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#r-language-and-rstudio"><i class="fa fa-check"></i><b>2.3.2</b> R language and RStudio</a></li>
 </ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i><b>2.4</b> Notation</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction.html"><a href="introduction.html#sample-and-population"><i class="fa fa-check"></i><b>2.4.1</b> Sample and population</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3</b> Data management</a>
 <ul>
@@ -157,7 +161,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>5</b> Hypothesis testing</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sample-and-population"><i class="fa fa-check"></i><b>5.1</b> Sample and population</a>
+<li class="chapter" data-level="5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sample-and-population-1"><i class="fa fa-check"></i><b>5.1</b> Sample and population</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sample-population-sampling"><i class="fa fa-check"></i><b>5.1.1</b> Sample, population, sampling</a></li>
 <li class="chapter" data-level="5.1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#the-law-of-large-numbers"><i class="fa fa-check"></i><b>5.1.2</b> The law of large numbers</a></li>
@@ -184,7 +188,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.2.1" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html#goodness-of-fit-chi2-test"><i class="fa fa-check"></i><b>6.2.1</b> Goodness of fit <span class="math inline">\(\chi^2\)</span>-test</a></li>
 <li class="chapter" data-level="6.2.2" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html#chi2-test-of-independence"><i class="fa fa-check"></i><b>6.2.2</b> <span class="math inline">\(\chi^2\)</span>-test of independence</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html#degrees-of-freedom"><i class="fa fa-check"></i><b>6.3</b> Degrees of freedom</a></li>
+<li class="chapter" data-level="6.3" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html#degrees-of-freedom"><i class="fa fa-check"></i><b>6.3</b> Degrees of freedom</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="comparing-categorical-data.html"><a href="comparing-categorical-data.html#interpretation-of-test-results"><i class="fa fa-check"></i><b>6.3.1</b> Interpretation of test results</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html"><i class="fa fa-check"></i><b>7</b> Comparing numerical data</a>
 <ul>
@@ -200,13 +207,19 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#normality"><i class="fa fa-check"></i><b>7.5.1</b> Normality</a></li>
 <li class="chapter" data-level="7.5.2" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#nonparametric-tests"><i class="fa fa-check"></i><b>7.5.2</b> Nonparametric tests</a></li>
+<li class="chapter" data-level="7.5.3" data-path="comparing-numerical-data.html"><a href="comparing-numerical-data.html#interpretation-of-test-results-1"><i class="fa fa-check"></i><b>7.5.3</b> Interpretation of test results</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of variance</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova"><i class="fa fa-check"></i><b>8.1</b> One-way Anova</a></li>
-<li class="chapter" data-level="8.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>8.2</b> Post-hoc tests</a></li>
-<li class="chapter" data-level="8.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#how-to-decide-which-test-to-use-1"><i class="fa fa-check"></i><b>8.3</b> How to decide which test to use?</a></li>
+<li class="chapter" data-level="8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#how-to-decide-which-test-to-use-1"><i class="fa fa-check"></i><b>8.1</b> How to decide which test to use?</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova"><i class="fa fa-check"></i><b>8.2</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="8.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-anova"><i class="fa fa-check"></i><b>8.3</b> Factorial ANOVA</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-tests"><i class="fa fa-check"></i><b>8.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="8.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#assumptions-of-anova"><i class="fa fa-check"></i><b>8.5</b> Assumptions of ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#levenes-and-brown-forsythe-tests"><i class="fa fa-check"></i><b>8.5.1</b> Levene’s and Brown-Forsythe tests</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="correlation-analysis.html"><a href="correlation-analysis.html"><i class="fa fa-check"></i><b>9</b> Correlation analysis</a>
 <ul>
@@ -335,7 +348,9 @@ div.csl-indent {
 <li class="chapter" data-level="16.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#visualization-1"><i class="fa fa-check"></i><b>16.3.2</b> Visualization</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>17</b> References</a></li>
+<li class="chapter" data-level="17" data-path="data-sets.html"><a href="data-sets.html"><i class="fa fa-check"></i><b>17</b> Data sets</a></li>
+<li class="chapter" data-level="18" data-path="slides.html"><a href="slides.html"><i class="fa fa-check"></i><b>18</b> Slides</a></li>
+<li class="chapter" data-level="19" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>19</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -358,48 +373,12 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="analysis-of-variance" class="section level1" number="8">
 <h1><span class="header-section-number">Section 8</span> Analysis of variance</h1>
-<p>Whereas tests in previous chapters could be used to compare only two parameters we often wish to compare parameters of several samples. We can use Analysis of variance (Anova) to do just that.</p>
-<div id="one-way-anova" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> One-way Anova</h2>
-<p>This test is used to compare mean values of three or more samples. Samples are distinguished by a factor variable, so each sample is a group of the factor.</p>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 13.2.</p>
-<p><span class="math inline">\(H_0: \bar{x}_1 = \bar{x}_2 = \bar{x}_3\)</span><br />
-<span class="math inline">\(H_1: \bar{x}_1 = \bar{x}_2 \neq \bar{x}_3\)</span> or <span class="math inline">\(\bar{x}_1 \neq \bar{x}_2 \neq \bar{x}_3\)</span></p>
-<p>In other words, our <span class="math inline">\(H_1\)</span> is that at least one group mean is different from others.</p>
-<p>Test statistic <span class="math inline">\(F\)</span> is calculated as</p>
-<p><span class="math display">\[F = MSA / MSE,\]</span></p>
-<p>where <span class="math inline">\(MSA\)</span> expresses variation between group and <span class="math inline">\(MSE\)</span> represents random variaton. In order to understand what this means let’s start from the initial measures, the sum of squares of variable <span class="math inline">\(y\)</span> for observations <span class="math inline">\(i\)</span> in groups <span class="math inline">\(j\)</span>:</p>
+<p>Whereas tests in the previous section could be used to compare only two samples we often wish to compare parameters of more than two samples. We can use <em>Analysis of variance</em> (ANOVA) to test if several samples are different. In this context samples can be considered as groups of a factor variable. ANOVA can be used to test the effect of one (one-way ANOVA) or multiple factors (factorial ANOVA).</p>
+<div id="how-to-decide-which-test-to-use-1" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> How to decide which test to use?</h2>
+<p>Depending on the number of factors (grouopings) and whether or not the assumptions are satisfied, there are several types of ANOVA. These are all explained in <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 13 and 14.</p>
 <ul>
-<li>within-group sum of squares, i.e. sum of squares of errors (SSE)<br />
-<span class="math inline">\(SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y_{j}})^{2}\)</span>, <span class="math inline">\(df = n - k\)</span></li>
-<li>between group sum of squares, i.e. sum of squares between groups (SSA)<br />
-<span class="math inline">\(SSA=\sum_{j=1}^{k} (\overline{y_{j}}-\overline{y})^{2}\)</span>, <span class="math inline">\(df = k - 1\)</span></li>
-<li>total sum of squares (SST=SSE+SSA)<br />
-<span class="math inline">\(SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (y_{ij}-\overline{y})^{2}\)</span>, <span class="math inline">\(df = n - 1\)</span></li>
-</ul>
-<p>We can use these variations to find <span class="math inline">\(MSA\)</span> and <span class="math inline">\(MSE\)</span> as follows:</p>
-<ul>
-<li>mean squares for SSE (MSE)
-<span class="math inline">\(MSE = SSE / (n - k)\)</span></li>
-<li>mean squares for SSA (MSA)
-<span class="math inline">\(MSA = SSA / (k - 1)\)</span></li>
-</ul>
-<p>Test statistic <span class="math inline">\(F\)</span> is evaluated on F-distribution.</p>
-<p>Test assumes normality and independence of data and homogeneity of variance (only for Welch’s test).</p>
-<p>In Jamovi: <code>Anova &gt; One-way Anova</code>.<br />
-In R: <code>summary(aov(x, y))</code></p>
-</div>
-<div id="post-hoc-tests" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Post-hoc tests</h2>
-<p>The result of Anova does not tell us about which groups are different but only that there is a difference. We can use post hoc tests to compare the means of all groups pariwise. See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 14.8.</p>
-<p>In Jamovi: <code>Anova &gt; One-way Anova &gt; Post-Hoc test | Games-Howell or Tukey</code>.<br />
-In R: <code>TukeyHSD(aov(x, y))</code></p>
-</div>
-<div id="how-to-decide-which-test-to-use-1" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> How to decide which test to use?</h2>
-<p>Depending on the number of factors and whether or not the assumptions are satisfied, there are several types of Anova. These are explained in <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 13 and 14.</p>
-<ul>
-<li>Two factors
+<li>One factor
 <ul>
 <li>Unpaired groups
 <ul>
@@ -407,11 +386,11 @@ In R: <code>TukeyHSD(aov(x, y))</code></p>
 <ul>
 <li>Equal variances
 <ul>
-<li><em>Fisher’s one-way Anova</em></li>
+<li><em>Fisher’s one-way ANOVA</em></li>
 </ul></li>
 <li>Unequal variances
 <ul>
-<li><em>Welch’s one-way Anova</em></li>
+<li><em>Welch’s one-way ANOVA</em></li>
 </ul></li>
 </ul></li>
 <li>Not normally distributed
@@ -423,7 +402,7 @@ In R: <code>TukeyHSD(aov(x, y))</code></p>
 <ul>
 <li>Normally distributed
 <ul>
-<li><em>Repeated measures Anova</em></li>
+<li><em>Repeated measures ANOVA</em></li>
 </ul></li>
 <li>Not normally distributed
 <ul>
@@ -431,18 +410,92 @@ In R: <code>TukeyHSD(aov(x, y))</code></p>
 </ul></li>
 </ul></li>
 </ul></li>
-<li>Several factors
+<li>More than one factor
 <ul>
 <li>Unpaired groups
 <ul>
 <li>Normally distributed
 <ul>
-<li><em>Factorial Anova</em></li>
+<li><em>Factorial ANOVA</em></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
+</div>
+<div id="one-way-anova" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> One-way ANOVA</h2>
+<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 13.2 about how ANOVA works.</p>
+<p>This test is used to compare mean values of two or more samples of one factor. Samples are distinguished by a grouping or factor variable, so each sample is one group of a factor variable.</p>
+<p><span class="math inline">\(H_0: \bar{x}_1 = \bar{x}_2 = \bar{x}_3\)</span><br />
+<span class="math inline">\(H_1: \bar{x}_1 = \bar{x}_2 \neq \bar{x}_3\)</span> or <span class="math inline">\(\bar{x}_1 \neq \bar{x}_2 \neq \bar{x}_3\)</span></p>
+<p>In other words, our <span class="math inline">\(H_1\)</span> is that at least one group mean is different from others.</p>
+<p>The basic principle of ANOVA is to evaluate <strong>if the variation in data can be explained by a factor</strong>, i.e. the variable that defines the samples we are comparing. We can express the variation in variable <span class="math inline">\(Y\)</span> via a linear model:</p>
+<p><span class="math display">\[Y_{ij}=\mu+\alpha_{j}+\varepsilon_{ij},\]</span></p>
+<p>where <span class="math inline">\(Y_{ij}\)</span> is the value of <span class="math inline">\(Y\)</span> for observation <span class="math inline">\(i\)</span> from group <span class="math inline">\(j\)</span>, <span class="math inline">\(\mu\)</span> the overall mean, <span class="math inline">\(\alpha_{i}\)</span> the difference between mean of group <span class="math inline">\(j\)</span> and overall mean <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\varepsilon_{ij}\)</span> the difference between group mean and value for observation <span class="math inline">\(i\)</span> from factor <span class="math inline">\(j\)</span>.</p>
+<p>Similarly to how we ordinarily calculate variance, we could also summarize the variance in a variable <span class="math inline">\(Y\)</span> in perhaps a more familiar form as follows:</p>
+<p><span class="math display">\[Var(Y) = \frac{1}{n} \sum^{G}_{j=1}{\sum^{N_k}_{i=1}{(Y_{ij} - \bar{Y})^2}}\]</span> ,</p>
+<p>where <span class="math inline">\(n\)</span> is the number of all observations, <span class="math inline">\(Y_{ij}\)</span> is the value of variable <span class="math inline">\(Y\)</span> for observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(j\)</span> and <span class="math inline">\(\bar{Y}\)</span> the overall mean of variable <span class="math inline">\(Y\)</span> of all observations in all samples. We can see that a <strong>part of variation in variable <span class="math inline">\(Y\)</span> comes from factor (between-group variation) while another part from individual observations (within-group variation)</strong>.</p>
+<p>What both of these approaches indicate is that we can divide variation into several parts and express each part separately by using sums of squares:</p>
+<ul>
+<li>within-group sum of squares, i.e. sum of squares of errors (<span class="math inline">\(SSE\)</span>)<br />
+<span class="math inline">\(SSE=\sum_{j=1}^{k}\sum_{i=1}^{n} (Y_{ij}-\bar{Y}_{j})^{2}\)</span>, <span class="math inline">\(df = n - k\)</span></li>
+<li>between group sum of squares, i.e. sum of squares between groups (<span class="math inline">\(SSA\)</span>)<br />
+<span class="math inline">\(SSA=\sum_{j=1}^{k} (\bar{Y}_{j}-\bar{Y})^{2}\)</span>, <span class="math inline">\(df = k - 1\)</span></li>
+<li>total sum of squares (<span class="math inline">\(SST=SSE+SSA\)</span>)<br />
+<span class="math inline">\(SST=\sum_{j=1}^{k}\sum_{i=1}^{n} (Y_{ij}-\bar{Y})^{2}\)</span>, <span class="math inline">\(df = n - 1\)</span></li>
+</ul>
+<p>In short, <strong><span class="math inline">\(SSE\)</span> represents deviations of observations from group means and <span class="math inline">\(SSA\)</span> deviations of groups from overall mean.</strong> For hypothesis testing we also need to consider number of groups (<span class="math inline">\(k\)</span>) and total number of observations (<span class="math inline">\(n\)</span>), so both of these measures need to be divided by respective <span class="math inline">\(df\)</span>:</p>
+<ul>
+<li>mean squares for SSE (MSE)
+<span class="math inline">\(MSE = SSE / (n - k)\)</span></li>
+<li>mean squares for SSA (MSA)
+<span class="math inline">\(MSA = SSA / (k - 1)\)</span></li>
+</ul>
+<p>Test statistic <span class="math inline">\(F\)</span> is simply the ratio between the two:</p>
+<p><span class="math display">\[F = MSA / MSE,\]</span></p>
+<p>where <span class="math inline">\(MSA\)</span> could be said to represent variation caused by factor and <span class="math inline">\(MSE\)</span> the variation coming from observations individually. See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 334</a>)</span> table 13.1 that summarizes all of these relevant equations as a standard ANOVA table.</p>
+<p>Thus, the <strong>test statistic <span class="math inline">\(F\)</span> expresses how much of the variation comes from a factor relative to variation originating from individual observation</strong>. If the <span class="math inline">\(F\)</span> statistic is above 1, then more variation comes from a factor than from random variation. Also, the higher the value of the test statistic, the higher the effect of a grouping variable and the lower the p-value.</p>
+<p>Test statistic <span class="math inline">\(F\)</span> is evaluated on F-distribution.</p>
+<p><strong>Test assumes normality, independence of data and homogeneity of variance</strong> (only for Fisher’s test).</p>
+<p>In Jamovi: <code>ANOVA &gt; One-way ANOVA</code>.<br />
+In R: <code>summary(aov(x, y))</code></p>
+</div>
+<div id="factorial-anova" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Factorial ANOVA</h2>
+<p>Explained in <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 14.1, 14.2 and 14.10.</p>
+<p>To test the effect of several factors we can use factorial ANOVA. It follows the same logic as described in previous section but it is more complicated since we now have to consider variances across multiple groupings simultaneously. There are multiple types of factorial ANOVA, depending on if we</p>
+<ul>
+<li>have the same number of observations in each combination of factors (balanced or unbalanced design),</li>
+<li>consider only main effects or also interactions between factors, and</li>
+<li>wish to include a continuous variable in addition to a factor.</li>
+</ul>
+<p>As a result, there are several different ways to construct the model and hypotheses in factorial ANOVA. Because of this complexity we are not going to cover factorial ANOVA in this course, however it would be good if you know that it exists.</p>
+<p>In Jamovi: <code>ANOVA &gt; ANOVA</code>.<br />
+In R: <code>summary(aov(y ~ x1 + x2, data))</code></p>
+</div>
+<div id="post-hoc-tests" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Post-hoc tests</h2>
+<p>The result of ANOVA tells us if there is a difference between any of the groups but it tells us nothing about which particular groups are different from which other groups. To find it out, we need to test the differences between each group separately.</p>
+<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 13.5.</p>
+<p>One way to do that is to simply conduct needed tests manually and use either <strong>Bonferroni or preferably Holm correction to correct p-values for multiple testing</strong>. To apply <em>Bonferroni correction</em> we simply need to multipy each p-value by the number of tests we ran. The more accurate <em>Holm correction</em> follows a similar idea but also considers the ranking of all p-values. In both cases we increase p-values by the number of tests.</p>
+<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 14.8</p>
+<p>Another option is to use a procedure that tests all pairwise differences between all group means. One such procedure is <em>Tukey’s HSD</em>. The result of the procedure provides the magnitude and statistical significance of each possible difference.</p>
+<p>In Jamovi: <code>ANOVA &gt; One-way ANOVA &gt; Post-Hoc test | Games-Howell or Tukey</code>.<br />
+In R: <code>TukeyHSD(aov(x, y))</code></p>
+</div>
+<div id="assumptions-of-anova" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Assumptions of ANOVA</h2>
+<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> sections 13.6.</p>
+<p>The simplest (Fisher’s one-way) ANOVA assumes normality, independence of observations and homogeneity of variance. While the former two can be evaluated in the same way as in case of a T-test, evaluating homogeneity of variance is more intricate since we now have more than two samples to compare.</p>
+<div id="levenes-and-brown-forsythe-tests" class="section level3" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Levene’s and Brown-Forsythe tests</h3>
+<p>Both of these tests involve calculating each observation’s difference from average and then running an ANOVA on the resulting values to test if these differences are the same or not. Levene’s test uses differences from mean value, while Brown-Forsythe evaluates differeces from median value and is thus better suited for data that is not normally distributed.</p>
+<p><span class="math inline">\(H_0: s_1 = s_2 = s_3\)</span><br />
+<span class="math inline">\(H_1: s_1 = s_2 \neq s_3\)</span> or <span class="math inline">\(s_1 \neq s_2 \neq s_3\)</span></p>
+<p>The assumption is satisfied if we fail to reject <span class="math inline">\(H_0\)</span> (p-value is <span class="math inline">\(\ge \alpha\)</span>) and retain that all standard deviations are the same.</p>
+<p>In Jamovi: <code>ANOVA &gt; One-way ANOVA &gt; Homogeneity test</code>.</p>
 
+</div>
 </div>
 </div>
 <h3> References</h3>
