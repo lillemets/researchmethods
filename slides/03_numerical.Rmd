@@ -32,7 +32,7 @@ class: center middle inverse
 
 Assumptions:
 
-- normality
+- normality\sigma = \sqrt{\frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}}
 - independence
 
 ---

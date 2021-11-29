@@ -65,7 +65,9 @@ In R: `IQR(x)`
 
 Although difficult to interpret, variance is used in many statistical calculations due to its mathematical properties. Variance is mean squared difference from the mean value:
 
-$$Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$
+$$Var(X) = \frac{1}{N} \sum{^N_{i=1}{(X_i-\bar{X})^2}}$$, 
+
+where $X_i$ is the value of observation $i$ and $\bar{X}$ the mean value.
 
 In Jamovi: `Exploration > Descriptives > Statistics > Dispersion | Variance  `   
 In R: `var(x)`

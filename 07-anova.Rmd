@@ -44,9 +44,9 @@ where $Y_{ij}$ is the value of $Y$ for observation $i$ from group $j$, $\mu$ the
 
 Similarly to how we ordinarily calculate variance, we could also summarize the variance in a variable $Y$ in perhaps a more familiar form as follows:
 
-$$Var(Y) = \frac{1}{n} \sum^{G}_{j=1}{\sum^{N_k}_{i=1}{(Y_{ij} - \bar{Y})^2}}$$ , 
+$$Var(Y) = \frac{1}{n} \sum^{G}_{j=1}{\sum^{N_k}_{i=1}{(Y_{ij} - \bar{Y})^2}},$$  
 
-where $n$ is the number of all observations, $Y_{ij}$ is the value of variable $Y$ for observation $i$ in group $j$ and $\bar{Y}$ the overall mean of variable $Y$ of all observations in all samples. We can see that a **part of variation in variable $Y$ comes from factor (between-group variation) while another part from individual observations (within-group variation)**. 
+where $n$ is the number of all observations, $Y_{ij}$ is the value of variable $Y$ for observation $i$ in group $j$, and $\bar{Y}$ the overall mean of variable $Y$ of all observations in all samples. We can see that a **part of variation in variable $Y$ comes from factor (between-group variation) while another part from individual observations (within-group variation)**. 
 
 What both of these approaches indicate is that we can divide variation into several parts and express each part separately by using sums of squares: 
 
@@ -74,7 +74,7 @@ Thus, the **test statistic $F$ expresses how much of the variation comes from a 
 
 Test statistic $F$ is evaluated on F-distribution.
 
-**Test assumes normality, independence of data and homogeneity of variance** (only for Fisher's test).
+**Test assumes normality within groups, independence of data and homogeneity of variance** (the latter only for Fisher's test).
 
 In Jamovi: `ANOVA > One-way ANOVA`.  
 In R: `summary(aov(x, y))`
@@ -117,11 +117,11 @@ The simplest (Fisher's one-way) ANOVA assumes normality, independence of observa
 
 ### Levene's and Brown-Forsythe tests
 
-Both of these tests involve calculating each observation's difference from average and then running an ANOVA on the resulting values to test if these differences are the same or not. Levene's test uses differences from mean value, while Brown-Forsythe evaluates differeces from median value and is thus better suited for data that is not normally distributed.
+Both of these tests involve calculating each observation's difference from its group average and then running an ANOVA on the resulting values to test if these differences are the same or not. Levene's test uses differences from mean value, while Brown-Forsythe evaluates differeces from median value and is thus better suited for data that is not normally distributed.
 
 $H_0: s_1 = s_2 = s_3$  
 $H_1: s_1 = s_2 \neq s_3$ or $s_1 \neq s_2 \neq s_3$
 
-The assumption is satisfied if we fail to reject $H_0$ (p-value is $\ge \alpha$) and retain that all standard deviations are the same.
+The assumption is satisfied if we fail to reject $H_0$ (p-value is $\ge \alpha$) and retain that all within-group deviations are the same.
 
 In Jamovi: `ANOVA > One-way ANOVA > Homogeneity test `.

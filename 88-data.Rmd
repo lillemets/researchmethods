@@ -3,6 +3,7 @@
 These data sets are used for practical application of methods. See the info for details on what the variables in data sets represent.
 
 - [barley](../data/barley.csv) - Yield data from a Minnesota barley trial ([info](https://vincentarelbundock.github.io/Rdatasets/doc/lattice/barley.html))
+- [chickwts](../data/chickwts.csv) - Chicken Weights by Feed Type ([info](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/chickwts.html))
 - [Computers](../data/Computers.csv) - Prices of Personal Computers ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Computers.html))
 - [Griliches](../data/Griliches.csv) -  Wage Data ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Griliches.html))
 - [M&Ms](../data/mm.csv) - Color counts and net weight for a sample of 30 bags of M&M's ([info](https://www.randomservices.org/random/data/MM.html))

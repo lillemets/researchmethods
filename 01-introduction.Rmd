@@ -77,6 +77,7 @@ The following notation is used in these notes.
 ### Sample and population
 
 $n$ - sample size (number of observations in sample)
+$N$ - population size
 
 $\bar{x}$ - sample mean
 $\mu$ - population mean

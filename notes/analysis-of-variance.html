@@ -433,8 +433,8 @@ div.csl-indent {
 <p><span class="math display">\[Y_{ij}=\mu+\alpha_{j}+\varepsilon_{ij},\]</span></p>
 <p>where <span class="math inline">\(Y_{ij}\)</span> is the value of <span class="math inline">\(Y\)</span> for observation <span class="math inline">\(i\)</span> from group <span class="math inline">\(j\)</span>, <span class="math inline">\(\mu\)</span> the overall mean, <span class="math inline">\(\alpha_{i}\)</span> the difference between mean of group <span class="math inline">\(j\)</span> and overall mean <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\varepsilon_{ij}\)</span> the difference between group mean and value for observation <span class="math inline">\(i\)</span> from factor <span class="math inline">\(j\)</span>.</p>
 <p>Similarly to how we ordinarily calculate variance, we could also summarize the variance in a variable <span class="math inline">\(Y\)</span> in perhaps a more familiar form as follows:</p>
-<p><span class="math display">\[Var(Y) = \frac{1}{n} \sum^{G}_{j=1}{\sum^{N_k}_{i=1}{(Y_{ij} - \bar{Y})^2}}\]</span> ,</p>
-<p>where <span class="math inline">\(n\)</span> is the number of all observations, <span class="math inline">\(Y_{ij}\)</span> is the value of variable <span class="math inline">\(Y\)</span> for observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(j\)</span> and <span class="math inline">\(\bar{Y}\)</span> the overall mean of variable <span class="math inline">\(Y\)</span> of all observations in all samples. We can see that a <strong>part of variation in variable <span class="math inline">\(Y\)</span> comes from factor (between-group variation) while another part from individual observations (within-group variation)</strong>.</p>
+<p><span class="math display">\[Var(Y) = \frac{1}{n} \sum^{G}_{j=1}{\sum^{N_k}_{i=1}{(Y_{ij} - \bar{Y})^2}},\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of all observations, <span class="math inline">\(Y_{ij}\)</span> is the value of variable <span class="math inline">\(Y\)</span> for observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(j\)</span>, and <span class="math inline">\(\bar{Y}\)</span> the overall mean of variable <span class="math inline">\(Y\)</span> of all observations in all samples. We can see that a <strong>part of variation in variable <span class="math inline">\(Y\)</span> comes from factor (between-group variation) while another part from individual observations (within-group variation)</strong>.</p>
 <p>What both of these approaches indicate is that we can divide variation into several parts and express each part separately by using sums of squares:</p>
 <ul>
 <li>within-group sum of squares, i.e. sum of squares of errors (<span class="math inline">\(SSE\)</span>)<br />
@@ -456,7 +456,7 @@ div.csl-indent {
 <p>where <span class="math inline">\(MSA\)</span> could be said to represent variation caused by factor and <span class="math inline">\(MSE\)</span> the variation coming from observations individually. See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 334</a>)</span> table 13.1 that summarizes all of these relevant equations as a standard ANOVA table.</p>
 <p>Thus, the <strong>test statistic <span class="math inline">\(F\)</span> expresses how much of the variation comes from a factor relative to variation originating from individual observation</strong>. If the <span class="math inline">\(F\)</span> statistic is above 1, then more variation comes from a factor than from random variation. Also, the higher the value of the test statistic, the higher the effect of a grouping variable and the lower the p-value.</p>
 <p>Test statistic <span class="math inline">\(F\)</span> is evaluated on F-distribution.</p>
-<p><strong>Test assumes normality, independence of data and homogeneity of variance</strong> (only for Fisher’s test).</p>
+<p><strong>Test assumes normality within groups, independence of data and homogeneity of variance</strong> (the latter only for Fisher’s test).</p>
 <p>In Jamovi: <code>ANOVA &gt; One-way ANOVA</code>.<br />
 In R: <code>summary(aov(x, y))</code></p>
 </div>
@@ -489,10 +489,10 @@ In R: <code>TukeyHSD(aov(x, y))</code></p>
 <p>The simplest (Fisher’s one-way) ANOVA assumes normality, independence of observations and homogeneity of variance. While the former two can be evaluated in the same way as in case of a T-test, evaluating homogeneity of variance is more intricate since we now have more than two samples to compare.</p>
 <div id="levenes-and-brown-forsythe-tests" class="section level3" number="8.5.1">
 <h3><span class="header-section-number">8.5.1</span> Levene’s and Brown-Forsythe tests</h3>
-<p>Both of these tests involve calculating each observation’s difference from average and then running an ANOVA on the resulting values to test if these differences are the same or not. Levene’s test uses differences from mean value, while Brown-Forsythe evaluates differeces from median value and is thus better suited for data that is not normally distributed.</p>
+<p>Both of these tests involve calculating each observation’s difference from its group average and then running an ANOVA on the resulting values to test if these differences are the same or not. Levene’s test uses differences from mean value, while Brown-Forsythe evaluates differeces from median value and is thus better suited for data that is not normally distributed.</p>
 <p><span class="math inline">\(H_0: s_1 = s_2 = s_3\)</span><br />
 <span class="math inline">\(H_1: s_1 = s_2 \neq s_3\)</span> or <span class="math inline">\(s_1 \neq s_2 \neq s_3\)</span></p>
-<p>The assumption is satisfied if we fail to reject <span class="math inline">\(H_0\)</span> (p-value is <span class="math inline">\(\ge \alpha\)</span>) and retain that all standard deviations are the same.</p>
+<p>The assumption is satisfied if we fail to reject <span class="math inline">\(H_0\)</span> (p-value is <span class="math inline">\(\ge \alpha\)</span>) and retain that all within-group deviations are the same.</p>
 <p>In Jamovi: <code>ANOVA &gt; One-way ANOVA &gt; Homogeneity test</code>.</p>
 
 </div>
