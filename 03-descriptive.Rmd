@@ -87,9 +87,9 @@ Previously explained measures allow us to only summarize values into fewer numbe
 
 ## Scatterplot
 
-A simple way to examine a relationship between two continuous variables is a scatterplot. It simply depicts all data points on a two-dimensional space. Additional variables can be shown by alternating the size, shape or color of data points.
+A simple way to examine a relationship between two continuous variables is a scatterplot. It simply depicts all data points on a two-dimensional space where location of each points is determined by it's value of each variable. If the relationship between the two variables is causal, then it is conventional to use have predictor variable on the horizontal (x-)axis and response variable on vertical (y-)axis. Additional variables can be shown by alternating the size, shape or color of data points.
 
-In Jamovi: `Exploration > Scatterplot `   
+In Jamovi: `Regression > Correlation Matrix | Plot `   
 In R: `plot(x)`
 
 ### Boxplot

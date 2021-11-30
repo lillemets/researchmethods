@@ -18,7 +18,6 @@ software
 jamovi
 r-language-and-rstudio
 notation
-sample-and-population
 data-management
 data-structure
 scales-of-measurement
@@ -45,7 +44,7 @@ scatterplot
 boxplot
 histogram-and-density-plot
 hypothesis-testing
-sample-and-population-1
+sample-and-population
 sample-population-sampling
 the-law-of-large-numbers
 the-central-limit-theorem
@@ -96,11 +95,14 @@ post-hoc-tests
 assumptions-of-anova
 levenes-and-brown-forsythe-tests
 correlation-analysis
-scatterplot-1
-pearsons-correlation-coefficient
-spearman-rank-order-correlation-coefficient
+covariance
+correlation-coefficients
+pearsons-correlation
+spearman-rank-order-correlation
+kendall-rank-correlation
 correlation-matrix-and-heatmap
-causality
+statistical-significance
+interpretation
 simple-linear-regression
 ordinary-least-squares
 model-specification
@@ -147,7 +149,7 @@ calculation-1
 spectral-decomposition
 singular-value-decomposition
 number-of-components
-interpretation
+interpretation-1
 variation-explained
 loadings
 biplots
@@ -162,7 +164,7 @@ assumptions
 sphericity
 sampling-adequacy
 number-of-components-1
-interpretation-1
+interpretation-2
 loadings-1
 uniqueness-and-communality
 complexity

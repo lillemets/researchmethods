@@ -1,56 +1,116 @@
+<!-- Add a subsection on point-biserial correlation -->
+
 # Correlation analysis
 
-Correlation analysis involves measuring relationships between two **continuous** variables. A correlation coefficient indicates the direction of relationship on a scale -1 ... 1 where 0 means lack of relationship. 
+Correlation analysis involves measuring the strength and direction of association between two **continuous** variables. A correlation coefficient summarizes the association on a scale from -1 to 1 where the sign indicates if the relationship is positive or negative, value of 0 means a lack of relationship and value of -1 or 1 means that there is perfect association. There are several different ways to calculate correlation coefficients.
 
-See @navarro_learning_2018 section 12.1.
+## Covariance
 
-## Scatterplot
+The simplest way to represent the tendency of two variables to vary similarly is *covariance*. To find covariance between variables $x$ and $y$, for each observation we multiply the differences of both variables from their mean values and then find the unbiased mean of these multiplications as follows:
 
-See @navarro_learning_2018 section 12.2.
+$$Cov(x,y) = \frac{1}{n-1} \sum^n_{i=1}(x_i - \bar{x})(y_i - \bar{y}),$$ 
 
-Scatterplots illustrate where observations are positioned relative to two continuous variables. This allows us to see if and how two variables are related. Conventionally dependent variables are presented on vertical (y) axis and independent variable on horizontal (x) axis. 
+where $x_i$ and $y_i$ are the values of variables $x$ and $y$ for observation $i$,  $\bar{x}$ and $\bar{y}$ mean values of the variables over all observations, and $n$ the number of observations. 
 
-In Jamovi: `Exploration > Scatterplot`.  
-In R: `plot(x, y)`
+Because the range of covariance depends on the scales of variables $x$ and $y$, we can not really interpret the absolute value of covariance. This is why we use correlations that have a fixed range of possible values as explained in the introduction of this section.
 
-## Pearson’s correlation coefficient
+## Correlation coefficients
 
-Evaluates **linear** relationship. Thus, perfect positive correlation implies that when $x$ increases by 1 unit, $y$ always increases by fixed unit(s).
+The main difference lies between parametric (Pearson's $r$) and non-parametric correlation coefficients (Spearman's $r$ and Kendall's $\tau$). Parametric correlation uses more information and is thus more powerful, however, it is also limited to normally distributed continuous data and measures the linearity and not monotonicity of association.
 
-$$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2}$$
+The difference between the two non-parametric correlations is that Spearman's $r$ is more simple to compute but less suitable for small sample sizes and can not be directly interpreted as opposed to Kendall's $\tau$. 
 
-Essentially, we compare differences from mean value for values of each group.
-
-Statistical significance can also be estimated by finding the probability of t-statistic on t-distribution.
-
-$$t=r\sqrt{n-2}/\sqrt{1-r^{2}}$$
+### Pearson’s correlation
 
 See @navarro_learning_2018 section 12.1.3.
+
+This measure evaluates **linear relationship** and is a parametric method. Perfect positive correlation implies that when $x$ increases by 1 unit, $y$ always increases by fixed unit(s). *Pearson's $r$* for association between variables $x$ and $y$ can be calculated as follows:
+
+$$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2},$$ 
+
+where $x_i$ and $y_i$ are the values of variables $x$ and $y$ for observation $i$,  $\bar{x}$ and $\bar{y}$ mean values of the variables over all observations, and $n$ the number of observations. Essentially, we compare differences from mean value for values of each variable.
+
+The coefficient assumes **normally distributed and continuous data, linear relationship, and a lack of substantial outliers**.
 
 In Jamovi: `Regression > Correlation Matrix > Correlation Coefficients | Pearson`.  
 In R: `cor(x)`
 
-## Spearman rank-order correlation coefficient
-
-Evaluation is based on the ranking of values. Evaluates a **monotonic** relationship. Thus perfect positive correlation implies that when $x$ increases, then $y$ also always increases.
-
-$$r = 1 - \frac{6\sum (x_{i}-y_{i})^{2}}{n(n^{2}-1)}$$
-
-Simply put, we compare rankings of values from each group.
+### Spearman rank-order correlation
 
 See @navarro_learning_2018 section 12.1.6.
+
+Calculation of the coefficient is based on the ranking of values and it thus measures a **monotonic association**. In case of monotonic relationship, perfect positive correlation implies only that when $x$ increases, then $y$ also always increases. *Spearman's $r$* is calculated as follows:
+
+$$r = 1 - \frac{6\sum (R(x_{i})-R(y_{i}))^{2}}{n(n^{2}-1)},$$
+
+where $R(x_i)$ and $R(y_i)$ are the ranks of variables $x$ and $y$ for observation $i$ and $n$ the number of observations. Simply put, we compare rankings of values from each group.
+
+The coefficient assumes **ordinal or continuous data and monotonic relationship**.
 
 In Jamovi: `Regression > Correlation Matrix > Correlation Coefficients | Spearman`.  
 In R: `cor(x, method = 'spearman')`
 
+### Kendall rank correlation
+
+Kendall's coefficient is similar to Spearman in that rankings of values rather than actual values are used. Accordingly, the correlation coefficient also measures **monotonic relationship**. *Kendall's $\tau$* is calculated using the idea of *concordant pairs* of rankings of all observations pairwise. For example, when for any two observations values of $x$ is higher (or lower) than vale of $y$, then this pair is counted concordant, otherwise it is discordant.  Calculation of the coefficient includes finding the difference between all pairwise concordant and discordant observations:
+
+$$\tau = \frac{n_c - n_d}{\frac{1}{2} n (n-1)}, $$
+
+where $n_c$ is the number of concordant pairs, $n_d$ the number of discordant pairs and $n$ the number of observations. We are essentially evaluating if rankings of $x$ and $y$ are similar when we compare all observations pairwise.
+
+The coefficient assumes **ordinal or continuous data and monotonic relationship**.
+
+In Jamovi: `Regression > Correlation Matrix > Correlation Coefficients | Kendall's tau-b`.  
+In R: `cor(x, method = 'kendall')`
+
 ## Correlation matrix and heatmap
 
-To find relationships among large number of variables, correlation coefficients can be summarized as a correlation matrix. 
+A single correlation between two variables is rarely what we are interested in. Correlation analysis is more useful in situations when we have a large number of variables and we wish to get a quick understanding of all the associations between them. In such case correlation coefficients can be calculated for each pairwise association and summarized as a correlation matrix. This matrix can further be represented as a heatmap where the direction and size of coefficients determine the color of a cell, giving a quick overview of all associations.
 
 In Jamovi: `Regression > Correlation Matrix > Plot | Correlation matrix`   
 ​	or `Factor > Reliability Analysis > Additional Options | Correlation heatmap`.  
 In R: `heatmap(cor(x))`
 
-## Causality
+## Statistical significance
 
-It's important to understand that correlation itself does not imply how the causality between variables functions.
+Statistical significance for correlation coefficients can also be estimated. In this case hypotheses are simple:
+
+$H_0:$ Variables are not associated,   
+$H_1: $ Variables are associated.
+
+When we reject $H_0$ we can conclude that a given correlation coefficient also applies to the population where sample was taken from.
+
+P-value for Pearson's $r$ correlation coefficient can be found by calculating the probability of t-statistic on t-distribution:
+
+$$t=r\sqrt{n-2}/\sqrt{1-r^{2}},$$
+
+where $r$ is the correlation coefficient and $n$ the number of observations. Thus, the higher the absolute value of correlation coefficient and the more observations it is based on, the more likely is the coefficient generalizable to population.
+
+In Jamovi: `Regression > Correlation Matrix > Additional Options | Report significance `
+
+## Interpretation
+
+See @navarro_learning_2018 section 12.1.5.
+
+The value of a correlation coefficient can be interpreted by: 
+
+- its sign that indicates if a correlation is positive or negative, 
+- its absolute size to determine the strength of the relationship, and
+- its statistical significance.
+
+While the interpretation of the size of a correlation coefficient depends on particular variables and research discipline, the table below can be used as a guide (@navarro_learning_2018[, 288]):
+
+| Correlation  | Interpretation       |
+| ------------ | -------------------- |
+| -1.0 to -0.9 | Very strong negative |
+| -0.9 to -0.7 | Strong negative      |
+| -0.7 to -0.4 | Moderate negative    |
+| -0.4 to -0.2 | Weak negative        |
+| -0.2 to 0    | Negligible negative  |
+| 0 to 0.2     | Negligible positive  |
+| 0.2 to 0.4   | Weak positive        |
+| 0.4 to 0.7   | Moderate positive    |
+| 0.7 to 0.9   | Strong positive      |
+| 0.9 to 1.0   | Very strong positive |
+
+It's important to understand that correlation itself does not imply anything about the  causality between two variables. A high correlation might indicate that either one of the variables has an effect or another, or that a third variable has an effect on both.
