@@ -177,6 +177,14 @@ $$\text{p-value} < 0.05 \implies H_{1}: \bar{x} \neq \mu$$
 
 ---
 
+P-value depends on which distribution we use to evaluate the probaility of test statistic.
+
+![](../img/t_distribution.png)
+
+.footnote[Xkcd. T-distribution]
+
+---
+
 class: middle
 
 ## So...

@@ -395,11 +395,11 @@ car::leveneTest(yield ~ loc, sorg)
 
 ---
 
-class: inverse
+class: center middle inverse
+
+# Practical application
 
 ---
-
-## Practice
 
 1. Download the data set `chickwts` from the course notes.
 2. Go to cloud.jamovi.org.
