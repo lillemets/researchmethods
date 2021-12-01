@@ -4,7 +4,7 @@
     <title>Correlation analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-11-30" />
+    <meta name="date" content="2021-12-01" />
     <script src="05_correlation_files/header-attrs-2.11/header-attrs.js"></script>
     <script src="05_correlation_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
     <script src="05_correlation_files/viz-1.8.2/viz.js"></script>
@@ -19,7 +19,7 @@ class: center, middle, inverse, title-slide
 # Correlation analysis
 ## Research methods
 ### Jüri Lillemets
-### 2021-11-30
+### 2021-12-01
 
 ---
 
@@ -141,13 +141,21 @@ Why do we say that parametric correlation uses more information?
 
 ---
 
+&gt; Why do we say "parametric" when we use mean?
+
+--
+
+![](05_correlation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
 ## Linearity and monotonicity
 
 .pull-left[
 
 Monotonically increasing linear relationship
 
-![](05_correlation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -157,7 +165,7 @@ Monotonically increasing linear relationship
 
 Monotonically increasing non-linear relationship
 
-![](05_correlation_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -190,7 +198,7 @@ Essentially, we compare differences from mean value for values of each variable.
 
 ---
 
-![](05_correlation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -251,7 +259,7 @@ Ranks of raw values
 
 ---
 
-![](05_correlation_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -274,7 +282,7 @@ We are essentially evaluating if rankings of `\(x\)` and `\(y\)` are similar whe
 
 ---
 
-![](05_correlation_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -290,7 +298,7 @@ As opposed to Kendall's `\(\tau\)`, Spearman's `\(\rho\)` is
 
 ## Size and direction of coefficients
 
-![](05_correlation_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -356,7 +364,7 @@ class: center middle inverse
 
 ## Correlation matrices and heatmaps
 
-We are rarely interested the correlation coefficient between two variables. Correlaton analysis is more useful when we wish to evalute a lot of associations easily.
+We are rarely interested the correlation coefficient between two variables. Correlaton analysis is more useful when we wish to evaluate a lot of associations easily.
 
 --
 
@@ -392,7 +400,7 @@ Let's look at "Swiss Fertility and Socioeconomic Indicators (1888) Data".
 
 This includes simply pairwise plots between all variables.
 
-![](05_correlation_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -417,14 +425,14 @@ This includes simply pairwise plots between all variables.
 Heatmap is just the correlation matrix in colors.
 
 .pull-left[
-![](05_correlation_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ]
 
 --
 
 .pull-right[
 
-![](05_correlation_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -445,7 +453,7 @@ Correlation coefficient tells us nothing about the shape of an underlying relati
 
 
 
-![](05_correlation_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](05_correlation_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 --
 
@@ -561,11 +569,19 @@ class: center middle inverse
 
 Use the data set `Fatalities`.
 
+&gt; Are variables normally distributed?
+
+&gt; Are relationships between variables linear?
+
 &gt; Which variables are associated to traffic fatalities?
 
 ---
 
 Use the data set `PSID1976`.
+
+&gt; Are variables normally distributed?
+
+&gt; Are relationships between variables linear?
 
 &gt; Which variables are related to participation in the labor force in 1975?
 

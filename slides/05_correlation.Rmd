@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = F, warning = F, dpi = 150, fig.height = 4)
 library('magrittr');library('knitr');library('DiagrammeR')
 # Set colors
 source('/home/jrl/work/resmeth/slides/variables.R')
+# TODO: Add an example of a large heatmap
 ```
 
 class: center middle clean
@@ -118,6 +119,23 @@ What is the difference in practice? Parametric correlation
 ???
 
 Why do we say that parametric correlation uses more information?
+
+---
+
+> Why do we say "parametric" when we use mean?
+
+--
+
+``` {r}
+par(mfrow = 1:2, bty = 'n', family = 'RobotoCondensed')
+Mu <- mean(rbeta(1e3,10,4))
+curve(dnorm(x,Mu,1),xlim=c(-4,4), 
+      main = "Normally distributed data", xlab = NA, ylab = NA)
+abline(v = Mu, col = Col['red'], lwd = 2)
+curve(dbeta(x,10,3),xlim=c(0,1), 
+      main = "Right-skewed data", xlab = NA, ylab = NA)
+abline(v = Mu, col = Col['red'], lwd = 2)
+```
 
 ---
 
@@ -362,7 +380,7 @@ class: center middle inverse
 
 ## Correlation matrices and heatmaps
 
-We are rarely interested the correlation coefficient between two variables. Correlaton analysis is more useful when we wish to evalute a lot of associations easily.
+We are rarely interested the correlation coefficient between two variables. Correlaton analysis is more useful when we wish to evaluate a lot of associations easily.
 
 --
 
@@ -587,11 +605,19 @@ class: center middle inverse
 
 Use the data set `Fatalities`.
 
+> Are variables normally distributed?
+
+> Are relationships between variables linear?
+
 > Which variables are associated to traffic fatalities?
 
 ---
 
 Use the data set `PSID1976`.
+
+> Are variables normally distributed?
+
+> Are relationships between variables linear?
 
 > Which variables are related to participation in the labor force in 1975?
 

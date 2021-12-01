@@ -98,9 +98,9 @@ correlation-analysis
 covariance
 correlation-coefficients
 pearsons-correlation
-spearmans-rank-order-correlation
-kendalls-rank-correlation
-correlation-matrices-and-heatmaps
+spearman-rank-order-correlation
+kendall-rank-correlation
+correlation-matrix-and-heatmap
 statistical-significance
 interpretation
 simple-linear-regression

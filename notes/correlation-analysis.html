@@ -224,10 +224,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="correlation-analysis.html"><a href="correlation-analysis.html#correlation-coefficients"><i class="fa fa-check"></i><b>9.2</b> Correlation coefficients</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="correlation-analysis.html"><a href="correlation-analysis.html#pearsons-correlation"><i class="fa fa-check"></i><b>9.2.1</b> Pearson’s correlation</a></li>
-<li class="chapter" data-level="9.2.2" data-path="correlation-analysis.html"><a href="correlation-analysis.html#spearman-rank-order-correlation"><i class="fa fa-check"></i><b>9.2.2</b> Spearman rank-order correlation</a></li>
-<li class="chapter" data-level="9.2.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#kendall-rank-correlation"><i class="fa fa-check"></i><b>9.2.3</b> Kendall rank correlation</a></li>
+<li class="chapter" data-level="9.2.2" data-path="correlation-analysis.html"><a href="correlation-analysis.html#spearmans-rank-order-correlation"><i class="fa fa-check"></i><b>9.2.2</b> Spearman’s rank-order correlation</a></li>
+<li class="chapter" data-level="9.2.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#kendalls-rank-correlation"><i class="fa fa-check"></i><b>9.2.3</b> Kendall’s rank correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#correlation-matrix-and-heatmap"><i class="fa fa-check"></i><b>9.3</b> Correlation matrix and heatmap</a></li>
+<li class="chapter" data-level="9.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#correlation-matrices-and-heatmaps"><i class="fa fa-check"></i><b>9.3</b> Correlation matrices and heatmaps</a></li>
 <li class="chapter" data-level="9.4" data-path="correlation-analysis.html"><a href="correlation-analysis.html#statistical-significance"><i class="fa fa-check"></i><b>9.4</b> Statistical significance</a></li>
 <li class="chapter" data-level="9.5" data-path="correlation-analysis.html"><a href="correlation-analysis.html#interpretation"><i class="fa fa-check"></i><b>9.5</b> Interpretation</a></li>
 </ul></li>
@@ -375,7 +375,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="correlation-analysis" class="section level1" number="9">
 <h1><span class="header-section-number">Section 9</span> Correlation analysis</h1>
-<p>Correlation analysis involves measuring the strength and direction of association between two <strong>continuous</strong> variables. A correlation coefficient summarizes the association on a scale from -1 to 1 where the sign indicates if the relationship is positive or negative, value of 0 means a lack of relationship and value of -1 or 1 means that there is perfect association. There are several different ways to calculate correlation coefficients.</p>
+<p>Correlation analysis involves measuring the strength and direction of association between two variables. A correlation coefficient summarizes the association on a scale from -1 to 1 where the sign indicates if the relationship is positive or negative, value of 0 means a lack of relationship and value of -1 or 1 means that there is perfect association. There are several different ways to calculate correlation coefficients.</p>
 <div id="covariance" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Covariance</h2>
 <p>The simplest way to represent the tendency of two variables to vary similarly is <em>covariance</em>. To find covariance between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, for each observation we multiply the differences of both variables from their mean values and then find the unbiased mean of these multiplications as follows:</p>
@@ -385,41 +385,41 @@ div.csl-indent {
 </div>
 <div id="correlation-coefficients" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Correlation coefficients</h2>
-<p>The main difference lies between parametric (Pearson’s <span class="math inline">\(r\)</span>) and non-parametric correlation coefficients (Spearman’s <span class="math inline">\(r\)</span> and Kendall’s <span class="math inline">\(\tau\)</span>). Parametric correlation uses more information and is thus more powerful, however, it is also limited to normally distributed continuous data and measures the linearity and not monotonicity of association.</p>
-<p>The difference between the two non-parametric correlations is that Spearman’s <span class="math inline">\(r\)</span> is more simple to compute but less suitable for small sample sizes and can not be directly interpreted as opposed to Kendall’s <span class="math inline">\(\tau\)</span>.</p>
+<p>The main difference lies between <strong>parametric (Pearson’s <span class="math inline">\(r\)</span>) and non-parametric correlation coefficients (Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span>)</strong>. Parametric correlation uses more information and is thus more powerful, however, it is also limited to normally distributed interval or ratio data and measures the linearity and not monotonicity of association.</p>
+<p>The difference between the two non-parametric correlations is that Spearman’s <span class="math inline">\(\rho\)</span> is more simple to compute but less suitable for small sample sizes and can not be directly interpreted as opposed to Kendall’s <span class="math inline">\(\tau\)</span>.</p>
 <div id="pearsons-correlation" class="section level3" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Pearson’s correlation</h3>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.3.</p>
-<p>This measure evaluates <strong>linear relationship</strong> and is a parametric method. Perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> always increases by fixed unit(s). <em>Pearson’s <span class="math inline">\(r\)</span></em> for association between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can be calculated as follows:</p>
+<p>This measure evaluates <strong>linearity of a relationship</strong> and is a parametric method. Perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> always increases by fixed unit(s). <em>Pearson’s <span class="math inline">\(r\)</span></em> for association between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can be calculated as follows:</p>
 <p><span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2},\]</span></p>
 <p>where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the values of variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for observation <span class="math inline">\(i\)</span>, <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> mean values of the variables over all observations, and <span class="math inline">\(n\)</span> the number of observations. Essentially, we compare differences from mean value for values of each variable.</p>
-<p>The coefficient assumes <strong>normally distributed and continuous data, linear relationship, and a lack of substantial outliers</strong>.</p>
+<p>The coefficient assumes <strong>normally distributed and interval or ratio data, linear relationship, and a lack of substantial outliers</strong>.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Pearson</code>.<br />
 In R: <code>cor(x)</code></p>
 </div>
-<div id="spearman-rank-order-correlation" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Spearman rank-order correlation</h3>
+<div id="spearmans-rank-order-correlation" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Spearman’s rank-order correlation</h3>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.6.</p>
-<p>Calculation of the coefficient is based on the ranking of values and it thus measures a <strong>monotonic association</strong>. In case of monotonic relationship, perfect positive correlation implies only that when <span class="math inline">\(x\)</span> increases, then <span class="math inline">\(y\)</span> also always increases. <em>Spearman’s <span class="math inline">\(r\)</span></em> is calculated as follows:</p>
-<p><span class="math display">\[r = 1 - \frac{6\sum (R(x_{i})-R(y_{i}))^{2}}{n(n^{2}-1)},\]</span></p>
+<p>Calculation of the coefficient is based on the ranking of values and it thus measures a <strong>monotonicity of an association</strong>. In case of monotonic relationship, perfect positive correlation implies only that when <span class="math inline">\(x\)</span> increases, then <span class="math inline">\(y\)</span> also always increases. <em>Spearman’s <span class="math inline">\(\rho\)</span></em> is calculated as follows:</p>
+<p><span class="math display">\[\rho = 1 - \frac{6\sum (R(x_{i})-R(y_{i}))^{2}}{n(n^{2}-1)},\]</span></p>
 <p>where <span class="math inline">\(R(x_i)\)</span> and <span class="math inline">\(R(y_i)\)</span> are the ranks of variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for observation <span class="math inline">\(i\)</span> and <span class="math inline">\(n\)</span> the number of observations. Simply put, we compare rankings of values from each group.</p>
-<p>The coefficient assumes <strong>ordinal or continuous data and monotonic relationship</strong>.</p>
+<p>The coefficient assumes <strong>ordinal, interval or ratio data and monotonic relationship</strong>.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Spearman</code>.<br />
 In R: <code>cor(x, method = 'spearman')</code></p>
 </div>
-<div id="kendall-rank-correlation" class="section level3" number="9.2.3">
-<h3><span class="header-section-number">9.2.3</span> Kendall rank correlation</h3>
-<p>Kendall’s coefficient is similar to Spearman in that rankings of values rather than actual values are used. Accordingly, the correlation coefficient also measures <strong>monotonic relationship</strong>. <em>Kendall’s <span class="math inline">\(\tau\)</span></em> is calculated using the idea of <em>concordant pairs</em> of rankings of all observations pairwise. For example, when for any two observations values of <span class="math inline">\(x\)</span> is higher (or lower) than vale of <span class="math inline">\(y\)</span>, then this pair is counted concordant, otherwise it is discordant. Calculation of the coefficient includes finding the difference between all pairwise concordant and discordant observations:</p>
+<div id="kendalls-rank-correlation" class="section level3" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Kendall’s rank correlation</h3>
+<p>Kendall’s coefficient is similar to Spearman in that rankings of values rather than actual values are used. Accordingly, the correlation coefficient also measures <strong>monotonicity of a relationship</strong>. <em>Kendall’s <span class="math inline">\(\tau\)</span></em> is calculated using the idea of <em>concordant pairs</em> of rankings of all observations pairwise. For example, when for any two observations values of <span class="math inline">\(x\)</span> is higher (or lower) than vale of <span class="math inline">\(y\)</span>, then this pair is counted concordant, otherwise it is discordant. Calculation of the coefficient includes finding the difference between all pairwise concordant and discordant observations:</p>
 <p><span class="math display">\[\tau = \frac{n_c - n_d}{\frac{1}{2} n (n-1)}, \]</span></p>
 <p>where <span class="math inline">\(n_c\)</span> is the number of concordant pairs, <span class="math inline">\(n_d\)</span> the number of discordant pairs and <span class="math inline">\(n\)</span> the number of observations. We are essentially evaluating if rankings of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are similar when we compare all observations pairwise.</p>
-<p>The coefficient assumes <strong>ordinal or continuous data and monotonic relationship</strong>.</p>
+<p>The coefficient assumes <strong>ordinal, interval or ratio data and monotonic relationship</strong>.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Kendall's tau-b</code>.<br />
 In R: <code>cor(x, method = 'kendall')</code></p>
 </div>
 </div>
-<div id="correlation-matrix-and-heatmap" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Correlation matrix and heatmap</h2>
-<p>A single correlation between two variables is rarely what we are interested in. Correlation analysis is more useful in situations when we have a large number of variables and we wish to get a quick understanding of all the associations between them. In such case correlation coefficients can be calculated for each pairwise association and summarized as a correlation matrix. This matrix can further be represented as a heatmap where the direction and size of coefficients determine the color of a cell, giving a quick overview of all associations.</p>
+<div id="correlation-matrices-and-heatmaps" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Correlation matrices and heatmaps</h2>
+<p>A single correlation between two variables is rarely what we are interested in. Correlation analysis is more useful in situations when we have a large number of variables and we wish to get a quick understanding of all the associations between them. In such case correlation coefficients can be calculated for each pairwise association and summarized as a <em>correlation matrix</em>. This matrix can further be represented as a <em>heatmap</em> where the direction and size of coefficients determine the color of a cell, giving a quick overview of all associations.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Plot | Correlation matrix</code><br />
 ​ or <code>Factor &gt; Reliability Analysis &gt; Additional Options | Correlation heatmap</code>.<br />
 In R: <code>heatmap(cor(x))</code></p>
@@ -432,7 +432,7 @@ $H_1: $ Variables are associated.</p>
 <p>When we reject <span class="math inline">\(H_0\)</span> we can conclude that a given correlation coefficient also applies to the population where sample was taken from.</p>
 <p>P-value for Pearson’s <span class="math inline">\(r\)</span> correlation coefficient can be found by calculating the probability of t-statistic on t-distribution:</p>
 <p><span class="math display">\[t=r\sqrt{n-2}/\sqrt{1-r^{2}},\]</span></p>
-<p>where <span class="math inline">\(r\)</span> is the correlation coefficient and <span class="math inline">\(n\)</span> the number of observations. Thus, the higher the absolute value of correlation coefficient and the more observations it is based on, the more likely is the coefficient generalizable to population.</p>
+<p>where <span class="math inline">\(r\)</span> is the correlation coefficient and <span class="math inline">\(n\)</span> the number of observations. Thus, <strong>the higher the absolute value of correlation coefficient and the more observations it is based on, the more likely is the coefficient generalizable to population</strong>.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Additional Options | Report significance</code></p>
 </div>
 <div id="interpretation" class="section level2" number="9.5">
@@ -444,7 +444,7 @@ $H_1: $ Variables are associated.</p>
 <li>its absolute size to determine the strength of the relationship, and</li>
 <li>its statistical significance.</li>
 </ul>
-<p>While the interpretation of the size of a correlation coefficient depends on particular variables and research discipline, the table below can be used as a guide (<span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 288</a>)</span>):</p>
+<p>While the interpretation of the size of a correlation coefficient depends on particular variables and research discipline, the table below can be used as a guide (<span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 288</a>)</span>).</p>
 <table>
 <thead>
 <tr class="header">
@@ -495,7 +495,7 @@ $H_1: $ Variables are associated.</p>
 </tr>
 </tbody>
 </table>
-<p>It’s important to understand that correlation itself does not imply anything about the causality between two variables. A high correlation might indicate that either one of the variables has an effect or another, or that a third variable has an effect on both.</p>
+<p>It’s important to understand that <strong>correlation itself does not imply anything about the causality between two variables</strong>. A high correlation might indicate that either one of the variables has an effect on another, that a third variable has an effect on both, or that the correlation is just spurious.</p>
 
 </div>
 </div>
