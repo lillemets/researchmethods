@@ -107,11 +107,9 @@ simple-linear-regression
 ordinary-least-squares
 model-specification
 calculation
-elements-of-ols-regression-models
+elements-of-a-regression-model
 intercept
 coefficients
-numeric-predictors
-categorical-predictors
 fitted-values
 residuals
 the-r2

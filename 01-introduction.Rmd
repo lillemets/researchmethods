@@ -86,3 +86,4 @@ $\sigma$ - popuation standard deviation
 $\hat{\sigma}$ - estimate of the population standard deviation
 
 $x$, $y$ - random variables
+$\hat{y}$ - estimated values of variable $y$
