@@ -330,6 +330,18 @@ sapply(GrowthDJ, as.numeric) %>% cor %>% round(2)
 
 ---
 
+## There is no multicollinearity
+
+It should not be possible to linearly predict any of the predictors from others predictors. Otherwise the **coefficients are not be reliable**.
+
+Multicollinearity can be detected with variance inflation factor (VIF) by using $R^2$ to estimate for each predictor how much of the variation in one predictor can be predicted from others.
+
+$$VIF_{k} = \frac{1}{1 - R^{2}_{k}},$$
+
+where $R^{2}_{k}$ is $R^{2}$ for a model that has initial predictor $k$ as a response and all other predictors as predictors.
+
+---
+
 ### Variance inflation factor (VIF)
 
 Multicollinearity can be detected with variance inflation factor by using $R^2$ to estimate for each predictor how much of the variation in one predictor can be predicted from others.

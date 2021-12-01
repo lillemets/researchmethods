@@ -3,8 +3,7 @@ title: Simple linear regression
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
@@ -13,7 +12,8 @@ knitr::opts_chunk$set(echo = F, warning = F, dpi = 150, fig.height = 4)
 # Load packages
 library('magrittr');library('knitr')
 # Set colors
-Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+source('/home/jrl/work/resmeth/slides/variables.R')
+# TODO: Add an equation with data for the matrix algebra of calculating b_1
 ```
 
 class: center middle clean
@@ -34,24 +34,25 @@ Suppose we have data on the "Weight gain calves in a feedlot, given three differ
 
 ```{r}
 calves <- agridat::urquhart.feedlot
-head(calves, 3)
+names(calves)[names(calves) %in% c('weight1', 'weight2')] <- c('initialwt', 'finalwt')
+head(calves, 3) %>% kable
 ```
 
 - `animal`, animal ID
 - `herd`, herd ID
 - `diet`, diet: Low, Medium, High
-- `weight1`, initial weight
-- `weight2`, slaughter weight
+- `initialwt`, initial weight
+- `finalwt`, slaughter weight
 
 ---
 
 .pull-left[
 Let's see initial and slaughter weight of calves.
 
-```{r, fig.height = 8}
+```{r, fig.width = 3}
 plotWeights <- function(...) {
-  par(bty = 'n', mar = c(4,4,2,0), family = 'RobotoCondensed')
-  plot(weight2 ~ weight1, calves, xlab = "1st weight", ylab = "2nd weight", 
+  par(bty = 'n', mar = c(4,4,1,0), family = 'RobotoCondensed')
+  plot(finalwt ~ initialwt, calves, xlab = "Initial weight", ylab = "Final weight", 
        las = 1, ...)
 }
 plotWeights()
@@ -62,13 +63,13 @@ plotWeights()
 --
 
 .pull-right[
-Does 1st weight have an effect on 2nd weight?
+Does initial weight have an effect on final weight?
 
-How much of 2nd weight depends on 1st weight?
+How much of final weight depends on initial weight?
 
-How much does 2nd weight increase when 1st weight increases?
+How much does final weight increase when initial weight increases?
 
-What could be the 2nd weight when 1st weight is e.g. 700?
+What could be the final weight when initial weight is e.g. 700?
 
 Can we quantify this relationship?
 ]
@@ -81,10 +82,10 @@ Draw possible lines.
 We can model this by estimating a regression model!
 
 ```{r, fig.height = 4.5}
-wtMod <- lm(weight2 ~ weight1, calves)
+wtMod <- lm(finalwt ~ initialwt, calves)
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
       col = Col['red'], lwd = 2)
 ```
 
@@ -92,131 +93,160 @@ lines(calves$weight1,
 
 ## Model specification
 
-Simple linear regression model has one predictor.
+Regression models represent how one or more more predictor variables  ( $x_k$ ) have an effect on a response variable ( $y$ ):
 
-$$y = \alpha + \beta x + \varepsilon,$$
+$$\hat{y} = \sum^K_{k=1}x_k.$$
+
+The most simple regression model has only one predictor, which is why it is called "simple linear regression" (SLS).
+
+---
+
+An *single least squares* (*SLS*) model is mathematically expressed as follows:
+
+$$\hat{y} = \beta_0 + \beta_1 x + \varepsilon,$$
 
 where
 
-- $y$ is dependent or explained variable, **response** or regressand, 
-- $\alpha$ ( $\beta_0$ ) is the intercept or constant, 
-- $\beta$ ( $\beta_k$ ) is a coefficient, 
+- $\hat{y}$ is dependent or explained variable, **response** or regressand, 
+- $\beta_0$ is the intercept or constant, 
+- $\beta_1$ is a coefficient of $x$, 
 - $x$ is independent or explanatory variable, **predictor** or regressor, and
-- $\varepsilon$ is the model error.
+- $\varepsilon$ is the model error or residual.
+
+???
+
+The values of $x$ and $y$ come from our data, whereas the $\beta_1$ coefficients need to be calculated from this data. The $\varepsilon$ is estimated using both, the $\beta_1$ coefficients and data.
 
 ---
 
 In our example the formula can be expressed as
 
-$$\text{weight2} = \alpha + \beta \text{weight1} + \varepsilon_i$$
+$$\text{finalwt} = \beta_0 + \beta_1 \text{initialwt} + \varepsilon_i.$$
 
-or in case we just look at 3 observations as
+For first 3 observations in our data this model can be expressed as
 
-$$\begin{matrix} 826 \\ 816 \\ 902 \end{matrix} = \alpha + \beta \times \begin{matrix} 575 \\ 605 \\ 640 \end{matrix} + \begin{matrix} \varepsilon_1 \\ \varepsilon_2 \\ \varepsilon_3 \end{matrix}.$$
+$$\begin{matrix} 826 \\ 816 \\ 902 \end{matrix} = \beta_0 + \beta_1 \times \begin{matrix} 575 \\ 605 \\ 640 \end{matrix} + \begin{matrix} \varepsilon_1 \\ \varepsilon_2 \\ \varepsilon_3 \end{matrix}.$$
 
 --
 
-Residuals, $\varepsilon_i$ can be calculated after we have found $\alpha$ and $\beta$. 
+Residuals, $\varepsilon_i$ can be calculated after we have found $\beta_0$ and $\beta_1$. 
 
-But how do we find the $\alpha$ and $\beta$?
+But how do we find the $\beta_0$ and $\beta_1$?
 
 ---
 
-## Calculation
+## Calculation of an SLS model
 
-The idea is to minimize of (squared) residuals. For $Y = \alpha + \beta x + \varepsilon$ :
+The idea is to minimize squared residuals, thus the name "least squares". For $Y = \beta_0 + \beta_1 x + \varepsilon$ we can do this as follows:
 
-$\hat{\beta} = \frac{Cov[x,y]} {Var[x]} = \frac{\sum{x_{i} y_{i}} - \frac{1}{n} \sum{x_{i}}\sum{y_{i}}}{\sum{x_{i}^{2}} - \frac{1}{n} (\sum{x_{i}})^{2}}$, $\hat{\alpha} = \overline{y} - \hat\beta \overline{x}$
-
---
-
-In our example $x$ would be the vector of 1st weights.
-
-```{r}
-calves$weight1
-```
-
-And $x$ would be the vector of 2nd weights.
-
-```{r}
-calves$weight2
-```
-
----
-
-For a model $y = \beta x + \varepsilon$ we can simply use matrix algebra on values of $x$ and $y$:
-
-$$\hat{\beta} = (X^\prime X)^{-1} X^\prime Y$$
+$\hat{\beta_1} = \frac{Cov[x,y]} {Var[x]} = \frac{\sum{x_{i} y_{i}} - \frac{1}{n} \sum{x_{i}}\sum{y_{i}}}{\sum{x_{i}^{2}} - \frac{1}{n} (\sum{x_{i}})^{2}}$, $\hat{\beta_0} = \overline{y} - \hat\beta_1 \overline{x}.$
 
 --
 
-In our example problem $X$ would be the column vector of 1st weights.
+In our example $x$ would be the vector of initial weights.
 
 ```{r}
-cbind(head(calves$weight1, 3))
+calves$initialwt
 ```
 
-And $Y$ would be the column vector of 2nd weights.
+And $x$ would be the vector of final weights.
 
 ```{r}
-cbind(head(calves$weight2, 3))
+calves$finalwt
 ```
 
 ---
 
-Why is one variable dependent and other(s) independent?
+For a model $y = \beta_1 x + \varepsilon$ we can simply use matrix algebra on values of $x$ and $y$:
+
+$$\hat{\beta_1} = (X^\prime X)^{-1} X^\prime Y$$
 
 --
 
-```{r, fig.height = 4.5}
-wtMod <- lm(weight2 ~ weight1, calves)
-wtModOpposite <- lm(weight1 ~ weight2, calves)
+In our example problem $X$ would be the column vector of initial weights.
+
+```{r}
+cbind(head(calves$initialwt, 3)) %>% kable
+```
+
+And $Y$ would be the column vector of final weights.
+
+```{r}
+cbind(head(calves$finalwt, 3)) %>% kable
+```
+
+---
+
+>  Why is one variable dependent and other(s) independent?
+
+
+```{r, fig.height = 4}
+wtMod <- lm(finalwt ~ initialwt, calves)
+wtModOpposite <- lm(initialwt ~ finalwt, calves)
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
       col = Col['red'], lwd = 2)
-lines(predict(wtModOpposite, data.frame(weight2 = calves$weight2)),
-      calves$weight2, 
+```
+
+
+---
+
+Because we try to minimize error in response variable. 
+
+--
+
+```{r, fig.height = 4}
+wtMod <- lm(finalwt ~ initialwt, calves)
+wtModOpposite <- lm(initialwt ~ finalwt, calves)
+plotWeights()
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
+      col = Col['red'], lwd = 2)
+lines(predict(wtModOpposite, data.frame(finalwt = calves$finalwt)),
+      calves$finalwt, 
       col = Col['blue'], lwd = 2)
 ```
 
-???
-Because we try to minimize error of using predictor to predict response.
+Using response to predict predictor would give us a different regression line!
 
 ---
 
 class: center middle inverse
 
-# Elements of regression models
+# Elements of a regression model
 
 ---
 
 ## Intercept
 
-.pull-left[
-In the equation the $\alpha$. Sometimes called constant. The value of $y$ where regression line crosses the Y-axis, so intercept is the value of $y$ when $x$ is zero ( $y|x=0$ ).
+In the equation $\hat{y} = \beta_0 + \beta_1 x + \varepsilon,$ intercept is the $\beta_0$. 
 
-Intercept is usually irrelevant when interpreting the model.
-]
+Intercept is sometimes also called *constant*. 
 
-.pull-right[
-```{r, fig.height = 8}
-plotWeights(xlim = c(0, max(calves$weight1)), ylim = c(0, max(calves$weight2)))
-lines(c(-100, calves$weight1), 
-      predict(wtMod, data.frame(weight1 = c(-100, calves$weight1))), 
+It is the value of $y$ where regression line crosses the y-axis, so intercept is the value of $y$ when $x$ is zero ( $y|x=0$ ).
+
+Intercept is theoretically irrelevant when the range of our observed values of $x$ does not cover 0.
+
+---
+
+Intercept is the value of $y$ where regression line crosses the y-axis.
+
+```{r}
+plotWeights(xlim = c(0, max(calves$initialwt)), ylim = c(0, max(calves$finalwt)))
+lines(c(-100, calves$initialwt), 
+      predict(wtMod, data.frame(initialwt = c(-100, calves$initialwt))), 
       col = Col['red'], lwd = 2)
 abline(v = 0)
 points(0, wtMod$coef[1], col = Col['blue'], cex = 4, lwd = 5)
 ```
-]
-
 --
 
 > Does the intercept make sense in this example?
 
 ---
 
-In our example 2nd weight is `r round(wtMod$coef[[1]])` if 1st weight is 0. Intercept does not need to be theoretically valid but it sometimes is.
+In our example final weight is `r round(wtMod$coef[[1]])` if initial weight is 0. Intercept is not always meaningful.
 
 ``` {r}
 summary(wtMod)
@@ -224,140 +254,204 @@ summary(wtMod)
 
 ---
 
-class: middle
+Intercept should not be interpreted when it requires extrapoliation of observed data.
 
-.center[![extrapolating](/home/jrl/pics/stats/extrapolating.png)]
+![extrapolating](/home/jrl/pics/stats/extrapolating.png)
 
-.footnote[Source: XKCD, extrapolating]
+.footnote[Source: Xkcd. Extrapolating]
 
 ---
 
 ## Coefficient(s)
 
-.pull-left[
-In the equation the $\beta$. Indicates how much y increases when $x$ increases. 
-]
+In the equation $\hat{y} = \beta_0 + \beta_1 x + \varepsilon,$ coefficients are the $\beta_1$. 
 
-.pull-right[
+Coefficient(s) indicate by how many units $y$ increases when $x$ increases by one unit. 
 
-```{r, , fig.height = 8}
+---
+
+By how many units final weight increase when initial weight increases by one unit.
+
+```{r}
 par(pty = 's')
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
       col = Col['red'], lwd = 2)
-predWt <- function(x) predict(wtMod, list(weight1 = x))
+predWt <- function(x) predict(wtMod, list(initialwt = x))
 lines(c(700, 800), c(predWt(700), predWt(700)))
 lines(c(800, 800), c(predWt(700), predWt(800)), col = Col['blue'], lwd = 5)
 ```
 
-]
+--
+
+> What could be the value of $\beta_1$ in this example?
 
 ---
 
-In our example every kg of 1st weight increases 2nd weight by `r round(wtMod$coef[[2]], 3)` kg (on the plot $\times 100$).
+In our example every kg of initial weight increases final weight by `r round(wtMod$coef[[2]], 3)` kg (on the plot $\times 100$).
 
 ``` {r}
 summary(wtMod)
 ```
+
+---
+
+``` {r}
+calves$diet <- relevel(calves$diet, 'Low')
+wtModCat <- lm(finalwt ~ diet, calves)
+```
+
+The interpretation of $\beta_1$ is different if $x$ is a categorical variable.
+
+Suppose that a categorical variable called `diet` has the following levels: *`r levels(calves$diet)`*. 
+
+When we use it as a predictor then the first level (*`r levels(calves$diet)[1]`*) is considered as the base level. 
+
+All other factor values are compared against the base level.
+
+---
+
+When we have `diet` as a predictor instead of `initialwt`, then we have the following model:
+
+$$finalwt_{i} = `r round(wtModCat$coef[[1]], 3)` + `r round(wtModCat$coef[[2]], 3)`dietMedium_{i} + `r round(wtModCat$coef[[3]], 3)`dietHigh_{i} + \varepsilon_{i}.$$
+
+When `diet` is `r levels(calves$diet)[1]`, then final weight is `r round(wtModCat$coef[[1]], 3)`.
+
+When `diet` is `r levels(calves$diet)[2]`, then final weight is higher by `r abs(round(wtModCat$coef[[2]], 3))` units compared to when `diet` is `r levels(calves$diet)[1]` `r round(wtModCat$coef[[1]] + wtModCat$coef[[2]], 3)`.
+
+--
+
+> When diet is `r levels(calves$diet)[3]`, how much higher is final weight compared to when diet is `r levels(calves$diet)[1]`?
 
 ---
 
 ### Statistical significance of coefficients
 
-Coefficients are only relevant for generalization when their difference from 0 is statistically significant. 
+We usually estimate models on a sample and wish to make generalizations or inferences about population. 
 
-We can not be sure if the coefficients are actually significant, especially when estimation is done on a sample. So we again need to test this.
+Coefficients are only relevant if their difference from 0 is statistically significant. 
+
+If a coefficient is not statistically significant, then we would conclude that the predictor has no effect on the response.
+
+--
+
+The idea of testing statistical significance of a coefficient is equivalent to a t-test!
 
 ---
 
-It is thus necessary to test whether or not coefficients are different from 0. This is done by calculating **t-statistic from coefficient and standard error**.
+It is always necessary to test whether or not coefficients are different from 0. This is done by calculating t-statistic from coefficient and standard error.
 
 ``` {r}
 summary(wtMod)
 ```
 
+--
+
+> Is the coefficient statistically significant? Is there an effect?
+
 ---
 
 ## Fitted values
 
-.pull-left[
-These are the values of $y$ calculated using the model for every $x$ in the data. 
+In the equation $\hat{y} = \beta_0 + \beta_1 x + \varepsilon,$ fitted values are the $\hat{y}$, i.e. estimations of $y$.
 
-In other words, these are predictions.
-]
+These are the estimated values of response ( $\hat{y}$ ) that are calculated by applying the model for $x$ of every observation in the data.
 
-.pull-right[
+In other words, fitted values are model estimations or *predictions* of $y$ for each observation.
 
-```{r, fig.height = 8}
+---
+
+Fitted values express response according to model.
+
+```{r}
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
       col = Col['red'], lwd = 2)
-points(calves$weight1, predWt(calves$weight1), pch = 20, col = Col['blue'], lwd = 5)
+points(calves$initialwt, predWt(calves$initialwt), pch = 20, col = Col['blue'], lwd = 5)
 ```
-]
-
 --
 
-> What will be the approximate 2nd weight for a calf whose 1st weight is 700?
+> What will be the approximate final weight for a calf whose initial weight is 700?
 
 ---
 
 ### Predictions
 
-We can use regression models to predict the values of $y$ for any value of $x$.
+After we have estimated the $\beta_0$ and $\beta_1$, we have a model.
 
-$$\text{weight2} = \alpha + \beta \text{weight1} + \varepsilon$$
+We can use this model to calculate fitted values $\hat{y}$ for each value of $x$ as follows: $\hat{y} = \beta_0 + \beta_1 x$.
 
-As prediction does not have a residual $\varepsilon = 0$.
+$$\text{finalwt} = \beta_0 + \beta_1 \text{initialwt} + \varepsilon$$
+
+Because we find fitted values assuming no errors, the residual is zero and can thus be ignored.
 
 --
 
-What is the exact 2nd weight if 1st weight is 700?
+What is the exact final weight if initial weight is 700?
 
-$$`r wtMod$coef[[1]]` + `r wtMod$coef[[2]]` \times 700 = `r predict(wtMod, data.frame(weight1 = 700))`$$
+$$`r wtMod$coef[[1]]` + `r wtMod$coef[[2]]` \times 700 = `r predict(wtMod, data.frame(initialwt = 700))`$$
 
 ---
 
 ## Residuals
 
-.pull-left[
-In the equation the $\varepsilon$. Residuals are the difference of response between observed and fitted values
+In the equation $\hat{y} = \beta_0 + \beta_1 x + \varepsilon,$ residuals are the $\varepsilon$.
+
+Residuals are the differences of observed $y$ and fitted values of $y$.
+
+Residuals are essentially errors that our model makes.
+
+We can find residuals for each observation after we have estimated $\beta_0$ and $\beta_1$ using values of $x$ and $y$ as follows: $\varepsilon = y - \beta_0 -  \beta_1 x$.
+
+---
 
 We use residuals to evaluate how well model fits data. 
 
-]
+> Suppose that a model has relatively large residuals. Does the model have a good fit?
 
-.pull-right[
+--
 
-```{r, , fig.height = 7}
+Large residuals would mean that fitted values are different from observed values, which indicates that model does not fit data well.
+
+---
+
+Residuals are differences between of observed and fitted values of response.
+
+```{r}
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
       col = Col['red'], lwd = 2)
 for (i in 1:nrow(calves)) {
-  lines(c(calves$weight1[i], calves$weight1[i]), 
-        c(calves$weight2[i], predWt(calves$weight1[i])), 
+  lines(c(calves$initialwt[i], calves$initialwt[i]), 
+        c(calves$finalwt[i], predWt(calves$initialwt[i])), 
         col = Col['blue'], lwd = 2)
 }
 ```
 
-]
+---
 
---
+## The $R^2$
 
-> What do the sizes of residuals tell us about the model?
+This is a way to measure *goodness of fit* of a model, i.e. how well model fits data. 
 
-???
+It is sometimes called *coefficient of determination*.
 
-If residuals are large, the model is not very good.
+$R^2$ expresses the part of variation in response variable that is explained by a model.
+
+More precisely, $R^2$ measures how much better is model at explaining the variance of $y$ compared to how well just the **mean** of $y$ (i.e. $E(y)$) explains variance of $y$.
 
 ---
 
-## The $R^2$ (coefficient of determination)
+The $R^2$ is equal to squared value of Pearson's $r$ between observed values of $y$ and fitted values $\hat{y}$. 
 
-A *goodness of fit* measure: measures how well model fits data. Indicates the **part of variation in response variable that is explained by the model**:
+If fitted values of $y$ are similar to observed values of $y$, there is a high correlation and Pearson's $r$ and thus also $R^2$ are high.
+
+---
+
+How do find the variation in $y$ that a model explains?
 
 $$R^{2} = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}, $$
 
@@ -372,26 +466,26 @@ where the elements are defined a follows:
 
 ---
 
-How much better is model at explaining the variance of $y$ compared to just the mean?
+$R^2$ expresses how much better is model at explaining the variance of $y$ compared to just the mean?
 
 ```{r}
 par(mfrow = 1:2)
 # Model
-plotWeights(main = "Unexplained by model")
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
+plotWeights(main = "Residuals of model")
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
       col = Col['red'], lwd = 2)
 for (i in 1:nrow(calves)) {
-  lines(c(calves$weight1[i], calves$weight1[i]), 
-        c(calves$weight2[i], predWt(calves$weight1[i])), 
+  lines(c(calves$initialwt[i], calves$initialwt[i]), 
+        c(calves$finalwt[i], predWt(calves$initialwt[i])), 
         col = Col['blue'], lwd = 2)
 }
 # Mean
-plotWeights(main = "Unexplained by mean")
-abline(h = mean(calves$weight2), col = Col['red'], lwd = 2)
+plotWeights(main = "Residuals of mean")
+abline(h = mean(calves$finalwt), col = Col['red'], lwd = 2)
 for (i in 1:nrow(calves)) {
-  lines(c(calves$weight1[i], calves$weight1[i]), 
-        c(calves$weight2[i], mean(calves$weight2)), 
+  lines(c(calves$initialwt[i], calves$initialwt[i]), 
+        c(calves$finalwt[i], mean(calves$finalwt)), 
         col = Col['blue'], lwd = 2)
 }
 ```
@@ -402,23 +496,29 @@ This is simplification, we're actually using squared distances.
 
 ---
 
-class: middle
+It's always a good idea to plot observed data.
 
-.center[![linear_regression](../img/linear_regression.png)]
+![linear_regression](../img/linear_regression.png)
 
-.footnote[Source: XKCD, linear regression]
+.footnote[Source: Xkcd. Linear regression]
 
 ---
 
 ## The adjusted- $R^2$ 
 
-The more variables we add, the more the model explains.
+The more predictors we add, the more the model explains variance of $y$.
+
+So $R^2$ can be inflated just by adding more predictors to the model even if the predictors are not very meaningful.
+
+--
 
 To penalize a model for the number of predictors ( $k$ ) while considering the number of observations ( $n$ ), the adjusted $R^{2}$ can also be used, particularly for model comparison:
 
 $$\overline{R^{2}} = 1 - \frac{RSS/(n-k)}{TSS/(n-1)}$$
 
 ---
+
+Most software calculates $R^2$ with the model and prints it with model summary.
 
 ``` {r}
 summary(wtMod)
@@ -428,14 +528,18 @@ summary(wtMod)
 
 How are the parameters related to the formula?
 
-$$weight2_{i} = `r round(wtMod$coef[[1]])` + `r round(wtMod$coef[[2]], 3)` * weight1_{i} + \varepsilon_{i}$$
+$$finalwt_{i} = `r round(wtMod$coef[[1]])` + `r round(wtMod$coef[[2]], 3)` * initialwt_{i} + \varepsilon_{i}$$
 
-```{r, echo = T}
-c(wtMod$coef[[1]], wtMod$coef[[2]])
-calves$weight1[1]
-wtMod$residuals[[1]]
-wtMod$coef[[1]] + wtMod$coef[[2]] * calves$weight1[[1]] + wtMod$resid[[1]]
-calves$weight2[1]
+How do the values of first observation fit into the model?
+
+```{r}
+rbind(initialwt = calves$initialwt[1], 
+      finalwt = calves$finalwt[1], 
+      beta_0 = wtMod$coef[[1]], 
+      beta_1 = wtMod$coef[[2]], 
+      residual = wtMod$residuals[[1]], 
+      fitted = wtMod$coef[[1]] + wtMod$coef[[2]] * calves$initialwt[[1]]) %>% 
+  kable(col.names = 'Value')
 ```
 
 ---
@@ -448,65 +552,49 @@ class: center middle inverse
 
 ## Residuals are normally distributed
 
-.pull-left[
-
-``` {r, fig.height = 8}
+``` {r}
+par(mfrow = c(1,3))
+# Scatterplot
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
-      col = Col['red'], lwd = 2)
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
+      col = Col['red'])
 for (i in 1:nrow(calves)) {
-  lines(c(calves$weight1[i], calves$weight1[i]), 
-        c(calves$weight2[i], predWt(calves$weight1[i])), 
-        col = Col['blue'], lwd = 2)
+  lines(c(calves$initialwt[i], calves$initialwt[i]), 
+        c(calves$finalwt[i], predWt(calves$initialwt[i])), 
+        col = Col['blue'])
 }
-```
-
-]
-
-.pull-right[
-
-```{r, fig.height = 8}
+# Histogram
 par(bty = 'n', mar = c(4,4,1,0), family = 'RobotoCondensed')
 hist(wtMod$residuals, 30)
-```
-
-``` {r, fig.height = 8, eval = F}
-par(bty = 'n', mar = c(4,4,1,0), family = 'RobotoCondensed')
+# QQ-plot
+par(bty = 'n', mar = c(4,4,2,0), family = 'RobotoCondensed')
 plot(wtMod, 2)
 ```
-
-]
 
 ---
 
 ## Residuals have equal variance
 
-
-.pull-left[
-
-``` {r, fig.height = 8}
+``` {r}
+par(mfrow = 1:2)
+# Scatterplot
 plotWeights()
-lines(calves$weight1, 
-      predict(wtMod, data.frame(weight1 = calves$weight1)), 
-      col = Col['red'], lwd = 2)
+lines(calves$initialwt, 
+      predict(wtMod, data.frame(initialwt = calves$initialwt)), 
+      col = Col['red'])
 for (i in 1:nrow(calves)) {
-  lines(c(calves$weight1[i], calves$weight1[i]), 
-        c(calves$weight2[i], predWt(calves$weight1[i])), 
-        col = Col['blue'], lwd = 2)
+  lines(c(calves$initialwt[i], calves$initialwt[i]), 
+        c(calves$finalwt[i], predWt(calves$initialwt[i])), 
+        col = Col['blue'])
 }
-```
-
-]
-
-.pull-right[
-
-```{r, fig.height = 8}
+points(calves$initialwt, predWt(calves$initialwt), pch = 20, col = Col['blue'])
+# Residuals vs fitted
 par(bty = 'n', mar = c(4,4,2,0), family = 'RobotoCondensed')
 plot(wtMod, 1)
 ```
 
-]
+--
 
 Here the we have equal variance, e.g. **homo**scedasticity.
 
@@ -530,24 +618,12 @@ plot(lm(y ~ x), 1)
 
 ---
 
-## There is no multicollinearity
-
-It should not be possible to linearly predict any of the predictors from others predictors. Otherwise the **coefficients are not be reliable**.
-
-Multicollinearity can be detected with variance inflation factor (VIF) by using $R^2$ to estimate for each predictor how much of the variation in one predictor can be predicted from others.
-
-$$VIF_{k} = \frac{1}{1 - R^{2}_{k}},$$
-
-where $R^{2}_{k}$ is $R^{2}$ for a model that has initial predictor $k$ as a response and all other predictors as predictors.
-
----
-
 ## Gauss-Markov assumptions
 
 Linear model must fulfill the following conditions according to Gauss–Markov theorem:
 
 - linear in parameters  
-  $Y = \alpha + \beta x + \varepsilon$
+  $Y = \beta_0 + \beta_1 x + \varepsilon$
 - expected error is zero  
   $E(\varepsilon) = 0$
 - homoscedasticity  
@@ -559,12 +635,50 @@ Linear model must fulfill the following conditions according to Gauss–Markov t
 
 --
 
-If these are true, then the model is the *best linear unbiased estimator* (BLUE).
+If these assumptions are met, then the model is the *best linear unbiased estimator* (BLUE).
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `HousePrices`.
+
+Estimate sale price of a house (`price`) using lot size of a property (`lotsize`) as a predictor.
+
+> Are residuals normally distributed?
+
+> Do residuals have equal variance?
+
+> Does the size of a property have an effect on sale price?
+
+--
+
+> How exactly does the size of a property influence sale price?
+
+---
+
+Use the same data set.
+
+Estimate sale price of a house (`price`) using the presence of air conditioning (`aircon`) as a predictor.
+
+> Are residuals normally distributed?
+
+> Do residuals have equal variance?
+
+> Does the presence of air conditioning have an effect on sale price?
+
+> How exactly does the presence of air conditioning influence sale price?
+
+--
+
+A regression model with only categorical predictor(s) is actually equivalent to a t-test or ANOVA.
 
 ---
 
 class: inverse
 
 ???
-
-Use some data to predict house prices (`AER::HousePrices`).

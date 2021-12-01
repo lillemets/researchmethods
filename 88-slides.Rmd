@@ -7,12 +7,12 @@ On slides press `h` button to see keyboard shortcuts for navigation.
 1. [Introduction, data management, descriptive statistics](../slides/01_introduction.html)
 2. [Hypothesis testing, comparing categorical data](../slides/02_hypothesis.html)
 3. [Comparing numerical data](../slides/03_numerical.html)
-1. [Analysis of variance](../slides/04_anova.html)
-2. [Correlation analysis](../slides/05_correlation.html)
+4. [Analysis of variance](../slides/04_anova.html)
+5. [Correlation analysis](../slides/05_correlation.html)
+3. [Simple linear regression](../slides/06_regression.html)
 
 <!--
 
-3. [Simple linear regression](../slides/06_regression.html)
 4. [Data transformations](../slides/07_transformations.html)
 5. [Multiple linear regression](../slides/08_multiple.html)
 6. [Logistic regression](../slides/09_logistic.html)

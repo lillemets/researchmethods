@@ -7,6 +7,7 @@ These data sets are used for practical application of methods. See the info for 
 - [Computers](../data/Computers.csv) - Prices of Personal Computers ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Computers.html))
 - [Fatalities](../data/Fatalities.csv) - US Traffic Fatalities ([info](https://vincentarelbundock.github.io/Rdatasets/doc/AER/Fatalities.html))
 - [Griliches](../data/Griliches.csv) -  Wage Data ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Griliches.html))
+- [HousePrices](../data/HousePrices.csv) - House Prices in the City of Windsor, Canada ([info](https://vincentarelbundock.github.io/Rdatasets/doc/AER/HousePrices.html))
 - [M&Ms](../data/mm.csv) - Color counts and net weight for a sample of 30 bags of M&M's ([info](https://www.randomservices.org/random/data/MM.html))
 - [mtcars](../data/mtcars.csv) - Motor Trend Car Road Tests ([info](https://vincentarelbundock.github.io/Rdatasets/doc/datasets/mtcars.html))
 - [PhDPublications](../data/PhDPublications.csv) - Doctoral Publications ([info](https://vincentarelbundock.github.io/Rdatasets/doc/AER/PhDPublications.html))

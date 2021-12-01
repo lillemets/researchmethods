@@ -106,7 +106,7 @@ interpretation
 simple-linear-regression
 ordinary-least-squares
 model-specification
-calculation
+calculation-of-an-sls-model
 elements-of-a-regression-model
 intercept
 coefficients
@@ -143,7 +143,7 @@ classification
 principal-component-analysis
 intuition
 estimation-of-pcs
-calculation-1
+calculation
 spectral-decomposition
 singular-value-decomposition
 number-of-components
