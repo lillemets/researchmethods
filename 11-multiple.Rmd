@@ -1,3 +1,5 @@
+<!-- Join with 09-regression and replace with an overview of some more complex models (count data, ordinal, multinomial) -->
+
 # Multiple linear regression
 
 In addition to modeling the relationship between two variables, we can use regression to estimate models with multiple predictors. An OLS model with more than one predictor is thus called multiple linear regression. 

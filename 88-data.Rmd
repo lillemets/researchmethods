@@ -4,6 +4,7 @@ These data sets are used for practical application of methods. See the info for 
 
 - [barley](../data/barley.csv) - Yield data from a Minnesota barley trial ([info](https://vincentarelbundock.github.io/Rdatasets/doc/lattice/barley.html))
 - [chickwts](../data/chickwts.csv) - Chicken Weights by Feed Type ([info](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/chickwts.html))
+- [Cigarettes](..data/Cigarettes.csv) - The Cigarette Consumption Panel Data Set ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Cigarette.html))
 - [Computers](../data/Computers.csv) - Prices of Personal Computers ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Computers.html))
 - [Fatalities](../data/Fatalities.csv) - US Traffic Fatalities ([info](https://vincentarelbundock.github.io/Rdatasets/doc/AER/Fatalities.html))
 - [Griliches](../data/Griliches.csv) -  Wage Data ([info](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Griliches.html))

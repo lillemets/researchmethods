@@ -1,18 +1,36 @@
 # Data transformations
 
-Sometimes the response variable is not best expressed as a linear function of predictors. This problem often results in residuals that are then not normally distributed or not constant. In such cases estimating the model on transformed data might improve model fit because many relationships in real world are e.g. "logarithmic" in nature. There are two main ways of transforming data for improving the fit of a linear model: using natural logarithms or polynomials.
+Sometimes the response variable is not best expressed as a linear function of predictors. This problem often results in residuals that are then not normally distributed or not constant. In such cases estimating the model on transformed data might improve model fit because (1) many distributions in real world become normal after taking a logarithm of their values and (2) some associations fit a linear model better when predictor is exponentiated. These are the two main ways of transforming data for improving the fit of a linear model: using natural logarithms or polynomials.
+
+## Log-transformations
 
 ``` {r, echo = F}
+wtModLin <- lm(mpg ~ hp, mtcars)
 wtModLogLin <- lm(log(mpg) ~ hp, mtcars)
 wtModLinLog <- lm(mpg ~ log(hp), mtcars)
 wtModLogLog <- lm(log(mpg) ~ log(hp), mtcars)
 ```
 
-## Log-transformations
+Particularly when the distribution of a variable has a strong right skew, a linear model could be improved by using naturally logged ( $log_e x$ ) values of such a variable ( $x$). As a result we are essentially converting the distribution of a variable to normal. Depending on whether response or predictor(s) are log-transformed, the resulting model can be one of the following three explained below. 
 
-Particularly when the distribution of a variable has a strong right skew, linear model could be improved by using naturally logged ($log_ex$) values of such variable(s). As a result we are essentially converting the distribution of a variable to normal. Depending on whether response or predictor(s) are log-transformed, the resulting model can be one of the following three explained below. 
+It's important to note that in such transformations the coefficients represent elasticities, i.e. not absolute values but per cent changes in values of response (log-linear) or per cent changes in both, predictors and response (log-log). To illustrate the interpretation of coefficients, examples are provided of a model where the fuel consumption (`mpg`) was predicted from horsepower (`hp`).
 
-It's important to note that in such transformations the coefficients represent elasticities, i.e. not absolute values but per cent changes in values of response (log-linear) or both, predictors and response (log-log). To illustrate the interpretation of coefficients, examples are provided of a model where the fuel consumption (`mpg`) was predicted from horsepower (`hp`).
+### Linear
+
+When our data is normally distributed, then we should start modelling  with untransformed variables. When we use untransformed values of all variables in a regression model, then we have a linear model:
+
+$$y = \alpha + \beta_{1} x + \varepsilon.$$
+
+#### Interpretation
+
+An increase of 1 unit in predictor coincides with a $\beta_1$ unit increase in response. 
+
+$mpg_{i} = `r round(wtModLin$coef[[1]], 3)` + `r round(wtModLin$coef[[2]], 3)` * hp_{i} + \varepsilon_{i}$
+
+When `hp` increases by 1 unit, `mpg` increases by `r round(wtModLin$coef[[2]], 6)` $* 100 =$ **`r round(wtModLin$coef[[2]] * 100, 3)`** percent. 
+
+In Jamovi: `Regression > Linear regression`   
+In R: `lm(log(y) ~ x, data)`
 
 ### Log-linear
 
@@ -20,15 +38,17 @@ When we use log-transformation on response variable, then we have a log-linear m
 
 $$ln(y) = \alpha + \beta_{1} x + \varepsilon.$$
 
-Keep in mind that measures of model fit (e.g. $R^2$, AIC) are only valid for model comparison when models have the same predictor variable. Thus, such measures should not be used to compare log-linear model to a model with untransformed response.
+Keep in mind that measures of model fit (e.g. $R^2$, AIC) are only valid for model comparison when models have the same response variable. Thus, such measures should not be used to compare log-linear model to a model with untransformed response.
 
-Interpretation:
+#### Interpretation
+
+An increase of 1 unit in predictor coincides with a $(e^{\beta_1} - 1) \times 100$ per cent increase in response. The change in response can be simplified to $\beta_1 \times 100$, which is approximately equal for $-0.1 < \beta_1 < 0.1$.
 
 $ln(mpg_{i}) = `r round(wtModLogLin$coef[[1]], 3)` + `r round(wtModLogLin$coef[[2]], 3)` * hp_{i} + \varepsilon_{i}$
 
-When `hp` increases by 1 unit, `mpg` increases by `r round(wtModLogLin$coef[[2]], 6)` * 100 = **`r round(wtModLogLin$coef[[2]] * 100, 3)`** percent.
+When `hp` increases by 1 unit, `mpg` increases by `r round(wtModLogLin$coef[[2]], 6)` $* 100 =$ **`r round(wtModLogLin$coef[[2]] * 100, 3)`** percent. 
 
-In Jamovi: `Regression > Linear regression` after transforming response variable.  
+In Jamovi: `Regression > Linear regression` after transforming response variable  
 In R: `lm(log(y) ~ x, data)`
 
 ### Linear-log
@@ -37,13 +57,15 @@ When one or more predictors are used in logged form, then the model is referred 
 
 $$y = \alpha + \beta_{1} ln(x) + \varepsilon$$
 
-Interpretation:
+#### Interpretation
+
+An increase of 1 per cent in predictor coincides with a $\beta_1 /100$ unit increase in response. 
 
 $mpg_{i} = `r round(wtModLinLog$coef[[1]], 3)` + `r round(wtModLinLog$coef[[2]], 3)` * ln(hp_{i}) + \varepsilon_{i}$
 
-When `hp` increases by 1 per cent, `mpg` increases by `r round(wtModLinLog$coef[[2]], 3)` / 100 = **`r round(wtModLinLog$coef[[2]] / 100, 3)`** units.
+When `hp` increases by 1 per cent, `mpg` increases by `r round(wtModLinLog$coef[[2]], 3)` $/ 100 =$ **`r round(wtModLinLog$coef[[2]] / 100, 3)`** units.
 
-In Jamovi: `Regression > Linear regression     ` after transforming predictor variable.  
+In Jamovi: `Regression > Linear regression     ` after transforming predictor variable  
 In R: `lm(y ~ log(x), data)`
 
 ### Log-log
@@ -52,26 +74,30 @@ When either of the previous transformations have not improved the fit of a linea
 
 $$ln(y) = \alpha + \beta_{1} ln(x) + \varepsilon$$
 
-Interpretation:
+#### Interpretation:
+
+An increase of 1 per cent in predictor coincides with a $\beta_1$ per cent increase in response. 
 
 $ln(mpg_{i}) = `r round(wtModLogLog$coef[[1]], 3)` + `r round(wtModLogLog$coef[[2]], 3)` * ln(hp_{i}) + \varepsilon_{i}$
 
 When `hp` increases by 1 per cent, `mpg` increases by **`r round(wtModLogLog$coef[[2]], 3)`** percent.
 
-In Jamovi: `Regression > Linear regression     ` after transforming response and predictor variables.  
+In Jamovi: `Regression > Linear regression     ` after transforming both, response and predictor variable  
 In R: `lm(log(y) ~ log(x), data)`
 
 ## Polynomials
+
+See @crawley_r_2013 sections 7.1.4 on polynomial functions and 10.3 on polynomial regression.
 
 Application of polynomials usually improves the fit of a model when a curve rather than a straight line describes a relationship. We choose the degree of a polynomial depending on how many curves best express the relationship. For example, if there is a single curve, the relationship is quadratic and we should use the 2nd degree polynomial as follows:
 
 $Y = \alpha + \beta_{1} x  + \beta_{2} x^2 + \varepsilon.$
 
-See @crawley_r_2013 sections 7.1.4 on polynomial functions and 10.3 on polynomial regression.
+#### Interpretation
 
 Note that as a result of including polynomials the coefficients for the respective predictor are estimated more than once, so there is no reasonable way to interpret the coefficients.
 
-In Jamovi: `Regression > Linear regression     ` after transforming predictor variable.  
+In Jamovi: `Regression > Linear regression     ` after transforming predictor variable  
 In R: `lm(y ~ x + I(x^2), data)`
 
 ### Ramsey RESET test
@@ -80,3 +106,19 @@ The test can be used to determine if adding polynomials to a model improves fit 
 
 $H_0: RSS_1 = RSS_2$  
 $H_1: RSS_1 \neq RSS_2.$
+
+<!-- 
+
+## Other data transformations
+
+$$y = \alpha + \beta_{1} e^{-x} + \varepsilon$$
+
+$$y = \alpha + \beta_{1} \frac{1}{x} + \varepsilon$$
+
+## Power transformations
+
+Box-Cox transformation.
+
+$$y = \alpha + \beta_{1} x^\lambda + \varepsilon$$
+
+-->

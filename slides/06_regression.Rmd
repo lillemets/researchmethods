@@ -254,9 +254,9 @@ summary(wtMod)
 
 ---
 
-Intercept should not be interpreted when it requires extrapoliation of observed data.
+Intercept should not be interpreted when it requires extrapolation of observed data.
 
-![extrapolating](/home/jrl/pics/stats/extrapolating.png)
+![extrapolating](../img/extrapolating.png)
 
 .footnote[Source: Xkcd. Extrapolating]
 
