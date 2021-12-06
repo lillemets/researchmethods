@@ -118,10 +118,16 @@ assumptions-and-diagnostics
 gauss-markov-assumptions
 data-transformations
 log-transformations
+linear
+interpretation-1
 log-linear
+interpretation-2
 linear-log
+interpretation-3
 log-log
+interpretation-4
 polynomials
+interpretation-5
 ramsey-reset-test
 multiple-linear-regression
 multiple-predictors
@@ -147,7 +153,7 @@ calculation
 spectral-decomposition
 singular-value-decomposition
 number-of-components
-interpretation-1
+interpretation-6
 variation-explained
 loadings
 biplots
@@ -162,7 +168,7 @@ assumptions
 sphericity
 sampling-adequacy
 number-of-components-1
-interpretation-2
+interpretation-7
 loadings-1
 uniqueness-and-communality
 complexity

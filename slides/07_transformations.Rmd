@@ -3,8 +3,7 @@ title: Data transformations
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}

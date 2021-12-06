@@ -256,9 +256,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="11.1" data-path="data-transformations.html"><a href="data-transformations.html#log-transformations"><i class="fa fa-check"></i><b>11.1</b> Log-transformations</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="data-transformations.html"><a href="data-transformations.html#log-linear"><i class="fa fa-check"></i><b>11.1.1</b> Log-linear</a></li>
-<li class="chapter" data-level="11.1.2" data-path="data-transformations.html"><a href="data-transformations.html#linear-log"><i class="fa fa-check"></i><b>11.1.2</b> Linear-log</a></li>
-<li class="chapter" data-level="11.1.3" data-path="data-transformations.html"><a href="data-transformations.html#log-log"><i class="fa fa-check"></i><b>11.1.3</b> Log-log</a></li>
+<li class="chapter" data-level="11.1.1" data-path="data-transformations.html"><a href="data-transformations.html#linear"><i class="fa fa-check"></i><b>11.1.1</b> Linear</a></li>
+<li class="chapter" data-level="11.1.2" data-path="data-transformations.html"><a href="data-transformations.html#log-linear"><i class="fa fa-check"></i><b>11.1.2</b> Log-linear</a></li>
+<li class="chapter" data-level="11.1.3" data-path="data-transformations.html"><a href="data-transformations.html#linear-log"><i class="fa fa-check"></i><b>11.1.3</b> Linear-log</a></li>
+<li class="chapter" data-level="11.1.4" data-path="data-transformations.html"><a href="data-transformations.html#log-log"><i class="fa fa-check"></i><b>11.1.4</b> Log-log</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="data-transformations.html"><a href="data-transformations.html#polynomials"><i class="fa fa-check"></i><b>11.2</b> Polynomials</a>
 <ul>
@@ -302,7 +303,7 @@ div.csl-indent {
 <li class="chapter" data-level="14.3.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#singular-value-decomposition"><i class="fa fa-check"></i><b>14.3.2</b> Singular value decomposition</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>14.4</b> Number of components</a></li>
-<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-1"><i class="fa fa-check"></i><b>14.5</b> Interpretation</a>
+<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-6"><i class="fa fa-check"></i><b>14.5</b> Interpretation</a>
 <ul>
 <li class="chapter" data-level="14.5.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>14.5.1</b> Variation explained</a></li>
 <li class="chapter" data-level="14.5.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>14.5.2</b> Loadings</a></li>
@@ -325,7 +326,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.4.2" data-path="factor-analysis.html"><a href="factor-analysis.html#sampling-adequacy"><i class="fa fa-check"></i><b>15.4.2</b> Sampling adequacy</a></li>
 </ul></li>
 <li class="chapter" data-level="15.5" data-path="factor-analysis.html"><a href="factor-analysis.html#number-of-components-1"><i class="fa fa-check"></i><b>15.5</b> Number of components</a></li>
-<li class="chapter" data-level="15.6" data-path="factor-analysis.html"><a href="factor-analysis.html#interpretation-2"><i class="fa fa-check"></i><b>15.6</b> Interpretation</a>
+<li class="chapter" data-level="15.6" data-path="factor-analysis.html"><a href="factor-analysis.html#interpretation-7"><i class="fa fa-check"></i><b>15.6</b> Interpretation</a>
 <ul>
 <li class="chapter" data-level="15.6.1" data-path="factor-analysis.html"><a href="factor-analysis.html#loadings-1"><i class="fa fa-check"></i><b>15.6.1</b> Loadings</a></li>
 <li class="chapter" data-level="15.6.2" data-path="factor-analysis.html"><a href="factor-analysis.html#uniqueness-and-communality"><i class="fa fa-check"></i><b>15.6.2</b> Uniqueness and communality</a></li>
@@ -375,57 +376,98 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="data-transformations" class="section level1" number="11">
 <h1><span class="header-section-number">Section 11</span> Data transformations</h1>
-<p>Sometimes the response variable is not best expressed as a linear function of predictors. This problem often results in residuals that are then not normally distributed or not constant. In such cases estimating the model on transformed data might improve model fit because many relationships in real world are e.g. “logarithmic” in nature. There are two main ways of transforming data for improving the fit of a linear model: using natural logarithms or polynomials.</p>
+<p>Sometimes the response variable is not best expressed as a linear function of predictors. This problem often results in residuals that are then not normally distributed or not constant. In such cases estimating the model on transformed data might improve model fit because (1) many distributions in real world become normal after taking a logarithm of their values and (2) some associations fit a linear model better when predictor is exponentiated. These are the two main ways of transforming data for improving the fit of a linear model: using natural logarithms or polynomials.</p>
 <div id="log-transformations" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Log-transformations</h2>
-<p>Particularly when the distribution of a variable has a strong right skew, linear model could be improved by using naturally logged (<span class="math inline">\(log_ex\)</span>) values of such variable(s). As a result we are essentially converting the distribution of a variable to normal. Depending on whether response or predictor(s) are log-transformed, the resulting model can be one of the following three explained below.</p>
-<p>It’s important to note that in such transformations the coefficients represent elasticities, i.e. not absolute values but per cent changes in values of response (log-linear) or both, predictors and response (log-log). To illustrate the interpretation of coefficients, examples are provided of a model where the fuel consumption (<code>mpg</code>) was predicted from horsepower (<code>hp</code>).</p>
-<div id="log-linear" class="section level3" number="11.1.1">
-<h3><span class="header-section-number">11.1.1</span> Log-linear</h3>
-<p>When we use log-transformation on response variable, then we have a log-linear model:</p>
-<p><span class="math display">\[ln(y) = \alpha + \beta_{1} x + \varepsilon.\]</span></p>
-<p>Keep in mind that measures of model fit (e.g. <span class="math inline">\(R^2\)</span>, AIC) are only valid for model comparison when models have the same predictor variable. Thus, such measures should not be used to compare log-linear model to a model with untransformed response.</p>
-<p>Interpretation:</p>
-<p><span class="math inline">\(ln(mpg_{i}) = 3.46 + -0.003 * hp_{i} + \varepsilon_{i}\)</span></p>
-<p>When <code>hp</code> increases by 1 unit, <code>mpg</code> increases by -0.003429 * 100 = <strong>-0.343</strong> percent.</p>
-<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming response variable.<br />
+<p>Particularly when the distribution of a variable has a strong right skew, a linear model could be improved by using naturally logged ( <span class="math inline">\(log_e x\)</span> ) values of such a variable ( <span class="math inline">\(x\)</span>). As a result we are essentially converting the distribution of a variable to normal. Depending on whether response or predictor(s) are log-transformed, the resulting model can be one of the following three explained below.</p>
+<p>It’s important to note that in such transformations the coefficients represent elasticities, i.e. not absolute values but per cent changes in values of response (log-linear) or per cent changes in both, predictors and response (log-log). To illustrate the interpretation of coefficients, examples are provided of a model where the fuel consumption (<code>mpg</code>) was predicted from horsepower (<code>hp</code>).</p>
+<div id="linear" class="section level3" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> Linear</h3>
+<p>When our data is normally distributed, then we should start modelling with untransformed variables. When we use untransformed values of all variables in a regression model, then we have a linear model:</p>
+<p><span class="math display">\[y = \alpha + \beta_{1} x + \varepsilon.\]</span></p>
+<div id="interpretation-1" class="section level4" number="11.1.1.1">
+<h4><span class="header-section-number">11.1.1.1</span> Interpretation</h4>
+<p>An increase of 1 unit in predictor coincides with a <span class="math inline">\(\beta_1\)</span> unit increase in response.</p>
+<p><span class="math inline">\(mpg_{i} = 30.099 + -0.068 * hp_{i} + \varepsilon_{i}\)</span></p>
+<p>When <code>hp</code> increases by 1 unit, <code>mpg</code> increases by -0.068228 <span class="math inline">\(* 100 =\)</span> <strong>-6.823</strong> percent.</p>
+<p>In Jamovi: <code>Regression &gt; Linear regression</code><br />
 In R: <code>lm(log(y) ~ x, data)</code></p>
 </div>
-<div id="linear-log" class="section level3" number="11.1.2">
-<h3><span class="header-section-number">11.1.2</span> Linear-log</h3>
+</div>
+<div id="log-linear" class="section level3" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> Log-linear</h3>
+<p>When we use log-transformation on response variable, then we have a log-linear model:</p>
+<p><span class="math display">\[ln(y) = \alpha + \beta_{1} x + \varepsilon.\]</span></p>
+<p>Keep in mind that measures of model fit (e.g. <span class="math inline">\(R^2\)</span>, AIC) are only valid for model comparison when models have the same response variable. Thus, such measures should not be used to compare log-linear model to a model with untransformed response.</p>
+<div id="interpretation-2" class="section level4" number="11.1.2.1">
+<h4><span class="header-section-number">11.1.2.1</span> Interpretation</h4>
+<p>An increase of 1 unit in predictor coincides with a <span class="math inline">\((e^{\beta_1} - 1) \times 100\)</span> per cent increase in response. The change in response can be simplified to <span class="math inline">\(\beta_1 \times 100\)</span>, which is approximately equal for <span class="math inline">\(-0.1 &lt; \beta_1 &lt; 0.1\)</span>.</p>
+<p><span class="math inline">\(ln(mpg_{i}) = 3.46 + -0.003 * hp_{i} + \varepsilon_{i}\)</span></p>
+<p>When <code>hp</code> increases by 1 unit, <code>mpg</code> increases by -0.003429 <span class="math inline">\(* 100 =\)</span> <strong>-0.343</strong> percent.</p>
+<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming response variable<br />
+In R: <code>lm(log(y) ~ x, data)</code></p>
+</div>
+</div>
+<div id="linear-log" class="section level3" number="11.1.3">
+<h3><span class="header-section-number">11.1.3</span> Linear-log</h3>
 <p>When one or more predictors are used in logged form, then the model is referred to as a linear-log model:</p>
 <p><span class="math display">\[y = \alpha + \beta_{1} ln(x) + \varepsilon\]</span></p>
-<p>Interpretation:</p>
+<div id="interpretation-3" class="section level4" number="11.1.3.1">
+<h4><span class="header-section-number">11.1.3.1</span> Interpretation</h4>
+<p>An increase of 1 per cent in predictor coincides with a <span class="math inline">\(\beta_1 /100\)</span> unit increase in response.</p>
 <p><span class="math inline">\(mpg_{i} = 72.64 + -10.764 * ln(hp_{i}) + \varepsilon_{i}\)</span></p>
-<p>When <code>hp</code> increases by 1 per cent, <code>mpg</code> increases by -10.764 / 100 = <strong>-0.108</strong> units.</p>
-<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming predictor variable.<br />
+<p>When <code>hp</code> increases by 1 per cent, <code>mpg</code> increases by -10.764 <span class="math inline">\(/ 100 =\)</span> <strong>-0.108</strong> units.</p>
+<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming predictor variable<br />
 In R: <code>lm(y ~ log(x), data)</code></p>
 </div>
-<div id="log-log" class="section level3" number="11.1.3">
-<h3><span class="header-section-number">11.1.3</span> Log-log</h3>
+</div>
+<div id="log-log" class="section level3" number="11.1.4">
+<h3><span class="header-section-number">11.1.4</span> Log-log</h3>
 <p>When either of the previous transformations have not improved the fit of a linear model, we can also transform both response and predictor(s) as follows:</p>
 <p><span class="math display">\[ln(y) = \alpha + \beta_{1} ln(x) + \varepsilon\]</span></p>
-<p>Interpretation:</p>
+<div id="interpretation-4" class="section level4" number="11.1.4.1">
+<h4><span class="header-section-number">11.1.4.1</span> Interpretation:</h4>
+<p>An increase of 1 per cent in predictor coincides with a <span class="math inline">\(\beta_1\)</span> per cent increase in response.</p>
 <p><span class="math inline">\(ln(mpg_{i}) = 5.545 + -0.53 * ln(hp_{i}) + \varepsilon_{i}\)</span></p>
 <p>When <code>hp</code> increases by 1 per cent, <code>mpg</code> increases by <strong>-0.53</strong> percent.</p>
-<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming response and predictor variables.<br />
+<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming both, response and predictor variable<br />
 In R: <code>lm(log(y) ~ log(x), data)</code></p>
+</div>
 </div>
 </div>
 <div id="polynomials" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Polynomials</h2>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> sections 7.1.4 on polynomial functions and 10.3 on polynomial regression.</p>
 <p>Application of polynomials usually improves the fit of a model when a curve rather than a straight line describes a relationship. We choose the degree of a polynomial depending on how many curves best express the relationship. For example, if there is a single curve, the relationship is quadratic and we should use the 2nd degree polynomial as follows:</p>
 <p><span class="math inline">\(Y = \alpha + \beta_{1} x + \beta_{2} x^2 + \varepsilon.\)</span></p>
-<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> sections 7.1.4 on polynomial functions and 10.3 on polynomial regression.</p>
+<div id="interpretation-5" class="section level4" number="11.2.0.1">
+<h4><span class="header-section-number">11.2.0.1</span> Interpretation</h4>
 <p>Note that as a result of including polynomials the coefficients for the respective predictor are estimated more than once, so there is no reasonable way to interpret the coefficients.</p>
-<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming predictor variable.<br />
+<p>In Jamovi: <code>Regression &gt; Linear regression</code> after transforming predictor variable<br />
 In R: <code>lm(y ~ x + I(x^2), data)</code></p>
+</div>
 <div id="ramsey-reset-test" class="section level3" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> Ramsey RESET test</h3>
 <p>The test can be used to determine if adding polynomials to a model improves fit of the model or not. We simply do an F-test to determine whether or not there is a difference between a reduced model <span class="math inline">\(y = \alpha + \beta x + \varepsilon\)</span> and a full model <span class="math inline">\(y = \alpha + \beta_1 x + \beta_2 x^2 + \varepsilon\)</span>. Empirically, we are testing if residuals (<span class="math inline">\(RSS\)</span>) of the two models are different or not:</p>
 <p><span class="math inline">\(H_0: RSS_1 = RSS_2\)</span><br />
 <span class="math inline">\(H_1: RSS_1 \neq RSS_2.\)</span></p>
+<!-- 
 
+## Other data transformations
+
+$$y = \alpha + \beta_{1} e^{-x} + \varepsilon$$
+
+$$y = \alpha + \beta_{1} \frac{1}{x} + \varepsilon$$
+
+## Power transformations
+
+Box-Cox transformation.
+
+$$y = \alpha + \beta_{1} x^\lambda + \varepsilon$$
+
+-->
+
+<!-- Join with 09-regression and replace with an overview of some more complex models (count data, ordinal, multinomial) -->
 </div>
 </div>
 </div>

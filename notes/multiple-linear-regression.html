@@ -256,9 +256,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="11.1" data-path="data-transformations.html"><a href="data-transformations.html#log-transformations"><i class="fa fa-check"></i><b>11.1</b> Log-transformations</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="data-transformations.html"><a href="data-transformations.html#log-linear"><i class="fa fa-check"></i><b>11.1.1</b> Log-linear</a></li>
-<li class="chapter" data-level="11.1.2" data-path="data-transformations.html"><a href="data-transformations.html#linear-log"><i class="fa fa-check"></i><b>11.1.2</b> Linear-log</a></li>
-<li class="chapter" data-level="11.1.3" data-path="data-transformations.html"><a href="data-transformations.html#log-log"><i class="fa fa-check"></i><b>11.1.3</b> Log-log</a></li>
+<li class="chapter" data-level="11.1.1" data-path="data-transformations.html"><a href="data-transformations.html#linear"><i class="fa fa-check"></i><b>11.1.1</b> Linear</a></li>
+<li class="chapter" data-level="11.1.2" data-path="data-transformations.html"><a href="data-transformations.html#log-linear"><i class="fa fa-check"></i><b>11.1.2</b> Log-linear</a></li>
+<li class="chapter" data-level="11.1.3" data-path="data-transformations.html"><a href="data-transformations.html#linear-log"><i class="fa fa-check"></i><b>11.1.3</b> Linear-log</a></li>
+<li class="chapter" data-level="11.1.4" data-path="data-transformations.html"><a href="data-transformations.html#log-log"><i class="fa fa-check"></i><b>11.1.4</b> Log-log</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="data-transformations.html"><a href="data-transformations.html#polynomials"><i class="fa fa-check"></i><b>11.2</b> Polynomials</a>
 <ul>
@@ -302,7 +303,7 @@ div.csl-indent {
 <li class="chapter" data-level="14.3.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#singular-value-decomposition"><i class="fa fa-check"></i><b>14.3.2</b> Singular value decomposition</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>14.4</b> Number of components</a></li>
-<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-1"><i class="fa fa-check"></i><b>14.5</b> Interpretation</a>
+<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-6"><i class="fa fa-check"></i><b>14.5</b> Interpretation</a>
 <ul>
 <li class="chapter" data-level="14.5.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>14.5.1</b> Variation explained</a></li>
 <li class="chapter" data-level="14.5.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>14.5.2</b> Loadings</a></li>
@@ -325,7 +326,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.4.2" data-path="factor-analysis.html"><a href="factor-analysis.html#sampling-adequacy"><i class="fa fa-check"></i><b>15.4.2</b> Sampling adequacy</a></li>
 </ul></li>
 <li class="chapter" data-level="15.5" data-path="factor-analysis.html"><a href="factor-analysis.html#number-of-components-1"><i class="fa fa-check"></i><b>15.5</b> Number of components</a></li>
-<li class="chapter" data-level="15.6" data-path="factor-analysis.html"><a href="factor-analysis.html#interpretation-2"><i class="fa fa-check"></i><b>15.6</b> Interpretation</a>
+<li class="chapter" data-level="15.6" data-path="factor-analysis.html"><a href="factor-analysis.html#interpretation-7"><i class="fa fa-check"></i><b>15.6</b> Interpretation</a>
 <ul>
 <li class="chapter" data-level="15.6.1" data-path="factor-analysis.html"><a href="factor-analysis.html#loadings-1"><i class="fa fa-check"></i><b>15.6.1</b> Loadings</a></li>
 <li class="chapter" data-level="15.6.2" data-path="factor-analysis.html"><a href="factor-analysis.html#uniqueness-and-communality"><i class="fa fa-check"></i><b>15.6.2</b> Uniqueness and communality</a></li>
@@ -376,9 +377,9 @@ div.csl-indent {
 <div id="multiple-linear-regression" class="section level1" number="12">
 <h1><span class="header-section-number">Section 12</span> Multiple linear regression</h1>
 <p>In addition to modeling the relationship between two variables, we can use regression to estimate models with multiple predictors. An OLS model with more than one predictor is thus called multiple linear regression.</p>
-<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.5 for an introduction and <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 10.13 for a more detailed explanations.</p>
 <div id="multiple-predictors" class="section level2" number="12.1">
 <h2><span class="header-section-number">12.1</span> Multiple predictors</h2>
+<p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.5 for an introduction and <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 10.13 for a more detailed explanations.</p>
 <p>The estimation of a least squares model with multiple predictors is very similar to single linear regression. The only difference in estimation is that an additional term (<span class="math inline">\(\beta_i x_i\)</span>) for each predictor is added to the model. A model with two predictors can be expressed as follows:</p>
 <p><span class="math inline">\(y = \alpha + \beta_{1} x_1 + \beta_{2} x_2 + \varepsilon,\)</span></p>
 <p>where now</p>
@@ -388,7 +389,7 @@ div.csl-indent {
 </ul>
 <p>The interpretation and diagnostics of the model is now more complicated as now we need to consider both predictors.</p>
 <p>The addition of a second term means that our model is no longer a line but rather a pane (see Figure 12.14 in <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span>). This entire pane is now affected by multiple variables which means that <span class="math inline">\(\beta_1\)</span> is influenced by the addition of <span class="math inline">\(\beta_2\)</span>.</p>
-<p>Why use multiple predictors? This allows to control the effects of different variables on the response. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions.</p>
+<p>Why use multiple predictors? This allows to control the effects of different variables on the response, improving the accuracy coefficients. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions.</p>
 </div>
 <div id="predictor-selection" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> Predictor selection</h2>

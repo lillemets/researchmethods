@@ -4,9 +4,9 @@
 
 In addition to modeling the relationship between two variables, we can use regression to estimate models with multiple predictors. An OLS model with more than one predictor is thus called multiple linear regression. 
 
-See @navarro_learning_2018 section 12.5 for an introduction and @crawley_r_2013 section 10.13 for a more detailed explanations.
-
 ## Multiple predictors
+
+See @navarro_learning_2018 section 12.5 for an introduction and @crawley_r_2013 section 10.13 for a more detailed explanations.
 
 The estimation of a least squares model with multiple predictors is very similar to single linear regression. The only difference in estimation is that an additional term ($\beta_i x_i$) for each predictor is added to the model. A model with two predictors can be expressed as follows:
 
@@ -21,7 +21,7 @@ The interpretation and diagnostics of the model is now more complicated as now w
 
 The addition of a second term means that our model is no longer a line but rather a pane (see Figure 12.14 in @navarro_learning_2018). This entire pane is now affected by multiple variables which means that $\beta_1$ is influenced by the addition of $\beta_2$. 
 
-Why use multiple predictors? This allows to control the effects of different variables on the response. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions. 
+Why use multiple predictors? This allows to control the effects of different variables on the response, improving the accuracy coefficients. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions. 
 
 ## Predictor selection
 
