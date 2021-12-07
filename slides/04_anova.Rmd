@@ -14,6 +14,7 @@ library('magrittr');library('knitr')
 # Set colors
 source('/home/jrl/work/resmeth/slides/variables.R')
 # TODO: Add illustrations on factorial ANOVA and interactions
+# stevedata::Guber99 for Simpson's paradox
 ```
 
 class: center middle clean

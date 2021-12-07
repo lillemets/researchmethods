@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = F, warning = F, dpi = 300, fig.height = 4)
 # Load packages
 library('magrittr');library('knitr')
 # Set colors
-Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+source('/home/jrl/work/resmeth/slides/variables.R')
 # Options
 options(scipen = F, digits = 3)
 # Parameters
@@ -405,8 +405,7 @@ $H_1: RSS_1 \neq RSS_2.$
 
 ![](../img/curve_fitting.png)
 
-.footnote[Xkcd.  
-Curve fitting]
+.footnote[Xkcd. Curve fitting]
 
 ---
 
@@ -440,7 +439,7 @@ qqnorm(Ecdat::Cigarette$packpc);qqnorm(log(Ecdat::Cigarette$packpc))
 
 > Could we use polynomials? 
 
-``` {r}
+``` {r, eval = F}
 plot(lm(packpc ~ taxs, Ecdat::Cigarette), 1:2)
 plot(lm(packpc ~ taxs + I(taxs^2), Ecdat::Cigarette), 1:2)
 plot(packpc ~ taxs, Ecdat::Cigarette)

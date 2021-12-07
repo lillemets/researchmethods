@@ -3,8 +3,7 @@ title: Multiple linear regression
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
@@ -12,8 +11,9 @@ editor_options:
 knitr::opts_chunk$set(echo = F, warning = F, dpi = 150, fig.height = 4)
 # Load packages
 library('magrittr');library('knitr')
+library('plotly')
 # Set colors
-Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+source('/home/jrl/work/resmeth/slides/variables.R')
 ```
 
 class: center middle clean
@@ -24,7 +24,7 @@ class: center middle clean
 
 class: center middle inverse
 
-# Linear regression with multiple predictors
+# Least squares with multiple predictors
 
 ---
 
@@ -32,7 +32,7 @@ class: center middle inverse
 
 A model with two predictors can be expressed as follows:
 
-$$y = \alpha + \beta_{1} x_1  + \beta_{2} x_2 + \varepsilon$$
+$$y = \beta_0 + \beta_{1} x_1  + \beta_{2} x_2 + \varepsilon$$
 
 where 
 
@@ -64,15 +64,19 @@ Let's illustrate it with data on "Determinants of Economic Growth".
 
 --
 
-Suppose that we wish to know how do population growth and investments impact economic growth.
+Suppose that we wish to know how do population growth and investments influence economic growth.
 
 ---
 
-What does the data look like? Here are first 20 rows:
+What does the data look like? Here are first rows:
+
+.compact[
 
 ``` {r}
-head(GrowthDJ, 20)
+head(GrowthDJ, 20) %>% kable
 ```
+
+]
 
 ---
 
@@ -86,7 +90,6 @@ pairs(gdpgrowth ~ ., GrowthDJ[, sapply(GrowthDJ, is.numeric)],
 
 ???
 Can you see something wrong here? An outlier!
-Move this point to first regression meeting.
 
 ---
 
@@ -103,7 +106,7 @@ pairs(gdpgrowth ~ ., GrowthDJ[, sapply(GrowthDJ, is.numeric)],
 
 Our model is thus
 
-$$gdpgrowth = \alpha + \beta_{1} popgrowth  + \beta_{2} invest + \varepsilon.$$
+$$gdpgrowth = \beta_0 + \beta_{1} popgrowth  + \beta_{2} invest + \varepsilon.$$
 
 ``` {r}
 Model <- lm(gdpgrowth ~ popgrowth + invest, GrowthDJ)
@@ -112,30 +115,42 @@ summary(Model)
 
 ---
 
-What does the model it look like visually?
+With two predictors, the model is now a plane not a line.
 
 ``` {r}
-Popgrowth <- unique(GrowthDJ$popgrowth)
-Invest <- unique(GrowthDJ$invest)
+Popgrowth <- seq(floor(min(GrowthDJ$popgrowth)), ceiling(max(GrowthDJ$popgrowth)), 5)
+Invest <- seq(floor(min(GrowthDJ$invest)), ceiling(max(GrowthDJ$invest)), 5)
 grid <- with(GrowthDJ, expand.grid(popgrowth = Popgrowth, invest = Invest))
 vals <- predict(Model, newdata = grid)
-Model <- matrix(vals, 
-            nrow = length(Popgrowth), 
-            ncol = length(Invest))
-widgetframe::frameWidget(
-  plotly::plot_ly() %>% 
-    plotly::add_surface(x = ~Invest, y = ~Popgrowth, z = ~Model), 
-  height = 600)
+Gdpgrowth <- matrix(vals, 
+                    nrow = length(Popgrowth), 
+                    ncol = length(Invest))
+plot_ly(GrowthDJ, x = ~invest, y = ~popgrowth, z = ~gdpgrowth) %>% 
+  add_markers(size = .1, showlegend = F, marker = list(color = Col['red'])) %>% 
+  add_surface(x = ~Invest, y = ~Popgrowth, z = ~Gdpgrowth, 
+              colorscale = 'Greys', opacity = .5, hoverinfo = 'none', 
+              contours = list(x = list(highlight = F),
+                              y = list(highlight = F),
+                              z = list(highlight = F))) %>% 
+  hide_colorbar() %>% 
+  layout(scene = list(xaxis = list(showspikes = F), 
+                      yaxis = list(showspikes = F), 
+                      zaxis = list(showspikes = F))) %>% 
+  widgetframe::frameWidget(height = 600)
 ```
 
-???
+??? %>% 
 More predictors, more dimensions. If one side is changed, the other also changes: coefficients are often interdependent.
 
 ---
 
-## Why use predictors?
+class: center middle inverse
 
-### To control for effects
+# Why use multiple predictors?
+
+---
+
+### Variables may have mutual influence
 
 .small[
 .pull-left[
@@ -165,7 +180,7 @@ Why did secondary school enrolment alone have an effect but not when controlled 
 par(family = 'RobotoCondensed')
 pairs(GrowthDJ[, c('gdpgrowth', 'school', 'invest')], 
       labels = c("Economic growth", "Secondary school enrolment",
-                 "Invenstment"))
+                 "Investment"))
 ```
 
 ???
@@ -221,6 +236,16 @@ summary(Model)
 ```
 ]
 ]
+
+---
+
+Why do multiple variables better explain variation?
+
+``` {r, fig.height = 5}
+par(family = 'RobotoCondensed')
+pairs(gdpgrowth ~ ., GrowthDJ[, sapply(GrowthDJ, is.numeric)], 
+      gap = .2, cex = .6)
+```
 
 ---
 
@@ -328,17 +353,8 @@ sapply(GrowthDJ, as.numeric) %>% cor %>% round(2)
 
 > Can you see anything that could result in collinearity?
 
----
-
-## There is no multicollinearity
-
-It should not be possible to linearly predict any of the predictors from others predictors. Otherwise the **coefficients are not be reliable**.
-
-Multicollinearity can be detected with variance inflation factor (VIF) by using $R^2$ to estimate for each predictor how much of the variation in one predictor can be predicted from others.
-
-$$VIF_{k} = \frac{1}{1 - R^{2}_{k}},$$
-
-where $R^{2}_{k}$ is $R^{2}$ for a model that has initial predictor $k$ as a response and all other predictors as predictors.
+???
+Otherwise the coefficients are not be reliable.
 
 ---
 
@@ -420,6 +436,26 @@ stargazer::stargazer(
   type = 'html')
 ```
 ]
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `TeachingRatings`.
+
+Investigate the effects on the course overall teaching evaluation score (`eval`).
+
+> What are the effects?
+
+> Which variables should we use as predictors?
+
+--
+
+> Does our final model meet the assumptions of a least squares model?
 
 ---
 

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Multiple linear regression</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jüri Lillemets" />
+    <meta name="date" content="2021-12-07" />
+    <script src="08_multiple_files/header-attrs-2.11/header-attrs.js"></script>
+    <script src="08_multiple_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="08_multiple_files/pymjs-1.3.2/pym.v1.js"></script>
+    <script src="08_multiple_files/widgetframe-binding-0.3.1/widgetframe.js"></script>
+    <link rel="stylesheet" href="minimal.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Multiple linear regression
+## Research methods
+### Jüri Lillemets
+### 2021-12-07
+
+---
+
+
+
+
+class: center middle clean
+
+# How to model a relationship with multiple predictors?
+
+---
+
+class: center middle inverse
+
+# Least squares with multiple predictors
+
+---
+
+## What does a multiple linear regression model look like?
+
+A model with two predictors can be expressed as follows:
+
+`$$y = \beta_0 + \beta_{1} x_1  + \beta_{2} x_2 + \varepsilon$$`
+
+where 
+
+- `\(\beta_1\)` is a coefficient of `\(x_1\)` and
+- `\(\beta_2\)` is a coefficient of `\(x_2\)`.
+
+---
+
+
+
+Let's illustrate it with data on "Determinants of Economic Growth".
+
+.small[
+- `oil` factor. Is the country an oil-producing country?
+- `inter` factor. Does the country have better quality data?
+- `oecd` factor. Is the country a member of the OECD?
+- `gdp60` Per capita GDP in 1960.
+- `gdp85` Per capita GDP in 1985.
+- `gdpgrowth` Average growth rate of per capita GDP from 1960 to 1985 (in percent).
+- `popgrowth` Average growth rate of working-age population 1960 to 1985 (in percent).
+- `invest` Average ratio of investment (including Government Investment) to GDP from 1960 to 1985 (in percent).
+- `school` Average fraction of working-age population enrolled in secondary school from 1960 to 1985 (in percent).
+- `literacy60` Fraction of the population over 15 years old that is able to read and write in 1960 (in percent).
+]
+
+--
+
+Suppose that we wish to know how do population growth and investments influence economic growth.
+
+---
+
+What does the data look like? Here are first rows:
+
+.compact[
+
+
+|   |oil   |inter |oecd  | gdp60| gdp85| gdpgrowth| popgrowth| invest| school| literacy60|
+|:--|:-----|:-----|:-----|-----:|-----:|---------:|---------:|------:|------:|----------:|
+|1  |FALSE |TRUE  |FALSE |  2485|  4371|       4.8|       2.6|   24.1|    4.5|         10|
+|2  |FALSE |FALSE |FALSE |  1588|  1171|       0.8|       2.1|    5.8|    1.8|          5|
+|3  |FALSE |FALSE |FALSE |  1116|  1071|       2.2|       2.4|   10.8|    1.8|          5|
+|5  |FALSE |FALSE |FALSE |   529|   857|       2.9|       0.9|   12.7|    0.4|          2|
+|6  |FALSE |FALSE |FALSE |   755|   663|       1.2|       1.7|    5.1|    0.4|         14|
+|7  |FALSE |TRUE  |FALSE |   889|  2190|       5.7|       2.1|   12.8|    3.4|         19|
+|8  |FALSE |FALSE |FALSE |   838|   789|       1.5|       1.7|   10.5|    1.4|          7|
+|9  |FALSE |FALSE |FALSE |   908|   462|      -0.9|       1.9|    6.9|    0.4|          6|
+|10 |FALSE |FALSE |FALSE |  1009|  2624|       6.2|       2.4|   28.8|    3.8|         16|
+|11 |FALSE |FALSE |FALSE |   907|  2160|       6.0|       2.5|   16.3|    7.0|         26|
+|12 |FALSE |TRUE  |FALSE |   533|   608|       2.8|       2.3|    5.4|    1.1|         15|
+|15 |FALSE |FALSE |FALSE |  1009|   727|       1.0|       2.3|    9.1|    4.7|         27|
+|17 |FALSE |TRUE  |FALSE |  1386|  1704|       5.1|       4.3|   12.4|    2.3|          5|
+|18 |FALSE |TRUE  |FALSE |   944|  1329|       4.8|       3.4|   17.4|    2.4|         20|
+|20 |FALSE |FALSE |FALSE |   863|   944|       3.3|       3.0|   21.5|    2.5|          9|
+|21 |FALSE |TRUE  |FALSE |  1194|   975|       1.4|       2.2|    7.1|    2.6|         50|
+|22 |FALSE |TRUE  |FALSE |   455|   823|       4.8|       2.4|   13.2|    0.6|         25|
+|23 |FALSE |TRUE  |FALSE |   737|   710|       2.1|       2.2|    7.3|    1.0|          3|
+|24 |FALSE |FALSE |FALSE |   777|  1038|       3.3|       2.2|   25.6|    1.0|          5|
+|26 |FALSE |TRUE  |FALSE |  1030|  2348|       5.8|       2.5|    8.3|    3.6|         14|
+
+]
+
+---
+
+Start with examining (plotting) relationships.
+
+![](08_multiple_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+???
+Can you see something wrong here? An outlier!
+
+---
+
+Suppose we have a reason to exclude the outlier. 
+
+![](08_multiple_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+For three variables we need three dimensions.
+
+<div id="htmlwidget-db7ea0aa20210941cbc4" style="width:100%;height:600px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-db7ea0aa20210941cbc4">{"x":{"url":"08_multiple_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+Our model is thus
+
+`$$gdpgrowth = \beta_0 + \beta_{1} popgrowth  + \beta_{2} invest + \varepsilon.$$`
+
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ popgrowth + invest, data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1645 -0.6789  0.0356  0.9037  3.8189 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.50729    0.62435  -0.813    0.419    
+## popgrowth    1.02477    0.17286   5.928 4.80e-08 ***
+## invest       0.12634    0.02017   6.262 1.07e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.464 on 96 degrees of freedom
+## Multiple R-squared:  0.365,	Adjusted R-squared:  0.3517 
+## F-statistic: 27.59 on 2 and 96 DF,  p-value: 3.423e-10
+```
+
+---
+
+With two predictors, the model is now a plane not a line.
+
+<div id="htmlwidget-b51f383d4352a6ced9ae" style="width:100%;height:600px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b51f383d4352a6ced9ae">{"x":{"url":"08_multiple_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+??? %&gt;% 
+More predictors, more dimensions. If one side is changed, the other also changes: coefficients are often interdependent.
+
+---
+
+class: center middle inverse
+
+# Why use multiple predictors?
+
+---
+
+### Variables may have mutual influence
+
+.small[
+.pull-left[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ school, data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1126 -1.2308 -0.2379  1.2776  4.6552 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   3.1507     0.3275   9.621 8.84e-16 ***
+## school        0.1549     0.0511   3.032  0.00312 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.746 on 97 degrees of freedom
+## Multiple R-squared:  0.08656,	Adjusted R-squared:  0.07714 
+## F-statistic: 9.192 on 1 and 97 DF,  p-value: 0.003118
+```
+]
+.pull-right[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ school + invest, data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8893 -1.3835 -0.2008  1.1318  4.6520 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.48804    0.42280   5.885 5.83e-08 ***
+## school       0.05201    0.06584   0.790   0.4315    
+## invest       0.06962    0.02906   2.396   0.0185 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.705 on 96 degrees of freedom
+## Multiple R-squared:  0.1381,	Adjusted R-squared:  0.1201 
+## F-statistic:  7.69 on 2 and 96 DF,  p-value: 0.0007988
+```
+]
+]
+
+Studies often include *control variables*.
+
+???
+Common control variables used: gender, education, SES
+
+---
+
+Why did secondary school enrolment alone have an effect but not when controlled for investment?
+
+![](08_multiple_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+???
+Actually, investments have the effect.
+
+---
+
+An effect may only become apparent in combination with other predictors.
+
+.small[
+.pull-left[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ literacy60, data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5792 -1.1606 -0.2863  1.3109  4.9720 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 3.636443   0.314204  11.574   &lt;2e-16 ***
+## literacy60  0.007127   0.005181   1.376    0.172    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.809 on 97 degrees of freedom
+## Multiple R-squared:  0.01913,	Adjusted R-squared:  0.009021 
+## F-statistic: 1.892 on 1 and 97 DF,  p-value: 0.1721
+```
+]
+.pull-right[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ literacy60 + popgrowth, data = GrowthDJ)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.931 -1.011 -0.017  1.125  4.185 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.787982   0.645075   1.222 0.224875    
+## literacy60  0.019467   0.005291   3.680 0.000386 ***
+## popgrowth   1.004444   0.204523   4.911 3.71e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.626 on 96 degrees of freedom
+## Multiple R-squared:  0.2161,	Adjusted R-squared:  0.1998 
+## F-statistic: 13.23 on 2 and 96 DF,  p-value: 8.412e-06
+```
+]
+]
+
+???
+Coefficients change, too.
+
+---
+
+Why does literacy have no effect alone but does so with population growth?
+
+![](08_multiple_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+
+### Model fit is improved
+
+.small[
+.pull-left[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ popgrowth, data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.6765 -1.1323  0.0118  1.0706  4.9706 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2.5471     0.4602   5.535 2.65e-07 ***
+## popgrowth     0.6470     0.1913   3.383  0.00104 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.728 on 97 degrees of freedom
+## Multiple R-squared:  0.1055,	Adjusted R-squared:  0.09631 
+## F-statistic: 11.44 on 1 and 97 DF,  p-value: 0.001036
+```
+]
+.pull-right[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ ., data = GrowthDJ)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.57012 -0.56269 -0.07555  0.57741  2.09275 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.339e-01  4.718e-01  -0.284 0.777195    
+## oilTRUE      1.035e+00  6.992e-01   1.480 0.142380    
+## interTRUE    1.029e+00  3.016e-01   3.411 0.000974 ***
+## oecdTRUE    -2.372e-01  4.774e-01  -0.497 0.620490    
+## gdp60       -7.818e-04  7.706e-05 -10.146  &lt; 2e-16 ***
+## gdp85        4.550e-04  5.456e-05   8.340 8.70e-13 ***
+## popgrowth    1.056e+00  1.682e-01   6.277 1.23e-08 ***
+## invest       4.192e-02  1.870e-02   2.243 0.027413 *  
+## school       7.766e-02  5.500e-02   1.412 0.161425    
+## literacy60  -3.822e-03  6.665e-03  -0.573 0.567837    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9636 on 89 degrees of freedom
+## Multiple R-squared:  0.7448,	Adjusted R-squared:  0.719 
+## F-statistic: 28.85 on 9 and 89 DF,  p-value: &lt; 2.2e-16
+```
+]
+]
+
+---
+
+Why do multiple variables better explain variation?
+
+![](08_multiple_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+class: center middle inverse
+
+# Selection of predictors
+
+---
+
+We can start with adding all other variables as predictors.
+
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ ., data = GrowthDJ)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.57012 -0.56269 -0.07555  0.57741  2.09275 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.339e-01  4.718e-01  -0.284 0.777195    
+## oilTRUE      1.035e+00  6.992e-01   1.480 0.142380    
+## interTRUE    1.029e+00  3.016e-01   3.411 0.000974 ***
+## oecdTRUE    -2.372e-01  4.774e-01  -0.497 0.620490    
+## gdp60       -7.818e-04  7.706e-05 -10.146  &lt; 2e-16 ***
+## gdp85        4.550e-04  5.456e-05   8.340 8.70e-13 ***
+## popgrowth    1.056e+00  1.682e-01   6.277 1.23e-08 ***
+## invest       4.192e-02  1.870e-02   2.243 0.027413 *  
+## school       7.766e-02  5.500e-02   1.412 0.161425    
+## literacy60  -3.822e-03  6.665e-03  -0.573 0.567837    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9636 on 89 degrees of freedom
+## Multiple R-squared:  0.7448,	Adjusted R-squared:  0.719 
+## F-statistic: 28.85 on 9 and 89 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+
+## Statistical significance
+
+We could remove statistically insignificant variables.
+
+.small[
+.pull-left[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ ., data = GrowthDJ)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.57012 -0.56269 -0.07555  0.57741  2.09275 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.339e-01  4.718e-01  -0.284 0.777195    
+## oilTRUE      1.035e+00  6.992e-01   1.480 0.142380    
+## interTRUE    1.029e+00  3.016e-01   3.411 0.000974 ***
+## oecdTRUE    -2.372e-01  4.774e-01  -0.497 0.620490    
+## gdp60       -7.818e-04  7.706e-05 -10.146  &lt; 2e-16 ***
+## gdp85        4.550e-04  5.456e-05   8.340 8.70e-13 ***
+## popgrowth    1.056e+00  1.682e-01   6.277 1.23e-08 ***
+## invest       4.192e-02  1.870e-02   2.243 0.027413 *  
+## school       7.766e-02  5.500e-02   1.412 0.161425    
+## literacy60  -3.822e-03  6.665e-03  -0.573 0.567837    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9636 on 89 degrees of freedom
+## Multiple R-squared:  0.7448,	Adjusted R-squared:  0.719 
+## F-statistic: 28.85 on 9 and 89 DF,  p-value: &lt; 2.2e-16
+```
+]
+.pull-right[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ inter + gdp60 + gdp85 + popgrowth + 
+##     invest, data = GrowthDJ)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.67920 -0.55299 -0.07245  0.68938  2.25172 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -3.807e-01  4.312e-01  -0.883 0.379524    
+## interTRUE    8.854e-01  2.483e-01   3.565 0.000576 ***
+## gdp60       -7.761e-04  7.470e-05 -10.389  &lt; 2e-16 ***
+## gdp85        4.738e-04  4.949e-05   9.575 1.62e-15 ***
+## popgrowth    1.227e+00  1.246e-01   9.852 4.21e-16 ***
+## invest       4.546e-02  1.789e-02   2.540 0.012732 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.971 on 93 degrees of freedom
+## Multiple R-squared:  0.7292,	Adjusted R-squared:  0.7146 
+## F-statistic: 50.08 on 5 and 93 DF,  p-value: &lt; 2.2e-16
+```
+]
+]
+
+---
+
+## F-test
+
+This is a test of overall model fit.
+
+F-statistic is calculated as follows:
+
+`$$F = \frac{RSS_1 - RSS_1 / k}{RSS_2/(n-p-1)},$$`
+
+where `\(RSS_1\)` is the residual sum of squares of reduced model and `\(RSS_2\)` the same for full model, `\(k\)` the difference in the number of parameters between two models, `\(p\)` the number of parameters and `\(n\)` the number of observations.
+
+`\(H_0: \beta_1 = \beta_2 = 0\)`  
+`\(H_1: \beta_1 \neq 0 \text{ or } \beta_2 \neq 0\)`  
+
+---
+
+Are oil producing and OECD membership together significant predictors of economic growth?
+
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ oil + oecd, data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.8676 -1.2179 -0.0682  1.1324  5.2324 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.96757    0.21140  18.768   &lt;2e-16 ***
+## oilTRUE      1.43243    1.07099   1.337    0.184    
+## oecdTRUE    -0.09939    0.44159  -0.225    0.822    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.819 on 96 degrees of freedom
+## Multiple R-squared:  0.01954,	Adjusted R-squared:  -0.0008835 
+## F-statistic: 0.9567 on 2 and 96 DF,  p-value: 0.3878
+```
+
+--
+
+&gt; How would you interpret the p-value for F-statistic here?
+
+---
+
+## Akaike Information Criterion (AIC)
+
+It's a measure of model goodness of fit.
+
+For linear regression the information criterion is calculated as follows:
+
+`$$AIC = n \times log(\frac{RSS}{n}) + 2 K,$$`
+
+where `\(n\)` is the number of observations, `\(RSS\)` the residual sums of squares and `\(K\)` the number of predictors in a model.
+
+**Lower** value indicates better fit.
+
+---
+
+Stepwise backwards selection according to AIC
+
+.scroll[
+
+```
+## Start:  AIC=2.12
+## gdpgrowth ~ oil + inter + oecd + gdp60 + gdp85 + popgrowth + 
+##     invest + school + literacy60
+## 
+##              Df Sum of Sq     RSS    AIC
+## - oecd        1     0.229  82.875  0.399
+## - literacy60  1     0.305  82.951  0.489
+## &lt;none&gt;                     82.645  2.124
+## - school      1     1.851  84.497  2.318
+## - oil         1     2.034  84.680  2.532
+## - invest      1     4.670  87.315  5.566
+## - inter       1    10.807  93.453 12.291
+## - popgrowth   1    36.586 119.232 36.409
+## - gdp85       1    64.583 147.229 57.290
+## - gdp60       1    95.587 178.232 76.209
+## 
+## Step:  AIC=0.4
+## gdpgrowth ~ oil + inter + gdp60 + gdp85 + popgrowth + invest + 
+##     school + literacy60
+## 
+##              Df Sum of Sq     RSS    AIC
+## - literacy60  1     0.276  83.151 -1.272
+## &lt;none&gt;                     82.875  0.399
+## - school      1     1.794  84.669  0.519
+## - oil         1     2.124  84.999  0.904
+## - invest      1     4.537  87.412  3.676
+## - inter       1    10.718  93.592 10.439
+## - popgrowth   1    59.014 141.889 51.632
+## - gdp85       1    69.725 152.600 58.837
+## - gdp60       1    96.615 179.490 74.905
+## 
+## Step:  AIC=-1.27
+## gdpgrowth ~ oil + inter + gdp60 + gdp85 + popgrowth + invest + 
+##     school
+## 
+##             Df Sum of Sq     RSS    AIC
+## - school     1     1.557  84.708 -1.435
+## &lt;none&gt;                    83.151 -1.272
+## - oil        1     2.776  85.927 -0.021
+## - invest     1     4.391  87.542  1.823
+## - inter      1    10.820  93.971  8.839
+## - popgrowth  1    63.770 146.921 53.083
+## - gdp85      1    69.577 152.728 56.920
+## - gdp60      1   104.954 188.105 77.546
+## 
+## Step:  AIC=-1.43
+## gdpgrowth ~ oil + inter + gdp60 + gdp85 + popgrowth + invest
+## 
+##             Df Sum of Sq     RSS    AIC
+## &lt;none&gt;                    84.708 -1.435
+## - oil        1     2.977  87.685 -0.015
+## - invest     1     6.580  91.288  3.971
+## - inter      1    14.935  99.643 12.641
+## - popgrowth  1    65.310 150.019 53.148
+## - gdp85      1    77.856 162.564 61.099
+## - gdp60      1   103.411 188.119 75.554
+```
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ oil + inter + gdp60 + gdp85 + popgrowth + 
+##     invest, data = GrowthDJ)
+## 
+## Coefficients:
+## (Intercept)      oilTRUE    interTRUE        gdp60        gdp85    popgrowth  
+##  -0.2703433    1.2002245    1.0822840   -0.0007836    0.0004574    1.1309585  
+##      invest  
+##   0.0473560
+```
+]
+
+---
+
+## Multicollinearity
+
+It should not be possible to linearly predict any of the predictors from others predictors. Predictors should not be (highly) correlated.
+
+--
+
+Let's look at Pearson's correlation coefficients pairwise.
+
+
+```
+##              oil inter  oecd gdp60 gdp85 gdpgrowth popgrowth invest school literacy60
+## oil         1.00 -0.30 -0.09  0.12  0.09      0.14      0.26  -0.04   0.01      -0.19
+## inter      -0.30  1.00  0.31  0.34  0.39      0.32     -0.14   0.38   0.51       0.60
+## oecd       -0.09  0.31  1.00  0.68  0.78     -0.04     -0.72   0.57   0.57       0.66
+## gdp60       0.12  0.34  0.68  1.00  0.88     -0.09     -0.40   0.52   0.66       0.73
+## gdp85       0.09  0.39  0.78  0.88  1.00      0.21     -0.50   0.68   0.74       0.78
+## gdpgrowth   0.14  0.32 -0.04 -0.09  0.21      1.00      0.32   0.36   0.29       0.14
+## popgrowth   0.26 -0.14 -0.72 -0.40 -0.50      0.32      1.00  -0.35  -0.31      -0.47
+## invest     -0.04  0.38  0.57  0.52  0.68      0.36     -0.35   1.00   0.65       0.64
+## school      0.01  0.51  0.57  0.66  0.74      0.29     -0.31   0.65   1.00       0.82
+## literacy60 -0.19  0.60  0.66  0.73  0.78      0.14     -0.47   0.64   0.82       1.00
+```
+
+&gt; Can you see anything that could result in collinearity?
+
+???
+Otherwise the coefficients are not be reliable.
+
+---
+
+### Variance inflation factor (VIF)
+
+Multicollinearity can be detected with variance inflation factor by using `\(R^2\)` to estimate for each predictor how much of the variation in one predictor can be predicted from others.
+
+`$$VIF_{k} = \frac{1}{1 - R^{2}_{k-1}},$$`
+
+where `\(R^{2}_{k-1}\)` is `\(R^{2}\)` for a model that has predictor `\(k\)` as a response variable and all other predictors as predictor variables.
+
+Remove predictors that have VIF &gt;5.
+
+---
+
+What about our predictors that were selected using backwards selection with AIC?
+
+
+```r
+Model &lt;- lm(gdpgrowth ~ oil + inter + gdp60 + gdp85 + popgrowth + invest, 
+            GrowthDJ)
+car::vif(Model)
+```
+
+```
+##       oil     inter     gdp60     gdp85 popgrowth    invest 
+##  1.407719  1.465608  4.790481  7.335392  1.598502  2.042422
+```
+
+&gt; Would you exclude anything?
+
+--
+
+
+```r
+Model &lt;- update(Model, ~  oil + inter + gdp60 + popgrowth + invest)
+car::vif(Model)
+```
+
+```
+##       oil     inter     gdp60 popgrowth    invest 
+##  1.360429  1.427928  1.735117  1.422307  1.512411
+```
+
+---
+
+What happens when we exclude influential predictors?
+
+.small[
+.pull-left[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ oil + inter + gdp60 + gdp85 + popgrowth + 
+##     invest, data = GrowthDJ)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.71855 -0.53884 -0.03123  0.61961  2.39368 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2.703e-01  4.305e-01  -0.628 0.531552    
+## oilTRUE      1.200e+00  6.675e-01   1.798 0.075441 .  
+## interTRUE    1.082e+00  2.687e-01   4.027 0.000116 ***
+## gdp60       -7.836e-04  7.394e-05 -10.598  &lt; 2e-16 ***
+## gdp85        4.574e-04  4.975e-05   9.195 1.13e-14 ***
+## popgrowth    1.131e+00  1.343e-01   8.422 4.74e-13 ***
+## invest       4.736e-02  1.771e-02   2.673 0.008888 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9596 on 92 degrees of freedom
+## Multiple R-squared:  0.7384,	Adjusted R-squared:  0.7213 
+## F-statistic: 43.28 on 6 and 92 DF,  p-value: &lt; 2.2e-16
+```
+]
+.pull-right[
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ oil + inter + gdp60 + popgrowth + invest, 
+##     data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.7848 -0.8059 -0.0678  0.9298  3.7399 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -3.328e-01  5.931e-01  -0.561 0.576036    
+## oilTRUE      2.325e+00  9.041e-01   2.572 0.011703 *  
+## interTRUE    1.478e+00  3.655e-01   4.045 0.000108 ***
+## gdp60       -2.406e-04  6.131e-05  -3.924 0.000167 ***
+## popgrowth    7.210e-01  1.745e-01   4.131 7.88e-05 ***
+## invest       1.303e-01  2.100e-02   6.205 1.50e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.322 on 93 degrees of freedom
+## Multiple R-squared:  0.4979,	Adjusted R-squared:  0.471 
+## F-statistic: 18.45 on 5 and 93 DF,  p-value: 1.095e-12
+```
+]
+]
+
+---
+
+Our final model.
+
+
+```
+## 
+## Call:
+## lm(formula = gdpgrowth ~ oil + inter + gdp60 + popgrowth + invest, 
+##     data = GrowthDJ)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.7848 -0.8059 -0.0678  0.9298  3.7399 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -3.328e-01  5.931e-01  -0.561 0.576036    
+## oilTRUE      2.325e+00  9.041e-01   2.572 0.011703 *  
+## interTRUE    1.478e+00  3.655e-01   4.045 0.000108 ***
+## gdp60       -2.406e-04  6.131e-05  -3.924 0.000167 ***
+## popgrowth    7.210e-01  1.745e-01   4.131 7.88e-05 ***
+## invest       1.303e-01  2.100e-02   6.205 1.50e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.322 on 93 degrees of freedom
+## Multiple R-squared:  0.4979,	Adjusted R-squared:  0.471 
+## F-statistic: 18.45 on 5 and 93 DF,  p-value: 1.095e-12
+```
+
+&gt; How to interpret this?
+
+---
+
+class: center middle inverse
+
+# Presenting the results
+
+---
+
+.compact[
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td colspan="5"&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td colspan="5"&gt;gdpgrowth&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;oil&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1.035&lt;/td&gt;&lt;td&gt;1.200&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.699)&lt;/td&gt;&lt;td&gt;(0.667)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;inter&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1.029&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.082&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.302)&lt;/td&gt;&lt;td&gt;(0.269)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;oecd&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.237&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.477)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;gdp60&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.001&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.001&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.0001)&lt;/td&gt;&lt;td&gt;(0.0001)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;gdp85&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.0005&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.0005&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.0001)&lt;/td&gt;&lt;td&gt;(0.00005)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;literacy60&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.019&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.004&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.005)&lt;/td&gt;&lt;td&gt;(0.007)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;popgrowth&lt;/td&gt;&lt;td&gt;1.025&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1.004&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.056&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.131&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.173)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.205)&lt;/td&gt;&lt;td&gt;(0.168)&lt;/td&gt;&lt;td&gt;(0.134)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;school&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.052&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.078&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.066)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.055)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;invest&lt;/td&gt;&lt;td&gt;0.126&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.070&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.042&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.047&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.020)&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.019)&lt;/td&gt;&lt;td&gt;(0.018)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;-0.507&lt;/td&gt;&lt;td&gt;2.488&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.788&lt;/td&gt;&lt;td&gt;-0.134&lt;/td&gt;&lt;td&gt;-0.270&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.624)&lt;/td&gt;&lt;td&gt;(0.423)&lt;/td&gt;&lt;td&gt;(0.645)&lt;/td&gt;&lt;td&gt;(0.472)&lt;/td&gt;&lt;td&gt;(0.430)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.365&lt;/td&gt;&lt;td&gt;0.138&lt;/td&gt;&lt;td&gt;0.216&lt;/td&gt;&lt;td&gt;0.745&lt;/td&gt;&lt;td&gt;0.738&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.352&lt;/td&gt;&lt;td&gt;0.120&lt;/td&gt;&lt;td&gt;0.200&lt;/td&gt;&lt;td&gt;0.719&lt;/td&gt;&lt;td&gt;0.721&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;1.464 (df = 96)&lt;/td&gt;&lt;td&gt;1.705 (df = 96)&lt;/td&gt;&lt;td&gt;1.626 (df = 96)&lt;/td&gt;&lt;td&gt;0.964 (df = 89)&lt;/td&gt;&lt;td&gt;0.960 (df = 92)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;27.586&lt;sup&gt;***&lt;/sup&gt; (df = 2; 96)&lt;/td&gt;&lt;td&gt;7.690&lt;sup&gt;***&lt;/sup&gt; (df = 2; 96)&lt;/td&gt;&lt;td&gt;13.231&lt;sup&gt;***&lt;/sup&gt; (df = 2; 96)&lt;/td&gt;&lt;td&gt;28.855&lt;sup&gt;***&lt;/sup&gt; (df = 9; 89)&lt;/td&gt;&lt;td&gt;43.278&lt;sup&gt;***&lt;/sup&gt; (df = 6; 92)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan="5" style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `TeachingRatings`.
+
+Investigate the effects on the course overall teaching evaluation score (`eval`).
+
+&gt; What are the effects?
+
+&gt; Which variables should we use as predictors?
+
+--
+
+&gt; Does our final model meet the assumptions of a least squares model?
+
+---
+
+class: inverse
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

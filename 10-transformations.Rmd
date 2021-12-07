@@ -119,6 +119,8 @@ $$y = \alpha + \beta_{1} \frac{1}{x} + \varepsilon$$
 
 Box-Cox transformation.
 
+See @navarro_learning_2018 section 12.10.3.
+
 $$y = \alpha + \beta_{1} x^\lambda + \varepsilon$$
 
 -->

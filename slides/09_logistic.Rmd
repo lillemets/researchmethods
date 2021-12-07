@@ -419,3 +419,7 @@ Oie$dead <- as.numeric(Oie$dead == 'dead')
 - `injSeverity` a numeric vector; 0:none, 1:possible injury, 2:no incapacity, 3:incapacity, 4:killed; 5:unknown, 6:prior death
 - `caseid` character, created by pasting together the populations sampling unit, the case number, and the vehicle number. Within each year, use this to uniquely identify the vehicle.
 ]
+
+---
+
+SwissLabor

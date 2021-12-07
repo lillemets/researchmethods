@@ -11,10 +11,10 @@ On slides press `h` button to see keyboard shortcuts for navigation.
 5. [Correlation analysis](../slides/05_correlation.html)
 3. [Simple linear regression](../slides/06_regression.html)
 4. [Data transformations](../slides/07_transformations.html)
+5. [Multiple linear regression](../slides/08_multiple.html)
 
 <!--
 
-5. [Multiple linear regression](../slides/08_multiple.html)
 6. [Logistic regression](../slides/09_logistic.html)
 7. [Principal component analysis](../slides/10_pca.html)
 8. [Factor analysis](../slides/11_factor.html)
