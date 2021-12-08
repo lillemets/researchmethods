@@ -123,4 +123,6 @@ See @navarro_learning_2018 section 12.10.3.
 
 $$y = \alpha + \beta_{1} x^\lambda + \varepsilon$$
 
+See @crawley_r_2013 section 7.1.10.
+
 -->

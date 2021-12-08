@@ -3,8 +3,7 @@ title: Logistic regression
 subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
@@ -13,22 +12,26 @@ knitr::opts_chunk$set(echo = F, warning = F, dpi = 200, fig.height = 4)
 # Load packages
 library('magrittr');library('knitr')
 # Set colors
-Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+source('/home/jrl/work/resmeth/slides/variables.R')
+# TODO: Illustration of maximizing likelihood. Explanation of odds from a contingency table. ROC and AUC. Deviance and other residuals.
 ```
 
 class: center middle clean
 
-# How to model a binary response variable?
+# How to model a binary response?
+
+???
+Very often response variable is a dummy variable, describes event happening or not, etc.
 
 ---
 
 class: center middle inverse
 
-# Linear regression with binary response
+# Linear regression with two outcomes
 
 ---
 
-Let's use a data set on spam email.
+Let's use a data set on emails to explain and predict spam.
 
 ``` {r}
 Oie <- DAAG::spam7
@@ -47,12 +50,22 @@ Oie <- Oie[Oie$dollar < quantile(Oie$dollar, .99), ] # Include only lowest 99%
 
 ---
 
+What does the data look like?
+
+.compact[
+``` {r}
+head(Oie, 20) %>% kable
+```
+]
+
+---
+
 Do occurrences of dollar symbol have an effect on categorizing an email as spam? Can we predict spam from dollar signs?
 
 ``` {r}
 par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0))
 boxplot(dollar ~ spam, Oie, 
-        xlab = "Number of occurrences of the $ symbol", ylab = "Spam", 
+        xlab = "Occurrences of the $ symbol", ylab = "Spam", 
         horizontal = T)
 ```
 
@@ -73,15 +86,21 @@ This is how an ordinary linear model fits.
 par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0))
 plotSpam <- function() {
   plot(jitter(spam, amount = .05) ~ dollar, Oie, 
-     xlab = "Number of occurrences of the $ symbol", ylab = "Spam",
-     yaxt = 'n', cex = .2)
+       xlab = "Occurrences of the $ symbol", ylab = "Spam",
+       yaxt = 'n', cex = .2)
   axis(2, 0:1, 0:1)
 }
 plotSpam()
 abline(modLin, col = Col['red'], lwd = 2)
 ```
 
-> Is this a good fit?
+--
+
+> Is this a good fit? Does the line make sense?
+
+???
+
+The line does not respect the boundaries of 0 and 1.
 
 ---
 
@@ -122,12 +141,14 @@ What to do if the distribution of errors is such that it can not meet assumption
 
 --
 
-Specify a distribution of errors! For binary data we shoult use binomial distribution.
+Specify a distribution of errors! For binary data we should use binomial distribution.
 
 ``` {r, fig.height = 3.5}
-par(bty = 'n', family = 'RobotoCondensed', mfrow = 1:2)
+par(bty = 'n', family = 'RobotoCondensed', mfrow = c(1,3))
 hist(Oie$spam,
      main = "Original distribution", xlab = "Spam", ylab = '')
+hist(modLin$resid,
+     main = "Residuals from the OLS model", xlab = "Spam", ylab = '')
 hist(rbinom(nrow(Oie), nrow(Oie), mean(Oie$spam)),
      main = paste0("Binomial distribution\n (p = ", round(mean(Oie$spam), 3), " , n = ", nrow(Oie), ")"), 
      xlab = "Spam (number of spam)", ylab = '')
@@ -137,11 +158,17 @@ hist(rbinom(nrow(Oie), nrow(Oie), mean(Oie$spam)),
 
 ## Generalized linear models (GLM)
 
-Least squares requires normal distribution of errors. So we can not use this. 
+Least squares requires normal distribution of errors. So we can not use it if our response variable is a binary variable or contains counts.
 
-Generalized linear models allow us to specify an error distribution prior to estimation.
+Generalized linear models allow us to **specify an error distribution** prior to estimation.
 
 --
+
+In case of binary data we use *binomial distribution* to obtain a suitable error structure. 
+
+Binomial distribution can be used to represent the proportion of successes at a particular number of trials.
+
+---
 
 Generalized linear models can also be used for other than binary response variable, e.g.
 
@@ -167,11 +194,13 @@ summary(modLog)
 
 ## Logit link
 
-Link function relates the mean value of response to predictor variable(s), allowing us to apply a particular distribution of errors.
+Link function relates the mean value of response to predictor variable(s), allowing us to **apply a particular distribution of errors**.
 
-Link function transforms the mean of response variable.
+Link function **transforms the mean of response variable**.
 
 --
+
+For binary response variable we use the logit link (or probit link).
 
 The logit link is mathematically expressed as follows:
 
@@ -216,14 +245,17 @@ curve(predict(carMod, list(wt = x), type = 'response'),
 
 ## Maximum likelihood estimation (MLE)
 
-The parameters of a GLM can not be simply calculated using the least squares method. 
+The parameters of a GLM can not be simply calculated as when using the least squares method. 
 
 --
 
 Models with various parameters are **iteratively** fitted until we find such parameters for which the data we have is most likely.
 
-In case of OLS: Data -> Parameters  
-For MLE: Parameters -> Data
+--
+
+In case of OLS we use data to find most appropriate parameters.
+
+With MLE we use parameters to see which are most suitable for data.
 
 ---
 
@@ -249,9 +281,33 @@ Recall the logit link $ln(\frac{p}{1 - p}) = \alpha + \beta x$, where $p$ is the
 
 We are estimating log odds ratio: $\frac{p}{1-p} = e^{\alpha + \beta x}$.
 
-Exponent of a coefficient is thus odds ratio: $\frac{p}{1-p} = \frac{p(y = 1)}{(y \neq 1)}$.
+Exponent of a coefficient is thus odds ratio: $\frac{p}{1-p} = \frac{p(y = 1)}{p(y \neq 1)}$.
 
-If odds ratio is $\frac{1}{2} = 0.5$, then a unit increase of predictor **decreases** the odds of $y = 1$ twice. If odds ratio is $\frac{2}{1} = 2$, then a unit increase of predictor **increases** the odds of $y = 1$ twice.
+---
+
+### Odds
+
+If odds are $\frac{1}{1} = 1$, then a unit increase of predictor **does not influence** the odds of $y = 1$.
+
+If odds are $\frac{1}{2} = 0.5$, then a unit increase of predictor **decreases** the odds of $y = 1$ twice.
+
+If odds are $\frac{2}{1} = 2$, then a unit increase of predictor **increases** the odds of $y = 1$ twice.
+
+---
+
+### Log odds
+
+The coefficient is the logged odds of $y = 1$. 
+
+--
+
+We can convert the coefficient to probability of increase in odds by taking the exponent of it. 
+
+In our example the $\beta_1$ was `r modLog$coefficients[2] %>% round(3)`. 
+
+The exponent of this $\beta_1$ is `r exp(modLog$coefficients[2]) %>% format(sci = F)` ( $e^{\beta_1}$ ).
+
+One unit increase in number of dollar signs increases the odds of a mail being spam `r exp(modLog$coefficients[2]) %>% format(sci = F)` times.
 
 ---
 
@@ -269,12 +325,12 @@ summary(modLog)
 
 ---
 
-class: middle
+![increased_risk](../img/increased_risk.png)
 
-.center(![increased_risk](../img/increased_risk.png))
+.footnote[Xkcd. Increased risk]
 
-.footnote[Source: XKCD,  
-increased risk]
+???
+Odds ratios are difficult to interpret.
 
 ---
 
@@ -315,34 +371,42 @@ If difference can not be shown, then the simpler model should be preferred.
 
 ### Probabilities
 
-Fitte values of logistic regression model are $p$, i.e. the probability that $y = 1$:
+Fitted values of logistic regression model are $p$, i.e. the probability that $y = 1$:
 
 $$p = \frac{e^{\alpha + \beta x}}{1 + e^{\alpha + \beta x}}$$
 
 Value of $p$ lies between 0 and 1. 
 
+--
+
 For classification we thus need to choose a cutoff point.
 
 ---
+
+We can use the model to predict whether an email is spam.
+
+.small[
 
 If cutoff point is .5
 
 ``` {r}
 Dimensions <- c("Observed", "Classified")
-table(Oie$spam, as.numeric(modLog$fitted > .3), dnn = Dimensions)
+table(Oie$spam, as.numeric(modLog$fitted > .3), dnn = Dimensions) %>% kable
 ```
 
 If cutoff point is .2
 
 ``` {r}
-table(Oie$spam, as.numeric(modLog$fitted > .5), dnn = Dimensions)
+table(Oie$spam, as.numeric(modLog$fitted > .5), dnn = Dimensions) %>% kable
 ```
 
 If cutoff point is .1
 
 ``` {r}
-table(Oie$spam, as.numeric(modLog$fitted > .7), dnn = Dimensions)
+table(Oie$spam, as.numeric(modLog$fitted > .7), dnn = Dimensions) %>% kable
 ```
+
+]
 
 ---
 
@@ -351,8 +415,10 @@ table(Oie$spam, as.numeric(modLog$fitted > .7), dnn = Dimensions)
 Classification table or a confusion matrix demonstrates the classification results.
 
 ``` {r}
-addmargins(table(Oie$spam, as.numeric(modLog$fitted > .5), dnn = Dimensions))
+addmargins(table(Oie$spam, as.numeric(modLog$fitted > .5), dnn = Dimensions)) %>% kable
 ```
+
+--
 
 We can calculate various measures from this table:
 
@@ -361,65 +427,28 @@ We can calculate various measures from this table:
 - specifity: $2676 / 3561 = 0.75$;
 - ...
 
+See the article about [Confusion matrix on Wikipedia](https://en.wikipedia.org/wiki/Confusion_matrix).
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `PSID1976`.
+
+Try to explain the participation in labor force (`participation`).
+
+> Which variables should we use as predictors?
+
+> What is the effect of empirically relevant predictors?
+
+--
+
+> Does our final model meet the assumptions of a linear model?
+
 ---
 
 class: inverse
-
-???
-
-Illustration of maximizing likelihood. Explanation of odds from a contingency table. ROC and AUC. Deviance and other residuals.
-
-# Labor Force Participation Data. Cross-section data originating from the 1976 Panel Study of Income Dynamics (PSID), based on data for the previous year, 1975.
-
-.small[
-- `participation` Factor. Did the individual participate in the labor force in 1975? ...
-- `hours` Wife's hours of work in 1975.
-- `youngkids` Number of children less than 6 years old in household.
-- `oldkids` Number of children between ages 6 and 18 in household.
-- `age` Wife's age in years.
-- `education` Wife's education in years.
-- `wage` Wife's average hourly wage, in 1975 dollars.
-- `repwage` Wife's wage reported at the time of the 1976 interview ...
-- `hhours` Husband's hours worked in 1975.
-- `hage` Husband's age in years.
-- `heducation` Husband's education in years.
-- `hwage` Husband's wage, in 1975 dollars.
-- `fincome` Family income, in 1975 dollars. ...
-- `tax` Marginal tax rate facing the wife, ...
-- `meducation` Wife's mother's educational attainment, in years.
-- `feducation` Wife's father's educational attainment, in years.
-- `unemp` Unemployment rate in county of residence, in percentage points. ...
-- `city` Factor. Does the individual live in a large city?
-- `experience` Actual years of wife's previous labor market experience.
-- `college` Factor. Did the individual attend college?
-- `hcollege` Factor. Did the individual's husband attend college?
-]
-
-# Airbag and other influences on accident fatalities
-
-``` {r}
-Oie <- DAAG::nassCDS
-Oie$dead <- as.numeric(Oie$dead == 'dead')
-?DAAG::nassCDS
-```
-.small[
-- `dvcat` ordered factor with levels (estimated impact speeds) 1-9km/h, 10-24, 25-39, 40-54, 55+
-- `weight` Observation weights, albeit of uncertain accuracy, designed to account for varying sampling probabilities.
-- `dead` factor with levels alive dead
-- `airbag` a factor with levels none airbag
-- `seatbelt` a factor with levels none belted
-- `frontal` a numeric vector; 0 = non-frontal, 1=frontal impact
-- `sex` a factor with levels f m
-- `ageOFocc` age of occupant in years
-- `yearacc` year of accident
-- `yearVeh` Year of model of vehicle; a numeric vector
-- `abcat` Did one or more (driver or passenger) airbag(s) deploy? This factor has levels deploy nodeploy unavail
-- `occRole` a factor with levels driver pass
-- `deploy` a numeric vector: 0 if an airbag was unavailable or did not deploy; 1 if one or more bags deployed.
-- `injSeverity` a numeric vector; 0:none, 1:possible injury, 2:no incapacity, 3:incapacity, 4:killed; 5:unknown, 6:prior death
-- `caseid` character, created by pasting together the populations sampling unit, the case number, and the vehicle number. Within each year, use this to uniquely identify the vehicle.
-]
-
----
-
-SwissLabor

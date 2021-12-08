@@ -1,3 +1,5 @@
+<!-- Name the section to GLM ad add count data -->
+
 # Logistic regression
 
 An important assumption of linear regression models is the normality and constant variance of residuals. With some particular types of response variable these assumptions about model errors can not be met. An example of such variables would be binary variables, i.e. variables that can take only two values ($0$ and $1$). A common way to model relationships with a binary response variable is logistic regression.
@@ -6,7 +8,7 @@ An important assumption of linear regression models is the normality and constan
 
 See the introduction of section 13 in @crawley_r_2013.
 
-The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, **it is necessary to define an error structure prior to estimation**. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name *generalized linear models* (GLM). 
+The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Even transforming variables or altering functional form might often not solve the problem. Thus, **it is necessary to define an error structure prior to estimation**. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure (binomial errors). Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name *generalized linear models* (GLM). 
 
 ### Logit link
 
@@ -43,9 +45,9 @@ In Jamovi: `Regression > 2 Outcomes > Model Coefficients | Odds ratio `.
 
 ### Deviance
 
-See @crawley_r_2013 section 13.11.
+See @crawley_r_2013 section 13.6.
 
-When fitted values are determined as a result of MLE, using residuals is not straightforward. A MLE equivalent of RSS in case of OLS is *deviance* that can also be  used to assess the goodness of fit of a GLM. **Deviance expresses the difference in log-likelihood between current and saturated model**. For binomial error structure the deviance is expressed as 
+When fitted values are determined as a result of MLE, using residuals is not straightforward. A MLE equivalent of RSS in case of OLS is *deviance* that can also be used to assess the goodness of fit of a GLM. **Deviance expresses the difference in log-likelihood between current and saturated model**. For binomial error structure the deviance is expressed as 
 
 $$D = 2 \sum y ln(y/\mu) + (n - y) ln(n - y) / (n - \mu),$$
 
@@ -55,7 +57,7 @@ In Jamovi: `Regression > 2 Outcomes > Model Fit | Deviance `.
 
 ### Pseudo $R^2$
 
-Because ML does not involve the minimization of squared residuals, it is not suitable to use residuals via $R^2$ to determine model fit. Still, there are equivalent pseudo-$R^2$ measures for expressing model fit for MLE that are calculated using likelihoods. While there are several such measures, most common is the *McFadden's pseduo-$R^2$*:
+Because MLE does not involve the minimization of squared residuals, it is not suitable to use residuals via $R^2$ to determine model fit. Still, there are equivalent pseudo-$R^2$ measures for expressing model fit for MLE that are calculated using likelihoods. While there are several such measures, most common is the *McFadden's pseduo-$R^2$*:
 
 $$R^2 = 1 - \frac{ln(\theta_{reduced})}{ln(\theta_{full})},$$
 
@@ -78,12 +80,6 @@ If difference can not be shown, then the simpler model should be preferred.
 
 In Jamovi: `Regression > 2 Outcomes > Model Coefficients | Likelihood ratio tests `.
 
-### Overdispersion
-
-See @crawley_r_2013 section 13.12.
-
-Unobserved omitted variables inflate residual deviances resulting in difficulties establishing the significance of predictors.
-
 ## Classification
 
 The model fitted values of response variable lie between 0 and 1. These can be interpreted as **probabilities that $y = 1$ for each observation**. In case we wish to have predictions on original binary scale, we need to choose a cutoff point that determines if a probability should be classified as 0 or 1. 
@@ -91,3 +87,19 @@ The model fitted values of response variable lie between 0 and 1. These can be i
 The classified predictions can be tabulated against true classes which results in a classification table or a *confusion matrix*. Such table can then be used to calculate measures such as *accuracy*, *specificity*, *sensitivity*, *AUC* and others that illustrate how good the model is at predicting.
 
 In Jamovi: `Regression > 2 Outcomes > Prediction`.
+
+<!--
+
+## Residuals
+
+See @crawley_r_2013 section ???.
+
+## Overdispersion
+
+See @crawley_r_2013 section 13.12.
+
+Overdispersion may also occur when relevant variables are omitted or the error structure is not correctly specified. In either case the result is that deviance is overestimated and thus it is difficult to establish the significance of predictors. A general solution is to use quasi-likelihood to determine a more suitable variance function.
+
+Also add info on odds and odds ratios.
+
+-->
