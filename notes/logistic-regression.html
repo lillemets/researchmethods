@@ -290,8 +290,8 @@ div.csl-indent {
 <li class="chapter" data-level="13.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#pseudo-r2"><i class="fa fa-check"></i><b>13.4.2</b> Pseudo <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>13.4.3</b> Likelihood ratio test</a></li>
 <li class="chapter" data-level="13.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#overdispersion"><i class="fa fa-check"></i><b>13.4.4</b> Overdispersion</a></li>
-<li class="chapter" data-level="13.4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#classification"><i class="fa fa-check"></i><b>13.4.5</b> Classification</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="logistic-regression.html"><a href="logistic-regression.html#classification"><i class="fa fa-check"></i><b>13.5</b> Classification</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html"><i class="fa fa-check"></i><b>14</b> Principal component analysis</a>
 <ul>
@@ -376,52 +376,54 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="logistic-regression" class="section level1" number="13">
 <h1><span class="header-section-number">Section 13</span> Logistic regression</h1>
-<p>An important assumption of linear regression models is the normality and constant variance of residuals. With some particular types of response variable these assumptions about model errors can not be met. An example of such variable would be binary variables, i.e. variables that can take only two values (<span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>). A common way to model relationships with a binary response variable is logistic regression.</p>
+<p>An important assumption of linear regression models is the normality and constant variance of residuals. With some particular types of response variable these assumptions about model errors can not be met. An example of such variables would be binary variables, i.e. variables that can take only two values (<span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>). A common way to model relationships with a binary response variable is logistic regression.</p>
 <div id="generalized-linear-models" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Generalized linear models</h2>
-<p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, it is necessary to define an error structure prior to estimation. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name general linear models (GLM).</p>
-<p>See section 13 in <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p>See the introduction of section 13 in <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, <strong>it is necessary to define an error structure prior to estimation</strong>. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name <em>generalized linear models</em> (GLM).</p>
 <div id="logit-link" class="section level3" number="13.1.1">
 <h3><span class="header-section-number">13.1.1</span> Logit link</h3>
-<p>In order to apply a particular distribution on model errors in the framework of GLM, we need to use a link function that relates the mean value of response to predictor variable(s). Link function transforms the mean of response variable. Note that we are not transforming the values themselves but using a function of mean value of response. There is no direct relationship between response and predictor variables, which is why we can not use least squares estimation.</p>
-<p>The canonical link function for binomial errors is the logit link (in econometrics it is often common that probit link is used instead). The logit link is mathematically expressed as follows:</p>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.3 on link function and section 13.4 on proportion data and binomial errors.</p>
+<p>In order to apply a particular distribution on model errors in the framework of GLM, <strong>we need to use a link function that relates the mean value of response to predictor variable(s)</strong>. Link function transforms the mean of response variable. Note that we are not transforming the values themselves but using a function of mean value of response. There is no direct relationship between the values of response and predictor variables, which is why we can not use least squares estimation.</p>
+<p>The canonical link function for binomial errors is the <em>logit link</em> (in econometrics it is often common that probit link is used instead). The logit link is mathematically expressed as follows:</p>
 <p><span class="math display">\[ln(\frac{p}{1 - p}) = \alpha + \beta x,\]</span></p>
 <p>where <span class="math inline">\(p\)</span> is the probability that <span class="math inline">\(y = 1\)</span>.</p>
-<p>In addition to the assumptions of normality and consistency of errors, the logit link also takes into consideration the fact that proportions are bounded to values between 0 and 1.</p>
-<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.3 on link function and section 13.4 on proportion data and binomial errors.</p>
+<p>In addition to the assumptions of normality and consistency of errors, the logit link also takes into consideration the fact that <strong>proportions are bounded to values between 0 and 1</strong>.</p>
 </div>
 </div>
 <div id="maximum-likelihood-estimation" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Maximum likelihood estimation</h2>
-<p>The parameters of a GLM can not be simply calculated using the least squares method. Instead, we need to use the maximum likelihood (ML) estimation. See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 7.3.3 for an idea behind the ML. It’s a little bit complicated idea but can be summarized as follows: models with various parameters are iteratively fitted until such parameters are found for which the data we have is most likely. While the value of this likelihood can not be directly interpreted, it is used to calculate measures of model fit (see below).</p>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 7.3.3 for an idea behind the <em>maximum likelihood estimation</em> (MLE).</p>
+<p>The parameters of a GLM can not be simply calculated as in case of the least squares method. Instead, we need to use the MLE. It’s a little bit complicated idea but can be summarized as follows: <strong>models with various parameters are iteratively fitted until such parameters are found for which the data we have is most likely</strong>. While the value of this likelihood can not be directly interpreted, it is used to calculate measures of model fit (see below).</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes</code>.<br />
 In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 </div>
 <div id="interpretation-of-coefficients" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Interpretation of coefficients</h2>
 <p>Due to the transformation of response variable, the interpretation of coefficients of logistic regression with the logit link is somewhat obscure. Recall that the form of the response variable is <span class="math inline">\(log(\frac{p}{1 - p})\)</span>, where <span class="math inline">\(p\)</span> is the probability that <span class="math inline">\(y = 1\)</span> and hence <span class="math inline">\(1-p\)</span> the probability that <span class="math inline">\(y \neq 1\)</span>.</p>
-<p>Therefore, the coefficients in logistic regression model represent increase in logged odds of <span class="math inline">\(y=1\)</span> when predictor variable increases by one unit. We can also exponentiate the model equation above. Then <span class="math inline">\(\frac{p}{1-p} = e^{\alpha + \beta x}\)</span> which means that one unit of increase in predictor multiplies the odds of <span class="math inline">\(y = 1\)</span> by <span class="math inline">\(e^\beta\)</span>. As this demonstrates, there isn’t an intuitive way to interpret the coefficients. Still, we can interpret the direction and statistical significance.</p>
+<p>Therefore, <strong>the coefficients in logistic regression model represent increase in logged odds of <span class="math inline">\(y=1\)</span> when predictor variable increases by one unit</strong>. We can also exponentiate the model equation above. Then <span class="math inline">\(\frac{p}{1-p} = e^{\alpha + \beta x}\)</span> which means that one unit of increase in predictor multiplies the odds of <span class="math inline">\(y = 1\)</span> by <span class="math inline">\(e^\beta\)</span>. As this demonstrates, <strong>there isn’t an intuitive way to interpret the coefficients</strong>. Still, we can interpret the direction and statistical significance.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Coefficients | Odds ratio</code>.</p>
 </div>
 <div id="model-fit" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Model fit</h2>
 <div id="deviance" class="section level3" number="13.4.1">
 <h3><span class="header-section-number">13.4.1</span> Deviance</h3>
-<p>When fitted values are determined as a result of ML, using residuals is not straightforward (see <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.11). A ML equivalent of RSS in case of OLS is deviance that can also be used to assess the goodness of fit of a LGM. Deviance expresses the difference in log-likelihood between current and saturated model. For binomial error structure the deviance is expressed as</p>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.11.</p>
+<p>When fitted values are determined as a result of MLE, using residuals is not straightforward. A MLE equivalent of RSS in case of OLS is <em>deviance</em> that can also be used to assess the goodness of fit of a GLM. <strong>Deviance expresses the difference in log-likelihood between current and saturated model</strong>. For binomial error structure the deviance is expressed as</p>
 <p><span class="math display">\[D = 2 \sum y ln(y/\mu) + (n - y) ln(n - y) / (n - \mu),\]</span></p>
 <p>where <span class="math inline">\(y\)</span> are the observed values of response, <span class="math inline">\(\mu\)</span> the mean value of response and <span class="math inline">\(n\)</span> the number of observations.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Fit | Deviance</code>.</p>
 </div>
 <div id="pseudo-r2" class="section level3" number="13.4.2">
 <h3><span class="header-section-number">13.4.2</span> Pseudo <span class="math inline">\(R^2\)</span></h3>
-<p>Because ML does not involve the minimization of squared residuals, it is not suitable to use residuals via <span class="math inline">\(R^2\)</span> to determine model fit. Still, there are equivalent pseudo-<span class="math inline">\(R^2\)</span> measures for expressing model fit for ML that are calculated using likelihoods. While there are several such measures, most common is the McFadden’s pseduo-<span class="math inline">\(R^2\)</span>:</p>
-<p><span class="math display">\[R^2 = 1 - \frac{ln\theta_{reduced}}{ln\theta_{full}},\]</span></p>
-<p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of model with only intercept and <span class="math inline">\(\theta_{full}\)</span> likelihood of model with predictors. As such, the measure illustrates how much does the addition of predictors improve the model. The values lie between 0 and 1 and usually values <span class="math inline">\(&gt;0.4\)</span> are considered to indicate good fit.</p>
+<p>Because ML does not involve the minimization of squared residuals, it is not suitable to use residuals via <span class="math inline">\(R^2\)</span> to determine model fit. Still, there are equivalent pseudo-<span class="math inline">\(R^2\)</span> measures for expressing model fit for MLE that are calculated using likelihoods. While there are several such measures, most common is the <em>McFadden’s pseduo-<span class="math inline">\(R^2\)</span></em>:</p>
+<p><span class="math display">\[R^2 = 1 - \frac{ln(\theta_{reduced})}{ln(\theta_{full})},\]</span></p>
+<p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of model with only intercept and <span class="math inline">\(\theta_{full}\)</span> likelihood of model with predictors. As such, <strong>the measure illustrates how much does the addition of predictors improve the model</strong>. The values lie between 0 and 1 and usually values <span class="math inline">\(&gt;0.4\)</span> are considered to indicate a good fit.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Fit | McFadden's R^2</code>.</p>
 </div>
 <div id="likelihood-ratio-test" class="section level3" number="13.4.3">
 <h3><span class="header-section-number">13.4.3</span> Likelihood ratio test</h3>
-<p>This test can be used to determine if a complex model is different from a simpler one. This can be used to estimate the overall model fit. The test statistic is</p>
+<p>This test can be used to determine <strong>if a complex model is different from a simpler one</strong>. This can be used to estimate the overall model fit. The test statistic is</p>
 <p><span class="math display">\[LR = -2ln(\frac{\theta_{reduced}}{\theta_{full}}),\]</span></p>
 <p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of simpler model and <span class="math inline">\(\theta_{full}\)</span> the likelihood of complex model. The hypotheses are as follows:</p>
 <p><span class="math inline">\(H_0: L_{reduced} = L_{full}\)</span><br />
@@ -431,15 +433,16 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 </div>
 <div id="overdispersion" class="section level3" number="13.4.4">
 <h3><span class="header-section-number">13.4.4</span> Overdispersion</h3>
-<p>Unobserved omitted variables inflate residual deviances resulting in difficulties establishing the significance of predictors. See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.12 for more.</p>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.12.</p>
+<p>Unobserved omitted variables inflate residual deviances resulting in difficulties establishing the significance of predictors.</p>
 </div>
-<div id="classification" class="section level3" number="13.4.5">
-<h3><span class="header-section-number">13.4.5</span> Classification</h3>
-<p>The model fitted values of response variable lie between 0 and 1. These can be interpreted as probabilities of <span class="math inline">\(y = 1\)</span> for each observation. In case we wish to have predictions on original binary scale, we need to choose a cutoff point that determines if a probability should be classified as 0 or 1.</p>
-<p>The classified predictions can be tabulated against true classes which results in a classification table or a confusion matrix. Such table can then be used to calculate measures such as accuracy, specificity, sensitivity, AUC and others that illustrate how good the model is at predicting.</p>
+</div>
+<div id="classification" class="section level2" number="13.5">
+<h2><span class="header-section-number">13.5</span> Classification</h2>
+<p>The model fitted values of response variable lie between 0 and 1. These can be interpreted as <strong>probabilities that <span class="math inline">\(y = 1\)</span> for each observation</strong>. In case we wish to have predictions on original binary scale, we need to choose a cutoff point that determines if a probability should be classified as 0 or 1.</p>
+<p>The classified predictions can be tabulated against true classes which results in a classification table or a <em>confusion matrix</em>. Such table can then be used to calculate measures such as <em>accuracy</em>, <em>specificity</em>, <em>sensitivity</em>, <em>AUC</em> and others that illustrate how good the model is at predicting.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Prediction</code>.</p>
 
-</div>
 </div>
 </div>
 <h3> References</h3>
