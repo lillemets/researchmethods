@@ -289,7 +289,6 @@ div.csl-indent {
 <li class="chapter" data-level="13.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#deviance"><i class="fa fa-check"></i><b>13.4.1</b> Deviance</a></li>
 <li class="chapter" data-level="13.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#pseudo-r2"><i class="fa fa-check"></i><b>13.4.2</b> Pseudo <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>13.4.3</b> Likelihood ratio test</a></li>
-<li class="chapter" data-level="13.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#overdispersion"><i class="fa fa-check"></i><b>13.4.4</b> Overdispersion</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="logistic-regression.html"><a href="logistic-regression.html#classification"><i class="fa fa-check"></i><b>13.5</b> Classification</a></li>
 </ul></li>
@@ -302,12 +301,13 @@ div.csl-indent {
 <li class="chapter" data-level="14.3.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#spectral-decomposition"><i class="fa fa-check"></i><b>14.3.1</b> Spectral decomposition</a></li>
 <li class="chapter" data-level="14.3.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#singular-value-decomposition"><i class="fa fa-check"></i><b>14.3.2</b> Singular value decomposition</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>14.4</b> Number of components</a></li>
-<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-6"><i class="fa fa-check"></i><b>14.5</b> Interpretation</a>
+<li class="chapter" data-level="14.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#assumptions"><i class="fa fa-check"></i><b>14.4</b> Assumptions</a></li>
+<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>14.5</b> Number of components</a></li>
+<li class="chapter" data-level="14.6" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-6"><i class="fa fa-check"></i><b>14.6</b> Interpretation</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>14.5.1</b> Variation explained</a></li>
-<li class="chapter" data-level="14.5.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>14.5.2</b> Loadings</a></li>
-<li class="chapter" data-level="14.5.3" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#biplots"><i class="fa fa-check"></i><b>14.5.3</b> Biplots</a></li>
+<li class="chapter" data-level="14.6.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>14.6.1</b> Variation explained</a></li>
+<li class="chapter" data-level="14.6.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>14.6.2</b> Loadings</a></li>
+<li class="chapter" data-level="14.6.3" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#biplots"><i class="fa fa-check"></i><b>14.6.3</b> Biplots</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="factor-analysis.html"><a href="factor-analysis.html"><i class="fa fa-check"></i><b>15</b> Factor analysis</a>
@@ -320,7 +320,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.3.2" data-path="factor-analysis.html"><a href="factor-analysis.html#oblimin"><i class="fa fa-check"></i><b>15.3.2</b> Oblimin</a></li>
 <li class="chapter" data-level="15.3.3" data-path="factor-analysis.html"><a href="factor-analysis.html#quartimax"><i class="fa fa-check"></i><b>15.3.3</b> Quartimax</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="factor-analysis.html"><a href="factor-analysis.html#assumptions"><i class="fa fa-check"></i><b>15.4</b> Assumptions</a>
+<li class="chapter" data-level="15.4" data-path="factor-analysis.html"><a href="factor-analysis.html#assumptions-1"><i class="fa fa-check"></i><b>15.4</b> Assumptions</a>
 <ul>
 <li class="chapter" data-level="15.4.1" data-path="factor-analysis.html"><a href="factor-analysis.html#sphericity"><i class="fa fa-check"></i><b>15.4.1</b> Sphericity</a></li>
 <li class="chapter" data-level="15.4.2" data-path="factor-analysis.html"><a href="factor-analysis.html#sampling-adequacy"><i class="fa fa-check"></i><b>15.4.2</b> Sampling adequacy</a></li>
@@ -376,21 +376,21 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="factor-analysis" class="section level1" number="15">
 <h1><span class="header-section-number">Section 15</span> Factor analysis</h1>
-<p>If we think that there might be some underlying variables behind the variables that we observed, we can use Pactor Analysis (FA) to discover these. Here we will only be covering exploratory FA.</p>
-<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 25.2 and <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 15.1 (and <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.7.1).</p>
+<p>If we think that there might be some <strong>underlying variables behind our observed variables</strong>, we can use <em>Factor Analysis</em> (<em>FA</em>) to discover and measure these hidden variables. This section only covers exploratory FA. There is also a more advanced technique, confirmatory FA. This involves structural equation modelling where we use factors in regression models to predict other factors.</p>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 25.2 and <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 15.1.</p>
 <div id="fa-and-pca" class="section level2" number="15.1">
 <h2><span class="header-section-number">15.1</span> FA and PCA</h2>
-<p>Both FA and PCA are variation maximization techniques. In PCA we are attempting to maximize the total variation in data. In factor analysis we instead try to maximize some underlying shared variation between variables. As such, factors in FA are the underlying <strong>latent variables</strong> that load the observed variables that we have. Factors are equivalent to principal components (PCs) in PCA. A common example are personality traits: we can not measure these directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that represent these traits. The distinction leads to some differences between FA and PCA:</p>
+<p>Both FA and PCA are <strong>variation maximization</strong> techniques. In PCA we are attempting to maximize the <strong>total variation</strong> in data. In FA we instead try to maximize some underlying <strong>shared variation</strong> between variables. As such, factors in FA are the underlying <em>latent variables</em> that load the observed variables that we have (and not the factors in the same sense as in previous methods). Factors are equivalent to PCs in PCA. A common example of factors are personality traits: we can not measure these directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that represent these traits. The distinction between PCs and factors leads to some differences between FA and PCA:</p>
 <ul>
-<li>PCA aims to explain total variance while FA aims to explain covariances.</li>
-<li>PCs are uniquely defined while factors depend on estimation and rotation method</li>
-<li>In PCA each PC is a linear combination of variables but in FA the variables are expressed as linear combinations of factors.</li>
+<li>PCA aims to explain total variation while <strong>FA aims to explain covariances</strong>,</li>
+<li>PCs are uniquely defined while <strong>factors depend on estimation and rotation method</strong>,</li>
+<li>In PCA each PC is a linear combination of variables but <strong>in FA the variables are expressed as linear combinations of factors</strong>.</li>
 </ul>
 <p>How do we decide which method to use? If our goal would be to summarize variables into a smaller set of variables, then we should use PCA. If the goal is to determine some underlying variables, then we should use FA.</p>
 </div>
 <div id="orthogonal-factor-model" class="section level2" number="15.2">
 <h2><span class="header-section-number">15.2</span> Orthogonal factor model</h2>
-<p>The factor model is defined as</p>
+<p>In FA framework, variables are loaded by latent variables, i.e. factors. Each variable in a factor model can thus be represented as a linear combination of factor loadings as follows:</p>
 <p><span class="math display">\[x_j = q_{jl} F_l + U_j +\mu_j,\]</span></p>
 <p>where</p>
 <ul>
@@ -400,75 +400,70 @@ div.csl-indent {
 <li><span class="math inline">\(U_j\)</span> the <span class="math inline">\(j\)</span>th specific factor and</li>
 <li><span class="math inline">\(\mu_j\)</span> the mean of <span class="math inline">\(x_j\)</span>.</li>
 </ul>
-<p>There are three methods for extracting factors. We are not going to cover the differences but these are:</p>
-<ul>
-<li>minimum residuals,</li>
-<li>maximum likelihood, and</li>
-<li>principal axis method.</li>
-</ul>
+<p>The idea behind FA is to <strong>explain the common variance of variables by extracting factors from the correlations between variables</strong>. There are three distinct methods for extracting factors. We are not going to cover the differences but these are residual minimization, likelihood maximization and principal axis method. In case of the latter method, eigenvalues and eigenvectors can also be found, but it can be argued that these two concepts should not be used in the FA framework.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis</code>.</p>
 </div>
 <div id="rotations" class="section level2" number="15.3">
 <h2><span class="header-section-number">15.3</span> Rotations</h2>
-<p>To better define factors that best separate our variables, we can apply a rotation on factors. This results in an adjusted loadings matrix. There are several techniques for rotation. Of these the three most common are described below.</p>
+<p>To better distinguish factors that best separate our variables, we can apply a rotation on factors. The result of rotation is an <strong>adjusted loadings matrix, where factors are more distinct and thus more intuitive to interpret</strong>. While rotation introduces some subjectivity as there are no rules about the choice of rotation, it often <strong>eases description of factors</strong>. There are many rotations but the three most common are described below. Rotations that retain orthogonality result in more distinct factors but restrict factors from correlating even if they actually do.</p>
 <div id="varimax" class="section level3" number="15.3.1">
 <h3><span class="header-section-number">15.3.1</span> Varimax</h3>
-<p>This rotation involves maximizing variances of squared loadings within factors. Factors remain orthogonal, thus uncorrelated.</p>
+<p>This rotation involves maximizing variances of squared loadings <strong>within factors</strong>. As a result, <strong>each factor has few variables with high loadings</strong>. Factors remain orthogonal, thus uncorrelated.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Varimax</code>.</p>
 </div>
 <div id="oblimin" class="section level3" number="15.3.2">
 <h3><span class="header-section-number">15.3.2</span> Oblimin</h3>
-<p>This rotation also involves maximization of squared loading variances within factors. The difference from Varimax rotation is that factors are not necessarily orthogonal but oblique, thus can be correlated. The resulting factors may be more similar to each other than in case of Varimax but the variances of loadings within factors are likely to be higher.</p>
+<p>This rotation also involves maximization of squared loading variances <strong>within factors</strong>. The difference from Varimax rotation is that factors are not necessarily orthogonal but oblique and can thus be correlated. The resulting factors may be more similar to each other than in case of Varimax but the <strong>variances of loadings within factors are likely to be higher</strong>.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Oblimin</code>.</p>
 </div>
 <div id="quartimax" class="section level3" number="15.3.3">
 <h3><span class="header-section-number">15.3.3</span> Quartimax</h3>
-<p>This rotation aims to maximize variances of factor loadings within variables (not factors). The result is a factor structure in which each variable loads as few factors as possible.</p>
+<p>This rotation aims to maximize variances of factor loadings <strong>within variables</strong> (not factors as with the two other rotations). The result is a factor structure in which each variable has high loadings in as few factors as possible. In other words, <strong>each variable is loaded by only few factors</strong>.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Method | Rotation: Quartimax</code>.</p>
 </div>
 </div>
-<div id="assumptions" class="section level2" number="15.4">
+<div id="assumptions-1" class="section level2" number="15.4">
 <h2><span class="header-section-number">15.4</span> Assumptions</h2>
-<p>While PCA has essentially no assumptions, FA has a few. These can be described and tested for as explained below.</p>
+<p>While PCA does not have very strict assumptions, <em>non-sphericity</em> and particularly <em>sampling adequacy</em> are important for FA. These two assumptions can be described and tested for as explained below.</p>
 <div id="sphericity" class="section level3" number="15.4.1">
 <h3><span class="header-section-number">15.4.1</span> Sphericity</h3>
-<p>Variables need to be correleated to a certain extent for us to able to summarize them into a smaller set of factors. Whether or not correlation matrix is statistically significantly different from zero can be tested with Bartlett’s test.</p>
-<p><span class="math inline">\(H_0:\)</span> Correlation matrix is zero
-<span class="math inline">\(H_1:\)</span> Correlation matrix is different from zero</p>
+<p>Variables need to be correlated to a certain extent for us to able to summarize them into a smaller set of factors. If data cloud on scatter plot is spherical (<em>spherical data</em>), the correlations in data are random and factor analysis is thus not accurate. <strong>Whether or not correlation matrix is statistically significantly different from identity matrix can be tested with <em>Bartlett’s test</em></strong>.</p>
+<p><span class="math inline">\(H_0:\)</span> Correlation matrix is equal to identity matrix
+<span class="math inline">\(H_1:\)</span> Correlation matrix is different from identity matrix</p>
 <p>If the test returns <span class="math inline">\(p \ge 0.05\)</span>, then we should not trust the results of factor analysis.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Assumption Checks | Bartlett's test of sphericity</code>.</p>
 </div>
 <div id="sampling-adequacy" class="section level3" number="15.4.2">
 <h3><span class="header-section-number">15.4.2</span> Sampling adequacy</h3>
-<p>In addition to correlations it is necessary that each factor is not related to only few variables. We can use Kaiser-Meyer-Olkin (KMO) measure to determine if sum of partial correlations is higher than sum of correlations or not. The value of the measure is interpreted as follows regarding the suitability of FA.</p>
+<p>In addition to correlations <strong>it is necessary that each factor is not related to only few variables</strong>. We can use Kaiser-Meyer-Olkin (KMO) measure to determine if sum of partial correlations is higher than sum of correlations or not. The value of the measure is interpreted as follows regarding the suitability of FA.</p>
 <ul>
 <li>0 … 0.6 - Not suitable</li>
-<li>6… 0.7 - Suitable</li>
+<li>6 … 0.7 - Suitable</li>
 <li>0.7 … 0.9 - Adequate</li>
-<li>0.9… 1 - Excellent</li>
+<li>0.9 … 1 - Excellent</li>
 </ul>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Assumption Checks | KMO measure of sampling adequacy</code>.</p>
 </div>
 </div>
 <div id="number-of-components-1" class="section level2" number="15.5">
 <h2><span class="header-section-number">15.5</span> Number of components</h2>
-<p>The methods that can be used to determine an optimal number of components are the same as those for PCA. For FA a further consideration can be the factor loadings or uniqueness. If some variable has a very high uniqueness, adding factors might increase the respective communality.</p>
+<p>The methods that can be used to determine an optimal number of components are the same as those for PCA, because PCs are equivalent to factors. For FA a further consideration can be the factor loadings or uniqueness. If some variable has a very high uniqueness, adding factors might increase the respective communality.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Number of Components</code>.</p>
 </div>
 <div id="interpretation-7" class="section level2" number="15.6">
 <h2><span class="header-section-number">15.6</span> Interpretation</h2>
 <div id="loadings-1" class="section level3" number="15.6.1">
 <h3><span class="header-section-number">15.6.1</span> Loadings</h3>
-<p>The interpretation of loadings in FA is similar to PCA. For FA only loadings that are higher than 0.3 or 0.5 should be considered and used for interpretation of factors.</p>
+<p>The interpretation of loadings in FA is similar to PCA, with the exception that factors now have an effect on variables. In FA only <strong>loadings that are higher than 0.3 or 0.5</strong> are usually considered and used for interpretation of factors.</p>
 <p>In Jamovi: <code>Factor &gt; Exploratory Factor Analysis | Factor Loadings | Hide loadings below: 0.5</code>.</p>
 </div>
 <div id="uniqueness-and-communality" class="section level3" number="15.6.2">
 <h3><span class="header-section-number">15.6.2</span> Uniqueness and communality</h3>
-<p>Uniqueness is a measure of proportion of variation explained by a particular variable and not by factors. Communality is the inverse of this (<span class="math inline">\(1-Uniquenss\)</span>), i.e. the variation of a variable that is shared with other variables.</p>
+<p><em>Uniqueness</em> is a measure of <strong>proportion of variation explained only by a particular variable and not by factors</strong>. <em>Communality</em> is the inverse of uniqueness (<span class="math inline">\(1-Uniquenss\)</span>), i.e. the <strong>variation of a variable that is shared with other variables</strong>.</p>
 </div>
 <div id="complexity" class="section level3" number="15.6.3">
 <h3><span class="header-section-number">15.6.3</span> Complexity</h3>
-<p>This can be calculated for each variable. It expresses the number of factors which load the variable.</p>
+<p>Complexity can be calculated for each variable and it expresses the <strong>number of factors which load each variable</strong>.</p>
 <hr />
 <p>FA is a controversial method in statistics because we can never be sure if the factors actually exist and were correctly estimated. This is due to the different options for choosing the number of factors, methods of estimating the model, rotation techniques and subjectivity of interpreting factors.</p>
 
@@ -479,9 +474,6 @@ div.csl-indent {
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-crawley_r_2013" class="csl-entry">
 Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
-</div>
-<div id="ref-hastie_elements_2017" class="csl-entry">
-Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2017. <em>The <span>Elements</span> of <span>Statistical</span> <span>Learning</span>: <span>Data</span> <span>Mining</span>, <span>Inference</span>, and <span>Prediction</span>, <span>Second</span> <span>Edition</span></em>. 2nd ed. Springer <span>Series</span> in <span>Statistics</span>. New York: Springer-Verlag.
 </div>
 <div id="ref-navarro_learning_2018" class="csl-entry">
 Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.

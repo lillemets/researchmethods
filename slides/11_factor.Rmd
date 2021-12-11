@@ -4,8 +4,7 @@ subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
 output_yaml: _output.yml
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
@@ -17,7 +16,7 @@ library('DiagrammeR');library('psych')
 # Options
 options(scipen = F, digits = 3)
 # Set colors
-Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+source('/home/jrl/work/resmeth/slides/variables.R')
 ```
 
 class: center middle clean
@@ -34,11 +33,17 @@ class: center middle inverse
 
 ## Factor analysis (FA) and principal component analysis (PCA)
 
-In PCA we are attempting to maximize the **total variation in data**. In factor analysis we instead try to maximize some **underlying shared variation between variables**.
+In PCA we attempt to maximize the **total variation in data**. 
 
-PCs are uniquely defined while factors depend on estimation and rotation method.
+In factor analysis we instead try to maximize some **underlying shared variation between variables**.
 
-In PCA each PC is a linear combination of variables but in FA the variables are expressed as linear combinations of factors.
+--
+
+PCs are uniquely defined while **factors depend on estimation and rotation method**.
+
+--
+
+In PCA each PC is a linear combination of variables but **in FA the variables are expressed as linear combinations of factors**.
 
 ---
 
@@ -96,7 +101,7 @@ If the goal is to **determine some underlying variables**, then we should use FA
 
 ## Orthogonal factor model
 
-The factor model is defined as
+Variables are loaded by factors.  Each variable can thus be represented as a linear combination of factor loadings as follows:
 
 $$x_j = q_{jl} F_l + U_j +\mu_j,$$
 
@@ -118,13 +123,21 @@ class: center middle inverse
 
 ## Estimating the model
 
-There are three methods for extracting factors. We are not going to cover the differences but these are:
+The idea behind FA is to **explain the common variance of varibles by extracting factors from the correlations between variables**. 
+
+--
+
+There are three methods for extracting factors:
 
 - minimum residuals, 
-- maximum likelihood, and
+- maximum likelihood and
 - principal axis method.
 
 ---
+
+A common example of factors are **personality traits**: we can not measure personality directly but we can ask subjects various questions and then use factor analysis to summarize the responses into factors that represent these traits.
+
+--
 
 Let's use data on 25 personality items of 2800 people.
 
@@ -133,7 +146,7 @@ Let's use data on 25 personality items of 2800 people.
 Oie <- psych::bfi
 Items <- Oie[, 1:25]
 #Oie <- Oie[complete.cases(Items), ]
-kable(head(Oie))
+head(Oie) %>% kable
 ```
 ]
 
@@ -204,8 +217,19 @@ Names <- c(
 )
 ```
 
-???
-The first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness.
+---
+
+In psychology *Big Five personality traits* is a suggested taxonomy of psychological attributes that includes the following traits: 
+
+- agreeableness (friendly/compassionate vs. critical/rational)
+- conscientiousness(efficient/organized vs. extravagant/careless)
+- extraversion(outgoing/energetic vs. solitary/reserved)
+- neuroticism (sensitive/nervous vs. resilient/confident)
+- openness (inventive/curious vs. consistent/cautious)
+
+--
+
+So we assume that there are 5 latent factors hidden behind the accuracy of statements.
 
 ---
 
@@ -228,17 +252,19 @@ tabLoadings(faItems) %>% kable
 
 ## Rotations
 
-To better define factors that best separate our variables, we can apply a rotation on factors. 
+We can apply a rotation on factors **to better distinguish factors**.
 
-This results in an adjusted loadings matrix. 
+The result of rotation is an **adjusted loadings matrix, where factors are more distinct and thus more intuitive to interpret**. 
 
-There are several techniques for rotation. 
+While rotation introduces some subjectivity as there are no rules about the choice of rotation, it often **eases description of factors**.
+
+There are many rotations to choose from but we look at three: varimax, oblimin and quartimax.
 
 ---
 
 ### Varimax
 
-This rotation involves maximizing variances of squared loadings **within factors**. Factors remain **orthogonal**, thus uncorrelated.
+This rotation maximizes variances of squared loadings **within factors**. **Each factor has few variables with high loadings**. Factors are **uncorrelated**.
 
 .compact[
 ``` {r}
@@ -250,7 +276,7 @@ fa(Items, nfactors = 5, rotate = 'varimax') %>% tabLoadings %>% kable
 
 ### Oblimin
 
-This rotation also involves maximization of squared loading variances **within factors** but with possibly **oblique** factors.
+This rotation also involves maximization of squared loading variances **within factors** but with possibly **correlated** factors.
 
 .compact[
 ``` {r}
@@ -262,7 +288,7 @@ fa(Items, nfactors = 5, rotate = 'oblimin') %>% tabLoadings %>% kable
 
 ### Quartimax
 
-This rotation aims to maximize variances of factor loadings **within variables**. The result is a factor structure in which each variable loads as few factors as possible.
+This rotation aims to maximize variances of factor loadings **within variables**. The result is a factor structure in which **each variable is loaded by only few factors**.
 
 .compact[
 ``` {r}
@@ -287,15 +313,21 @@ abline(v = 0, h = 0, lty = 2)
 
 ---
 
-## Assumptions
+class: center middle inverse
 
-While PCA has essentially no assumptions, FA has a few. 
+# Assumptions
+
+---
 
 ### Sphericity
 
-**Variables need to be correleated** to a certain extent for us to able to summarize them into a smaller set of factors. Whether or not correlation matrix is statistically significantly different from zero (identity matrix) can be tested with Bartlett's test.
+**Variables need to be correleated** to a certain extent for us to able to summarize them into a smaller set of factors. 
 
-$H_0:$ Correlation matrix is zero
+If data cloud on scatter plot is spherical, the correlations in data are random and factor analysis is thus not accurate. 
+
+Whether or not correlation matrix is statistically significantly different from zero (identity matrix) can be tested using *Bartlett's test*.
+
+$H_0:$ Correlation matrix is zero  
 $H_1:$ Correlation matrix is different from zero
 
 If the test returns $p \ge 0.05$, then we should not trust the results of factor analysis.
@@ -319,9 +351,9 @@ P-value here is `r cortest.bartlett(cor(Items, use = 'pairwise.complete.obs'), n
 In addition to correlations it is necessary that **each factor is not related to only few variables**. We can use Kaiser-Meyer-Olkin (KMO) measure to determine if sum of partial correlations is higher than sum of correlations or not. The value of the measure is interpreted as follows regarding the suitability of FA.
 
 - 0 ... 0.6 - Not suitable
-- 6... 0.7 - Suitable
+- 6 ... 0.7 - Suitable
 - 0.7 ... 0.9 - Adequate
-- 0.9... 1 - Excellent
+- 0.9 ... 1 - Excellent
 
 --
 
@@ -343,7 +375,7 @@ class: center middle inverse
 
 ## Loadings
 
-The interpretation of loadings in FA is similar to PCA. For FA only loadings that are higher than 0.5 should be considered and used for interpretation of factors.
+Loadings represent the **influence factors have on variables.** 
 
 .compact[
 ``` {r}
@@ -385,33 +417,14 @@ fa.extend(Oie, 5, ov = 1:25, ev = 26:28) %>% extension.diagram
 
 ## Uniqueness and communality
 
-Uniqueness is a measure of proportion of variation explained by a particular variable and not by factors. Communality is the inverse of this.
+These measures characterize **each variable** in FA.
 
-.compact[
-``` {r}
-faItems %>% tabLoadings %>% 
-  cbind(Uniq. = faItems$uniquenesses, Comm. = faItems$communalities) %>%
-  round(2) %>% 
-  kable
-```
-]
+*Uniqueness* is a measure of proportion of variation **explained by a particular variable and not by factors**. 
+
+*Communality* is the inverse of this, i.e. the **variation of a variable that is shared with other variables**.
 
 ???
 Communality is the variation of a variable that is shared with other variables.
-
----
-
-## Complexity
-
-This can be calculated for each variable. It expresses the number of factors which load the variable.
-
-.compact[
-``` {r}
-faItems %>% tabLoadings %>% 
-  cbind(Comp. = faItems$complexity) %>% round(2) %>% 
-  kable
-```
-]
 
 ---
 
@@ -422,7 +435,21 @@ Recall the factor model $x_j = q_{jl} F_l + U_j +\mu_j$.
 faItems %>% tabLoadings %>% 
   cbind(Uniq. = faItems$uniquenesses, mu = colMeans(Items, na.rm = T)) %>% 
   round(2) %>% 
-  kable
+  kable(col.names = c(Traits[Ordering], 'Uniqueness', 'Mean'))
+```
+]
+
+---
+
+## Complexity
+
+This can be calculated for **each variable** and it expresses the **number of factors which load the variable**.
+
+.compact[
+``` {r}
+faItems %>% tabLoadings %>% 
+  cbind(Comp. = faItems$complexity) %>% round(2) %>% 
+  kable(col.names = c(Traits[Ordering], 'Complexity'))
 ```
 ]
 
@@ -430,11 +457,17 @@ faItems %>% tabLoadings %>%
 
 ## Scores
 
-As for PCA we can calculate a score of each factor for each observation.
+As for PCA, we can calculate a score of each factor for each observation.
 
+.compact[
 ``` {r}
-cbind(Oie[26:28], faItems$scores) %>% head(10) %>% kable
+cbind(Oie[26:28], faItems$scores) %>% head(20) %>% kable
 ```
+]
+
+--
+
+We can use these scores, for example, to see how social status is related to personality.
 
 ---
 
@@ -472,9 +505,47 @@ par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,3,0),
 for (i in 1:5) {
   plot(faItems$scores[, i] ~ Oie$age, 
           xlab = "Age", ylab = "Factor score", main = Traits[Ordering][i], 
-       pch = 20, cex = .01)
+       pch = 20, cex = .01, col = Col['clear'])
+  #abline(lm(faItems$scores[, i] ~ Oie$age), col = Col['red'])
 }
 ```
+
+---
+
+## FA is a controversial method
+
+We can never be sure if the factors actually exist and were correctly estimated. 
+
+This is due to the different options a researcher to choose
+
+- the number of factors, 
+- method of estimating the model, 
+- rotation technique and
+- interpreting factors.
+
+---
+
+
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `gss_spending`.
+
+>Find the hidden factors behind respondents' attitudes toward public spending. Save the factor scores as new variables.
+
+--
+
+>Explain the factors by respondents' background.
+
+--
+
+> If you find a strong association test its statistical significance.
 
 ---
 

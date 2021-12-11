@@ -4,8 +4,7 @@ subtitle: Research methods
 author: Jüri Lillemets
 date: "`r Sys.Date()`"
 output_yaml: _output.yml
-editor_options: 
-  chunk_output_type: console
+knit: rmarkdown::render
 ---
 
 ``` {r setup, include = F}
@@ -16,7 +15,7 @@ library('magrittr');library('knitr')
 # Options
 options(scipen = F, digits = 3)
 # Set colors
-Col <- c(red = '#e6457a', green = '#b0e645', blue = '#45cbe6')
+source('/home/jrl/work/resmeth/slides/variables.R')
 ```
 
 class: center middle clean
@@ -33,19 +32,21 @@ class: center middle inverse
 
 ## Multivariate statistics
 
+In general, we do not test any hypotheses nor estimate statistical significance.
+
 There are no response or predictor variables. 
 
 Response variable is not predicted from a model.
 
-Instead we examine the overall structure of data to find patterns. 
+Instead we examine the overall **structure of data to find patterns**.
 
-Principal component analysis (PCA) is one of the methods in the field of multivariate statistics. 
+*Principal component analysis* (*PCA*) is one of the methods in the field of multivariate statistics. 
 
 ---
 
 ## Principal component analysis
 
-The aim is to summarize many variables into one, few or several new variables.
+The aim is to **summarize continuous variables** into one, few or several new variables.
 
 This is done by determining a set of standardized **linear combinations** that would explain a maximum amount of variation in data.
 
@@ -66,17 +67,38 @@ Oie[, c(1,5,6,10)] <- Oie[, c(1,5,6,10)] * -1
 rownames(Oie) <- Decathlon$DecathleteName
 ```
 
-Below are first rows.
+--
+
+Below are the first rows in the data set.
 
 .smaller[
 ``` {r}
-kable(head(Oie))
+head(Oie, 10) %>% kable
 ```
 ]
 
 --
 
-> How could we summarise all of these events into a single score?
+Why would we want to summarize these variables?
+
+---
+
+Variables are linearly correlated.
+
+``` {r}
+cor(Oie) %>% kable
+```
+
+---
+
+``` {r}
+par(family = 'RobotoCondensed')
+pairs(Oie, pch = 20, cex = .5, col = Col['clear'])
+```
+
+--
+
+> How could we summarise all of this variation into a single score?
 
 ---
 
@@ -90,7 +112,7 @@ where $b_{jp}$ is a weight of variable $x_p$ of a particular $\xi_j$.
 
 .smaller[
 ``` {r}
-kable(head(Oie))
+head(Oie) %>% kable
 ```
 ]
 
@@ -116,13 +138,16 @@ Each following PC is chosen so that it is orthogonal to preceding PC.
 Suppose we have two variables:
 
 ```{r, fig.height = 4.5}
-Vars <- Oie[, c('longjump', 'highjump')]
-plotEst <- function() {
+vars <- Oie[, c('shotput', 'polevault')]
+vars <- list(Raw = vars, 
+             Center = vars %>% lapply(scale, scale = F) %>% data.frame, 
+             Scale = vars %>% lapply(scale) %>% data.frame)
+plotEst <- function(data, ...) {
   par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0), pty = 's')
-  plot(Vars[[1]] ~ Vars[[2]], xlab = "Long jump", ylab = "High jump",
-       cex = .6)
+  plot(data[[2]] ~ data[[1]], xlab = "Pole vault", ylab = "Shot put",
+       pch = 20, cex = 1, col = Col['clear'], ...)
 }
-plotEst()
+plotEst(vars$Raw)
 ```
 
 ---
@@ -132,13 +157,12 @@ The line that maximizes variation and has smallest orthogonal distance to data p
 ``` {r}
 par(mfrow = 1:2)
 # Data cloud
-plotEst()
-# First PC
-Vars <- Vars %>% lapply(scale) %>% data.frame
-eigHiLo <- cov(Vars) %>% eigen
-plotEst()
-eigHiLo <- cov(Vars) %>% eigen
-lines(Vars[[2]], (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * (Vars[[2]] - mean(Vars[[2]])) + mean(Vars[[1]])), 
+plotEst(vars$Raw)
+# PC1
+plotEst(vars$Raw)
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
       col = Col['red'])
 ```
 
@@ -151,13 +175,20 @@ lines(Vars[[2]], (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * (Vars[[2]] - mean(Vars[[2]
 It's theoretically similar to least squares estimation, but mathematically different.
 
 ```{r}
-# First PC and linear regression
-plotEst()
-lines(Vars[[2]], (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * (Vars[[2]] - mean(Vars[[2]])) + mean(Vars[[1]])), 
-      col = Col['red'])
-lmHiLo <- lm(Vars[[1]] ~ Vars[[2]])
+par(mfrow = 1:2)
+# OLS
+plotEst(vars$Raw, main = "OLS")
+lmHiLo <- lm(vars$Raw[[2]] ~ vars$Raw[[1]])
 abline(lmHiLo, col = Col['blue'])
+# PC1
+plotEst(vars$Raw, main = "PC1")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
+      col = Col['red'])
 ```
+
+OLS minimizes residuals with respect to response, PC1 minimizes orthogonal distances to data points
 
 ???
 
@@ -169,16 +200,27 @@ Each following PC is orthogonal (perpendicular) to the first PC.
 
 ``` {r}
 par(mfrow = 1:2)
-# First PC
-plotEst()
-lines(Vars[[2]], (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * (Vars[[2]] - mean(Vars[[2]])) + mean(Vars[[1]])), 
+# PC1
+plotEst(vars$Scale)
+eigHiLo <- cov(vars$Scale) %>% eigen
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
       col = Col['red'])
-# First and second PC
-plotEst()
-lines(Vars[[2]], (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * (Vars[[2]] - mean(Vars[[2]])) + mean(Vars[[1]])), 
+# PC1 and PC2
+plotEst(vars$Scale)
+eigHiLo <- cov(vars$Scale) %>% eigen
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
       col = Col['red'])
-lines(Vars[[1]], (eigHiLo$vec[1,2]/eigHiLo$vec[2,2] * (Vars[[1]] - mean(Vars[[1]])) + mean(Vars[[2]])), 
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
       col = Col['blue'])
+# Legend
+pcLeg <- function() {
+  legend('topleft', legend = c('PC1', 'PC2'), col = Col[c('red', 'blue')],
+         lwd = 1, border = NA, box.col = NA)
+}
+pcLeg()
 ```
 
 ---
@@ -191,22 +233,47 @@ The process involves transforming data points to a new coordinate system:
 
 ---
 
-This is what transforming data to a new coordinate system means:
+What does transforming data to a new coordinate system mean?
 
 ``` {r}
-# First and second PC
-par(mfrow = 1:2)
-plotEst()
-lines(Vars[[2]], (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * (Vars[[2]] - mean(Vars[[2]])) + mean(Vars[[1]])), 
+par(mfrow = c(2,2))
+# Raw
+plotEst(vars$Raw, main = "Raw data")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
       col = Col['red'])
-lines(Vars[[1]], (eigHiLo$vec[1,2]/eigHiLo$vec[2,2] * (Vars[[1]] - mean(Vars[[1]])) + mean(Vars[[2]])), 
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
       col = Col['blue'])
-# First and second PC rotated
-pcaHiLo <- prcomp(Vars, scale = T)
+pcLeg() # Legend
+# Center
+plotEst(vars$Cen, main = "Center")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = Col['red'])
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+# Scale
+plotEst(vars$Scale, main = "Scale")
+eigHiLo <- cov(vars$Scale) %>% eigen
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = Col['red'])
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+# Rotate
+pcaHiLo <- prcomp(vars$Raw, scale = T) %>% summary
 par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0), pty = 's')
-plot(pcaHiLo$x, cex = .6)
+plotEst(as.data.frame.matrix(pcaHiLo$x), main = "Rotate")
 abline(h = 0, col = Col['red'])
 abline(v = 0, col = Col['blue'])
+pcLeg() # Legend
 ```
 
 ???
@@ -218,8 +285,8 @@ How do we know how exactly to scale and rotate axes?
 
 We use some parameters derived from data:
 
-- for scaling we use **eigenvalues** and 
-- for rotating we use **eigenvectors**.
+- for scaling we use *eigenvalues* and 
+- for rotating we use *eigenvectors*.
 
 ---
 
@@ -230,13 +297,15 @@ There are two methods for calculating eigenvalues and eigenvectors from data, de
 1. covariance or correlation matrix $\Sigma$ of data matrix $X : n \times p$ or
 2. the raw data matrix $X : n \times p$.
 
+---
+
 ### Spectral decomposition
 
 This calculation uses correlation or covariance matrix $\Sigma$.
 
 Because $\Sigma = V D V^T$, we can find eigenvalues from $D$ and corresponding eigenvectors from $V$.
 
-Computationally more simple
+Computationally more simple.
 
 ---
 
@@ -246,11 +315,11 @@ This calculation uses data matrix with raw values $X : n \times p$.
 
 Because $X = UDV^T$, we can find eigenvalues from $D$ and corresponding eigenvectors from $U$.
 
-Numerically more stable
+Numerically more stable.
 
 ---
 
-Because PCA involves maximizing variation, variables with higher variance are given more importance. Consider scaling variables: $x\prime = (x - \mu) / \sigma$ prior to estimation.
+Because PCA involves maximizing variation, variables with higher variance are given more importance. Consider scaling variables ( $x\prime = (x - \mu) / \sigma$ ) prior to estimation.
 
 ``` {r}
 # Example of scales
@@ -299,7 +368,11 @@ class: center middle inverse
 
 ## Variation explained
 
+The proportion of total *variation explained* by a $j$th PC can be found from its eigenvalues: it is the proportion of sum of eigenvalues, i.e. $\lambda_j / \Sigma^p_{j=1} \lambda$.
+
 Total variation explained by PCs illustrates how much information is preserved when summarizing data into a particular number of PCs.
+
+--
 
 ``` {r}
 kable(t(cbind(`Variation explained, %` = pcDec$sdev^2 * 10, 
@@ -316,7 +389,7 @@ kable(t(cbind(`Variation explained, %` = pcDec$sdev^2 * 10,
 
 ## Loadings
 
-Variables "load" PCs and thus each variable has a particular loading on each PC. These can be understood as weights.
+Variables "load" PCs and thus each variable has a particular *loading* on each PC. These can be understood as *weights*.
 
 .smaller[
 ``` {r}
@@ -341,7 +414,7 @@ Recall the representation of linear combinations $\xi_j = b_{j1}x_1 + b_{j2}x_2+
 
 .smaller[
 ``` {r}
-kable(head(pcDec$x, 10))
+head(pcDec$x, 10) %>% kable
 ```
 ]
 
@@ -351,7 +424,7 @@ kable(head(pcDec$x, 10))
 
 ``` {r}
 par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,2,4))
-biplot(pcDec, xlabs = rep('·', nrow(Oie)), cex = .8)
+biplot(pcDec, xlabs = rep('·', nrow(Oie)))
 ```
 
 --
@@ -366,12 +439,29 @@ How are our results related to actual points given to athletes?
 par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0), mfrow = c(1,3))
 for (i in 1:3) {
   plot(pcDec$x[, i], Decathlon$Totalpoints, 
-       xlab = paste0("PC", i), ylab = "Points awarded")
+       xlab = paste0("PC", i), ylab = "Points awarded", 
+       pch = 20, cex = 1, col = Col['clear'])
 }
 ```
 
 ???
 It seems like technical skills are given higher importance. Methodology for total points calculation is from 1985.
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `UN98`.
+
+> Are variables linearly correlated?
+
+> Summarize the social indicators into a single index. What are the weights of these variables?
+
+> Use the index to describe social situation in world regins.
 
 ---
 

@@ -289,7 +289,6 @@ div.csl-indent {
 <li class="chapter" data-level="13.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#deviance"><i class="fa fa-check"></i><b>13.4.1</b> Deviance</a></li>
 <li class="chapter" data-level="13.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#pseudo-r2"><i class="fa fa-check"></i><b>13.4.2</b> Pseudo <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>13.4.3</b> Likelihood ratio test</a></li>
-<li class="chapter" data-level="13.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#overdispersion"><i class="fa fa-check"></i><b>13.4.4</b> Overdispersion</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="logistic-regression.html"><a href="logistic-regression.html#classification"><i class="fa fa-check"></i><b>13.5</b> Classification</a></li>
 </ul></li>
@@ -302,12 +301,13 @@ div.csl-indent {
 <li class="chapter" data-level="14.3.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#spectral-decomposition"><i class="fa fa-check"></i><b>14.3.1</b> Spectral decomposition</a></li>
 <li class="chapter" data-level="14.3.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#singular-value-decomposition"><i class="fa fa-check"></i><b>14.3.2</b> Singular value decomposition</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>14.4</b> Number of components</a></li>
-<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-6"><i class="fa fa-check"></i><b>14.5</b> Interpretation</a>
+<li class="chapter" data-level="14.4" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#assumptions"><i class="fa fa-check"></i><b>14.4</b> Assumptions</a></li>
+<li class="chapter" data-level="14.5" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#number-of-components"><i class="fa fa-check"></i><b>14.5</b> Number of components</a></li>
+<li class="chapter" data-level="14.6" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#interpretation-6"><i class="fa fa-check"></i><b>14.6</b> Interpretation</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>14.5.1</b> Variation explained</a></li>
-<li class="chapter" data-level="14.5.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>14.5.2</b> Loadings</a></li>
-<li class="chapter" data-level="14.5.3" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#biplots"><i class="fa fa-check"></i><b>14.5.3</b> Biplots</a></li>
+<li class="chapter" data-level="14.6.1" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#variation-explained"><i class="fa fa-check"></i><b>14.6.1</b> Variation explained</a></li>
+<li class="chapter" data-level="14.6.2" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#loadings"><i class="fa fa-check"></i><b>14.6.2</b> Loadings</a></li>
+<li class="chapter" data-level="14.6.3" data-path="principal-component-analysis.html"><a href="principal-component-analysis.html#biplots"><i class="fa fa-check"></i><b>14.6.3</b> Biplots</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="factor-analysis.html"><a href="factor-analysis.html"><i class="fa fa-check"></i><b>15</b> Factor analysis</a>
@@ -320,7 +320,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.3.2" data-path="factor-analysis.html"><a href="factor-analysis.html#oblimin"><i class="fa fa-check"></i><b>15.3.2</b> Oblimin</a></li>
 <li class="chapter" data-level="15.3.3" data-path="factor-analysis.html"><a href="factor-analysis.html#quartimax"><i class="fa fa-check"></i><b>15.3.3</b> Quartimax</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="factor-analysis.html"><a href="factor-analysis.html#assumptions"><i class="fa fa-check"></i><b>15.4</b> Assumptions</a>
+<li class="chapter" data-level="15.4" data-path="factor-analysis.html"><a href="factor-analysis.html#assumptions-1"><i class="fa fa-check"></i><b>15.4</b> Assumptions</a>
 <ul>
 <li class="chapter" data-level="15.4.1" data-path="factor-analysis.html"><a href="factor-analysis.html#sphericity"><i class="fa fa-check"></i><b>15.4.1</b> Sphericity</a></li>
 <li class="chapter" data-level="15.4.2" data-path="factor-analysis.html"><a href="factor-analysis.html#sampling-adequacy"><i class="fa fa-check"></i><b>15.4.2</b> Sampling adequacy</a></li>
@@ -380,7 +380,7 @@ div.csl-indent {
 <div id="generalized-linear-models" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Generalized linear models</h2>
 <p>See the introduction of section 13 in <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span>.</p>
-<p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Thus, <strong>it is necessary to define an error structure prior to estimation</strong>. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure. Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name <em>generalized linear models</em> (GLM).</p>
+<p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Even transforming variables or altering functional form might often not solve the problem. Thus, <strong>it is necessary to define an error structure prior to estimation</strong>. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure (binomial errors). Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name <em>generalized linear models</em> (GLM).</p>
 <div id="logit-link" class="section level3" number="13.1.1">
 <h3><span class="header-section-number">13.1.1</span> Logit link</h3>
 <p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.3 on link function and section 13.4 on proportion data and binomial errors.</p>
@@ -408,7 +408,7 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 <h2><span class="header-section-number">13.4</span> Model fit</h2>
 <div id="deviance" class="section level3" number="13.4.1">
 <h3><span class="header-section-number">13.4.1</span> Deviance</h3>
-<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.11.</p>
+<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.6.</p>
 <p>When fitted values are determined as a result of MLE, using residuals is not straightforward. A MLE equivalent of RSS in case of OLS is <em>deviance</em> that can also be used to assess the goodness of fit of a GLM. <strong>Deviance expresses the difference in log-likelihood between current and saturated model</strong>. For binomial error structure the deviance is expressed as</p>
 <p><span class="math display">\[D = 2 \sum y ln(y/\mu) + (n - y) ln(n - y) / (n - \mu),\]</span></p>
 <p>where <span class="math inline">\(y\)</span> are the observed values of response, <span class="math inline">\(\mu\)</span> the mean value of response and <span class="math inline">\(n\)</span> the number of observations.</p>
@@ -416,7 +416,7 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 </div>
 <div id="pseudo-r2" class="section level3" number="13.4.2">
 <h3><span class="header-section-number">13.4.2</span> Pseudo <span class="math inline">\(R^2\)</span></h3>
-<p>Because ML does not involve the minimization of squared residuals, it is not suitable to use residuals via <span class="math inline">\(R^2\)</span> to determine model fit. Still, there are equivalent pseudo-<span class="math inline">\(R^2\)</span> measures for expressing model fit for MLE that are calculated using likelihoods. While there are several such measures, most common is the <em>McFadden’s pseduo-<span class="math inline">\(R^2\)</span></em>:</p>
+<p>Because MLE does not involve the minimization of squared residuals, it is not suitable to use residuals via <span class="math inline">\(R^2\)</span> to determine model fit. Still, there are equivalent pseudo-<span class="math inline">\(R^2\)</span> measures for expressing model fit for MLE that are calculated using likelihoods. While there are several such measures, most common is the <em>McFadden’s pseduo-<span class="math inline">\(R^2\)</span></em>:</p>
 <p><span class="math display">\[R^2 = 1 - \frac{ln(\theta_{reduced})}{ln(\theta_{full})},\]</span></p>
 <p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of model with only intercept and <span class="math inline">\(\theta_{full}\)</span> likelihood of model with predictors. As such, <strong>the measure illustrates how much does the addition of predictors improve the model</strong>. The values lie between 0 and 1 and usually values <span class="math inline">\(&gt;0.4\)</span> are considered to indicate a good fit.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Fit | McFadden's R^2</code>.</p>
@@ -431,17 +431,27 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 <p>If difference can not be shown, then the simpler model should be preferred.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Coefficients | Likelihood ratio tests</code>.</p>
 </div>
-<div id="overdispersion" class="section level3" number="13.4.4">
-<h3><span class="header-section-number">13.4.4</span> Overdispersion</h3>
-<p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.12.</p>
-<p>Unobserved omitted variables inflate residual deviances resulting in difficulties establishing the significance of predictors.</p>
-</div>
 </div>
 <div id="classification" class="section level2" number="13.5">
 <h2><span class="header-section-number">13.5</span> Classification</h2>
 <p>The model fitted values of response variable lie between 0 and 1. These can be interpreted as <strong>probabilities that <span class="math inline">\(y = 1\)</span> for each observation</strong>. In case we wish to have predictions on original binary scale, we need to choose a cutoff point that determines if a probability should be classified as 0 or 1.</p>
 <p>The classified predictions can be tabulated against true classes which results in a classification table or a <em>confusion matrix</em>. Such table can then be used to calculate measures such as <em>accuracy</em>, <em>specificity</em>, <em>sensitivity</em>, <em>AUC</em> and others that illustrate how good the model is at predicting.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Prediction</code>.</p>
+<!--
+
+## Residuals
+
+See @crawley_r_2013 section ???.
+
+## Overdispersion
+
+See @crawley_r_2013 section 13.12.
+
+Overdispersion may also occur when relevant variables are omitted or the error structure is not correctly specified. In either case the result is that deviance is overestimated and thus it is difficult to establish the significance of predictors. A general solution is to use quasi-likelihood to determine a more suitable variance function.
+
+Also add info on odds and odds ratios.
+
+-->
 
 </div>
 </div>
