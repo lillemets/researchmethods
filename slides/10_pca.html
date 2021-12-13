@@ -4,7 +4,7 @@
     <title>Principal component analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-12-11" />
+    <meta name="date" content="2021-12-13" />
     <script src="10_pca_files/header-attrs-2.11/header-attrs.js"></script>
     <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Principal component analysis
 ## Research methods
 ### Jüri Lillemets
-### 2021-12-11
+### 2021-12-13
 
 ---
 
@@ -70,18 +70,18 @@ Below are the first rows in the data set.
 
 .smaller[
 
-|                 | run100| longjump| shotput| highjump| run400| run110hurdle| polevault| discus| javelin| run1500|
-|:----------------|------:|--------:|-------:|--------:|------:|------------:|---------:|------:|-------:|-------:|
-|Tomas Dvorak     |  -10.5|     8.03|    16.7|     2.09|  -48.4|        -13.9|      47.9|   4.85|    67.2|    -282|
-|Roman Sebrle     |  -10.6|     7.88|    15.2|     2.15|  -49.0|        -14.0|      47.2|   4.75|    67.2|    -275|
-|Erki Nool        |  -10.7|     7.78|    14.1|     1.97|  -47.2|        -14.4|      44.2|   5.55|    69.1|    -276|
-|Chris Huffins    |  -10.5|     7.71|    15.3|     2.09|  -48.3|        -13.9|      49.5|   4.70|    56.6|    -279|
-|Aleksandr Yurkov |  -10.7|     7.93|    15.3|     2.03|  -49.7|        -14.6|      47.9|   5.15|    58.9|    -272|
-|Dean Macey       |  -10.8|     7.77|    14.6|     2.09|  -46.4|        -14.5|      43.4|   4.80|    60.4|    -263|
-|Attila Zsivoczky |  -10.6|     7.24|    15.7|     2.18|  -48.1|        -14.9|      45.6|   4.65|    63.6|    -263|
-|Frank Busemann   |  -10.8|     7.92|    14.5|     2.03|  -48.9|        -14.7|      43.7|   5.05|    62.8|    -263|
-|Stefan Schmid    |  -10.8|     7.59|    14.1|     2.01|  -49.0|        -14.2|      44.2|   5.06|    67.6|    -272|
-|Thomas Pappas    |  -10.7|     7.41|    15.3|     2.14|  -48.9|        -14.3|      45.8|   5.10|    63.5|    -300|
+|                 | m100| Longjump| Shotput| Highjump| m400| m110hurdles| Discus| Polevault| Javelin| m1500|
+|:----------------|----:|--------:|-------:|--------:|----:|-----------:|------:|---------:|-------:|-----:|
+|Tomas Dvorak     | 10.5|     8.03|    16.7|     2.09| 48.4|        13.9|   47.9|      4.85|    67.2|   282|
+|Roman Sebrle     | 10.6|     7.88|    15.2|     2.15| 49.0|        14.0|   47.2|      4.75|    67.2|   275|
+|Erki Nool        | 10.7|     7.78|    14.1|     1.97| 47.2|        14.4|   44.2|      5.55|    69.1|   276|
+|Chris Huffins    | 10.5|     7.71|    15.3|     2.09| 48.3|        13.9|   49.5|      4.70|    56.6|   279|
+|Aleksandr Yurkov | 10.7|     7.93|    15.3|     2.03| 49.7|        14.6|   47.9|      5.15|    58.9|   272|
+|Dean Macey       | 10.8|     7.77|    14.6|     2.09| 46.4|        14.5|   43.4|      4.80|    60.4|   263|
+|Attila Zsivoczky | 10.6|     7.24|    15.7|     2.18| 48.1|        14.9|   45.6|      4.65|    63.6|   263|
+|Frank Busemann   | 10.8|     7.92|    14.5|     2.03| 48.9|        14.7|   43.7|      5.05|    62.8|   263|
+|Stefan Schmid    | 10.8|     7.59|    14.1|     2.01| 49.0|        14.2|   44.2|      5.06|    67.6|   272|
+|Thomas Pappas    | 10.7|     7.41|    15.3|     2.14| 48.9|        14.3|   45.8|      5.10|    63.5|   300|
 ]
 
 --
@@ -92,19 +92,21 @@ Why would we want to summarize these variables?
 
 Variables are linearly correlated.
 
+.smaller[
 
-|             | run100| longjump| shotput| highjump| run400| run110hurdle| polevault| discus| javelin| run1500|
-|:------------|------:|--------:|-------:|--------:|------:|------------:|---------:|------:|-------:|-------:|
-|run100       |  1.000|    0.440|   0.130|    0.097|  0.644|        0.493|     0.130|  0.154|   0.010|  -0.018|
-|longjump     |  0.440|    1.000|   0.269|    0.355|  0.259|        0.412|     0.186|  0.295|   0.199|   0.044|
-|shotput      |  0.130|    0.269|   1.000|    0.171|  0.023|        0.268|     0.705|  0.311|   0.493|  -0.131|
-|highjump     |  0.097|    0.355|   0.171|    1.000|  0.105|        0.240|     0.137|  0.100|   0.031|   0.008|
-|run400       |  0.644|    0.259|   0.023|    0.105|  1.000|        0.454|     0.068|  0.132|  -0.004|   0.418|
-|run110hurdle |  0.493|    0.412|   0.268|    0.240|  0.454|        1.000|     0.239|  0.293|   0.125|   0.086|
-|polevault    |  0.130|    0.186|   0.705|    0.137|  0.068|        0.239|     1.000|  0.300|   0.455|  -0.033|
-|discus       |  0.154|    0.295|   0.311|    0.100|  0.132|        0.293|     0.300|  1.000|   0.249|   0.074|
-|javelin      |  0.010|    0.199|   0.493|    0.031| -0.004|        0.125|     0.455|  0.249|   1.000|   0.031|
-|run1500      | -0.018|    0.044|  -0.131|    0.008|  0.418|        0.086|    -0.033|  0.074|   0.031|   1.000|
+|            |   m100| Longjump| Shotput| Highjump|   m400| m110hurdles| Discus| Polevault| Javelin|  m1500|
+|:-----------|------:|--------:|-------:|--------:|------:|-----------:|------:|---------:|-------:|------:|
+|m100        |  1.000|   -0.440|  -0.130|   -0.097|  0.644|       0.493| -0.130|    -0.154|  -0.010| -0.018|
+|Longjump    | -0.440|    1.000|   0.269|    0.355| -0.259|      -0.412|  0.186|     0.295|   0.199| -0.044|
+|Shotput     | -0.130|    0.269|   1.000|    0.171| -0.023|      -0.268|  0.705|     0.311|   0.493|  0.131|
+|Highjump    | -0.097|    0.355|   0.171|    1.000| -0.105|      -0.240|  0.137|     0.100|   0.031| -0.008|
+|m400        |  0.644|   -0.259|  -0.023|   -0.105|  1.000|       0.454| -0.068|    -0.132|   0.004|  0.418|
+|m110hurdles |  0.493|   -0.412|  -0.268|   -0.240|  0.454|       1.000| -0.239|    -0.293|  -0.125|  0.086|
+|Discus      | -0.130|    0.186|   0.705|    0.137| -0.068|      -0.239|  1.000|     0.300|   0.455|  0.033|
+|Polevault   | -0.154|    0.295|   0.311|    0.100| -0.132|      -0.293|  0.300|     1.000|   0.249| -0.074|
+|Javelin     | -0.010|    0.199|   0.493|    0.031|  0.004|      -0.125|  0.455|     0.249|   1.000| -0.031|
+|m1500       | -0.018|   -0.044|   0.131|   -0.008|  0.418|       0.086|  0.033|    -0.074|  -0.031|  1.000|
+]
 
 ---
 
@@ -126,14 +128,14 @@ where `\(b_{jp}\)` is a weight of variable `\(x_p\)` of a particular `\(\xi_j\)`
 
 .smaller[
 
-|                 | run100| longjump| shotput| highjump| run400| run110hurdle| polevault| discus| javelin| run1500|
-|:----------------|------:|--------:|-------:|--------:|------:|------------:|---------:|------:|-------:|-------:|
-|Tomas Dvorak     |  -10.5|     8.03|    16.7|     2.09|  -48.4|        -13.9|      47.9|   4.85|    67.2|    -282|
-|Roman Sebrle     |  -10.6|     7.88|    15.2|     2.15|  -49.0|        -14.0|      47.2|   4.75|    67.2|    -275|
-|Erki Nool        |  -10.7|     7.78|    14.1|     1.97|  -47.2|        -14.4|      44.2|   5.55|    69.1|    -276|
-|Chris Huffins    |  -10.5|     7.71|    15.3|     2.09|  -48.3|        -13.9|      49.5|   4.70|    56.6|    -279|
-|Aleksandr Yurkov |  -10.7|     7.93|    15.3|     2.03|  -49.7|        -14.6|      47.9|   5.15|    58.9|    -272|
-|Dean Macey       |  -10.8|     7.77|    14.6|     2.09|  -46.4|        -14.5|      43.4|   4.80|    60.4|    -263|
+|                 | m100| Longjump| Shotput| Highjump| m400| m110hurdles| Discus| Polevault| Javelin| m1500|
+|:----------------|----:|--------:|-------:|--------:|----:|-----------:|------:|---------:|-------:|-----:|
+|Tomas Dvorak     | 10.5|     8.03|    16.7|     2.09| 48.4|        13.9|   47.9|      4.85|    67.2|   282|
+|Roman Sebrle     | 10.6|     7.88|    15.2|     2.15| 49.0|        14.0|   47.2|      4.75|    67.2|   275|
+|Erki Nool        | 10.7|     7.78|    14.1|     1.97| 47.2|        14.4|   44.2|      5.55|    69.1|   276|
+|Chris Huffins    | 10.5|     7.71|    15.3|     2.09| 48.3|        13.9|   49.5|      4.70|    56.6|   279|
+|Aleksandr Yurkov | 10.7|     7.93|    15.3|     2.03| 49.7|        14.6|   47.9|      5.15|    58.9|   272|
+|Dean Macey       | 10.8|     7.77|    14.6|     2.09| 46.4|        14.5|   43.4|      4.80|    60.4|   263|
 ]
 
 ???
@@ -153,17 +155,19 @@ The first PC is chosen so that
 
 Each following PC is chosen so that it is orthogonal to preceding PC.
 
+
+
 ---
 
 Suppose we have two variables:
 
-![](10_pca_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 
 The line that maximizes variation and has smallest orthogonal distance to data points is the first PC.
 
-![](10_pca_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 --
 
@@ -171,21 +175,22 @@ The line that maximizes variation and has smallest orthogonal distance to data p
 
 ---
 
-It's theoretically similar to least squares estimation, but mathematically different.
+PCA is somewhat similar to least squares estimation.
 
-![](10_pca_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
-OLS minimizes residuals with respect to response, PC1 minimizes orthogonal distances to data points
+OLS minimizes residuals with respect to response, PC1 minimizes orthogonal distances to data points.
 
 ???
-
 Except that in PCA we consider variation in all variables (not just the response)
 
 ---
 
-Each following PC is orthogonal (perpendicular) to the first PC.
+Each following PC is orthogonal to the first PC.
 
-![](10_pca_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+Each PC explains the variation unexplained by previous PC as much as possible.
 
 ---
 
@@ -197,12 +202,29 @@ The process involves transforming data points to a new coordinate system:
 
 ---
 
-What does transforming data to a new coordinate system mean?
+### Center
 
-![](10_pca_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
-???
-How to interpret?
+We subtract the mean from all variables so that mean value of each PC is 0.
+
+---
+
+### Scale
+
+![](10_pca_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+We divide each variable by its standard deviation so that PCs have similar scales relative to variables.
+
+---
+
+### Rotate
+
+![](10_pca_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+We rotate the data so that each PC represents an axis.
+
+
 
 ---
 
@@ -246,7 +268,7 @@ Numerically more stable.
 
 Because PCA involves maximizing variation, variables with higher variance are given more importance. Consider scaling variables ( `\(x\prime = (x - \mu) / \sigma\)` ) prior to estimation.
 
-![](10_pca_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -264,7 +286,7 @@ The choice can be made by looking at scree plots.
 
 
 
-![](10_pca_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -349,7 +371,7 @@ Recall the representation of linear combinations `\(\xi_j = b_{j1}x_1 + b_{j2}x_
 
 ## Biplot
 
-![](10_pca_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 --
 
@@ -359,7 +381,7 @@ Recall the representation of linear combinations `\(\xi_j = b_{j1}x_1 + b_{j2}x_
 
 How are our results related to actual points given to athletes?
 
-![](10_pca_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](10_pca_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ???
 It seems like technical skills are given higher importance. Methodology for total points calculation is from 1985.

@@ -62,8 +62,6 @@ Let's use data on top performances in the *Decathlon* from 1985 to 2006 and exam
 Decathlon <- GDAdata::Decathlon
 Decathlon <- Decathlon[Decathlon$yearEvent == 2000, ]
 Oie <- Decathlon[, 4:13]
-names(Oie) <- c('run100', 'longjump', 'shotput', 'highjump', 'run400', 'run110hurdle', 'polevault', 'discus', 'javelin', 'run1500')
-Oie[, c(1,5,6,10)] <- Oie[, c(1,5,6,10)] * -1
 rownames(Oie) <- Decathlon$DecathleteName
 ```
 
@@ -85,15 +83,17 @@ Why would we want to summarize these variables?
 
 Variables are linearly correlated.
 
+.smaller[
 ``` {r}
 cor(Oie) %>% kable
 ```
+]
 
 ---
 
 ``` {r}
 par(family = 'RobotoCondensed')
-pairs(Oie, pch = 20, cex = .5, col = Col['clear'])
+pairs(Oie, pch = 20, cex = .2, col = Col['clear'], oma = c(2,2,2,2), )
 ```
 
 --
@@ -132,6 +132,12 @@ The first PC is chosen so that
 2. it is a line with smallest orthogonal distance to all data points.
 
 Each following PC is chosen so that it is orthogonal to preceding PC.
+
+``` {r}
+# Recode some variables
+names(Oie) <- c('run100', 'longjump', 'shotput', 'highjump', 'run400', 'run110hurdle', 'polevault', 'discus', 'javelin', 'run1500')
+Oie[, c(1,5,6,10)] <- Oie[, c(1,5,6,10)] * -1
+```
 
 ---
 
@@ -172,7 +178,7 @@ lines(vars$Raw[[1]],
 
 ---
 
-It's theoretically similar to least squares estimation, but mathematically different.
+PCA is somewhat similar to least squares estimation.
 
 ```{r}
 par(mfrow = 1:2)
@@ -188,15 +194,14 @@ lines(vars$Raw[[1]],
       col = Col['red'])
 ```
 
-OLS minimizes residuals with respect to response, PC1 minimizes orthogonal distances to data points
+OLS minimizes residuals with respect to response, PC1 minimizes orthogonal distances to data points.
 
 ???
-
 Except that in PCA we consider variation in all variables (not just the response)
 
 ---
 
-Each following PC is orthogonal (perpendicular) to the first PC.
+Each following PC is orthogonal to the first PC.
 
 ``` {r}
 par(mfrow = 1:2)
@@ -223,6 +228,8 @@ pcLeg <- function() {
 pcLeg()
 ```
 
+Each PC explains the variation unexplained by previous PC as much as possible.
+
 ---
 
 The process involves transforming data points to a new coordinate system: 
@@ -233,10 +240,94 @@ The process involves transforming data points to a new coordinate system:
 
 ---
 
-What does transforming data to a new coordinate system mean?
+### Center
 
 ``` {r}
-par(mfrow = c(2,2))
+par(mfrow = 1:2)
+# Raw
+plotEst(vars$Raw, main = "Raw data")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
+      col = Col['red'])
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+# Center
+plotEst(vars$Cen, main = "Center")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = Col['red'])
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+```
+
+We subtract the mean from all variables so that mean value of each PC is 0.
+
+---
+
+### Scale
+
+``` {r}
+par(mfrow = 1:2)
+# Center
+plotEst(vars$Cen, main = "Center")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = Col['red'])
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+# Scale
+plotEst(vars$Scale, main = "Scale")
+eigHiLo <- cov(vars$Scale) %>% eigen
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = Col['red'])
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+```
+
+We divide each variable by its standard deviation so that PCs have similar scales relative to variables.
+
+---
+
+### Rotate
+
+``` {r}
+par(mfrow = 1:2)
+# Scale
+plotEst(vars$Scale, main = "Scale")
+eigHiLo <- cov(vars$Scale) %>% eigen
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = Col['red'])
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = Col['blue'])
+pcLeg() # Legend
+# Rotate
+pcaHiLo <- prcomp(vars$Raw, scale = T) %>% summary
+par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0), pty = 's')
+plotEst(as.data.frame.matrix(pcaHiLo$x), main = "Rotate")
+abline(h = 0, col = Col['red'])
+abline(v = 0, col = Col['blue'])
+pcLeg() # Legend
+```
+
+We rotate the data so that each PC represents an axis.
+
+``` {r, eval = F}
+# All in one
+par(mfrow = c(1,4))
 # Raw
 plotEst(vars$Raw, main = "Raw data")
 eigHiLo <- cov(vars$Cen) %>% eigen
@@ -275,9 +366,6 @@ abline(h = 0, col = Col['red'])
 abline(v = 0, col = Col['blue'])
 pcLeg() # Legend
 ```
-
-???
-How to interpret?
 
 ---
 
