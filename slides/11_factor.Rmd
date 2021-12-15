@@ -525,7 +525,9 @@ This is due to the different options a researcher to choose
 
 ---
 
+Factor analysis is an exploratory method.
 
+![](../img/madeupnumbers.gif)
 
 ---
 

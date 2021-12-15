@@ -220,6 +220,10 @@ pairs(GrowthDJ[, c('gdpgrowth', 'literacy60', 'popgrowth')],
 
 ---
 
+### Simpson's paradox
+
+---
+
 ### Model fit is improved
 
 .small[

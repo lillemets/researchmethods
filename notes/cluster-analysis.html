@@ -376,17 +376,18 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="cluster-analysis" class="section level1" number="16">
 <h1><span class="header-section-number">Section 16</span> Cluster analysis</h1>
-<p>The purpose of cluster analysis is to categorize objects into some homogeneous groups. It is different from classification in the sense that we do not have prior information on classes. The assignment of objects in cluster analysis is based on the differences between observations by some variables.</p>
-<p>See the beginning of section 14.3 in <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>The purpose of cluster analysis is to <strong>categorize objects into some homogeneous groups</strong> so that objects within the same groups are more closely related than objects in different groups. It is different from classification in the sense that we do not have any information on possible existing classes and we can not compare clusters to classes. The assignment of objects in cluster analysis is based on the <strong>differences between observations according to a set of variables</strong>, although it is also possible to cluster observations only on one variable.</p>
+<p>See section 14.3 up to subsection to 14.3.4 in <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> for an introduction.</p>
 <div id="cluster-analysis-1" class="section level2" number="16.1">
 <h2><span class="header-section-number">16.1</span> Cluster analysis</h2>
-<p>Clustering methods can be divided into model-based and distance-based methods. Here we considered the latter. The distance-based methods can be further divided into hierarchical clustering and partitioning (K-means) methods. These are explained below.</p>
-<p>Although a common application of cluster analysis is to categorize observations, it can also be applied to group variables. In the latter case distances by observations are considered, so we treat observations as variables and vice versa.</p>
-<p>As with the previous multivariate statistics methods, it is important to be mindful of variances of variables. Variables with higher variances will be given more leverage in deciding clusters. If this is deemed undesirable, data should be standardized prior to clustering.</p>
+<p>Clustering methods can be divided into <em>model-based</em> (e.g. <em>mixture models</em>) and <em>distance-based</em> (<em>combinatorial</em>) methods. Model-based methods assume that an underlying model can explain clusters in data. An example are mixture models according to which objects belong to i.i.d. samples that originate from populations described by (Gaussian) probability density functions. Objects can thus be clustered by locating the densities in data. However, here we consider only clustering based on distances between objects and clusters.</p>
+<p>The distance-based methods can be further divided into <em>hierarchical clustering</em> and <em>partitioning</em> (<em>K-means</em>) methods. While partitioning is intrinsically a <em>divisive</em> process, <em>hierachical clustering</em> can be applied <em>agglomeratively</em> as well as <em>divisively</em>. These two methods of clustering are explained below.</p>
+<p>Although the most <strong>common application of cluster analysis is to categorize observations, it can also be applied when the aim is to group variables</strong>. In the latter case distances by observations are considered, so we treat observations as variables and vice versa.</p>
+<p>As with the previous multivariate statistics methods, it is important to <strong>be mindful of variances</strong> of variables. Variables with higher variances will be given more leverage in deciding clusters. If this is deemed undesirable, data should be standardized prior to clustering. Conversely, sometimes it might be desirable to give more weight to some variables</p>
 <div id="distance-measures" class="section level3" number="16.1.1">
 <h3><span class="header-section-number">16.1.1</span> Distance measures</h3>
-<p>The assignment of objects into groups should be such that observations are more similar within groups than between groups. This means that clustering is done according to measures of similarities or dissimilarities, i.e. distances. For matrix <span class="math inline">\(X : n \times p\)</span> with <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> variables the distances <span class="math inline">\(d\)</span> between objects <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> can be described as a matrix <span class="math inline">\(D : n \times n\)</span> where <span class="math inline">\(d_{ij} = d(x_i,x_j)\)</span>.</p>
-<p>There are various measures for dissimilarity but most common are Euclidean and Manhattan distances. These can be calculated for numeric variables. Euclidean distance expresses a “direct” distance between two points. It is calculated according to the Pythagorean theorem. Manhattan distance can be thought of as a “city block” distance. The distances between objects <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> can be calculated respectively as follows:</p>
+<p>The assignment of objects into groups should be such that observations are more similar within groups than between groups. This means that <strong>clustering is done according to measures of <em>similarities</em> or <em>dissimilarities</em>, i.e. <em>distances</em></strong>. For data matrix <span class="math inline">\(X : n \times p\)</span> with <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> variables the distances <span class="math inline">\(d\)</span> between objects <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> can be described as a <em>distance or proximity matrix</em> <span class="math inline">\(D : n \times n\)</span> where <span class="math inline">\(d_{ij} = d(x_i,x_j)\)</span>. Usually the distances between observations in matrix <span class="math inline">\(D\)</span> must be calculated from data matrix <span class="math inline">\(X\)</span> using one of the many distance measures.</p>
+<p>There are various measures for expressing similarity but <strong>most common are Euclidean and Manhattan distances</strong>. These can be calculated for numeric variables. <em>Euclidean distance</em> expresses a “direct” distance between two points because it is calculated according to the Pythagorean theorem. <em>Manhattan distance</em> can be thought of as a “city block” distance. The distances between objects <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> can be calculated respectively as follows:</p>
 <p><span class="math inline">\(d_{Euclidean}(x_i,x_j) = [\sum^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}\)</span>,<br />
 <span class="math inline">\(d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|\)</span>.</p>
 <p>Distance measures for ordinal and nominal variables also exist but are not explained here.</p>
@@ -394,12 +395,12 @@ div.csl-indent {
 </div>
 <div id="hierarchical-clustering" class="section level2" number="16.2">
 <h2><span class="header-section-number">16.2</span> Hierarchical clustering</h2>
-<p>Hierarchical clustering is a process where clusters are incrementally constructed. Grouping of objects can start from the most similar objects in which case the process is agglomerative (“bottom-up”). In contrast, a divisive process (“top-down”) begins with most different objects and moves on to more similar objects. The agglomerative method is more common and also explained here.</p>
-<p>See <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.12.</p>
+<p>See <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.12 up to (including) Agglomerative clustering.</p>
+<p>Hierarchical clustering is a process where clusters are constructed <strong>incrementally</strong> according to similarities between objects and clusters. Grouping of objects can <strong>start from combining objects into clusters in which case the process is <em>agglomerative</em> (“bottom-up”)</strong>. In contrast, <strong>a <em>divisive</em> process (“top-down”) begins with a single cluster and divides it into smaller clusters and eventually into objects</strong>. The agglomerative method is more common and also explained here.</p>
 <p>Agglomerative hierarchical clustering has the following steps.</p>
 <ol style="list-style-type: decimal">
 <li>Initial number of clusters is <span class="math inline">\(n\)</span>, so each cluster contains one object.</li>
-<li>Calculate distance matrix <span class="math inline">\(D\)</span> that expresses pairwise distances between clusters (objects).</li>
+<li>Calculate distance matrix <span class="math inline">\(D\)</span> that expresses pairwise distances between clusters (initially objects).</li>
 <li>Find the smallest distance and merge the objects with smallest distance into a single cluster.</li>
 <li>Calculate a new distance matrix <span class="math inline">\(D\)</span> that now includes distance between the new cluster and all other clusters using a linkage method (see below).</li>
 <li>Repeat the previous two steps until all objects are in a single cluster.</li>
@@ -407,30 +408,31 @@ div.csl-indent {
 <p>In Jamovi: <code>snowCluster &gt; Hierarchical clustering method</code>.</p>
 <div id="linkage-methods" class="section level3" number="16.2.1">
 <h3><span class="header-section-number">16.2.1</span> Linkage methods</h3>
-<p>Computing distance between two objects is simple because each object represents a single point in an Euclidean space. Calculating distances becomes more complicated once we have clusters containing more than one point. There are various approaches to finding the distance between cluster <span class="math inline">\(IJ\)</span> and all other clusters <span class="math inline">\(K\)</span>:</p>
+<p>Computing distance between two objects is simple because each object represents a single point in an Euclidean space. <strong>Calculating distances becomes more complicated once we have clusters containing more than one point</strong>. There are various approaches to finding the distance between cluster <span class="math inline">\(IJ\)</span> and all other clusters <span class="math inline">\(K\)</span>:</p>
 <ul>
 <li>single linkage: <span class="math inline">\(d_{IJ,k} = min(d_{i,K}, d_{j,K})\)</span>;</li>
 <li>complete linkage: <span class="math inline">\(d_{IJ,k} = max(d_{I,K}, d_{J,K})\)</span>;</li>
 <li>average linkage: <span class="math inline">\(d_{IJ,k} = \sum_{i \in IJ} \sum_{k \in K} d_{ik} / (n_{ij}n_k)\)</span>;</li>
 <li>Ward’s method: compares the within-cluster and between-cluster squared distances.</li>
 </ul>
+<p>Single linkage tends to link objects serially, resulting in clusters with large diameter where objects within a cluster are not similar. In contrast, complete linkage has the tendency to produce clusters with small diameter and as a result, an object can be closer to members of another cluster. Average linkage is a compromise between the two but is sensitive to the scale on which distances are measured.</p>
 </div>
 <div id="visualization" class="section level3" number="16.2.2">
 <h3><span class="header-section-number">16.2.2</span> Visualization</h3>
-<p>The clusters in case of hierarchical clustering are estimated incrementally, resulting in a nested structure. This tree-shaped structure can be visualized by a <strong>dendrogram</strong>.</p>
+<p>The clusters in case of hierarchical clustering are <strong>estimated incrementally, resulting in a nested structure</strong>. This tree-shaped structure can be visualized by a <em>dendrogram</em> that provides a complete description of the clustering process.</p>
 <p>In Jamovi: <code>snowCluster &gt; Hierarchical clustering method &gt; Plot | Plot dendrogram</code>.</p>
 </div>
 <div id="number-of-clusters" class="section level3" number="16.2.3">
 <h3><span class="header-section-number">16.2.3</span> Number of clusters</h3>
-<p>The number of clusters to be acquired can be decided on using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are the longest.</p>
+<p>The <strong>number of clusters to be acquired can be decided</strong> by using the dendrogram. Cutting the dendrogram at certain height results in a number of clusters that exist on that particular height. A rule that can be used to find the optimal number of clusters is to find the longest consecutive height and cut between the ends of that at the point where another heights are also the longest.</p>
 </div>
 </div>
 <div id="k-means-clustering" class="section level2" number="16.3">
 <h2><span class="header-section-number">16.3</span> K-means clustering</h2>
-<p>This method groups objects by partitioning them iteratively. The number of clusters <span class="math inline">\(K\)</span> has to be defined before estimation. The goal is to partition objects <span class="math inline">\(x\)</span> into <span class="math inline">\(K\)</span> clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to the closest centroid. This mean point of clusters <span class="math inline">\(\bar x_1, ... \bar x_K\)</span> needs to be calculated for each of the <span class="math inline">\(K\)</span> clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:</p>
-<p><span class="math display">\[ESS = \sum^K_{k = 1} \sum_{c(i)=k} (x_i - \bar  x_k)^T(x_i - \bar x_k),\]</span></p>
-<p>where <span class="math inline">\(c(i)\)</span> is the cluster containing <span class="math inline">\(x_i\)</span>. Simply put, we attempt to minimize the sum of distances of objects from centroid within all clusters. The function <span class="math inline">\(ESS\)</span> is minimized iteratively as described below.</p>
 <p>See <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.6.</p>
+<p>This method groups objects by partitioning them <strong>iteratively</strong>. The <strong>number of clusters <span class="math inline">\(K\)</span> has to be defined before estimation</strong>. The goal is to partition objects <span class="math inline">\(x\)</span> into <span class="math inline">\(K\)</span> clusters so that distances between objects within cluster are small compared to distances to points outside the cluster. We can achieve this by assigning each object to the closest centroid. This centroid is the mean point of clusters ( <span class="math inline">\(\bar x_1, ... \bar x_K\)</span> ) and needs to be calculated for each of the <span class="math inline">\(K\)</span> clusters, hence the name K-means. The optimal mean vector can be found by minimizing the following function:</p>
+<p><span class="math display">\[ESS = \sum^K_{k = 1} \sum_{c(i)=k} (x_i - \bar  x_k)^T(x_i - \bar x_k),\]</span></p>
+<p>where <span class="math inline">\(c(i)\)</span> is the cluster containing <span class="math inline">\(x_i\)</span>. Simply put, <strong>we attempt to minimize the sum of distances of objects from centroid within all clusters</strong>. This function <span class="math inline">\(ESS\)</span> is minimized iteratively.</p>
 <p>K-means clustering involves the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>We start with a distance matrix <span class="math inline">\(D\)</span> based on
@@ -443,15 +445,16 @@ div.csl-indent {
 <li>Repeat the previous two steps until objects can not be reassigned, so each object is closest to its own cluster mean.</li>
 </ol>
 <p>In Jamovi: <code>snowCluster &gt; K-means clustering method</code>.</p>
-<p>An alternative is <strong>K-medoids clustering</strong> in which case the centroids are not some mean values but represented by actual objects.</p>
+<p>An alternative is <em>K-medoids clustering</em> in which case the centroids are not mean values but represented by actual objects.</p>
 <div id="number-of-clusters-gap-statistic" class="section level3" number="16.3.1">
 <h3><span class="header-section-number">16.3.1</span> Number of clusters (Gap statistic)</h3>
-<p>The Gap statistic is a technique used to determine the optimal number of clusters. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. Higher value indicates better fit of data to the <span class="math inline">\(K\)</span> but only clusters that substantially contribute to the value should be considered. The optimal number of clusters is at the value of the Gap statistic <span class="math inline">\(k\)</span> where <span class="math inline">\(k + se(k)\)</span> is higher or equal to the estimate <span class="math inline">\(k\)</span> of next number of clusters. If this optimal value indicates that <span class="math inline">\(K = 1\)</span>, then the data does not contain any natural clusters and clustering methods are not suitable.</p>
+<p>See <span class="citation">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie_elements_2017" role="doc-biblioref">2017</a>)</span> section 14.3.11.</p>
+<p>The Gap statistic is a technique used to <strong>determine the optimal or natural number of clusters</strong>. The measure compares the sum of average distances within cluster to the same sum obtained from uniformly distributed data. Higher value indicates better fit of data to the <span class="math inline">\(K\)</span> but only clusters that substantially contribute to the value should be considered. The optimal number of clusters is at the value of the <em>Gap statistic <span class="math inline">\(k\)</span></em> where <span class="math inline">\(k + se(k)\)</span> is higher or equal to the estimate <span class="math inline">\(k\)</span> of next number of clusters. Essentially, we want the value of <span class="math inline">\(k\)</span> to be high without having too many clusters. If this optimal value indicates that <span class="math inline">\(K = 1\)</span>, then the data does not contain any natural clusters and clustering methods are not suitable.</p>
 <p>In Jamovi: <code>snowCluster &gt; K-means clustering method &gt; Plots | Optimal number of clusters</code>.</p>
 </div>
 <div id="visualization-1" class="section level3" number="16.3.2">
 <h3><span class="header-section-number">16.3.2</span> Visualization</h3>
-<p>When we apply K-means clustering we do not obtain a nested structure and therefore can not express the clustering as a dendrogram.</p>
+<p>When we apply K-means clustering we do not obtain a nested structure and therefore <strong>can not express the clustering as a dendrogram</strong>.</p>
 <p>We can create a plot that shows the locations of objects and cluster centroids on a two-dimensional plot (Cluster plot in Jamovi). The dimensions can be found via PCA or multidimensional scaling.</p>
 <p>In Jamovi: <code>snowCluster &gt; K-means clustering method &gt; Plots | Cluster plot</code>.</p>
 <p>For the interpretation of clusters we can see the mean values of variables by clusters.</p>

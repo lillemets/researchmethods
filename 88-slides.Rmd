@@ -9,15 +9,10 @@ On slides press `h` button to see keyboard shortcuts for navigation.
 3. [Comparing numerical data](../slides/03_numerical.html)
 4. [Analysis of variance](../slides/04_anova.html)
 5. [Correlation analysis](../slides/05_correlation.html)
-3. [Simple linear regression](../slides/06_regression.html)
-4. [Data transformations](../slides/07_transformations.html)
-5. [Multiple linear regression](../slides/08_multiple.html)
-6. [Logistic regression](../slides/09_logistic.html)
-
-<!--
-
-7. [Principal component analysis](../slides/10_pca.html)
-8. [Factor analysis](../slides/11_factor.html)
-13. [Clustering](../slides/12_cluster.html)
-
--->
+6. [Simple linear regression](../slides/06_regression.html)
+7. [Data transformations](../slides/07_transformations.html)
+8. [Multiple linear regression](../slides/08_multiple.html)
+9. [Logistic regression](../slides/09_logistic.html)
+10. [Principal component analysis](../slides/10_pca.html)
+11. [Factor analysis](../slides/11_factor.html)
+12. [Clustering](../slides/12_cluster.html)
