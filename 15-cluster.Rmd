@@ -18,7 +18,7 @@ As with the previous multivariate statistics methods, it is important to **be mi
 
 The assignment of objects into groups should be such that observations are more similar within groups than between groups. This means that **clustering is done according to measures of *similarities* or *dissimilarities*, i.e. *distances***. For data matrix $X : n \times p$ with $n$ observations and $p$ variables the distances $d$ between objects $i$ and $j$ can be described as a *distance or proximity matrix* $D : n \times n$ where $d_{ij} = d(x_i,x_j)$. Usually the distances between observations in matrix $D$ must be calculated from data matrix $X$ using one of the many distance measures.
 
-There are various measures for expressing similarity but **most common are Euclidean and Manhattan distances**. These can be calculated for numeric variables. *Euclidean distance* expresses a "direct" distance between two points because it is calculated according to the Pythagorean theorem. *Manhattan distance* can be thought of as a "city block" distance. The distances between objects $x_i$ and $x_j$ can be calculated respectively as follows:
+There are various measures for expressing similarity but **most common are Euclidean and Manhattan distances**. These can be calculated for numeric variables. *Euclidean distance* expresses a "direct" distance between two points because it is calculated according to the Pythagorean theorem. *Manhattan distance* can be thought of as a "city block" distance. The distances between objects $x_i$ and $x_j$ for all $p$ variables can be calculated respectively as follows:
 
 $d_{Euclidean}(x_i,x_j) = [\sum^p_{k=1}(x_{ik} - x_{jk})^2]^{1/2}$,   
 $d_{Manhattan}(x_i,x_j) = \sum^p_{k=1} |x_{ik} - x_{jk}|$.

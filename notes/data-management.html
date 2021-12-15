@@ -129,9 +129,10 @@ div.csl-indent {
 <li class="chapter" data-level="3.2" data-path="data-management.html"><a href="data-management.html#scales-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Scales of measurement</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="data-management.html"><a href="data-management.html#stevens-operational-theory-of-measurement"><i class="fa fa-check"></i><b>3.2.1</b> Steven’s operational theory of measurement</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-management.html"><a href="data-management.html#binary-scale"><i class="fa fa-check"></i><b>3.2.2</b> Binary scale</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data-management.html"><a href="data-management.html#continuous-and-discrete-variables"><i class="fa fa-check"></i><b>3.2.3</b> Continuous and discrete variables</a></li>
-<li class="chapter" data-level="3.2.4" data-path="data-management.html"><a href="data-management.html#scales-in-statistical-software"><i class="fa fa-check"></i><b>3.2.4</b> Scales in statistical software</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-management.html"><a href="data-management.html#numeric-and-categorical-variables"><i class="fa fa-check"></i><b>3.2.2</b> Numeric and categorical variables</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-management.html"><a href="data-management.html#binary-scale"><i class="fa fa-check"></i><b>3.2.3</b> Binary scale</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-management.html"><a href="data-management.html#continuous-and-discrete-variables"><i class="fa fa-check"></i><b>3.2.4</b> Continuous and discrete variables</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data-management.html"><a href="data-management.html#scales-in-statistical-software"><i class="fa fa-check"></i><b>3.2.5</b> Scales in statistical software</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics</a>
@@ -434,7 +435,8 @@ div.csl-indent {
 </div>
 <div id="ordinal-scale" class="section level4" number="3.2.1.2">
 <h4><span class="header-section-number">3.2.1.2</span> Ordinal scale</h4>
-<p>Ordinal variables have the characteristics of nominal variables with the added possibility of naturally ordering these names. As such, ordinal variables can be said to have levels. It’s important to note that an increase of one level to the next is not necessarily numerically equivalent to an increase of another level to the next. Thus, it is not always meaningful to convert these levels to numbers and do calculations on them.</p>
+<p>Ordinal variables have the characteristics of nominal variables with the added possibility of naturally ordering these names. As such, ordinal variables can be said to have levels.</p>
+<p>It’s important to note that an increase of one level to the next is not necessarily numerically equivalent to an increase of another level to the next. Thus, it is not always meaningful to convert these levels to numbers and do calculations on them.</p>
 </div>
 <div id="interval-scale" class="section level4" number="3.2.1.3">
 <h4><span class="header-section-number">3.2.1.3</span> Interval scale</h4>
@@ -446,20 +448,25 @@ div.csl-indent {
 <p>Ratio variables are also numeric but have a natural zero value. This means that division and multiplication is meaningful.</p>
 </div>
 </div>
-<div id="binary-scale" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Binary scale</h3>
+<div id="numeric-and-categorical-variables" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Numeric and categorical variables</h3>
+<p>Sometimes variables expressed as numbers are also referred to as numeric variables. These can be variables measured on either interval or ratio scale, rarely on ordinal scale and never on nominal scale.</p>
+<p>Categorical variables are usually measured on a nominal scale.</p>
+</div>
+<div id="binary-scale" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Binary scale</h3>
 <p>Binary (or dichotomous) variables do not constitute a distinct scale but can be considered as a subgroup of nominal, ordinal or interval variables. Binary variables can only take two values. Many statistical procedures convert or require the conversion of nominal variables to binary for technical reasons (e.g. “dummy” variables). Binary variables are often coded as 0 for false and 1 for true. As such, calculating the sum or mean of binary variables conveys useful information (think why that is!).</p>
 </div>
-<div id="continuous-and-discrete-variables" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> Continuous and discrete variables</h3>
+<div id="continuous-and-discrete-variables" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Continuous and discrete variables</h3>
 <p>In addition to the previous typology, we can also distinguish between continuous and discrete variables. These are well defined by <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018, 20</a>)</span>:</p>
 <ul>
 <li>“A continuous variable is one in which, for any two values that you can think of, it’s always logically possible to have another value in between.</li>
 <li>A discrete variable is, in effect, a variable that isn’t continuous. For a discrete variable it’s sometimes the case that there’s nothing in the middle.”</li>
 </ul>
 </div>
-<div id="scales-in-statistical-software" class="section level3" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Scales in statistical software</h3>
+<div id="scales-in-statistical-software" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Scales in statistical software</h3>
 <p>A lot of statistical software (e.g. Jamovi) distinguishes between numbers, text and ordered text. The difference between ratio and interval variables is only theoretical. Statistical software treats all numbers as integers or floating-point numbers and does not distinguish between interval and ratio variables. When binary variables are coded so that they only have values 0 and 1, these are also considered numerical.</p>
 
 </div>

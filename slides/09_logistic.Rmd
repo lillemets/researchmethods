@@ -452,3 +452,7 @@ Try to explain the participation in labor force (`participation`).
 ---
 
 class: inverse
+
+???
+
+Used data `loans_full_schema`.

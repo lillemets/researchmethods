@@ -26,6 +26,7 @@ nominal-scale
 ordinal-scale
 interval-scale
 ratio-scale
+numeric-and-categorical-variables
 binary-scale
 continuous-and-discrete-variables
 scales-in-statistical-software

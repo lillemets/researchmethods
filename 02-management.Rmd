@@ -31,7 +31,9 @@ Nominal variables contain names (i.e. characters, factors or strings) that do no
 
 #### Ordinal scale
 
-Ordinal variables have the characteristics of nominal variables with the added possibility of naturally ordering these names. As such, ordinal variables can be said to have levels. It's important to note that an increase of one level to the next is not necessarily numerically equivalent to an increase of another level to the next. Thus, it is not always meaningful to convert these levels to numbers and do calculations on them.
+Ordinal variables have the characteristics of nominal variables with the added possibility of naturally ordering these names. As such, ordinal variables can be said to have levels. 
+
+It's important to note that an increase of one level to the next is not necessarily numerically equivalent to an increase of another level to the next. Thus, it is not always meaningful to convert these levels to numbers and do calculations on them.
 
 #### Interval scale
 
@@ -42,6 +44,12 @@ A classic example of an interval variable is temperature. Difference between 5°
 #### Ratio scale
 
 Ratio variables are also numeric but have a natural zero value. This means that division and multiplication is meaningful.
+
+### Numeric and categorical variables
+
+Sometimes variables expressed as numbers are also referred to as numeric variables. These can be variables measured on either interval or ratio scale, rarely on ordinal scale and never on nominal scale.
+
+Categorical variables are usually measured on a nominal scale.
 
 ### Binary scale
 

@@ -15,4 +15,4 @@ On slides press `h` button to see keyboard shortcuts for navigation.
 9. [Logistic regression](../slides/09_logistic.html)
 10. [Principal component analysis](../slides/10_pca.html)
 11. [Factor analysis](../slides/11_factor.html)
-12. [Clustering](../slides/12_cluster.html)
+12. [Cluster analysis](../slides/12_cluster.html)
