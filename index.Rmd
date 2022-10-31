@@ -19,8 +19,10 @@ description: "Research methods course materials"
 
 # Syllabus
 
-These course notes include information and study materials on the quantitative part of MS.0825 Research methods course of [Agri-Food Business Management](https://www.emu.ee/en/admissions/agri-food-business-management/) Master's program.
+These cours
+e notes include information and study materials on the quantitative part of MS.0825 Research methods course of [Agri-Food Business Management](https://www.emu.ee/en/admissions/agri-food-business-management/) Master's program.
 
+<!--
 ## Teaching
 
 Flipped classroom approach is used for teaching. This means that students are expected to learn the methods before meetings. During the meetings we revise the theoretical material, address any questions and apply methods in practice. In order to discuss the topics during meetings it is necessary that students are already acquainted to the reading material. After meetings students apply the methods on their own datasets.
@@ -97,3 +99,4 @@ We have a total of 12 meetings that involve the topics as outlined below. We wil
 12. Clustering
 
 Note that two topics are covered during the first meetings.
+-->

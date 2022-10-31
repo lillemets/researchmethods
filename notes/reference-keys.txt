@@ -1,13 +1,5 @@
 fig:unnamed-chunk-1
 syllabus
-teaching
-schedule
-aims
-scoring
-tests-on-reading-material
-research-project
-datasets
-meetings-and-topics
 introduction
 quantitative-methods
 statistics

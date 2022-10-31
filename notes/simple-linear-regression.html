@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 10 Simple linear regression | Research methods</title>
   <meta name="description" content="Section 10 Simple linear regression | Research methods course materials" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 10 Simple linear regression | Research methods" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Section 10 Simple linear regression | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
@@ -31,7 +30,6 @@
   
 <link rel="prev" href="correlation-analysis.html"/>
 <link rel="next" href="data-transformations.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 
@@ -93,20 +92,7 @@ div.csl-indent {
 <li><a href="./">Research methods</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching"><i class="fa fa-check"></i><b>1.1</b> Teaching</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1.1</b> Schedule</a></li>
-<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#aims"><i class="fa fa-check"></i><b>1.1.2</b> Aims</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#scoring"><i class="fa fa-check"></i><b>1.2</b> Scoring</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#tests-on-reading-material"><i class="fa fa-check"></i><b>1.2.1</b> Tests on reading material</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#research-project"><i class="fa fa-check"></i><b>1.2.2</b> Research project</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#meetings-and-topics"><i class="fa fa-check"></i><b>1.3</b> Meetings and topics</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#quantitative-methods"><i class="fa fa-check"></i><b>2.1</b> Quantitative methods</a></li>
@@ -375,14 +361,14 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="simple-linear-regression" class="section level1" number="10">
-<h1><span class="header-section-number">Section 10</span> Simple linear regression</h1>
+<div id="simple-linear-regression" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Section 10</span> Simple linear regression<a href="simple-linear-regression.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Regression analysis is a statistical procedure that allows us to <strong>model relationships between variables</strong> so that the causal relationship between variables is defined. It can be considered as the main statistical technique used in economics, i.e. econometrics. There is a large <strong>variety of regression models</strong>, depending on estimation method, model specification and assumed distributions. This section introduces the most basic of these, the simple linear regression model, i.e. <strong><em>ordinary least squares (OLS)</em></strong> with one independent variable.</p>
-<div id="ordinary-least-squares" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Ordinary least squares</h2>
+<div id="ordinary-least-squares" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Ordinary least squares<a href="simple-linear-regression.html#ordinary-least-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.3 for an introduction.</p>
-<div id="model-specification" class="section level3" number="10.1.1">
-<h3><span class="header-section-number">10.1.1</span> Model specification</h3>
+<div id="model-specification" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Model specification<a href="simple-linear-regression.html#model-specification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Regression models represent how one or more more predictor variables have an effect on a response variable. The most simple regression model has <strong>only one predictor</strong>, which is why it is called “simple linear regression” (SLS). An SLS model is mathematically expressed as follows:</p>
 <p><span class="math display">\[\hat{y} = \beta_0 + \beta_1 x + \varepsilon,\]</span></p>
 <p>where</p>
@@ -395,8 +381,8 @@ div.csl-indent {
 </ul>
 <p>The values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> come from our data, whereas the <span class="math inline">\(\beta\)</span> coefficients need to be calculated from this data. The <span class="math inline">\(\varepsilon\)</span> is estimated using both, the <span class="math inline">\(\beta\)</span> coefficients and data.</p>
 </div>
-<div id="calculation-of-an-sls-model" class="section level3" number="10.1.2">
-<h3><span class="header-section-number">10.1.2</span> Calculation of an SLS model</h3>
+<div id="calculation-of-an-sls-model" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Calculation of an SLS model<a href="simple-linear-regression.html#calculation-of-an-sls-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The underlying idea behind OLS regression is the <strong>minimization of squared residuals</strong>, thus the name “least squares”. We simply find the coefficients <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that give us the smallest possible sum of differences between observed and predicted values of the response variable <span class="math inline">\(y\)</span>.</p>
 <p>Model parameters are calculated directly (unlike maximum likelihood estimation that is based on iterations). To estimate the model <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x + \varepsilon\)</span> for variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> we estimate the parameters <span class="math inline">\(\hat{\beta_1}\)</span> and <span class="math inline">\(\hat{\beta_0}\)</span> as follows:</p>
 <ol style="list-style-type: decimal">
@@ -411,10 +397,10 @@ div.csl-indent {
 In R: <code>lm(y ~ x, data)</code> or <code>summary(lm(y ~ x, data))</code></p>
 </div>
 </div>
-<div id="elements-of-a-regression-model" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Elements of a regression model</h2>
-<div id="intercept" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Intercept</h3>
+<div id="elements-of-a-regression-model" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Elements of a regression model<a href="simple-linear-regression.html#elements-of-a-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intercept" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Intercept<a href="simple-linear-regression.html#intercept" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the equation this is the <span class="math inline">\(\beta_0\)</span> and often also referred to as the <em>constant</em>. Intercept is the value of <span class="math inline">\(y\)</span> where regression line crosses the Y-axis, so <strong>intercept is the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is zero</strong> ( <span class="math inline">\(y|x=0\)</span> ). Intercept does not need to be theoretically valid but it sometimes is. In particular, the intercept is not relevant when the range of our observed values of <span class="math inline">\(x\)</span> does not cover 0.</p>
 <p>For example, the model below has an intercept.</p>
 <p><span class="math display">\[finalwt_{i} = 195.135 + 1.176 * initialwt_{i} + \varepsilon_{i}\]</span></p>
@@ -422,8 +408,8 @@ In R: <code>lm(y ~ x, data)</code> or <code>summary(lm(y ~ x, data))</code></p>
 <p>When <code>initialwt</code> is 0 units, then the value of <code>finalwt</code> is 195.135 units.</p>
 </blockquote>
 </div>
-<div id="coefficients" class="section level3" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> Coefficient(s)</h3>
+<div id="coefficients" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Coefficient(s)<a href="simple-linear-regression.html#coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the equation the <span class="math inline">\(\beta_1\)</span> represents coefficient of <span class="math inline">\(x\)</span>. It indicates <strong>by how many units <span class="math inline">\(y\)</span> increases when <span class="math inline">\(x\)</span> increases by one unit</strong>.</p>
 <p>We usually estimate models on a sample and wish to make generalizations or inferences about population. It is thus necessary to test whether or not coefficients are different from 0. This is done by calculating t-statistic from coefficient and standard error. <strong>Coefficients are only relevant if their difference from 0 is statistically significant</strong>. If a coefficient is not statistically significant, then we would conclude that the predictor has no effect on the response.</p>
 <p>The interpretation of <span class="math inline">\(\beta\)</span> coefficients is different for interval or ratio (numeric) predictors and ordinal or nominal (categorical) predictors.</p>
@@ -442,17 +428,17 @@ In R: <code>lm(y ~ x, data)</code> or <code>summary(lm(y ~ x, data))</code></p>
 </blockquote>
 <p>Suppose now that the coefficient for <code>dietHigh</code> is not statistically significant. When <code>diet</code> is <em>High</em>, <code>finalwt</code> is no different compared to when <code>diet</code> is <em>Low</em>. If it was statistically significant, we could say that when <code>diet</code> is <em>High</em>, then <code>finalwt</code> is higher by <strong>12.01</strong> units compared to when <code>diet</code> is <em>Low</em>.</p>
 </div>
-<div id="fitted-values" class="section level3" number="10.2.3">
-<h3><span class="header-section-number">10.2.3</span> Fitted values</h3>
+<div id="fitted-values" class="section level3 hasAnchor" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Fitted values<a href="simple-linear-regression.html#fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>These are the estimated values of response ( <span class="math inline">\(\hat{y}\)</span> ) that are calculated by applying the model for <span class="math inline">\(x\)</span> of every observation in the data. In other words, <strong>fitted values are predictions of <span class="math inline">\(y\)</span> based on a model</strong>. After we have estimated the <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> we can calculate fitted values for each value of <span class="math inline">\(x\)</span> as follows: <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x\)</span>.</p>
 </div>
-<div id="residuals" class="section level3" number="10.2.4">
-<h3><span class="header-section-number">10.2.4</span> Residuals</h3>
+<div id="residuals" class="section level3 hasAnchor" number="10.2.4">
+<h3><span class="header-section-number">10.2.4</span> Residuals<a href="simple-linear-regression.html#residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Residuals are model errors, represented by the <span class="math inline">\(\varepsilon\)</span> in the equation <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x + \varepsilon\)</span>. Residuals are the <strong>difference between observed and fitted (predicted) values of response variable</strong>. So we can find residuals for each observation after we have estimated <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> using values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> as follows: <span class="math inline">\(\varepsilon = y - \beta_0 - \beta_1 x\)</span>.</p>
 <p>We use residuals to evaluate how well model fits data. Large residuals would mean that fitted values are different from observed values, which indicates that model does not fit data well.</p>
 </div>
-<div id="the-r2" class="section level3" number="10.2.5">
-<h3><span class="header-section-number">10.2.5</span> The <span class="math inline">\(R^2\)</span></h3>
+<div id="the-r2" class="section level3 hasAnchor" number="10.2.5">
+<h3><span class="header-section-number">10.2.5</span> The <span class="math inline">\(R^2\)</span><a href="simple-linear-regression.html#the-r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This is a way to measure <strong><em>goodness of fit</em></strong> of a model, i.e. how well model fits data. It is sometimes called <em>coefficient of determination</em>. <span class="math inline">\(R^2\)</span> expresses the <strong>part of variation in response variable that is explained by model</strong>:</p>
 <p><span class="math display">\[R^{2} = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS},\]</span></p>
 <p>where the elements are defined a follows:</p>
@@ -472,14 +458,14 @@ In R: <code>lm(y ~ x, data)</code> or <code>summary(lm(y ~ x, data))</code></p>
 </ul>
 <p>Simply put, the <span class="math inline">\(R^2\)</span> measures how much better is model at explaining the variance of <span class="math inline">\(y\)</span> compared to how well just the mean of <span class="math inline">\(y\)</span> explains variance of <span class="math inline">\(y\)</span>.</p>
 </div>
-<div id="the-adjusted--r2" class="section level3" number="10.2.6">
-<h3><span class="header-section-number">10.2.6</span> The adjusted- <span class="math inline">\(R^2\)</span></h3>
+<div id="the-adjusted--r2" class="section level3 hasAnchor" number="10.2.6">
+<h3><span class="header-section-number">10.2.6</span> The adjusted- <span class="math inline">\(R^2\)</span><a href="simple-linear-regression.html#the-adjusted--r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Each additional predictor likely improves the model fit. So the more predictors we add, the more the model explains variance of <span class="math inline">\(y\)</span>. So <span class="math inline">\(R^2\)</span> can be inflated just by adding more predictors to the model even if the predictors are not very meaningful. To <strong>penalize a model for the number of predictors ( <span class="math inline">\(k\)</span> )</strong> while considering the number of observations ( <span class="math inline">\(n\)</span> ), the adjusted <span class="math inline">\(R^{2}\)</span> can also be used, particularly for model comparison:</p>
 <p><span class="math display">\[\overline{R^{2}} = 1 - \frac{RSS/(n-k)}{TSS/(n-1)}\]</span></p>
 </div>
 </div>
-<div id="assumptions-and-diagnostics" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Assumptions and diagnostics</h2>
+<div id="assumptions-and-diagnostics" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Assumptions and diagnostics<a href="simple-linear-regression.html#assumptions-and-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.9 for an explanation of assumptions and section 12.10 on model checking.</p>
 <p>After the estimation of a regression model it should be diagnosed to make sure that it meets at least the following assumptions:</p>
 <ul>
@@ -488,8 +474,8 @@ In R: <code>lm(y ~ x, data)</code> or <code>summary(lm(y ~ x, data))</code></p>
 </ul>
 <p>In Jamovi: <code>Regression &gt; Linear regression &gt; Assumption Checks</code>.<br />
 In R: <code>plot(lm(formula, data))</code></p>
-<div id="gauss-markov-assumptions" class="section level3" number="10.3.1">
-<h3><span class="header-section-number">10.3.1</span> Gauss-Markov assumptions</h3>
+<div id="gauss-markov-assumptions" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Gauss-Markov assumptions<a href="simple-linear-regression.html#gauss-markov-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to the practical considerations outlined above, a theoretical way of expressing the assumptions of OLS is via the Gauss–Markov theorem. It posits the following assumptions:</p>
 <ul>
 <li>linear in parameters<br />
@@ -508,7 +494,7 @@ In R: <code>plot(lm(formula, data))</code></p>
 </div>
 </div>
 </div>
-<h3> References</h3>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-navarro_learning_2018" class="csl-entry">
 Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.
@@ -581,7 +567,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

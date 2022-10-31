@@ -558,7 +558,7 @@ plot(kmG)
 
 ---
 
-We get a better picture the more dimensons we look at.
+We get a better picture the more dimensions we look at.
 
 ``` {r}
 setPar()

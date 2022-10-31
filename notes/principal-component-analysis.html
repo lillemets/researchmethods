@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 14 Principal component analysis | Research methods</title>
   <meta name="description" content="Section 14 Principal component analysis | Research methods course materials" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 14 Principal component analysis | Research methods" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Section 14 Principal component analysis | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
@@ -31,7 +30,6 @@
   
 <link rel="prev" href="logistic-regression.html"/>
 <link rel="next" href="factor-analysis.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 
@@ -93,20 +92,7 @@ div.csl-indent {
 <li><a href="./">Research methods</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching"><i class="fa fa-check"></i><b>1.1</b> Teaching</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1.1</b> Schedule</a></li>
-<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#aims"><i class="fa fa-check"></i><b>1.1.2</b> Aims</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#scoring"><i class="fa fa-check"></i><b>1.2</b> Scoring</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#tests-on-reading-material"><i class="fa fa-check"></i><b>1.2.1</b> Tests on reading material</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#research-project"><i class="fa fa-check"></i><b>1.2.2</b> Research project</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#meetings-and-topics"><i class="fa fa-check"></i><b>1.3</b> Meetings and topics</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#quantitative-methods"><i class="fa fa-check"></i><b>2.1</b> Quantitative methods</a></li>
@@ -375,17 +361,17 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="principal-component-analysis" class="section level1" number="14">
-<h1><span class="header-section-number">Section 14</span> Principal component analysis</h1>
+<div id="principal-component-analysis" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Section 14</span> Principal component analysis<a href="principal-component-analysis.html#principal-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Principal component analysis (PCA) is a method in the field of <em>multivariate statistics</em>. In such methods we do not define any causality between variables by distinguishing between response and predictor variables. Instead, methods in multivariate statistics look at the overall structure of data and attempt to identify patterns. PCA allows to find such patterns that could be used to <strong>reduce the number of variables</strong> while minimizing the amount of information lost. This can be useful e.g. when there are a lot of correlated predictors in a regression model.</p>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 15.2 and <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 25.1.</p>
-<div id="intuition" class="section level2" number="14.1">
-<h2><span class="header-section-number">14.1</span> Intuition</h2>
+<div id="intuition" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Intuition<a href="principal-component-analysis.html#intuition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The underlying goal of PCA in simple terms is to summarize many variables into one, few or several new variables. More precisely, <strong>the aim is to determine a set of standardized linear combinations that would explain a maximum amount of variation in data</strong>. Sometimes only one linear combination is found such that it best separates observations. As such, PCA is a <em>dimensionality reduction</em> technique.</p>
 <p>Each linear combination that summarizes part of variance in data is called a <em>principal component</em> (<em>PC</em>). These linear combinations <span class="math inline">\(\xi_j\)</span> can be expressed as <span class="math inline">\(\xi_j = b_{j1}x_1 + b_{j2}x_2+ ... a_{jp}x_p\)</span>, where <span class="math inline">\(b_{jp}\)</span> is a weight of variable <span class="math inline">\(x_p\)</span> of a particular <span class="math inline">\(\xi_j\)</span>, i.e. <span class="math inline">\(j\)</span>th PC. PCs are thus essentially <strong>weighted sum of variables</strong>. The ordering of PCs is fixed: <strong>PCs are ordered decreasingly, starting from the PC that explains the most variation in data</strong>. The maximum number of PCs we can determine is <span class="math inline">\(min(p, n - 1)\)</span>, where <span class="math inline">\(p\)</span> is the number of variables and <span class="math inline">\(n\)</span> the number of observations.</p>
 </div>
-<div id="estimation-of-pcs" class="section level2" number="14.2">
-<h2><span class="header-section-number">14.2</span> Estimation of PCs</h2>
+<div id="estimation-of-pcs" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Estimation of PCs<a href="principal-component-analysis.html#estimation-of-pcs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are several ways to understand the estimation PCs. An intuitive approach would be to visualize a data cloud from which we incrementally derive the PCs. The <strong>first PC explains the maximum amount of variation in the data cloud</strong>. Thus, we choose the first PC so that (1) it follows the direction of largest variance in data cloud and (2) is then also a line with smallest orthogonal distance to all data points. As such the idea is similar to least squares estimation, except that in <strong>PCA we consider variation in all variables (not just the response)</strong> and do not use squared residuals. See the <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">relevant question on Stack Exchange</a> for some visual explanations.</p>
 <p>Establishing the direction of largest variation requires transforming data points to a new coordinate system. This involves the following steps: (1) centering data points, (2) scaling the axes so that they would be equal, (3) rotating axes into the direction of a PC. In the latter step the <strong>first PC is rotated so as to maximize variation, whereas each following PC is rotated to be orthogonal to preceding PC</strong>.</p>
 <p>Estimation of PCs requires <strong>data to be centered</strong>, i.e. for each variable <span class="math inline">\(\mu = 0\)</span>. This is usually done by software. Another aspect to consider is <strong>scale of data</strong>. If software does calculations on correlation matrix then scale is irrelevant because correlation matrix is scale agnostic. However, if covariance matrix is used then variables with higher variance are given more importance (recall that PCA involves maximizing variation). Whether or not this is preferred depends on data and research problem.</p>
@@ -393,26 +379,26 @@ div.csl-indent {
 <p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Rotation: none</code>.<br />
 In R: <code>prcomp(data, scale = TRUE)</code></p>
 </div>
-<div id="calculation" class="section level2" number="14.3">
-<h2><span class="header-section-number">14.3</span> Calculation</h2>
+<div id="calculation" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Calculation<a href="principal-component-analysis.html#calculation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The transformation of data points into a new coordinate system is done according to the <em>eigenvalues</em> (scaling) and <em>eigenvectors</em> (rotation) derived from data. There are two methods for obtaining these: (1) using covariance or correlation matrix of data or (2) using data matrix. These methods are described below.</p>
-<div id="spectral-decomposition" class="section level3" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> Spectral decomposition</h3>
+<div id="spectral-decomposition" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Spectral decomposition<a href="principal-component-analysis.html#spectral-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A data matrix <span class="math inline">\(X : n \times p\)</span> can be represented by its correlation or covariance matrix <span class="math inline">\(\Sigma\)</span>. This can be decomposed as <span class="math inline">\(\Sigma = V D V^T\)</span>, where <span class="math inline">\(D = diag(\lambda_1, \lambda_2, \dots, \lambda_{n-1})\)</span> is a diagonal matrix of eigenvalues of <span class="math inline">\(\Sigma\)</span> and matrix <span class="math inline">\(V = (v_1, v_2, ..., v_{n-1})\)</span> the corresponding eigenvectors of <span class="math inline">\(\Sigma\)</span>. Thus, matrices D and V provide the eigenvalues and eigenvectors. This can also be expressed as <span class="math inline">\(\Sigma w_i = \lambda_i w_i\)</span> where <span class="math inline">\(\lambda_i\)</span> is the eigenvalue that corresponds to eigenvector <span class="math inline">\(w_i\)</span> of <span class="math inline">\(i\)</span>th PC.</p>
 </div>
-<div id="singular-value-decomposition" class="section level3" number="14.3.2">
-<h3><span class="header-section-number">14.3.2</span> Singular value decomposition</h3>
+<div id="singular-value-decomposition" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">14.3.2</span> Singular value decomposition<a href="principal-component-analysis.html#singular-value-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A data matrix <span class="math inline">\(X : n \times p\)</span> with <span class="math inline">\(rank(X) = k\)</span> can also be decomposed as <span class="math inline">\(X = UDV^T\)</span>, where <span class="math inline">\(U = (u_1, u_2, \dots, u_k)\)</span> is an <span class="math inline">\(n \times n\)</span> matrix of eigenvectors of <span class="math inline">\(XX^T\)</span>, <span class="math inline">\(V = (v_1, v_2, ..., v_k)\)</span> is an <span class="math inline">\(p \times p\)</span> matrix of eigenvectors of <span class="math inline">\(X^TX\)</span>, and <span class="math inline">\(D = diag(\lambda_1, \lambda_2, \dots, \lambda_k)\)</span> is a diagonal matrix containing nonzero eigenvalues of <span class="math inline">\(X^TX\)</span> and <span class="math inline">\(XX^T\)</span>. Such decomposition of our data matix <span class="math inline">\(X\)</span> then gives us the eigenvalues <span class="math inline">\(\lambda_1, \lambda_2, \dots, \lambda_k\)</span> and corresponding eigenvectors <span class="math inline">\(u_1, u_2, \dots, u_k\)</span> for <span class="math inline">\(X\)</span>.</p>
 </div>
 </div>
-<div id="assumptions" class="section level2" number="14.4">
-<h2><span class="header-section-number">14.4</span> Assumptions</h2>
+<div id="assumptions" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Assumptions<a href="principal-component-analysis.html#assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The most essential assumption of PCA concerns the type of variables: PCA should only be applied to variables that are measured on a <strong>continuous scale</strong>, i.e. on a ratio or interval scale. It is also common to include ordinal variables but these are then treated as continuous.</p>
 <p>Because PCA involves linear transformation of data, at least some <strong>linear relationships</strong> in data are assumed. Also, <strong>notable outliers</strong> may have a high leverage in the transformation. <a href="factor-analysis.html#factor-analysis"><strong>Spericity</strong> and <strong>sampling adequacy</strong></a> may also be considered.</p>
 <p>PCA has no assumptions on normal distribution of values or equality of variance among variables (although scales are important!).</p>
 </div>
-<div id="number-of-components" class="section level2" number="14.5">
-<h2><span class="header-section-number">14.5</span> Number of components</h2>
+<div id="number-of-components" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Number of components<a href="principal-component-analysis.html#number-of-components" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall that the aim of PCA is to summarize variables into a smaller number of PCs. The number of PCs that are used is a free choice. Depending on our research problem, we might wish to obtain just one PC or few or more PCs. There are <strong>several possible criteria that may help us choose the number of components</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>choose a threshold of variation in data that PCs should cumulatively explain, e.g. 80%;</li>
@@ -421,25 +407,25 @@ In R: <code>prcomp(data, scale = TRUE)</code></p>
 </ol>
 <p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Number of Components</code>.</p>
 </div>
-<div id="interpretation-6" class="section level2" number="14.6">
-<h2><span class="header-section-number">14.6</span> Interpretation</h2>
-<div id="variation-explained" class="section level3" number="14.6.1">
-<h3><span class="header-section-number">14.6.1</span> Variation explained</h3>
+<div id="interpretation-6" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Interpretation<a href="principal-component-analysis.html#interpretation-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="variation-explained" class="section level3 hasAnchor" number="14.6.1">
+<h3><span class="header-section-number">14.6.1</span> Variation explained<a href="principal-component-analysis.html#variation-explained" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The proportion of total <em>variation explained</em> by a <span class="math inline">\(j\)</span>th PC can be found from its eigenvalues: it is the proportion of sum of eigenvalues, i.e. <span class="math inline">\(\lambda_j / \Sigma^p_{j=1} \lambda\)</span>. The <span class="math inline">\(\Sigma^p_{j=1} \lambda\)</span> is equal to the number of variables, thus eigenvalue of a PC indicates how many variables’ variation it represents. The proportion of variation explained by a number of first PCs is represented by the cumulative sum of the variation explained by individual PCs.</p>
 <p>This measure illustrates <strong>how much information is preserved when summarizing data</strong> into a particular number of PCs.</p>
 <p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Component summary</code>.<br />
 In R: <code>prcomp(data, scale = TRUE)</code></p>
 </div>
-<div id="loadings" class="section level3" number="14.6.2">
-<h3><span class="header-section-number">14.6.2</span> Loadings</h3>
+<div id="loadings" class="section level3 hasAnchor" number="14.6.2">
+<h3><span class="header-section-number">14.6.2</span> Loadings<a href="principal-component-analysis.html#loadings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Each PC is defined by the influence that each variable has on it. As such, <strong>each variable has a particular loading on each PC</strong> which is why the values of this influence are called loadings. Loadings can also be understood as variable weights.</p>
 <p>When the linear combinations are calculated for each observation using loadings (weights) and initial variables, we obtain <em>principal component scores</em>. These are in essence the new summarized variables.</p>
 <p>Loadings can be used to interpret PCs to give them a theoretical meaning. This involves a lot of creativity. Keep in mind the coding of variables: if higher values of one variable indicate a “negative” result and for other variables a “positive” result, then you might consider mutliplying some variables with <span class="math inline">\(-1\)</span> for a more simple interpretation.</p>
 <p>In Jamovi: <code>Factor &gt; Principal Component Analysis | Rotation: none &gt; Save | Component scores</code>.<br />
 In R: <code>prcomp(data, scale = TRUE)$x</code></p>
 </div>
-<div id="biplots" class="section level3" number="14.6.3">
-<h3><span class="header-section-number">14.6.3</span> Biplots</h3>
+<div id="biplots" class="section level3 hasAnchor" number="14.6.3">
+<h3><span class="header-section-number">14.6.3</span> Biplots<a href="principal-component-analysis.html#biplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>These plots concisely summarize the first two PCs by depicting observations on these two dimensions together with loadings of each variable as arrows. Directions of these arrows indicate the direction of loading and length of arrows indicate the magnitude of loading. Then, the angle between arrows represents correlations between variables.</p>
 <p>In Jamovi: <code>snowCluster &gt; PCA plot | Biplot</code>.<br />
 In R: <code>biplot(prcomp(data, scale = TRUE))</code></p>
@@ -447,7 +433,7 @@ In R: <code>biplot(prcomp(data, scale = TRUE))</code></p>
 </div>
 </div>
 </div>
-<h3> References</h3>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-crawley_r_2013" class="csl-entry">
 Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
@@ -523,7 +509,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

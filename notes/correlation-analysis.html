@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 9 Correlation analysis | Research methods</title>
   <meta name="description" content="Section 9 Correlation analysis | Research methods course materials" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 9 Correlation analysis | Research methods" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Section 9 Correlation analysis | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
@@ -31,7 +30,6 @@
   
 <link rel="prev" href="analysis-of-variance.html"/>
 <link rel="next" href="simple-linear-regression.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 
@@ -93,20 +92,7 @@ div.csl-indent {
 <li><a href="./">Research methods</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching"><i class="fa fa-check"></i><b>1.1</b> Teaching</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1.1</b> Schedule</a></li>
-<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#aims"><i class="fa fa-check"></i><b>1.1.2</b> Aims</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#scoring"><i class="fa fa-check"></i><b>1.2</b> Scoring</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#tests-on-reading-material"><i class="fa fa-check"></i><b>1.2.1</b> Tests on reading material</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#research-project"><i class="fa fa-check"></i><b>1.2.2</b> Research project</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#meetings-and-topics"><i class="fa fa-check"></i><b>1.3</b> Meetings and topics</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#quantitative-methods"><i class="fa fa-check"></i><b>2.1</b> Quantitative methods</a></li>
@@ -375,22 +361,22 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correlation-analysis" class="section level1" number="9">
-<h1><span class="header-section-number">Section 9</span> Correlation analysis</h1>
+<div id="correlation-analysis" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Section 9</span> Correlation analysis<a href="correlation-analysis.html#correlation-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Correlation analysis involves measuring the strength and direction of association between two variables. A correlation coefficient summarizes the association on a scale from -1 to 1 where the sign indicates if the relationship is positive or negative, value of 0 means a lack of relationship and value of -1 or 1 means that there is perfect association. There are several different ways to calculate correlation coefficients.</p>
-<div id="covariance" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Covariance</h2>
+<div id="covariance" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Covariance<a href="correlation-analysis.html#covariance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The simplest way to represent the tendency of two variables to vary similarly is <em>covariance</em>. To find covariance between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, for each observation we multiply the differences of both variables from their mean values and then find the unbiased mean of these multiplications as follows:</p>
 <p><span class="math display">\[Cov(x,y) = \frac{1}{n-1} \sum^n_{i=1}(x_i - \bar{x})(y_i - \bar{y}),\]</span></p>
 <p>where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the values of variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for observation <span class="math inline">\(i\)</span>, <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> mean values of the variables over all observations, and <span class="math inline">\(n\)</span> the number of observations.</p>
 <p>Because the range of covariance depends on the scales of variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we can not really interpret the absolute value of covariance. This is why we use correlations that have a fixed range of possible values as explained in the introduction of this section.</p>
 </div>
-<div id="correlation-coefficients" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Correlation coefficients</h2>
+<div id="correlation-coefficients" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Correlation coefficients<a href="correlation-analysis.html#correlation-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The main difference lies between <strong>parametric (Pearson’s <span class="math inline">\(r\)</span>) and non-parametric correlation coefficients (Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span>)</strong>. Parametric correlation uses more information and is thus more powerful, however, it is also limited to normally distributed interval or ratio data and measures the linearity and not monotonicity of association.</p>
 <p>The difference between the two non-parametric correlations is that Spearman’s <span class="math inline">\(\rho\)</span> is more simple to compute but less suitable for small sample sizes and can not be directly interpreted as opposed to Kendall’s <span class="math inline">\(\tau\)</span>.</p>
-<div id="pearsons-correlation" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Pearson’s correlation</h3>
+<div id="pearsons-correlation" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Pearson’s correlation<a href="correlation-analysis.html#pearsons-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.3.</p>
 <p>This measure evaluates <strong>linearity of a relationship</strong> and is a parametric method. Perfect positive correlation implies that when <span class="math inline">\(x\)</span> increases by 1 unit, <span class="math inline">\(y\)</span> always increases by fixed unit(s). <em>Pearson’s <span class="math inline">\(r\)</span></em> for association between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can be calculated as follows:</p>
 <p><span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2 \sum_{i=1}^{n}(y_i-\bar{y})^2},\]</span></p>
@@ -399,8 +385,8 @@ div.csl-indent {
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Pearson</code>.<br />
 In R: <code>cor(x)</code></p>
 </div>
-<div id="spearmans-rank-order-correlation" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Spearman’s rank-order correlation</h3>
+<div id="spearmans-rank-order-correlation" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Spearman’s rank-order correlation<a href="correlation-analysis.html#spearmans-rank-order-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.6.</p>
 <p>Calculation of the coefficient is based on the ranking of values and it thus measures a <strong>monotonicity of an association</strong>. In case of monotonic relationship, perfect positive correlation implies only that when <span class="math inline">\(x\)</span> increases, then <span class="math inline">\(y\)</span> also always increases. <em>Spearman’s <span class="math inline">\(\rho\)</span></em> is calculated as follows:</p>
 <p><span class="math display">\[\rho = 1 - \frac{6\sum (R(x_{i})-R(y_{i}))^{2}}{n(n^{2}-1)},\]</span></p>
@@ -409,8 +395,8 @@ In R: <code>cor(x)</code></p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Correlation Coefficients | Spearman</code>.<br />
 In R: <code>cor(x, method = 'spearman')</code></p>
 </div>
-<div id="kendalls-rank-correlation" class="section level3" number="9.2.3">
-<h3><span class="header-section-number">9.2.3</span> Kendall’s rank correlation</h3>
+<div id="kendalls-rank-correlation" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Kendall’s rank correlation<a href="correlation-analysis.html#kendalls-rank-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Kendall’s coefficient is similar to Spearman in that rankings of values rather than actual values are used. Accordingly, the correlation coefficient also measures <strong>monotonicity of a relationship</strong>. <em>Kendall’s <span class="math inline">\(\tau\)</span></em> is calculated using the idea of <em>concordant pairs</em> of rankings of all observations pairwise. For example, when for any two observations values of <span class="math inline">\(x\)</span> is higher (or lower) than vale of <span class="math inline">\(y\)</span>, then this pair is counted concordant, otherwise it is discordant. Calculation of the coefficient includes finding the difference between all pairwise concordant and discordant observations:</p>
 <p><span class="math display">\[\tau = \frac{n_c - n_d}{\frac{1}{2} n (n-1)}, \]</span></p>
 <p>where <span class="math inline">\(n_c\)</span> is the number of concordant pairs, <span class="math inline">\(n_d\)</span> the number of discordant pairs and <span class="math inline">\(n\)</span> the number of observations. We are essentially evaluating if rankings of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are similar when we compare all observations pairwise.</p>
@@ -419,15 +405,15 @@ In R: <code>cor(x, method = 'spearman')</code></p>
 In R: <code>cor(x, method = 'kendall')</code></p>
 </div>
 </div>
-<div id="correlation-matrices-and-heatmaps" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Correlation matrices and heatmaps</h2>
+<div id="correlation-matrices-and-heatmaps" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Correlation matrices and heatmaps<a href="correlation-analysis.html#correlation-matrices-and-heatmaps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A single correlation between two variables is rarely what we are interested in. Correlation analysis is more useful in situations when we have a large number of variables and we wish to get a quick understanding of all the associations between them. In such case correlation coefficients can be calculated for each pairwise association and summarized as a <em>correlation matrix</em>. This matrix can further be represented as a <em>heatmap</em> where the direction and size of coefficients determine the color of a cell, giving a quick overview of all associations.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Plot | Correlation matrix</code><br />
-​ or <code>Factor &gt; Reliability Analysis &gt; Additional Options | Correlation heatmap</code>.<br />
+​or <code>Factor &gt; Reliability Analysis &gt; Additional Options | Correlation heatmap</code>.<br />
 In R: <code>heatmap(cor(x))</code></p>
 </div>
-<div id="statistical-significance" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Statistical significance</h2>
+<div id="statistical-significance" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Statistical significance<a href="correlation-analysis.html#statistical-significance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Statistical significance for correlation coefficients can also be estimated. In this case hypotheses are simple:</p>
 <p><span class="math inline">\(H_0:\)</span> Variables are not associated,<br />
 $H_1: $ Variables are associated.</p>
@@ -437,8 +423,8 @@ $H_1: $ Variables are associated.</p>
 <p>where <span class="math inline">\(r\)</span> is the correlation coefficient and <span class="math inline">\(n\)</span> the number of observations. Thus, <strong>the higher the absolute value of correlation coefficient and the more observations it is based on, the more likely is the coefficient generalizable to population</strong>.</p>
 <p>In Jamovi: <code>Regression &gt; Correlation Matrix &gt; Additional Options | Report significance</code></p>
 </div>
-<div id="interpretation" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> Interpretation</h2>
+<div id="interpretation" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Interpretation<a href="correlation-analysis.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See <span class="citation">Navarro and Foxcroft (<a href="#ref-navarro_learning_2018" role="doc-biblioref">2018</a>)</span> section 12.1.5.</p>
 <p>The value of a correlation coefficient can be interpreted by:</p>
 <ul>
@@ -501,7 +487,7 @@ $H_1: $ Variables are associated.</p>
 
 </div>
 </div>
-<h3> References</h3>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-navarro_learning_2018" class="csl-entry">
 Navarro, Danielle J, and David R Foxcroft. 2018. <em>Learning Statistics with Jamovi: A Tutorial for Psychology Students and Other Beginners</em>. Danielle J. Navarro; David R. Foxcroft. <a href="https://doi.org/10.24384/HGC3-7P15">https://doi.org/10.24384/HGC3-7P15</a>.
@@ -574,7 +560,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

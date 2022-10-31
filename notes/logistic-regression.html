@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 13 Logistic regression | Research methods</title>
   <meta name="description" content="Section 13 Logistic regression | Research methods course materials" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 13 Logistic regression | Research methods" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Section 13 Logistic regression | Research methods course materials" />
   <meta name="github-repo" content="lillemets/researchmethods" />
@@ -31,7 +30,6 @@
   
 <link rel="prev" href="multiple-linear-regression.html"/>
 <link rel="next" href="principal-component-analysis.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 
@@ -93,20 +92,7 @@ div.csl-indent {
 <li><a href="./">Research methods</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#teaching"><i class="fa fa-check"></i><b>1.1</b> Teaching</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1.1</b> Schedule</a></li>
-<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#aims"><i class="fa fa-check"></i><b>1.1.2</b> Aims</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#scoring"><i class="fa fa-check"></i><b>1.2</b> Scoring</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#tests-on-reading-material"><i class="fa fa-check"></i><b>1.2.1</b> Tests on reading material</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#research-project"><i class="fa fa-check"></i><b>1.2.2</b> Research project</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#meetings-and-topics"><i class="fa fa-check"></i><b>1.3</b> Meetings and topics</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#quantitative-methods"><i class="fa fa-check"></i><b>2.1</b> Quantitative methods</a></li>
@@ -375,15 +361,15 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1" number="13">
-<h1><span class="header-section-number">Section 13</span> Logistic regression</h1>
+<div id="logistic-regression" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Section 13</span> Logistic regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>An important assumption of linear regression models is the normality and constant variance of residuals. With some particular types of response variable these assumptions about model errors can not be met. An example of such variables would be binary variables, i.e. variables that can take only two values (<span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>). A common way to model relationships with a binary response variable is logistic regression.</p>
-<div id="generalized-linear-models" class="section level2" number="13.1">
-<h2><span class="header-section-number">13.1</span> Generalized linear models</h2>
+<div id="generalized-linear-models" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Generalized linear models<a href="logistic-regression.html#generalized-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See the introduction of section 13 in <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span>.</p>
 <p>The reason why the assumptions regarding the residuals are often not met using ordinary linear model is the structure or errors. Even transforming variables or altering functional form might often not solve the problem. Thus, <strong>it is necessary to define an error structure prior to estimation</strong>. In case of binary data (proportions) we can use binomial distribution to obtain a suitable error structure (binomial errors). Binomial distribution can be used to represent the proportion of successes at a particular number of trials. A distribution of errors can not be applied when estimating a model using the idea of least squares. Instead, the estimation needs to be applied more generally, hence the name <em>generalized linear models</em> (GLM).</p>
-<div id="logit-link" class="section level3" number="13.1.1">
-<h3><span class="header-section-number">13.1.1</span> Logit link</h3>
+<div id="logit-link" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> Logit link<a href="logistic-regression.html#logit-link" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.3 on link function and section 13.4 on proportion data and binomial errors.</p>
 <p>In order to apply a particular distribution on model errors in the framework of GLM, <strong>we need to use a link function that relates the mean value of response to predictor variable(s)</strong>. Link function transforms the mean of response variable. Note that we are not transforming the values themselves but using a function of mean value of response. There is no direct relationship between the values of response and predictor variables, which is why we can not use least squares estimation.</p>
 <p>The canonical link function for binomial errors is the <em>logit link</em> (in econometrics it is often common that probit link is used instead). The logit link is mathematically expressed as follows:</p>
@@ -392,38 +378,38 @@ div.csl-indent {
 <p>In addition to the assumptions of normality and consistency of errors, the logit link also takes into consideration the fact that <strong>proportions are bounded to values between 0 and 1</strong>.</p>
 </div>
 </div>
-<div id="maximum-likelihood-estimation" class="section level2" number="13.2">
-<h2><span class="header-section-number">13.2</span> Maximum likelihood estimation</h2>
+<div id="maximum-likelihood-estimation" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Maximum likelihood estimation<a href="logistic-regression.html#maximum-likelihood-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 7.3.3 for an idea behind the <em>maximum likelihood estimation</em> (MLE).</p>
 <p>The parameters of a GLM can not be simply calculated as in case of the least squares method. Instead, we need to use the MLE. It’s a little bit complicated idea but can be summarized as follows: <strong>models with various parameters are iteratively fitted until such parameters are found for which the data we have is most likely</strong>. While the value of this likelihood can not be directly interpreted, it is used to calculate measures of model fit (see below).</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes</code>.<br />
 In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 </div>
-<div id="interpretation-of-coefficients" class="section level2" number="13.3">
-<h2><span class="header-section-number">13.3</span> Interpretation of coefficients</h2>
+<div id="interpretation-of-coefficients" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Interpretation of coefficients<a href="logistic-regression.html#interpretation-of-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Due to the transformation of response variable, the interpretation of coefficients of logistic regression with the logit link is somewhat obscure. Recall that the form of the response variable is <span class="math inline">\(log(\frac{p}{1 - p})\)</span>, where <span class="math inline">\(p\)</span> is the probability that <span class="math inline">\(y = 1\)</span> and hence <span class="math inline">\(1-p\)</span> the probability that <span class="math inline">\(y \neq 1\)</span>.</p>
 <p>Therefore, <strong>the coefficients in logistic regression model represent increase in logged odds of <span class="math inline">\(y=1\)</span> when predictor variable increases by one unit</strong>. We can also exponentiate the model equation above. Then <span class="math inline">\(\frac{p}{1-p} = e^{\alpha + \beta x}\)</span> which means that one unit of increase in predictor multiplies the odds of <span class="math inline">\(y = 1\)</span> by <span class="math inline">\(e^\beta\)</span>. As this demonstrates, <strong>there isn’t an intuitive way to interpret the coefficients</strong>. Still, we can interpret the direction and statistical significance.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Coefficients | Odds ratio</code>.</p>
 </div>
-<div id="model-fit" class="section level2" number="13.4">
-<h2><span class="header-section-number">13.4</span> Model fit</h2>
-<div id="deviance" class="section level3" number="13.4.1">
-<h3><span class="header-section-number">13.4.1</span> Deviance</h3>
+<div id="model-fit" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Model fit<a href="logistic-regression.html#model-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="deviance" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Deviance<a href="logistic-regression.html#deviance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>See <span class="citation">Crawley (<a href="#ref-crawley_r_2013" role="doc-biblioref">2013</a>)</span> section 13.6.</p>
 <p>When fitted values are determined as a result of MLE, using residuals is not straightforward. A MLE equivalent of RSS in case of OLS is <em>deviance</em> that can also be used to assess the goodness of fit of a GLM. <strong>Deviance expresses the difference in log-likelihood between current and saturated model</strong>. For binomial error structure the deviance is expressed as</p>
 <p><span class="math display">\[D = 2 \sum y ln(y/\mu) + (n - y) ln(n - y) / (n - \mu),\]</span></p>
 <p>where <span class="math inline">\(y\)</span> are the observed values of response, <span class="math inline">\(\mu\)</span> the mean value of response and <span class="math inline">\(n\)</span> the number of observations.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Fit | Deviance</code>.</p>
 </div>
-<div id="pseudo-r2" class="section level3" number="13.4.2">
-<h3><span class="header-section-number">13.4.2</span> Pseudo <span class="math inline">\(R^2\)</span></h3>
+<div id="pseudo-r2" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Pseudo <span class="math inline">\(R^2\)</span><a href="logistic-regression.html#pseudo-r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Because MLE does not involve the minimization of squared residuals, it is not suitable to use residuals via <span class="math inline">\(R^2\)</span> to determine model fit. Still, there are equivalent pseudo-<span class="math inline">\(R^2\)</span> measures for expressing model fit for MLE that are calculated using likelihoods. While there are several such measures, most common is the <em>McFadden’s pseduo-<span class="math inline">\(R^2\)</span></em>:</p>
 <p><span class="math display">\[R^2 = 1 - \frac{ln(\theta_{reduced})}{ln(\theta_{full})},\]</span></p>
 <p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of model with only intercept and <span class="math inline">\(\theta_{full}\)</span> likelihood of model with predictors. As such, <strong>the measure illustrates how much does the addition of predictors improve the model</strong>. The values lie between 0 and 1 and usually values <span class="math inline">\(&gt;0.4\)</span> are considered to indicate a good fit.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Fit | McFadden's R^2</code>.</p>
 </div>
-<div id="likelihood-ratio-test" class="section level3" number="13.4.3">
-<h3><span class="header-section-number">13.4.3</span> Likelihood ratio test</h3>
+<div id="likelihood-ratio-test" class="section level3 hasAnchor" number="13.4.3">
+<h3><span class="header-section-number">13.4.3</span> Likelihood ratio test<a href="logistic-regression.html#likelihood-ratio-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This test can be used to determine <strong>if a complex model is different from a simpler one</strong>. This can be used to estimate the overall model fit. The test statistic is</p>
 <p><span class="math display">\[LR = -2ln(\frac{\theta_{reduced}}{\theta_{full}}),\]</span></p>
 <p>where <span class="math inline">\(\theta_{reduced}\)</span> is the likelihood of simpler model and <span class="math inline">\(\theta_{full}\)</span> the likelihood of complex model. The hypotheses are as follows:</p>
@@ -433,8 +419,8 @@ In R: <code>glm(y ~ x, data, family = binomial(link = 'logit'))</code></p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Model Coefficients | Likelihood ratio tests</code>.</p>
 </div>
 </div>
-<div id="classification" class="section level2" number="13.5">
-<h2><span class="header-section-number">13.5</span> Classification</h2>
+<div id="classification" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Classification<a href="logistic-regression.html#classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The model fitted values of response variable lie between 0 and 1. These can be interpreted as <strong>probabilities that <span class="math inline">\(y = 1\)</span> for each observation</strong>. In case we wish to have predictions on original binary scale, we need to choose a cutoff point that determines if a probability should be classified as 0 or 1.</p>
 <p>The classified predictions can be tabulated against true classes which results in a classification table or a <em>confusion matrix</em>. Such table can then be used to calculate measures such as <em>accuracy</em>, <em>specificity</em>, <em>sensitivity</em>, <em>AUC</em> and others that illustrate how good the model is at predicting.</p>
 <p>In Jamovi: <code>Regression &gt; 2 Outcomes &gt; Prediction</code>.</p>
@@ -456,7 +442,7 @@ Also add info on odds and odds ratios.
 
 </div>
 </div>
-<h3> References</h3>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-crawley_r_2013" class="csl-entry">
 Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Second edition. Chichester, West Sussex, UK: Wiley. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf</a>.
@@ -529,7 +515,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

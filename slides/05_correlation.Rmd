@@ -181,7 +181,7 @@ plot(x, y, axes = F, xlab = NA, ylab = NA, cex.main = 2,
 
 Correlation does not tell us all about the underlying data. This is why you should create scatterplots!
 
-![](/home/jrl/work/resmeth/slides/img/datasaurusdozen.gif)
+![](./img/datasaurusdozen.gif)
 
 ---
 

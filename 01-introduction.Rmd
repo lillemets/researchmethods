@@ -74,16 +74,16 @@ As an alternative to Jamovi, students are free to use R programming language. Du
 
 The notation below is used in these notes.
 
-$n$ - sample size (number of observations in sample)
+$n$ - sample size (number of observations in sample)  
 $N$ - population size
 
-$\bar{x}$ - sample mean
-$\mu$ - population mean
+$\bar{x}$ - sample mean  
+$\mu$ - population mean  
 $\hat{\mu}$ - estimate of the population mean
 
-$s$ - sample standard deviation
-$\sigma$ - popuation standard deviation
+$s$ - sample standard deviation  
+$\sigma$ - popuation standard deviation  
 $\hat{\sigma}$ - estimate of the population standard deviation
 
-$x$, $y$ - random variables
+$x$, $y$ - random variables  
 $\hat{y}$ - estimated values of variable $y$

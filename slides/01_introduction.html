@@ -4,18 +4,26 @@
     <title>Introduction</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jüri Lillemets" />
-    <meta name="date" content="2021-11-23" />
-    <script src="01_introduction_files/header-attrs-2.11/header-attrs.js"></script>
+    <meta name="date" content="2022-10-31" />
+    <script src="01_introduction_files/header-attrs-2.14/header-attrs.js"></script>
     <link rel="stylesheet" href="minimal.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction
+]
+.subtitle[
 ## Research methods
+]
+.author[
 ### Jüri Lillemets
-### 2021-11-23
+]
+.date[
+### 2022-10-31
+]
 
 ---
 
@@ -56,13 +64,9 @@ class: center middle clean
 
 A distinct part of MS.0825 Research methods course. 
 
---
-
-We meet on Mondays at 13:15 and on Wednesdays and Thursdays at 9:15
-
 ---
 
-Complete **tests** and submit your **research report** via course page on Moodle.
+Complete **tests** via course page on Moodle.
 
 --
 
@@ -87,7 +91,7 @@ Flipped classroom
 
 ## Study materials
 
-Detailed information about the course is at [www.lillemets.ee/researchmethods](http://www.lillemets.ee/researchmethods).
+Detailed information about the course is at [www.lillemets.ee/researchmethods/notes](http://www.lillemets.ee/researchmethods/notes).
 
 Texts for reading are referred in notes and available online.
 
@@ -146,11 +150,7 @@ Quantitative part gives you 50% of the Research methods course points. These are
 
 --
 
-Answers to **tests** on the methods based on reading material ( `\(10 \times 2 = 20\)` points)
-
---
-
-A **research report** containing the application of methods learned  ( `\(10 \times 3 = 30\)` points).
+Answers to **tests** on the methods based on reading material.
 
 
 ???
@@ -177,49 +177,21 @@ Demonstrate understanding of theory. Tests are to motivate learning, to see if y
 
 ---
 
-### Research project
-
-Demonstrate your ability to apply the methods in practice.
-
---
-
-Students are required to create a research report and present the results as follows:
-
-1. Choose a data set
-2. Apply at least one method from 10 meetings on this data set
-3. Make changes according to feedback if you wish
-4. Present the results as a written report
-
-???
-
-Demonstrate practical skills. May have a specific research question, or may not. Can use a different data set for each practical application. As long as it's different from other students.
-
----
-
-In case of each topic, one point is assigned for each of the following: 
-
-- method is suitable for the data, 
-- method is correctly applied, 
-- interpretation of the results is correct.
-
----
-
 ## Meetings
 
-We have a total of 12 meetings.
+We have a total of 11 meetings.
 
 1. Introduction. Descriptive statistics (today)
 2. Hypothesis testing. Comparing categorical variables
 3. Comparing numerical variables
 4. Analysis of variance
 5. Correlation analysis
-6. Simple linear regression
-7. Data transformations
-8. Multiple linear regression
-9. Logistic regression
-10. Principal component analysis
-11. Factor analysis
-12. Clustering
+6. Simple linear regression. Data transformations
+7. Multiple linear regression
+8. Logistic regression
+9. Principal component analysis
+10. Factor analysis
+11. Clustering
 
 ---
 
@@ -519,17 +491,17 @@ Can take only two values, usually 0 and 1.
 
 
 ```
-##             . islandsAntarctica islandsAsia islandsAustralia
-## 1   Australia                 0           0                1
-## 2  Antarctica                 1           0                0
-## 3   Australia                 0           0                1
-## 4        Asia                 0           1                0
-## 5   Australia                 0           0                1
-## 6        Asia                 0           1                0
-## 7   Australia                 0           0                1
-## 8        Asia                 0           1                0
-## 9        Asia                 0           1                0
-## 10  Australia                 0           0                1
+##            . islandsAfrica islandsAsia islandsAustralia
+## 1  Australia             0           0                1
+## 2       Asia             0           1                0
+## 3  Australia             0           0                1
+## 4     Africa             1           0                0
+## 5     Africa             1           0                0
+## 6       Asia             0           1                0
+## 7       Asia             0           1                0
+## 8     Africa             1           0                0
+## 9  Australia             0           0                1
+## 10      Asia             0           1                0
 ```
 
 --
@@ -935,7 +907,7 @@ class: middle
 
 Why do we need plots?
 
-![](/home/jrl/work/resmeth/slides/img/datasaurusdozen.gif)
+![](../img/datasaurusdozen.gif)
 
 ---
 
@@ -1068,6 +1040,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
