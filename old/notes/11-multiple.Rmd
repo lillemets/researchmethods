@@ -1,0 +1,79 @@
+<!-- Join with 09-regression and replace with an overview of some more complex models (count data, ordinal, multinomial) -->
+
+# Multiple linear regression
+
+In addition to modeling the relationship between two variables, we can use regression to estimate models with multiple predictors. An OLS model with more than one predictor is thus called multiple linear regression. 
+
+Note that the assumptions of an SLS model also apply for multiple linear regression.
+
+## Multiple predictors
+
+See @navarro_learning_2018 section 12.5 for an introduction and @crawley_r_2013 section 10.13 for a more detailed explanations.
+
+The estimation of a least squares model with multiple predictors is very similar to single linear regression. The only difference in estimation is that an additional term ($\beta_i x_i$) for each predictor is added to the model. A model with two predictors can be expressed as follows:
+
+$y = \beta_0 + \beta_{1} x_1  + \beta_{2} x_2 + \varepsilon,$
+
+where now
+
+- $\beta_1$ is a coefficient of $x_1$ and
+- $\beta_2$ is a coefficient of $x_2$.
+
+The interpretation and diagnostics of the model is now more complicated as now we need to consider both predictors.
+
+The addition of a second term means that our model is no longer a line but rather a plane (see Figure 12.14 in @navarro_learning_2018). This entire plane is now affected by multiple variables which means that $\beta_1$ is influenced by the addition of $\beta_2$ when $x_1$ and $x_2$ are correlated.
+
+Why use multiple predictors? This allows to control the effects of different variables on the response, improving the accuracy coefficients. Also, adding meaningful predictors improves the fit of the model and thus results in more accurate predictions. 
+
+## Predictor selection
+
+See @navarro_learning_2018 sections 12.11.1 and 12.11.2.
+
+Constructing a model involves choosing which predictors to include. To get a quick understanding of how variables are related, first take a look at pairwise scatterplots.
+
+In Jamovi: `Regression > Correlation Matrix | Correlation Matrix `.  
+In R: `pairs(data)`
+
+How do we know which predictors to include and which to omit? We should start with estimating a model with all the predictors that we theoretically expect to have an effect on the response and then move on to empirical considerations.
+
+While there is no general consensus about what to do with coefficients that are not statistically significant, from an empirical point of view these should be omitted from a model.
+
+A traditional approach to testing combinations of predictors would be to examine statistical significance of coefficients but this would lead to the multiple comparisons problem and is not suggested anymore. Instead, we can use a parameter such as the Akaike information criterion (AIC) and apply backward elimination or forward selection to determine which combination of predictors results in the best model. 
+
+### Akaike information criterion
+
+See @navarro_learning_2018 section 12.11 (not the subsections).
+
+For linear regression the information criterion is calculated as follows:
+
+$AIC = n \times ln(\frac{RSS}{n}) + 2 K,$
+
+where $n$ is the number of observations, $RSS$ the residual sums of squares and $K$ the number of predictors in a model.
+
+The AIC is higher if model performs worse and has more predictors. Thus, lower value of AIC indicates a better model. Note that values of AIC can only be compared for models that have the same response variable.
+
+### Model comparison with F-test
+
+See @navarro_learning_2018 section 12.11.4.
+
+Fit of two models can be compared in the hypothesis testing framework using F-test. This is often used to estimate a general model fit as it allows us to compare the statistical significance of difference between two models. The F-statistic is calculated as follows:
+
+$$F = \frac{RSS_1 - RSS_1 / k}{RSS_2/(n-p-1)},$$
+
+where $RSS_1$ is the residual sum of squares of reduced model and $RSS_2$ the same for full model, $k$ the difference in the number of parameters between two models, $p$ the number of parameters and $n$ the number of observations. The test statistic is  estimated on F-distribution with $df_1 = k$ and $df_2 = n-p-1$.
+
+For example, if our reduced model is $y = \beta_0 + \varepsilon$ and full model $y = \beta_0 + \beta_{1} x_1  + \beta_{2} x_2 + \varepsilon$, then we would test whether or not the two terms improve model fit compared to just the intercept ($E(y)$) and our hypotheses would thus be as follows:
+
+$H_0: \beta_1 = \beta_2 = 0$  
+$H_1: \beta_1 \neq 0 \text{ or } \beta_2 \neq 0$  
+
+## Multicollinearity
+
+See @navarro_learning_2018 section 12.10.4.
+
+In addition the assumptions described in the previous section, multiple predictors introduce the possibility of multicollinearity. This is particularly likely if predictors are highly correlated. The idea is that it should not be possible to linearly predict any of the predictors from others predictors, i.e. predictors should not be (highly) correlated. Otherwise the coefficients are not reliable. Multicollinearity can be detected with variance inflation factor (VIF) by using $R^2$ to estimate for each predictor how much of the variation in one predictor can be predicted from others.
+
+$$VIF_{k} = \frac{1}{1 - R^{2}_{k-1}},$$
+
+where $R^{2}_{k-1}$ is $R^{2}$ for a model that has predictor $k$ as a response variable and all other predictors as predictor variables. Often VIF value of 5 is considered to be too high and indicate that some predictors should omitted from the model.
+

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Logistic regression</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jüri Lillemets" />
+    <meta name="date" content="2021-12-08" />
+    <script src="09_logistic_files/header-attrs-2.11/header-attrs.js"></script>
+    <link rel="stylesheet" href="minimal.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Logistic regression
+## Research methods
+### Jüri Lillemets
+### 2021-12-08
+
+---
+
+
+
+
+class: center middle clean
+
+# How to model a binary response?
+
+???
+Very often response variable is a dummy variable, describes event happening or not, etc.
+
+---
+
+class: center middle inverse
+
+# Linear regression with two outcomes
+
+---
+
+Let's use a data set on emails to explain and predict spam.
+
+
+
+- `crl.tot` total length of words in capitals
+- `dollar` number of occurrences of the "$" symbol
+- `bang` number of occurrences of the "!" symbol
+- `money` number of occurrences of the word "money"
+- `n000` number of occurrences of the string "000"
+- `make` number of occurrences of the word "make"
+- `yesno` outcome variable, a factor with levels n not spam, y spam
+
+---
+
+What does the data look like?
+
+.compact[
+
+| crl.tot| dollar|  bang| money| n000| make|yesno | spam|
+|-------:|------:|-----:|-----:|----:|----:|:-----|----:|
+|     278|  0.000| 0.778|  0.00| 0.00| 0.00|y     |    1|
+|    1028|  0.180| 0.372|  0.43| 0.43| 0.21|y     |    1|
+|    2259|  0.184| 0.276|  0.06| 1.16| 0.06|y     |    1|
+|     191|  0.000| 0.137|  0.00| 0.00| 0.00|y     |    1|
+|     191|  0.000| 0.135|  0.00| 0.00| 0.00|y     |    1|
+|      54|  0.000| 0.000|  0.00| 0.00| 0.00|y     |    1|
+|     112|  0.054| 0.164|  0.00| 0.00| 0.00|y     |    1|
+|      49|  0.000| 0.000|  0.00| 0.00| 0.00|y     |    1|
+|    1257|  0.203| 0.181|  0.15| 0.00| 0.15|y     |    1|
+|     749|  0.081| 0.244|  0.00| 0.19| 0.06|y     |    1|
+|      21|  0.000| 0.462|  0.00| 0.00| 0.00|y     |    1|
+|     184|  0.000| 0.663|  0.00| 0.00| 0.00|y     |    1|
+|     261|  0.000| 0.786|  0.00| 0.00| 0.00|y     |    1|
+|      25|  0.000| 0.000|  0.00| 0.00| 0.00|y     |    1|
+|     205|  0.000| 0.357|  0.00| 0.35| 0.00|y     |    1|
+|     249|  0.063| 0.572|  0.42| 0.00| 0.00|y     |    1|
+|     107|  0.000| 0.428|  0.00| 0.00| 0.00|y     |    1|
+|     461|  0.370| 1.975|  0.00| 0.70| 0.00|y     |    1|
+|      70|  0.000| 0.455|  0.00| 0.00| 0.00|y     |    1|
+|     186|  0.496| 0.055|  0.63| 0.31| 0.00|y     |    1|
+]
+
+---
+
+Do occurrences of dollar symbol have an effect on categorizing an email as spam? Can we predict spam from dollar signs?
+
+![](09_logistic_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+Let's estimate a linear model where response `spam` is predicted from `dollar`.
+
+
+```
+## 
+## Call:
+## lm(formula = spam ~ dollar, data = Oie)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.7187 -0.2903 -0.2903  0.4497  0.7097 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.290262   0.007034   41.27   &lt;2e-16 ***
+## dollar      1.666731   0.048377   34.45   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4341 on 4552 degrees of freedom
+## Multiple R-squared:  0.2068,	Adjusted R-squared:  0.2067 
+## F-statistic:  1187 on 1 and 4552 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+
+This is how an ordinary linear model fits.
+
+![](09_logistic_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+--
+
+&gt; Is this a good fit? Does the line make sense?
+
+???
+
+The line does not respect the boundaries of 0 and 1.
+
+---
+
+What about the assumptions?
+
+![](09_logistic_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+--
+
+&gt; Are the assumptions of normality and constant variance of residuals satisfied?
+
+---
+
+How are the errors distributed?
+
+![](09_logistic_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+--
+
+Assumptions of linear regression model can not be met when response is binary.
+
+---
+
+class: center middle inverse
+
+# Estimation of generalized linear models
+
+---
+
+What to do if the distribution of errors is such that it can not meet assumptions of linear regression?
+
+--
+
+Specify a distribution of errors! For binary data we should use binomial distribution.
+
+![](09_logistic_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+
+## Generalized linear models (GLM)
+
+Least squares requires normal distribution of errors. So we can not use it if our response variable is a binary variable or contains counts.
+
+Generalized linear models allow us to **specify an error distribution** prior to estimation.
+
+--
+
+In case of binary data we use *binomial distribution* to obtain a suitable error structure. 
+
+Binomial distribution can be used to represent the proportion of successes at a particular number of trials.
+
+---
+
+Generalized linear models can also be used for other than binary response variable, e.g.
+
+- normal data, 
+- data with gamma distribution, 
+- count data (incl. zero-inflated or zero-truncated response), 
+- truncated or censored data.
+
+???
+
+Application of models is creative.
+
+---
+
+Let's estimate the same model now as a generalized linear model.
+
+
+```
+## 
+## Call:
+## glm(formula = spam ~ dollar, family = binomial(link = "logit"), 
+##     data = Oie)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -4.9642  -0.7561  -0.7561   0.6825   1.6684  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.10598    0.03897  -28.38   &lt;2e-16 ***
+## dollar      15.66840    0.65343   23.98   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 6083.7  on 4553  degrees of freedom
+## Residual deviance: 4758.8  on 4552  degrees of freedom
+## AIC: 4762.8
+## 
+## Number of Fisher Scoring iterations: 6
+```
+
+---
+
+## Logit link
+
+Link function relates the mean value of response to predictor variable(s), allowing us to **apply a particular distribution of errors**.
+
+Link function **transforms the mean of response variable**.
+
+--
+
+For binary response variable we use the logit link (or probit link).
+
+The logit link is mathematically expressed as follows:
+
+`$$ln(\frac{p}{1 - p}) = \alpha + \beta x,$$`
+
+where `\(p\)` is the probability that `\(y = 1\)`.
+
+---
+
+What does the generalized version of the model look like?
+
+![](09_logistic_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+--
+
+&gt; Why is it better than linear model?
+
+---
+
+A better illustration: predict transmission of a car from its weight.
+
+![](09_logistic_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+## Maximum likelihood estimation (MLE)
+
+The parameters of a GLM can not be simply calculated as when using the least squares method. 
+
+--
+
+Models with various parameters are **iteratively** fitted until we find such parameters for which the data we have is most likely.
+
+--
+
+In case of OLS we use data to find most appropriate parameters.
+
+With MLE we use parameters to see which are most suitable for data.
+
+---
+
+### Likelihood
+
+Likelihood expresses how likely is the data we have given the parameters.
+
+It can not be directly interpreted but it is used to calculate measures of model fit.
+
+---
+
+class: center middle inverse
+
+# Interpretation and diagnostics
+
+---
+
+## Coefficients
+
+The `\(\beta\)` coefficient is the increase in logged odds that `\(y = 1\)`.
+
+Recall the logit link `\(ln(\frac{p}{1 - p}) = \alpha + \beta x\)`, where `\(p\)` is the probability that `\(y = 1\)`.
+
+We are estimating log odds ratio: `\(\frac{p}{1-p} = e^{\alpha + \beta x}\)`.
+
+Exponent of a coefficient is thus odds ratio: `\(\frac{p}{1-p} = \frac{p(y = 1)}{p(y \neq 1)}\)`.
+
+---
+
+### Odds
+
+If odds are `\(\frac{1}{1} = 1\)`, then a unit increase of predictor **does not influence** the odds of `\(y = 1\)`.
+
+If odds are `\(\frac{1}{2} = 0.5\)`, then a unit increase of predictor **decreases** the odds of `\(y = 1\)` twice.
+
+If odds are `\(\frac{2}{1} = 2\)`, then a unit increase of predictor **increases** the odds of `\(y = 1\)` twice.
+
+---
+
+### Log odds
+
+The coefficient is the logged odds of `\(y = 1\)`. 
+
+--
+
+We can convert the coefficient to probability of increase in odds by taking the exponent of it. 
+
+In our example the `\(\beta_1\)` was 15.668. 
+
+The exponent of this `\(\beta_1\)` is 6378196 ( `\(e^{\beta_1}\)` ).
+
+One unit increase in number of dollar signs increases the odds of a mail being spam 6378196 times.
+
+---
+
+
+```
+## 
+## Call:
+## glm(formula = spam ~ dollar, family = binomial(link = "logit"), 
+##     data = Oie)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -4.9642  -0.7561  -0.7561   0.6825   1.6684  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.10598    0.03897  -28.38   &lt;2e-16 ***
+## dollar      15.66840    0.65343   23.98   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 6083.7  on 4553  degrees of freedom
+## Residual deviance: 4758.8  on 4552  degrees of freedom
+## AIC: 4762.8
+## 
+## Number of Fisher Scoring iterations: 6
+```
+
+--
+
+&gt; Does the number of dollar symbols have an effect of email categorized as spam?
+
+--
+
+&gt; Does an increase in the number of dollar symbols decrease the odds of email categorized as spam?
+
+---
+
+![increased_risk](../img/increased_risk.png)
+
+.footnote[Xkcd. Increased risk]
+
+???
+Odds ratios are difficult to interpret.
+
+---
+
+## Model fit
+
+### Pseudo `\(R^2\)`
+
+An alternative of `\(R^2\)` for linear regression, although calculation and interpretation is different:
+
+`$$R^2 = 1 - \frac{ln\theta_{reduced}}{ln\theta_{full}},$$`
+
+where `\(\theta_{reduced}\)` is the likelihood of model with only intercept and `\(\theta_{full}\)` likelihood of model with predictors. 
+
+The values lie between 0 and 1 and usually values  `\(&gt;0.4\)` are considered to indicate good fit.
+
+???
+
+How much does the addition of predictors improve the model.
+
+---
+
+### Likelihood ratio test
+
+This test can be used to determine if a complex model is different from a simpler one:
+
+`$$LR = -2ln(\frac{\theta_1}{\theta_2}),$$`
+
+where `\(\theta_1\)` is the likelihood of simpler model and `\(\theta_2\)` the likelihood of complex model. The hypotheses are as follows:
+
+`\(H_0: L_1 = L_2\)`  
+`\(H_1: L_1 \neq L_2.\)`
+
+If difference can not be shown, then the simpler model should be preferred. 
+
+---
+
+## Classification
+
+### Probabilities
+
+Fitted values of logistic regression model are `\(p\)`, i.e. the probability that `\(y = 1\)`:
+
+`$$p = \frac{e^{\alpha + \beta x}}{1 + e^{\alpha + \beta x}}$$`
+
+Value of `\(p\)` lies between 0 and 1. 
+
+--
+
+For classification we thus need to choose a cutoff point.
+
+---
+
+We can use the model to predict whether an email is spam.
+
+.small[
+
+If cutoff point is .5
+
+
+|   |    0|    1|
+|:--|----:|----:|
+|0  | 2541|  245|
+|1  |  719| 1049|
+
+If cutoff point is .2
+
+
+|   |    0|   1|
+|:--|----:|---:|
+|0  | 2676| 110|
+|1  |  885| 883|
+
+If cutoff point is .1
+
+
+|   |    0|   1|
+|:--|----:|---:|
+|0  | 2718|  68|
+|1  | 1049| 719|
+
+]
+
+---
+
+### Confusion matrix
+
+Classification table or a confusion matrix demonstrates the classification results.
+
+
+|    |    0|   1|  Sum|
+|:---|----:|---:|----:|
+|0   | 2676| 110| 2786|
+|1   |  885| 883| 1768|
+|Sum | 3561| 993| 4554|
+
+--
+
+We can calculate various measures from this table:
+
+- accuracy: `\((2676 + 884) / 4554 = 0.78\)`; 
+- sensitivity: `\(883 / 993 = 0.89\)`; 
+- specifity: `\(2676 / 3561 = 0.75\)`;
+- ...
+
+See the article about [Confusion matrix on Wikipedia](https://en.wikipedia.org/wiki/Confusion_matrix).
+
+---
+
+class: center middle inverse
+
+# Practical application
+
+---
+
+Use the data set `PSID1976`.
+
+Try to explain the participation in labor force (`participation`).
+
+&gt; Which variables should we use as predictors?
+
+&gt; What is the effect of empirically relevant predictors?
+
+--
+
+&gt; Does our final model meet the assumptions of a linear model?
+
+---
+
+class: inverse
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
